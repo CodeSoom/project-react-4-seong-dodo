@@ -19,30 +19,26 @@
 <br/> 
    
 # 📝 Requirements
-### 공통 요구사항
-- [x] 작성 가능한 단위의 테스트를 직접 선정하여 진행 (테스트 도구 선택 자율)
-<br/>
-
 ## Step1
 ### 요구 사항
-- [x] README.md에 요구 사항 도출
-- [x] 재사용 가능한 Component 작성
+- [ ] README.md에 요구 사항 도출
+- [ ] 재사용 가능한 Component 작성
 
 #### 구현 페이지
-- [x] Home
-- [x] AcountBook
-- [x] CalendarPage
-- [x] BudgetSetupPage
+- [ ] Home
+- [ ] AcountBook
+- [ ] CalendarPage
+- [ ] BudgetSetupPage
 
 <br/>
 
 ## Step2
 ### 요구 사항
-- [x] Google Firebase(https://firebase.google.com/?hl=ko)를 이용하여 백엔드를 직접 구현하지 않고 백엔드 기능을 사용합니다.
+- [ ] Google Firebase(https://firebase.google.com/?hl=ko)를 이용하여 백엔드를 직접 구현하지 않고 백엔드 기능을 사용합니다.
 
 #### 구현 페이지
-- [x] 내역 추가 상세
-- [x] 내역 수정 상세
+- [ ] 내역 추가 상세
+- [ ] 내역 수정 상세
 
 <br/>
 
