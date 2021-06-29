@@ -42,6 +42,49 @@
 
 <br/>
 
+## Step3
+### 요구 사항
+- [ ] ESLint를 돌린 결과 아무런 문제가 없어야 합니다.
+- [ ] 모든 인수 테스트를 통과시켜야 합니다.
+- [ ] 한 파일에는 하나의 컴포넌트만 있어야 합니다.
+- [ ] 테스트 커버리지 100%를 달성해야 합니다.
+
+### 설치하기
+``` javascript
+npm install
+```
+### 실행하기
+``` javascript
+ npm start
+```
+### 린트 실행하기
+``` javascript
+npm run lint
+```
+
+### 테스트 실행하기
+#### 전체 테스트 실행하기
+``` javascript
+npm test
+```
+#### 유닛 테스트 실행하기
+``` javascript
+npm run test:unit
+
+ # 파일이 저장됐을 때 자동으로 테스트 실행하기
+npm run test:unit -- --watch-all
+ 
+ # 커버리지 출력하기
+npm run coverage
+```
+#### e2e 테스트 실행하기
+##### 서버가 실행중인 상태에서 테스트를 실행해야 합니다.
+``` javascript
+npm run test:e2e
+```
+
+<br/>
+
 # 🏊 1주차
 ##### 6월 28일 (월) - 7월 4일 (일)
 > 요구 사항
