@@ -77,11 +77,6 @@ npm run test:unit -- --watch-all
  # 커버리지 출력하기
 npm run coverage
 ```
-#### e2e 테스트 실행하기
-##### 서버가 실행중인 상태에서 테스트를 실행해야 합니다.
-``` javascript
-npm run test:e2e
-```
 
 <br/>
 

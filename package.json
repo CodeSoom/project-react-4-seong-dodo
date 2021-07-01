@@ -7,8 +7,7 @@
     "start": "webpack serve",
     "test:unit": "jest",
     "coverage": "npm run test:unit -- --coverage",
-    "test:e2e": "codeceptjs run --steps",
-    "test": "npm run coverage && start-server-and-test start http://localhost:8080 test:e2e",
+    "test": "npm run coverage",
     "lint": "eslint --ext js,jsx ."
   },
   "keywords": [],
@@ -41,6 +40,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
