@@ -4,7 +4,7 @@ import colors from './style/colors';
 const Container = styled.div({
   width: '50%',
   height: '15em',
-  margin: '8em auto',
+  margin: '5em auto',
   borderBottom: `${colors.teal} solid .8em`,
   textAlign: 'center',
 });
@@ -17,7 +17,7 @@ const Title = styled.h2({
 
 const SubTitle = styled.p({
   margin: '.5em auto',
-  color: `${colors.gray}`,
+  color: `${colors.gray_text}`,
 });
 
 const InputBox = styled.div({
