@@ -1,5 +1,6 @@
 const colors = {
   white: 'rgb(255, 255, 255)',
+  teal_border: 'rgb(205, 236, 231)',
   teal: 'rgba(26, 188, 156, 0.44)',
   gray_text: 'rgb(127, 127, 127)',
   gray_text02: 'rgb(94, 94, 94)',
