@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import BudgetContainer from './BudgetContainer';
+import TabBar from './TabBar';
 
 const Container = styled.div({
   width: '90%',
@@ -13,6 +14,7 @@ export default function BudgetPage() {
   return (
     <Container>
       <BudgetContainer />
+      <TabBar />
     </Container>
   );
 }

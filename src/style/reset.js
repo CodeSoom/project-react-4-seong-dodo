@@ -13,6 +13,9 @@ body, div, h1 {
 a {
   text-decoration: none;
 }
+ul {
+  list-style: none;
+}
 `;
 
 export default reset;
