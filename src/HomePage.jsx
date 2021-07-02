@@ -10,13 +10,6 @@ const Container = styled.div({
   margin: '0 auto',
 });
 
-const Title = styled.h1({
-  margin: '1.5em auto',
-  fontSize: '3em',
-  color: `${colors.black}`,
-  textAlign: 'center',
-});
-
 const LinkBox = styled.div({
   width: '80%',
   height: '2.5em',
@@ -38,7 +31,6 @@ const LinkBox = styled.div({
 export default function HomePage() {
   return (
     <Container>
-      <Title>Mine</Title>
       <LinkBox>
         <Link to="/budget">
           한 달 예산을 세워볼까요?

@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import BudgetContainer from './BudgetContainer';
+
 const Container = styled.div({
   width: '90%',
   height: '50%',
@@ -10,7 +12,7 @@ const Container = styled.div({
 export default function BudgetPage() {
   return (
     <Container>
-      서비스가 곧 업데이트 될 예정입니다.
+      <BudgetContainer />
     </Container>
   );
 }
