@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import colors from './style/colors';
 
-const Container = styled.div({
+const BodyContainer = styled.body({
   width: '50%',
   height: '15em',
   margin: '5em auto',
@@ -44,7 +44,7 @@ export default function BudgetForm({ budget, onChange }) {
   }
 
   return (
-    <Container>
+    <BodyContainer>
       <Title>한 달 예산을 세워볼까요?</Title>
       <SubTitle>예산을 설정하고 계획적으로 관리 해보세요.</SubTitle>
       <InputBox>
@@ -61,6 +61,6 @@ export default function BudgetForm({ budget, onChange }) {
         />
         <span>원</span>
       </InputBox>
-    </Container>
+    </BodyContainer>
   );
 }

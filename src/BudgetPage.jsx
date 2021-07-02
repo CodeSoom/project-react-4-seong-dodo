@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
+import MonthlyBudgetContainer from './MonthlyBudgetContainer';
 import BudgetContainer from './BudgetContainer';
 import TabBar from './TabBar';
 
-const Container = styled.div({
+const BodyContainer = styled.div({
   width: '90%',
   height: '50%',
   margin: '8em auto',
@@ -12,9 +13,10 @@ const Container = styled.div({
 
 export default function BudgetPage() {
   return (
-    <Container>
+    <BodyContainer>
+      <MonthlyBudgetContainer />
       <BudgetContainer />
       <TabBar />
-    </Container>
+    </BodyContainer>
   );
 }
