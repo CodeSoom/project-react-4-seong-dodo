@@ -25,10 +25,10 @@
 - [ ] 재사용 가능한 Component 작성
 
 #### 구현 페이지
-- [ ] Home
-- [ ] AcountBook
+- [ ] HomePage
+- [ ] BudgetPage
 - [ ] CalendarPage
-- [ ] BudgetSetupPage
+
 
 <br/>
 
@@ -77,11 +77,6 @@ npm run test:unit -- --watch-all
  # 커버리지 출력하기
 npm run coverage
 ```
-#### e2e 테스트 실행하기
-##### 서버가 실행중인 상태에서 테스트를 실행해야 합니다.
-``` javascript
-npm run test:e2e
-```
 
 <br/>
 
@@ -96,6 +91,9 @@ npm run test:e2e
   - [ ] 예산 입력 input 기능 개발
   - [ ] 예산 입력 컴포넌트 개발
   - [ ] 예산 입력 데이터 스키마 정의
+- 사용자는 하단 내비게이션 탭에서 홈, 달력, 예산 페이지로 이동할 수 있다.
+  - [ ] 홈, 달력, 예산 페이지 이동 링크 추가
+- 사용자는 상단 탭 화면을 확인 할 수 있다.
 
 <br/>
 
