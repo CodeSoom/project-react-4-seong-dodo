@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import colors from './style/colors';
 
-const BodyContainer = styled.body({
+const BodyContainer = styled.div({
   width: '50%',
   height: '15em',
   margin: '5em auto',
