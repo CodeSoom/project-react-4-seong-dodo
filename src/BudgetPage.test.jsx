@@ -14,6 +14,8 @@ describe('BudgetPage', () => {
   beforeEach(() => {
     useSelector.mockImplementation((selector) => selector({
       budget: '',
+      year: 2021,
+      month: 7,
     }));
   });
 

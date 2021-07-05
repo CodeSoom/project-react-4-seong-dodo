@@ -19,6 +19,8 @@ describe('App', () => {
 
     useSelector.mockImplementation((selector) => selector({
       budget: '',
+      year: 2021,
+      month: 7,
     }));
   });
 
@@ -48,7 +50,9 @@ describe('App', () => {
 
   context('with path /calendar', () => {
     it('renders calendar page', () => {
-      renderApp({ path: '/calendar' });
+      const { container } = renderApp({ path: '/calendar' });
+
+      expect(container).toHaveTextContent('달력');
     });
   });
 });
