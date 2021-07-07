@@ -36,7 +36,7 @@ describe('MonthlyBudgetContainer', () => {
   });
 
   describe('renders conditional statement', () => {
-    it('when 0 month', () => {
+    it('when month > 0', () => {
       useSelector.mockImplementation((selector) => selector({
         year: 2021,
         month: 0,
@@ -48,7 +48,7 @@ describe('MonthlyBudgetContainer', () => {
       expect(dispatch).not.toBeCalled();
     });
 
-    it('when 13 month', () => {
+    it('when month < 13', () => {
       useSelector.mockImplementation((selector) => selector({
         year: 2021,
         month: 13,

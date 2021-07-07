@@ -14,7 +14,6 @@ const { actions, reducer } = createSlice({
         budget: value,
       };
     },
-
     setPreviousMonth(state, { payload: { month } }) {
       if (month === 1) {
         return {
@@ -28,7 +27,6 @@ const { actions, reducer } = createSlice({
         month: state.month - 1,
       };
     },
-
     setNextMonth(state, { payload: { month } }) {
       if (month === 12) {
         return {
@@ -42,7 +40,6 @@ const { actions, reducer } = createSlice({
         month: state.month + 1,
       };
     },
-
   },
 });
 
