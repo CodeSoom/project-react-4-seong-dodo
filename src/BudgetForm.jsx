@@ -4,7 +4,7 @@ import colors from './style/colors';
 const BodyContainer = styled.div({
   width: '50%',
   height: '15em',
-  margin: '5em auto',
+  margin: '2em auto .5em',
   borderBottom: `${colors.teal} solid .8em`,
   textAlign: 'center',
 });

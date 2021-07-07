@@ -10,6 +10,9 @@ body, div, h1 {
   border: 0;
   vertical-align: baseline;
 }
+body {
+  font-size: 16px;
+}
 a {
   text-decoration: none;
 }

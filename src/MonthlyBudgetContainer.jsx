@@ -11,9 +11,7 @@ import {
 } from './slice';
 
 const TopContainer = styled.header({
-  position: 'fixed',
-  top: '8em',
-  left: '25%',
+  position: 'relative',
   width: '50%',
   height: '7em',
   margin: '0 auto',
@@ -80,13 +78,13 @@ export default function MonthlyBudgetContainer() {
   const year = useSelector(get('year'));
 
   const handleChangePreviousMonth = () => {
-    if (month !== 0) {
+    if (month > 0) {
       dispatch(setPreviousMonth({ month }));
     }
   };
 
   const handleChangeNextMonth = () => {
-    if (month !== 13) {
+    if (month < 13) {
       dispatch(setNextMonth({ month }));
     }
   };

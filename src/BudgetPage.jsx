@@ -7,7 +7,7 @@ import TabBar from './TabBar';
 const BodyContainer = styled.div({
   width: '90%',
   height: '50%',
-  margin: '8em auto',
+  margin: '.5em auto',
   textAlign: 'center',
 });
 
