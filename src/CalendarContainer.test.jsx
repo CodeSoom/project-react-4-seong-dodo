@@ -2,15 +2,15 @@ import { render } from '@testing-library/react';
 
 import { useSelector } from 'react-redux';
 
-import Calendar from './Calendar';
+import CalendarContainer from './CalendarContainer';
 
 jest.mock('react-redux');
 
-test('Calendar', () => {
+test('CalendarContainer', () => {
   useSelector.mockImplementation((selector) => selector({
     year: 2021,
     month: 7,
   }));
 
-  render(<Calendar />);
+  render(<CalendarContainer />);
 });

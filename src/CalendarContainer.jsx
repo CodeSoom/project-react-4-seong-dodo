@@ -7,28 +7,27 @@ import CalendarDays from './CalendarDays';
 
 import { get } from './utils';
 
-const CalendarContainer = styled.div({
+const CalendarBox = styled.div({
   width: '40em',
   minHeight: '20em',
   margin: '1.5em auto',
 });
 
-export default function Calendar() {
+export default function CalendarContainer() {
   const month = useSelector(get('month'));
   const year = useSelector(get('year'));
 
   const days = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <CalendarContainer>
+    <CalendarBox>
       <CalendarDays
         days={days}
       />
-
       <CalendarDates
         month={month}
         year={year}
       />
-    </CalendarContainer>
+    </CalendarBox>
   );
 }

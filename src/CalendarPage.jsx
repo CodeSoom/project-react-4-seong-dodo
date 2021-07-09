@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import MonthlyBudgetContainer from './MonthlyBudgetContainer';
-import Calendar from './Calendar';
+import CalendarContainer from './CalendarContainer';
 import TabBar from './TabBar';
 
 const BodyContainer = styled.div({
@@ -15,7 +15,7 @@ export default function CalendarPage() {
   return (
     <BodyContainer>
       <MonthlyBudgetContainer />
-      <Calendar />
+      <CalendarContainer />
       <TabBar />
     </BodyContainer>
   );
