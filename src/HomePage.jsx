@@ -5,7 +5,7 @@ import {
 import styled from '@emotion/styled';
 import colors from './style/colors';
 
-const BodyContainer = styled.div({
+const Container = styled.div({
   width: '90%',
   margin: '0 auto',
 });
@@ -31,7 +31,7 @@ const LinkBox = styled.div({
 
 export default function HomePage() {
   return (
-    <BodyContainer>
+    <Container>
       <LinkBox>
         <Link to="/budget">
           한 달 예산을 세워볼까요?
@@ -42,6 +42,6 @@ export default function HomePage() {
           자산 관리 시작해볼까요?
         </Link>
       </LinkBox>
-    </BodyContainer>
+    </Container>
   );
 }

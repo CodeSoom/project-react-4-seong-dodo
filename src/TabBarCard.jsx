@@ -43,7 +43,7 @@ const Item = styled.li({
   },
 });
 
-export default function TabBar() {
+export default function TabBarCard() {
   return (
     <Footer>
       <List>

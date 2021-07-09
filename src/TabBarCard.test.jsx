@@ -2,12 +2,12 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { render } from '@testing-library/react';
 
-import TabBar from './TabBar';
+import TabBarCard from './TabBarCard';
 
 test('TabBar', () => {
   render((
     <MemoryRouter>
-      <TabBar />
+      <TabBarCard />
     </MemoryRouter>
   ));
 });

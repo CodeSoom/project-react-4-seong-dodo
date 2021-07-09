@@ -12,7 +12,7 @@ import HomePage from './HomePage';
 import BudgetPage from './BudgetPage';
 import CalendarPage from './CalendarPage';
 
-const HeaderContainer = styled.header({
+const Container = styled.header({
   margin: '0 auto',
   lineHeight: '8em',
 });
@@ -27,9 +27,9 @@ const Title = styled.h1({
 export default function App() {
   return (
     <>
-      <HeaderContainer>
+      <Container>
         <Title>Mine</Title>
-      </HeaderContainer>
+      </Container>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/budget" component={BudgetPage} />
