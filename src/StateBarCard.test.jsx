@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import MonthlyBudgetContainer from './MonthlyBudgetContainer';
+import StateBarCard from './StateBarCard';
 
 jest.mock('react-redux');
 
@@ -20,7 +20,7 @@ describe('MonthlyBudgetContainer', () => {
   });
 
   it('listens click event and move the previous month', () => {
-    const { getByText } = render(<MonthlyBudgetContainer />);
+    const { getByText } = render(<StateBarCard />);
 
     fireEvent.click(getByText('<'));
 
@@ -28,7 +28,7 @@ describe('MonthlyBudgetContainer', () => {
   });
 
   it('listens click event and move the next month', () => {
-    const { getByText } = render(<MonthlyBudgetContainer />);
+    const { getByText } = render(<StateBarCard />);
 
     fireEvent.click(getByText('>'));
 
@@ -41,7 +41,7 @@ describe('MonthlyBudgetContainer', () => {
         year: 2021,
         month: 0,
       }));
-      const { queryByText } = render(<MonthlyBudgetContainer />);
+      const { queryByText } = render(<StateBarCard />);
 
       fireEvent.click(queryByText('<'));
 
@@ -53,7 +53,7 @@ describe('MonthlyBudgetContainer', () => {
         year: 2021,
         month: 13,
       }));
-      const { queryByText } = render(<MonthlyBudgetContainer />);
+      const { queryByText } = render(<StateBarCard />);
 
       fireEvent.click(queryByText('>'));
 
