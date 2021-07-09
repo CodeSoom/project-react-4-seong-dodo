@@ -24,30 +24,53 @@ export default function CalendarDates({ month, year }) {
   const lastDateOfThisMonth = new Date(year, month, 0).getDate();
   const lastDayOfThisMonth = new Date(year, month, 0).getDay();
 
-  const PreviousDates = [];
-  const thisDates = [...Array(lastDateOfThisMonth + 1).keys()].slice(1);
-  const nextDates = [];
+  const getPreviousDates = () => {
+    const previousDates = [];
 
-  if (lastDayOfPreviousMonth !== 6) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < lastDayOfPreviousMonth + 1; i++) {
-      PreviousDates.unshift(lastDateOfPreviousMonth - i);
+    if (lastDayOfPreviousMonth !== 6) {
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < lastDayOfPreviousMonth + 1; i++) {
+        previousDates.unshift(lastDateOfPreviousMonth - i);
+      }
     }
-  }
-  // eslint-disable-next-line no-plusplus
-  for (let i = 1; i < 7 - lastDayOfThisMonth; i++) {
-    nextDates.push(i);
-  }
 
-  const dates = PreviousDates.concat(thisDates, nextDates);
+    return previousDates;
+  };
 
-  const weeks = [];
+  const getThisDates = () => {
+    const thisDates = [...Array(lastDateOfThisMonth + 1).keys()].slice(1);
 
-  for (let i = 0; i <= 35; i += 7) {
-    weeks.push([...dates].slice(i, i + 7));
-  }
+    return thisDates;
+  };
 
-  return weeks.map((week) => (
+  const getNextDates = () => {
+    const nextDates = [];
+
+    if (lastDayOfPreviousMonth !== 6) {
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < lastDayOfPreviousMonth + 1; i++) {
+        getPreviousDates().unshift(lastDateOfPreviousMonth - i);
+      }
+    }
+    // eslint-disable-next-line no-plusplus
+    for (let i = 1; i < 7 - lastDayOfThisMonth; i++) {
+      nextDates.push(i);
+    }
+
+    return nextDates;
+  };
+
+  const getWeeks = () => {
+    const weeks = [];
+    const dates = getPreviousDates().concat(getThisDates(), getNextDates());
+    for (let i = 0; i <= 35; i += 7) {
+      weeks.push([...dates].slice(i, i + 7));
+    }
+
+    return weeks;
+  };
+
+  return getWeeks().map((week) => (
     <WeekRow
       key={week}
     >
