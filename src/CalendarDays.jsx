@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import styled from '@emotion/styled';
 import colors from './style/colors';
 
@@ -21,7 +23,9 @@ const Day = styled.div({
   fontSize: '.8em',
 });
 
-export default function CalendarDays({ days }) {
+export default function CalendarDays() {
+  const [days] = useState(['일', '월', '화', '수', '목', '금', '토']);
+
   return (
     <DaysBox>
       <DaysRow>

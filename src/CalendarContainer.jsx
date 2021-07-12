@@ -1,11 +1,18 @@
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 
-import CalendarDates from './CalendarDates';
 import CalendarDays from './CalendarDays';
+import CalendarMonth from './CalendarMonth';
+import TransactionModal from './TransactionModal';
 
 import { get } from './utils';
+
+import {
+  setDailyTransaction,
+} from './slice';
 
 const CalendarBox = styled.div({
   width: '40em',
@@ -14,20 +21,38 @@ const CalendarBox = styled.div({
 });
 
 export default function CalendarContainer() {
+  const dispatch = useDispatch();
+  const [isDisplay, setDisplay] = useState(false);
+
   const month = useSelector(get('month'));
   const year = useSelector(get('year'));
+  const dailyTransaction = useSelector(get('dailyTransaction'));
 
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  const handleOpenModal = (date, day) => {
+    setDisplay(!isDisplay);
+    dispatch(setDailyTransaction({ date, day }));
+  };
 
   return (
     <CalendarBox>
-      <CalendarDays
-        days={days}
-      />
-      <CalendarDates
+      <CalendarDays />
+      <CalendarMonth
         month={month}
         year={year}
+        onClick={handleOpenModal}
       />
+      <div>
+        {
+          isDisplay === true
+            ? (
+              <TransactionModal
+                dailyTransaction={dailyTransaction}
+                onClick={handleOpenModal}
+              />
+            )
+            : null
+        }
+      </div>
     </CalendarBox>
   );
 }
