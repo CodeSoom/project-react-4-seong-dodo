@@ -2,8 +2,6 @@ import { render } from '@testing-library/react';
 
 import CalendarDays from './CalendarDays';
 
-jest.mock('react-redux');
-
 describe('CalendarDays', () => {
   it('renders calendaer days', () => {
     const days = ['일', '월', '화', '수', '목', '금', '토'];

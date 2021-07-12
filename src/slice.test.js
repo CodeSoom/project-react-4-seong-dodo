@@ -2,6 +2,7 @@ import reducer, {
   changeBudget,
   setPreviousMonth,
   setNextMonth,
+  setDailyTransaction,
 } from './slice';
 
 describe('reducer', () => {
@@ -10,6 +11,16 @@ describe('reducer', () => {
       budget: '',
       year: 2021,
       month: 7,
+      dailyTransaction: {
+        year: 2021,
+        month: 7,
+        date: 1,
+        day: 4,
+        transactionHistory: [
+          { type: '수입', breakdown: 10000 },
+          { type: '지출', breakdown: 20000 },
+        ],
+      },
     };
 
     it('returns initialState', () => {
@@ -50,6 +61,7 @@ describe('reducer', () => {
       const state = reducer(initialState, setPreviousMonth({ month: 1 }));
 
       expect(state.year).toBe(2020);
+      expect(state.month).toBe(12);
     });
   });
 
@@ -74,6 +86,27 @@ describe('reducer', () => {
       const state = reducer(initialState, setNextMonth({ month: 12 }));
 
       expect(state.year).toBe(2022);
+      expect(state.month).toBe(1);
     });
+  });
+
+  it('listens setDailyTransaction action', () => {
+    const initialState = {
+      dailyTransaction: {
+        year: 2021,
+        month: 7,
+        date: 1,
+        day: 4,
+        transactionHistory: [
+          { type: '수입', breakdown: 10000 },
+          { type: '지출', breakdown: 20000 },
+        ],
+      },
+    };
+
+    const state = reducer(initialState, setDailyTransaction({ date: 2, day: 5 }));
+
+    expect(state.dailyTransaction.date).toBe(2);
+    expect(state.dailyTransaction.day).toBe(5);
   });
 });

@@ -21,6 +21,16 @@ describe('App', () => {
       budget: '',
       year: 2021,
       month: 7,
+      dailyTransaction: {
+        year: 2021,
+        month: 7,
+        date: 1,
+        day: 4,
+        transactionHistory: [
+          { type: '수입', breakdown: 10000 },
+          { type: '지출', breakdown: 20000 },
+        ],
+      },
     }));
   });
 
