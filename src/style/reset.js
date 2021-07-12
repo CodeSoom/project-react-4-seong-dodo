@@ -10,11 +10,23 @@ body, div, h1 {
   border: 0;
   vertical-align: baseline;
 }
+body {
+  font-size: 16px;
+}
 a {
   text-decoration: none;
 }
 ul {
   list-style: none;
+}
+button {
+  all: unset;
+  cursor: pointer;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 `;
 

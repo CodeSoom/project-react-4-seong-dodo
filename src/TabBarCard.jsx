@@ -5,19 +5,18 @@ import {
 import styled from '@emotion/styled';
 import colors from './style/colors';
 
-const Footer = styled.footer({
-  position: 'absolute',
+const Footer = styled.div({
+  position: 'relative',
   bottom: 0,
   left: 0,
   width: '100%',
-  height: '7em',
 });
 
 const List = styled.ul({
   display: 'inline-flex',
   width: '60%',
   height: '2.5em',
-  margin: '.5em auto',
+  margin: '2em auto',
   padding: 0,
   borderRadius: '3em',
   backgroundColor: `${colors.gray_backgroud}`,
@@ -44,7 +43,7 @@ const Item = styled.li({
   },
 });
 
-export default function TabBar() {
+export default function TabBarCard() {
   return (
     <Footer>
       <List>

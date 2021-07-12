@@ -1,22 +1,22 @@
 import styled from '@emotion/styled';
 
-import MonthlyBudgetContainer from './MonthlyBudgetContainer';
+import StateBarCard from './StateBarCard';
 import BudgetContainer from './BudgetContainer';
-import TabBar from './TabBar';
+import TabBarCard from './TabBarCard';
 
-const BodyContainer = styled.div({
+const Container = styled.div({
   width: '90%',
   height: '50%',
-  margin: '8em auto',
+  margin: '.5em auto',
   textAlign: 'center',
 });
 
 export default function BudgetPage() {
   return (
-    <BodyContainer>
-      <MonthlyBudgetContainer />
+    <Container>
+      <StateBarCard />
       <BudgetContainer />
-      <TabBar />
-    </BodyContainer>
+      <TabBarCard />
+    </Container>
   );
 }
