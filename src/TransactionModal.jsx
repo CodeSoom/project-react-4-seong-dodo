@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from '@emotion/styled';
 import colors from './style/colors';
+
+import TransactionDetailModal from './TransactionDetailModal';
 
 const Container = styled.div({
   position: 'fixed',
@@ -57,12 +59,16 @@ const AddBox = styled.div({
 
 export default function TransactionModal({ dailyTransaction, onClick }) {
   const { date, day } = dailyTransaction;
+  const [isDisplay, setDisplay] = useState(false);
 
   function convertDay() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return days[day];
   }
 
+  const handleOpenModal = () => {
+    setDisplay(!isDisplay);
+  };
   return (
     <>
       <Container>
@@ -80,10 +86,22 @@ export default function TransactionModal({ dailyTransaction, onClick }) {
             {convertDay()}
             요일
           </DateInfor>
-          <AddBox>
+          <AddBox
+            onClick={handleOpenModal}
+            role="presentation"
+          >
             내역추가
           </AddBox>
         </TextBox>
+        <div>
+          {
+            isDisplay === true
+              ? (
+                <TransactionDetailModal />
+              )
+              : null
+          }
+        </div>
       </Container>
     </>
   );
