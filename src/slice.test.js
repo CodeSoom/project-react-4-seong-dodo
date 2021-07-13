@@ -1,5 +1,6 @@
 import reducer, {
   changeBudget,
+  changeBreakdown,
   setPreviousMonth,
   setNextMonth,
   setDailyTransaction,
@@ -9,6 +10,7 @@ describe('reducer', () => {
   context('without state', () => {
     const initialState = {
       budget: '',
+      breakdown: '',
       year: 2021,
       month: 7,
       dailyTransaction: {
@@ -38,6 +40,16 @@ describe('reducer', () => {
     const state = reducer(initialState, changeBudget({ value: '10' }));
 
     expect(state.budget).toBe('10');
+  });
+
+  it('listens changeBreakdown action', () => {
+    const initialState = {
+      breakdown: { value: '' },
+    };
+
+    const state = reducer(initialState, changeBreakdown({ value: '1000' }));
+
+    expect(state.breakdown).toBe('1000');
   });
 
   describe('setPreviousMonth action', () => {
