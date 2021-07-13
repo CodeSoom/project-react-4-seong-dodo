@@ -4,6 +4,7 @@ const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     budget: '',
+    breakdown: '',
     year: 2021,
     month: 7,
     dailyTransaction: {
@@ -22,6 +23,12 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         budget: value,
+      };
+    },
+    changeBreakdown(state, { payload: { value } }) {
+      return {
+        ...state,
+        breakdown: value,
       };
     },
     setPreviousMonth(state, { payload: { month } }) {
@@ -62,6 +69,7 @@ const { actions, reducer } = createSlice({
 
 export const {
   changeBudget,
+  changeBreakdown,
   setPreviousMonth,
   setNextMonth,
   setDailyTransaction,

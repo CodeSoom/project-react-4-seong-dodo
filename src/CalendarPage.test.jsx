@@ -18,6 +18,7 @@ describe('CalendarPage', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      breakdown: '',
       year: 2021,
       month: 7,
       dailyTransaction: {

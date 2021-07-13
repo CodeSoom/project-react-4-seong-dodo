@@ -19,6 +19,7 @@ describe('App', () => {
 
     useSelector.mockImplementation((selector) => selector({
       budget: '',
+      breakdown: '',
       year: 2021,
       month: 7,
       dailyTransaction: {

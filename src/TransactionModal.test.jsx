@@ -29,6 +29,7 @@ describe('TransactionModal', () => {
     const { container } = renderTransactionModal();
 
     expect(container).toHaveTextContent('1일');
+    expect(container).toHaveTextContent('X');
     expect(container).toHaveTextContent('내역추가');
   });
 });
