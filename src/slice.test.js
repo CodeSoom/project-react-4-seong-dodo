@@ -1,6 +1,6 @@
 import reducer, {
   changeBudget,
-  changeBreakdown,
+  changeTransactionFields,
   setPreviousMonth,
   setNextMonth,
   setDailyTransaction,
@@ -10,9 +10,13 @@ describe('reducer', () => {
   context('without state', () => {
     const initialState = {
       budget: '',
-      breakdown: '',
       year: 2021,
       month: 7,
+      transactionFields: {
+        breakdown: '',
+        source: '',
+        memo: '',
+      },
       dailyTransaction: {
         year: 2021,
         month: 7,
@@ -42,14 +46,41 @@ describe('reducer', () => {
     expect(state.budget).toBe('10');
   });
 
-  it('listens changeBreakdown action', () => {
+  describe('changeTransactionFields action', () => {
     const initialState = {
-      breakdown: { value: '' },
+      transactionFields: {
+        breakdown: '',
+        source: '',
+        memo: '',
+      },
     };
 
-    const state = reducer(initialState, changeBreakdown({ value: '1000' }));
+    it('changes a field of breakdown', () => {
+      const state = reducer(
+        initialState,
+        changeTransactionFields({ name: 'breakdown', value: '1000' }),
+      );
 
-    expect(state.breakdown).toBe('1000');
+      expect(state.transactionFields.breakdown).toBe('1000');
+    });
+
+    it('changes a field of source', () => {
+      const state = reducer(
+        initialState,
+        changeTransactionFields({ name: 'source', value: '카페' }),
+      );
+
+      expect(state.transactionFields.source).toBe('카페');
+    });
+
+    it('changes a field of memo', () => {
+      const state = reducer(
+        initialState,
+        changeTransactionFields({ name: 'memo', value: '친구들이랑' }),
+      );
+
+      expect(state.transactionFields.memo).toBe('친구들이랑');
+    });
   });
 
   describe('setPreviousMonth action', () => {
