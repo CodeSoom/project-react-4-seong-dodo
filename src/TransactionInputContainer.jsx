@@ -5,26 +5,24 @@ import TransactionInput from './TransactionInput';
 import { get } from './utils';
 
 import {
-  changeBreakdown,
+  changeTransactionFields,
 } from './slice';
 
 export default function TransactionInputContainer() {
   const dispatch = useDispatch();
 
-  const breakdown = useSelector(get('breakdown'));
+  const transactionFields = useSelector(get('transactionFields'));
 
-  const handleChange = ({ value }) => {
-    dispatch(changeBreakdown({ value }));
+  const handleChange = ({ name, value }) => {
+    dispatch(changeTransactionFields({ name, value }));
   };
 
   return (
     <div>
       <TransactionInput
-        breakdown={breakdown}
+        fields={transactionFields}
         onChange={handleChange}
       />
-
-      내역추가 상세페이지 업데이트 예정입니다.
     </div>
   );
 }

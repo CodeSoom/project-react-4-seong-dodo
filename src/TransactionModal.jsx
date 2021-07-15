@@ -31,8 +31,10 @@ const TextBox = styled.div({
 });
 
 const DateBox = styled.div({
+  width: '40%',
   margin: '2em',
   fontSize: '1em',
+  textAlign: 'left',
 });
 
 export default function TransactionModal({ dailyTransaction, onClick }) {

@@ -8,7 +8,7 @@ import TransactionDetailModal from './TransactionDetailModal';
 const AddBox = styled.div({
   position: 'fixed',
   bottom: '5em',
-  margin: '1em 27em',
+  margin: '.5em 10em',
   padding: '.5em 1em',
   borderRadius: '.2em',
   color: `${colors.white}`,
@@ -17,8 +17,18 @@ const AddBox = styled.div({
   letterSpacing: '.3em',
 });
 
+const DefaultContainer = styled.div({
+  position: 'fixed',
+  top: 180,
+  right: 160,
+  width: '37%',
+  height: '55%',
+  borderLeft: `${colors.gray_backgroud} solid 1px`,
+});
+
 export default function AddTransactionButton() {
   const [isDisplay, setDisplay] = useState(false);
+
   // 내역추가 버튼 이벤트
   const handleClickDetailModal = () => {
     setDisplay(!isDisplay);
@@ -38,7 +48,7 @@ export default function AddTransactionButton() {
             ? (
               <TransactionDetailModal />
             )
-            : null
+            : <DefaultContainer />
         }
       </div>
     </div>

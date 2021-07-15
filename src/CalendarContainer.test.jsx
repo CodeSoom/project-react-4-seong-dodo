@@ -17,9 +17,13 @@ describe('CalendarContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      breakdown: '',
       year: 2021,
       month: 7,
+      transactionFields: {
+        breakdown: '',
+        source: '',
+        memo: '',
+      },
       dailyTransaction: {
         year: 2021,
         month: 7,

@@ -4,9 +4,13 @@ const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     budget: '',
-    breakdown: '',
     year: 2021,
     month: 7,
+    transactionFields: {
+      breakdown: '',
+      source: '',
+      memo: '',
+    },
     dailyTransaction: {
       year: 2021,
       month: 7,
@@ -25,10 +29,13 @@ const { actions, reducer } = createSlice({
         budget: value,
       };
     },
-    changeBreakdown(state, { payload: { value } }) {
+    changeTransactionFields(state, { payload: { name, value } }) {
       return {
         ...state,
-        breakdown: value,
+        transactionFields: {
+          ...state.transactionFields,
+          [name]: value,
+        },
       };
     },
     setPreviousMonth(state, { payload: { month } }) {
@@ -69,7 +76,7 @@ const { actions, reducer } = createSlice({
 
 export const {
   changeBudget,
-  changeBreakdown,
+  changeTransactionFields,
   setPreviousMonth,
   setNextMonth,
   setDailyTransaction,

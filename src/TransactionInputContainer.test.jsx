@@ -14,32 +14,30 @@ describe('TransactionInputContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      breakdown: '',
+      transactionFields: {
+        breakdown: '',
+        source: '',
+        memo: '',
+      },
     }));
   });
 
-  context('with breakdown', () => {
-    it('listens change events', () => {
-      const { getByLabelText } = render(<TransactionInputContainer />);
+  it('listens change events', () => {
+    const { getByLabelText } = render(<TransactionInputContainer />);
 
-      fireEvent.change(getByLabelText('거래처'), {
-        target: { value: '1000' },
-      });
+    const controls = [
+      { label: '거래처명', name: 'breakdown', value: '5000' },
+      { label: '거래처', name: 'source', value: '카페' },
+      { label: '메모', name: 'memo', value: '친구들이랑' },
+    ];
+
+    controls.forEach(({ label, name, value }) => {
+      fireEvent.change(getByLabelText(label), { target: { value } });
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/changeBreakdown',
-        payload: { value: '1000' },
+        type: 'application/changeTransactionFields',
+        payload: { name, value },
       });
-    });
-  });
-
-  context('without breakdown', () => {
-    it('renders nothiong', () => {
-      const { getByLabelText } = render(<TransactionInputContainer />);
-
-      fireEvent.change(getByLabelText('거래처'), { target: { value: '' } });
-
-      expect(dispatch).not.toBeCalled();
     });
   });
 });
