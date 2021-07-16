@@ -1,4 +1,5 @@
 import InputField from './InputField';
+import TypeContainer from './TypeContainer';
 
 export default function TransactionInput({
   fields, onChange,
@@ -19,6 +20,10 @@ export default function TransactionInput({
         />
         <span>원</span>
         <span>🖋️</span>
+      </div>
+
+      <div>
+        <TypeContainer />
       </div>
 
       <div>
