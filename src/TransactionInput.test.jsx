@@ -21,28 +21,28 @@ describe('TransactionInput', () => {
   it('renders transaction input fields', () => {
     const { queryByLabelText } = renderTransactionInput();
 
-    expect(queryByLabelText('거래처명')).not.toBeNull();
     expect(queryByLabelText('거래처')).not.toBeNull();
     expect(queryByLabelText('메모')).not.toBeNull();
   });
 
   it('renders values of fields', () => {
-    const { queryByLabelText } = renderTransactionInput({
-      breakdown: '3000',
-      source: '카페',
-      memo: '친구들이랑',
-    });
+    const { queryByPlaceholderText } = renderTransactionInput(
+      {
+        breakdown: 3000,
+        source: '카페',
+        memo: '친구들이랑',
+      },
+    );
 
-    expect(queryByLabelText('거래처명').value).toBe('3000');
-    expect(queryByLabelText('거래처').value).toBe('카페');
-    expect(queryByLabelText('메모').value).toBe('친구들이랑');
+    expect(queryByPlaceholderText('0').value).toBe('3000');
+    expect(queryByPlaceholderText('거래처명을 입력하세요.').value).toBe('카페');
+    expect(queryByPlaceholderText('메모를 입력하세요.').value).toBe('친구들이랑');
   });
 
   it('listens change events', () => {
     const { getByLabelText } = renderTransactionInput();
 
     const controls = [
-      { label: '거래처명', name: 'breakdown', value: '5000' },
       { label: '거래처', name: 'source', value: '카페' },
       { label: '메모', name: 'memo', value: '친구들이랑' },
     ];

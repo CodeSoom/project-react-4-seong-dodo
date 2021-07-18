@@ -1,5 +1,6 @@
 import reducer, {
   changeBudget,
+  selectType,
   changeTransactionFields,
   setPreviousMonth,
   setNextMonth,
@@ -9,23 +10,25 @@ import reducer, {
 describe('reducer', () => {
   context('without state', () => {
     const initialState = {
-      budget: '',
+      budget: 0,
       year: 2021,
       month: 7,
-      transactionFields: {
-        breakdown: '',
-        source: '',
-        memo: '',
+      selectedType: null,
+      transaction: {
+        type: '',
+        category: '',
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
       },
       dailyTransaction: {
         year: 2021,
         month: 7,
         date: 1,
         day: 4,
-        transactionHistory: [
-          { type: '수입', breakdown: 10000 },
-          { type: '지출', breakdown: 20000 },
-        ],
+        transactionHistory: [],
       },
     };
 
@@ -38,30 +41,44 @@ describe('reducer', () => {
 
   it('listens changeBudget action', () => {
     const initialState = {
-      budget: { value: '' },
+      budget: { value: 0 },
     };
 
-    const state = reducer(initialState, changeBudget({ value: '10' }));
+    const state = reducer(initialState, changeBudget({ value: 10 }));
 
-    expect(state.budget).toBe('10');
+    expect(state.budget).toBe(10);
   });
 
-  describe('changeTransactionFields action', () => {
+  it('listens selectType action', () => {
     const initialState = {
-      transactionFields: {
-        breakdown: '',
-        source: '',
-        memo: '',
+      selectedType: null,
+    };
+
+    const state = reducer(initialState, selectType('수입'));
+
+    expect(state.selectedType).toBe('수입');
+  });
+
+  describe('change TransactionFields action', () => {
+    const initialState = {
+      transaction: {
+        type: '',
+        category: '',
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
       },
     };
 
     it('changes a field of breakdown', () => {
       const state = reducer(
         initialState,
-        changeTransactionFields({ name: 'breakdown', value: '1000' }),
+        changeTransactionFields({ name: 'breakdown', value: 1000 }),
       );
 
-      expect(state.transactionFields.breakdown).toBe('1000');
+      expect(state.transaction.transactionFields.breakdown).toBe(1000);
     });
 
     it('changes a field of source', () => {
@@ -70,7 +87,7 @@ describe('reducer', () => {
         changeTransactionFields({ name: 'source', value: '카페' }),
       );
 
-      expect(state.transactionFields.source).toBe('카페');
+      expect(state.transaction.transactionFields.source).toBe('카페');
     });
 
     it('changes a field of memo', () => {
@@ -79,7 +96,7 @@ describe('reducer', () => {
         changeTransactionFields({ name: 'memo', value: '친구들이랑' }),
       );
 
-      expect(state.transactionFields.memo).toBe('친구들이랑');
+      expect(state.transaction.transactionFields.memo).toBe('친구들이랑');
     });
   });
 
@@ -140,10 +157,7 @@ describe('reducer', () => {
         month: 7,
         date: 1,
         day: 4,
-        transactionHistory: [
-          { type: '수입', breakdown: 10000 },
-          { type: '지출', breakdown: 20000 },
-        ],
+        transactionHistory: [],
       },
     };
 
