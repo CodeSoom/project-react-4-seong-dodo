@@ -14,10 +14,15 @@ describe('TransactionInputContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      transactionFields: {
-        breakdown: '',
-        source: '',
-        memo: '',
+      selectedType: null,
+      transaction: {
+        type: '',
+        category: '',
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
       },
     }));
   });
@@ -26,7 +31,6 @@ describe('TransactionInputContainer', () => {
     const { getByLabelText } = render(<TransactionInputContainer />);
 
     const controls = [
-      { label: '거래처명', name: 'breakdown', value: '5000' },
       { label: '거래처', name: 'source', value: '카페' },
       { label: '메모', name: 'memo', value: '친구들이랑' },
     ];

@@ -14,7 +14,7 @@ describe('BudgetContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      budget: '',
+      budget: 0,
     }));
   });
 
@@ -37,7 +37,7 @@ describe('BudgetContainer', () => {
     it('renders nothiong', () => {
       const { getByLabelText } = render(<BudgetContainer />);
 
-      fireEvent.change(getByLabelText('한 달 예산'), { target: { value: '' } });
+      fireEvent.change(getByLabelText('한 달 예산'), { target: { value: 0 } });
 
       expect(dispatch).not.toBeCalled();
     });

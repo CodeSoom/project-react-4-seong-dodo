@@ -20,20 +20,21 @@ describe('CalendarPage', () => {
     useSelector.mockImplementation((selector) => selector({
       year: 2021,
       month: 7,
-      transactionFields: {
-        breakdown: '',
-        source: '',
-        memo: '',
+      transaction: {
+        type: '',
+        category: '',
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
       },
       dailyTransaction: {
         year: 2021,
         month: 7,
         date: 1,
         day: 4,
-        transactionHistory: [
-          { type: '수입', breakdown: 10000 },
-          { type: '지출', breakdown: 20000 },
-        ],
+        transactionHistory: [],
       },
     }));
   });

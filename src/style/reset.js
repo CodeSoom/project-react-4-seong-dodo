@@ -28,6 +28,9 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+input::placeholder {
+  color: rgb(190, 190, 190);
+}
 `;
 
 export default reset;

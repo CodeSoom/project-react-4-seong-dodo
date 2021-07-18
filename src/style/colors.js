@@ -5,6 +5,7 @@ const colors = {
   teal: 'rgba(26, 188, 156, 0.44)',
   gray_text: 'rgb(127, 127, 127)',
   gray_text02: 'rgb(94, 94, 94)',
+  gray_text03: 'rgb(190, 190, 190)',
   gray_backgroud: 'rgba(224, 224, 224, 0.39)',
   black: 'rgb(51, 51, 51)',
 };

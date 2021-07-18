@@ -11,18 +11,20 @@ import {
 export default function TransactionInputContainer() {
   const dispatch = useDispatch();
 
-  const transactionFields = useSelector(get('transactionFields'));
+  const transaction = useSelector(get('transaction'));
+
+  const { transactionFields } = transaction;
 
   const handleChange = ({ name, value }) => {
     dispatch(changeTransactionFields({ name, value }));
   };
 
   return (
-    <div>
+    <>
       <TransactionInput
         fields={transactionFields}
         onChange={handleChange}
       />
-    </div>
+    </>
   );
 }
