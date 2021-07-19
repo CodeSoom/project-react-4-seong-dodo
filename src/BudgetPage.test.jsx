@@ -13,7 +13,7 @@ jest.mock('react-redux');
 describe('BudgetPage', () => {
   beforeEach(() => {
     useSelector.mockImplementation((selector) => selector({
-      budget: '',
+      budget: 0,
       year: 2021,
       month: 7,
     }));

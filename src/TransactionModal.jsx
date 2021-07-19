@@ -1,7 +1,8 @@
-import React from 'react';
-
 import styled from '@emotion/styled';
 import colors from './style/colors';
+
+import CloseModalButton from './CloseModalButton';
+import AddTransactionButton from './AddTransactionButton';
 
 const Container = styled.div({
   position: 'fixed',
@@ -29,30 +30,11 @@ const TextBox = styled.div({
   backgroundColor: `${colors.white}`,
 });
 
-const Button = styled.button({
-  position: 'fixed',
-  right: '8em',
-  margin: '.5em',
-  color: `${colors.gray_text}`,
-  fontSize: '1.2em',
-  fontWeight: '600',
-});
-
-const DateInfor = styled.div({
+const DateBox = styled.div({
+  width: '40%',
   margin: '2em',
   fontSize: '1em',
-});
-
-const AddBox = styled.div({
-  position: 'fixed',
-  bottom: '5em',
-  margin: '1em 27em',
-  padding: '.5em 1em',
-  borderRadius: '.2em',
-  color: `${colors.white}`,
-  backgroundColor: `${colors.teal}`,
-  fontWeight: '600',
-  letterSpacing: '.3em',
+  textAlign: 'left',
 });
 
 export default function TransactionModal({ dailyTransaction, onClick }) {
@@ -64,27 +46,20 @@ export default function TransactionModal({ dailyTransaction, onClick }) {
   }
 
   return (
-    <>
-      <Container>
-        <TextBox>
-          <Button
-            type="button"
-            onClick={onClick}
-          >
-            X
-          </Button>
-          <DateInfor>
-            {date}
-            일
-            {' '}
-            {convertDay()}
-            요일
-          </DateInfor>
-          <AddBox>
-            내역추가
-          </AddBox>
-        </TextBox>
-      </Container>
-    </>
+    <Container>
+      <TextBox>
+        <CloseModalButton
+          onClick={onClick}
+        />
+        <DateBox>
+          {date}
+          일
+          {' '}
+          {convertDay()}
+          요일
+        </DateBox>
+        <AddTransactionButton />
+      </TextBox>
+    </Container>
   );
 }

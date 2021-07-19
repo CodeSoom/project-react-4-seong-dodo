@@ -2,6 +2,6 @@ export function get(key) {
   return (obj) => obj[key];
 }
 
-export function xxx() {
-  // todo...
+export function xxxx() {
+// TOdo remove
 }
