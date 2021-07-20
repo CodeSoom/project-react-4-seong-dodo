@@ -44,4 +44,35 @@ describe('TransactionInputContainer', () => {
       });
     });
   });
+
+  it('listens click event', () => {
+    const { getByText } = render(<TransactionInputContainer />);
+
+    fireEvent.click(getByText('저장'), {
+      transaction: {
+        type: '',
+        category: '',
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
+      },
+    });
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/setTransaction',
+      payload: {
+        transaction: {
+          type: '',
+          category: '',
+          transactionFields: {
+            breakdown: 0,
+            source: '',
+            memo: '',
+          },
+        },
+      },
+    });
+  });
 });

@@ -4,9 +4,11 @@ import TransactionInput from './TransactionInput';
 
 describe('TransactionInput', () => {
   const handleChange = jest.fn();
+  const handleSubmit = jest.fn();
 
   beforeEach(() => {
     handleChange.mockClear();
+    handleSubmit.mockClear();
   });
 
   function renderTransactionInput({ breakdown, source, memo } = {}) {
@@ -14,6 +16,7 @@ describe('TransactionInput', () => {
       <TransactionInput
         fields={{ breakdown, source, memo }}
         onChange={handleChange}
+        onClick={handleSubmit}
       />
     ));
   }
@@ -52,5 +55,13 @@ describe('TransactionInput', () => {
 
       expect(handleChange).toBeCalledWith({ name, value });
     });
+  });
+
+  it('listens click events', () => {
+    const { getByText } = renderTransactionInput();
+
+    fireEvent.click(getByText('저장'));
+
+    expect(handleSubmit).toBeCalled();
   });
 });

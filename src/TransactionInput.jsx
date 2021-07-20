@@ -16,7 +16,6 @@ const NumberBox = styled.div({
   left: 40,
   width: '90%',
   margin: '0 auto',
-  // borderBottom: `${colors.gray_backgroud} solid 1px`,
   fontSize: '.9em',
   lineHeight: '4em',
   '& span': {
@@ -24,7 +23,6 @@ const NumberBox = styled.div({
     top: 0,
     right: 60,
   },
-  // backgroundColor: 'pink',
 });
 
 const InputBox = styled.div({
@@ -42,9 +40,21 @@ const OptionBox = styled.div({
   marginTop: '2em',
 });
 
-export default function TransactionInput({
-  fields, onChange,
-}) {
+const SubmitBox = styled.div({
+  width: '75%',
+  height: '2em',
+  margin: '2.5em auto',
+  textAlign: 'center',
+  lineHeight: '2em',
+  borderRadius: '.2em',
+  color: `${colors.white}`,
+  backgroundColor: `${colors.teal}`,
+  fontSize: '.8em',
+  fontWeight: '600',
+  letterSpacing: 5,
+});
+
+export default function TransactionInput({ fields, onChange, onClick }) {
   const { breakdown, source, memo } = fields;
 
   return (
@@ -90,6 +100,14 @@ export default function TransactionInput({
           onChange={onChange}
         />
       </InputBox>
+      <SubmitBox>
+        <button
+          type="button"
+          onClick={onClick}
+        >
+          저장
+        </button>
+      </SubmitBox>
     </Container>
   );
 }
