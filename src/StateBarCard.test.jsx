@@ -41,6 +41,7 @@ describe('MonthlyBudgetContainer', () => {
         year: 2021,
         month: 0,
       }));
+
       const { queryByText } = render(<StateBarCard />);
 
       fireEvent.click(queryByText('<'));
@@ -53,6 +54,7 @@ describe('MonthlyBudgetContainer', () => {
         year: 2021,
         month: 13,
       }));
+
       const { queryByText } = render(<StateBarCard />);
 
       fireEvent.click(queryByText('>'));

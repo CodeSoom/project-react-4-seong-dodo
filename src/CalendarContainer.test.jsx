@@ -8,6 +8,8 @@ import {
   setDailyTransaction,
 } from './slice';
 
+import mockInitState from '../fixtures/mockInitState';
+
 jest.mock('react-redux');
 
 describe('CalendarContainer', () => {
@@ -18,26 +20,7 @@ describe('CalendarContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      year: 2021,
-      month: 7,
-      selectedType: null,
-      selectedCategory: null,
-      transaction: {
-        type: '',
-        category: '',
-        transactionFields: {
-          breakdown: 0,
-          source: '',
-          memo: '',
-        },
-      },
-      dailyTransaction: {
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
-        transactionHistory: [],
-      },
+      ...mockInitState,
     }));
   });
 

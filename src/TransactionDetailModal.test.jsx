@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TransactionDetailModal from './TransactionDetailModal';
 
+import mockInitState from '../fixtures/mockInitState';
+
 jest.mock('react-redux');
 
 describe('TransactionDetailModal', () => {
@@ -14,26 +16,7 @@ describe('TransactionDetailModal', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      budget: 0,
-      year: 2021,
-      month: 7,
-      selectedType: null,
-      transaction: {
-        type: '',
-        category: '',
-        transactionFields: {
-          breakdown: 0,
-          source: '',
-          memo: '',
-        },
-      },
-      dailyTransaction: {
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
-        transactionHistory: [],
-      },
+      ...mockInitState,
     }));
   });
 

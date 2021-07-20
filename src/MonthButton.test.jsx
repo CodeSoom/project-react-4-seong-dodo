@@ -10,7 +10,8 @@ describe('MonthButton', () => {
       <MonthButton
         direction="&lt;"
         onclick={handleClick}
-      />));
+      />
+    ));
 
     fireEvent.click(getByText('<'));
 
@@ -22,7 +23,8 @@ describe('MonthButton', () => {
       <MonthButton
         direction="&gt;"
         onclick={handleClick}
-      />));
+      />
+    ));
 
     fireEvent.click(getByText('>'));
 

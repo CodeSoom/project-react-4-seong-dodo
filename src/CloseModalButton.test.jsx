@@ -8,7 +8,8 @@ test('CloseModalButton', () => {
   const { getByText } = render((
     <CloseModalButton
       onClick={onClick}
-    />));
+    />
+  ));
 
   fireEvent.click(getByText('X'));
 

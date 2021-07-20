@@ -3,9 +3,9 @@ import { render, fireEvent } from '@testing-library/react';
 import IncomeCategory from './IncomeCategory';
 
 describe('IncomeCategory', () => {
-  it('renders income category', () => {
-    const handleChange = jest.fn();
+  const handleChange = jest.fn();
 
+  it('renders income category', () => {
     const { queryByText } = render((
       <IncomeCategory
         onChange={handleChange}
@@ -16,8 +16,6 @@ describe('IncomeCategory', () => {
   });
 
   it('listens change events', () => {
-    const handleChange = jest.fn();
-
     const { getByTestId } = render((
       <IncomeCategory
         onChange={handleChange}

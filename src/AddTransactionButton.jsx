@@ -45,9 +45,7 @@ export default function AddTransactionButton() {
       <div>
         {
           isDisplay === true
-            ? (
-              <TransactionDetailModal />
-            )
+            ? <TransactionDetailModal />
             : <DefaultContainer />
         }
       </div>
