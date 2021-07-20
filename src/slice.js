@@ -37,17 +37,43 @@ const { actions, reducer } = createSlice({
         selectedType: name,
       };
     },
+    changeTransactionType(state, { payload: name }) {
+      const selectedType = {
+        ...state.transaction,
+        type: name,
+      };
+      return {
+        ...state,
+        transaction: selectedType,
+      };
+    },
+    changeTransactionCategory(state, { payload: name }) {
+      const selectedCategory = {
+        ...state.transaction,
+        category: name,
+      };
+      return {
+        ...state,
+        transaction: selectedCategory,
+      };
+    },
     changeTransactionFields(state, { payload: { name, value } }) {
-      const newTransaction = {
-        ...state.Transaction,
+      const newTransactionFields = {
+        ...state.transaction,
         transactionFields: {
-          ...state.transactionFields,
+          ...state.transaction.transactionFields,
           [name]: value,
         },
       };
       return {
         ...state,
-        transaction: newTransaction,
+        transaction: newTransactionFields,
+      };
+    },
+    setTransaction(state, { payload: { transaction } }) {
+      return {
+        ...state,
+        transaction,
       };
     },
     setPreviousMonth(state, { payload: { month } }) {
@@ -89,9 +115,12 @@ const { actions, reducer } = createSlice({
 export const {
   changeBudget,
   selectType,
+  changeTransactionType,
+  changeTransactionCategory,
   changeTransactionFields,
   setPreviousMonth,
   setNextMonth,
+  setTransaction,
   setDailyTransaction,
 } = actions;
 

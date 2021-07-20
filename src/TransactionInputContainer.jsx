@@ -6,6 +6,7 @@ import { get } from './utils';
 
 import {
   changeTransactionFields,
+  setTransaction,
 } from './slice';
 
 export default function TransactionInputContainer() {
@@ -19,11 +20,16 @@ export default function TransactionInputContainer() {
     dispatch(changeTransactionFields({ name, value }));
   };
 
+  const handleSubmit = () => {
+    dispatch(setTransaction({ transaction }));
+  };
+
   return (
     <>
       <TransactionInput
         fields={transactionFields}
         onChange={handleChange}
+        onClick={handleSubmit}
       />
     </>
   );
