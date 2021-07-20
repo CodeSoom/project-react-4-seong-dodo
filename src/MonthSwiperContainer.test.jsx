@@ -51,6 +51,7 @@ describe('MonthSwiperContainer', () => {
         year: 2021,
         month: 0,
       }));
+
       const { queryByText } = render(<MonthSwiperContainer />);
 
       fireEvent.click(queryByText('<'));
@@ -63,6 +64,7 @@ describe('MonthSwiperContainer', () => {
         year: 2021,
         month: 13,
       }));
+
       const { queryByText } = render(<MonthSwiperContainer />);
 
       fireEvent.click(queryByText('>'));
