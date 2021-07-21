@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import colors from './style/colors';
 
 import CloseModalButton from './CloseModalButton';
+import Transaction from './Transaction';
 import AddTransactionButton from './AddTransactionButton';
 
 const Container = styled.div({
@@ -37,6 +38,14 @@ const DateBox = styled.div({
   textAlign: 'left',
 });
 
+const Box = styled.div({
+  width: '45%',
+  height: '65%',
+  margin: '3em',
+  fontSize: '.8em',
+  overflow: 'auto',
+});
+
 export default function TransactionModal({ dailyTransaction, onClick }) {
   const { date, day } = dailyTransaction;
 
@@ -58,6 +67,11 @@ export default function TransactionModal({ dailyTransaction, onClick }) {
           {convertDay()}
           요일
         </DateBox>
+        <Box>
+          <Transaction
+            dailyTransaction={dailyTransaction}
+          />
+        </Box>
         <AddTransactionButton />
       </TextBox>
     </Container>

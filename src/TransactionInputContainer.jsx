@@ -7,6 +7,7 @@ import { get } from './utils';
 import {
   changeTransactionFields,
   setTransaction,
+  setTransactionHistory,
 } from './slice';
 
 export default function TransactionInputContainer() {
@@ -22,6 +23,7 @@ export default function TransactionInputContainer() {
 
   const handleSubmit = () => {
     dispatch(setTransaction({ transaction }));
+    dispatch(setTransactionHistory({ transaction }));
   };
 
   return (
