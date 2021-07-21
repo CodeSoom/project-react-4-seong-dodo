@@ -76,6 +76,19 @@ const { actions, reducer } = createSlice({
         transaction,
       };
     },
+    setTransactionHistory(state, { payload: { transaction } }) {
+      const newDailyTransaction = {
+        ...state.dailyTransaction,
+        transactionHistory: [
+          ...state.dailyTransaction.transactionHistory,
+          transaction,
+        ],
+      };
+      return {
+        ...state,
+        dailyTransaction: newDailyTransaction,
+      };
+    },
     setPreviousMonth(state, { payload: { month } }) {
       if (month === 1) {
         return {
@@ -118,9 +131,10 @@ export const {
   changeTransactionType,
   changeTransactionCategory,
   changeTransactionFields,
+  setTransaction,
+  setTransactionHistory,
   setPreviousMonth,
   setNextMonth,
-  setTransaction,
   setDailyTransaction,
 } = actions;
 
