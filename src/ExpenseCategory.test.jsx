@@ -5,22 +5,22 @@ import ExpenseCategory from './ExpenseCategory';
 describe('ExpenseCategory', () => {
   const handleChange = jest.fn();
 
-  it('renders expense category', () => {
-    const { queryByText } = render((
+  function renderExpenseCategory() {
+    return render((
       <ExpenseCategory
         onChange={handleChange}
       />
     ));
+  }
+
+  it('renders expense category', () => {
+    const { queryByText } = renderExpenseCategory();
 
     expect(queryByText('식비').value).not.toBeNull();
   });
 
   it('listens change events', () => {
-    const { getByTestId } = render((
-      <ExpenseCategory
-        onChange={handleChange}
-      />
-    ));
+    const { getByTestId } = renderExpenseCategory();
 
     fireEvent.change(getByTestId('select'), { value: '미분류' });
 
