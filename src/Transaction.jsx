@@ -76,20 +76,16 @@ export default function Transaction({ dailyTransaction }) {
   return (
     <>
       {
-        transactionHistory.map((transaction) => (
+        transactionHistory.map(({ type, category, transactionFields }) => (
           <Container
-            key={transaction}
+            key={type}
           >
-            <TypeBox>{transaction.type}</TypeBox>
-            <CategoryBox>{transaction.category.value}</CategoryBox>
+            <TypeBox>{type}</TypeBox>
+            <CategoryBox>{category.value}</CategoryBox>
             <TextBox>
-              {transaction.transactionFields.source}
-              {' '}
-              /
-              {' '}
-              {transaction.transactionFields.memo}
+              {`${transactionFields.source} / ${transactionFields.memo}`}
             </TextBox>
-            <BreakdownBox>{transaction.transactionFields.breakdown}</BreakdownBox>
+            <BreakdownBox>{transactionFields.breakdown}</BreakdownBox>
             <DeleteBox>
               <button
                 type="button"
