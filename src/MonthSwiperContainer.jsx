@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import styled from '@emotion/styled';
+import mediaquery from './style/mediaquery';
+
 import { get } from './utils';
 
 import MonthButton from './MonthButton';
@@ -9,6 +12,13 @@ import {
   setPreviousMonth,
   setNextMonth,
 } from './slice';
+
+const Container = styled.header(mediaquery({
+  float: 'left',
+  width: '40%',
+  height: '100%',
+  margin: '0 auto',
+}));
 
 export default function MonthSwiperContainer() {
   const dispatch = useDispatch();
@@ -29,7 +39,7 @@ export default function MonthSwiperContainer() {
   };
 
   return (
-    <>
+    <Container>
       <MonthItem
         year={year}
         month={month}
@@ -42,6 +52,6 @@ export default function MonthSwiperContainer() {
         direction="&gt;"
         onclick={handleChangeNextMonth}
       />
-    </>
+    </Container>
   );
 }

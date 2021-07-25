@@ -4,27 +4,29 @@ import {
 
 import styled from '@emotion/styled';
 import colors from './style/colors';
+import mediaquery from './style/mediaquery';
 
-const Footer = styled.div({
+const Footer = styled.div(mediaquery({
   position: 'relative',
   bottom: 0,
   left: 0,
   width: '100%',
-});
+}));
 
-const List = styled.ul({
+const List = styled.ul(mediaquery({
   display: 'inline-flex',
-  width: '60%',
-  height: '2.5em',
-  margin: '2em auto',
+  width: ['90%', '90%', '80%', '70%', '60%'],
+  height: ['3.8em', '3.4em', '2.6em', '2.5em', '2.2em'],
+  margin: '2.5em auto',
   padding: 0,
-  borderRadius: '3em',
+  borderRadius: '5em',
   backgroundColor: `${colors.gray_backgroud}`,
-  lineHeight: '2.5em',
-});
+  fontSize: ['.4em', '.5em', '.7em', '.8em', '.9em'],
+  lineHeight: ['3.8em', '3.4em', '2.6em', '2.5em', '2.3em'],
+}));
 
-const Item = styled.li({
-  width: '15em',
+const Item = styled.li(mediaquery({
+  width: '30%',
   margin: '0 auto',
   borderRadius: '2em',
   fontWeight: '500',
@@ -33,15 +35,15 @@ const Item = styled.li({
     color: `${colors.gray_text02}`,
     '&.active': {
       display: 'inline-block',
-      width: '15em',
-      height: '2.1em',
+      width: '100%',
+      height: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: '2.1em',
+      lineHeight: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
     },
   },
-});
+}));
 
 export default function TabBarCard() {
   return (

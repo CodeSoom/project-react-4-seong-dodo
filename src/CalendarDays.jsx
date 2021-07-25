@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 
 import styled from '@emotion/styled';
 import colors from './style/colors';
+import mediaquery from './style/mediaquery';
 
 const DaysBox = styled.div({
   margin: '0 auto ',
   textAlign: 'center',
 });
 
-const DaysRow = styled.div({
+const DaysRow = styled.div(mediaquery({
   display: 'flex',
-  width: '40em',
+  width: ['12em', '19em', '30em', '35em', '40em'],
   height: '3em',
   margin: '0 auto',
   lineHeight: '3.5em',
-});
+}));
 
 const Day = styled.div({
   width: '8em',
