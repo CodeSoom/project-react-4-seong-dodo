@@ -1,24 +1,23 @@
 import styled from '@emotion/styled';
+import mediaquery from './style/mediaquery';
 
-const Year = styled.div({
-  width: '35%',
-  height: '1.8em',
+const Year = styled.div(mediaquery({
+  height: ['6em', '3em', '2em', '2em', '1.8em'],
   margin: '.2em',
   textAlign: 'center',
-  fontSize: '1em',
-  lineHeight: '1.8em',
-});
+  fontSize: ['.2em', '.6em', '.8em', '.9em', '1em'],
+  lineHeight: ['6em', '3em', '2em', '2em', '1.8em'],
+}));
 
-const Month = styled.div({
-  float: 'left',
-  width: '35%',
-  height: '1.8em',
+const Month = styled.div(mediaquery({
+  width: '50%',
+  height: ['2em', '1em', '1.5em', '1.5em', '1.8em'],
   margin: '0 auto',
-  fontSize: '2.2em',
+  fontSize: ['0.7em', '1em', '1.1em', '1.7em', '1.8em'],
   fontWeight: 'bold',
   textAlign: 'center',
-  lineHeight: '1.8em',
-});
+  lineHeight: ['2em', '1em', '1.5em', '1.5em', '1.8em'],
+}));
 
 export default function MonthItem({ year, month }) {
   return (

@@ -15,7 +15,7 @@ import {
 } from './slice';
 
 const CalendarBox = styled.div({
-  width: '40em',
+  // width: '40em',
   minHeight: '20em',
   margin: '1.5em auto',
 });
