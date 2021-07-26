@@ -7,22 +7,23 @@ import styled from '@emotion/styled';
 import { Global } from '@emotion/react';
 import reset from './style/reset';
 import colors from './style/colors';
+import mediaquery from './style/mediaquery';
 
 import HomePage from './HomePage';
 import BudgetPage from './BudgetPage';
 import CalendarPage from './CalendarPage';
 
-const Container = styled.header({
+const Container = styled.header(mediaquery({
   margin: '0 auto',
-  lineHeight: '8em',
-});
+  lineHeight: ['3em', '4em', '5em', '7em', '8em'],
+}));
 
-const Title = styled.h1({
+const Title = styled.h1(mediaquery({
   margin: '0 auto',
   color: `${colors.black}`,
-  fontSize: '3em',
+  fontSize: ['1.2em', '1.5em', '1.8em', '2.8em', '3em'],
   textAlign: 'center',
-});
+}));
 
 export default function App() {
   return (

@@ -1,4 +1,4 @@
-import { render, fireEvent, getAllByText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,10 +18,16 @@ describe('OptionsField', () => {
     }));
   });
 
-  it('renders type container', () => {
+  it('renders options', () => {
     const { container } = render(<OptionsField />);
 
     expect(container).toHaveTextContent('분류');
+    expect(container).toHaveTextContent('카테고리');
+  });
+
+  it('renders type container', () => {
+    const { container } = render(<OptionsField />);
+
     expect(container).toHaveTextContent('지출');
     expect(container).toHaveTextContent('수입');
   });
@@ -35,6 +41,11 @@ describe('OptionsField', () => {
       type: 'application/selectType',
       payload: '지출',
     });
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/changeTransactionType',
+      payload: '지출',
+    });
   });
 
   it('listens "수입" click event', () => {
@@ -46,23 +57,48 @@ describe('OptionsField', () => {
       type: 'application/selectType',
       payload: '수입',
     });
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/changeTransactionType',
+      payload: '수입',
+    });
   });
 
-  it('renders category', () => {
-    const { queryByText } = render(<OptionsField />);
-
-    expect(queryByText('미분류')).not.toBeNull();
-  });
-
-  it('renders income category', () => {
-    const { getByText, container } = render(<OptionsField />);
-
-    fireEvent.click(getByText('수입'), {
-      selectedType: '수입',
+  context('when selected "지출" type', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        selectedType: '지출',
+      }));
     });
 
-    expect(dispatch).toBeCalled();
+    it('renders category', () => {
+      const { queryByText } = render(<OptionsField />);
 
-    expect(container).toHaveTextContent('급여');
+      expect(queryByText('미분류')).not.toBeNull();
+      expect(queryByText('식비')).not.toBeNull();
+    });
+  });
+
+  context('when selected "수입" type', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        selectedType: '수입',
+      }));
+    });
+
+    it('renders category', () => {
+      const { queryByText } = render(<OptionsField />);
+
+      expect(queryByText('미분류')).not.toBeNull();
+      expect(queryByText('급여')).not.toBeNull();
+    });
+  });
+
+  it('listen category change event', () => {
+    const { getByTestId } = render(<OptionsField />);
+
+    fireEvent.change(getByTestId('select'));
+
+    expect(dispatch).toBeCalled();
   });
 });

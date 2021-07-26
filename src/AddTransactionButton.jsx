@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import styled from '@emotion/styled';
 import colors from './style/colors';
+import mediaquery from './style/mediaquery';
 
 import TransactionDetailModal from './TransactionDetailModal';
 
-const AddBox = styled.div({
+const AddBox = styled.div(mediaquery({
   position: 'fixed',
   bottom: '5em',
   margin: '.5em 10em',
@@ -15,16 +16,16 @@ const AddBox = styled.div({
   backgroundColor: `${colors.teal}`,
   fontWeight: '600',
   letterSpacing: '.3em',
-});
+}));
 
-const DefaultContainer = styled.div({
+const DefaultContainer = styled.div(mediaquery({
   position: 'fixed',
   top: 180,
   right: 160,
   width: '37%',
   height: '55%',
   borderLeft: `${colors.gray_backgroud} solid 1px`,
-});
+}));
 
 export default function AddTransactionButton() {
   const [isDisplay, setDisplay] = useState(false);
@@ -45,9 +46,7 @@ export default function AddTransactionButton() {
       <div>
         {
           isDisplay === true
-            ? (
-              <TransactionDetailModal />
-            )
+            ? <TransactionDetailModal />
             : <DefaultContainer />
         }
       </div>

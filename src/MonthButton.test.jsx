@@ -5,12 +5,17 @@ import MonthButton from './MonthButton';
 describe('MonthButton', () => {
   const handleClick = jest.fn();
 
-  it('renders "<" button', () => {
-    const { getByText } = render((
+  function renderMonthButton({ direction } = '') {
+    return render((
       <MonthButton
-        direction="&lt;"
+        direction={direction}
         onclick={handleClick}
-      />));
+      />
+    ));
+  }
+
+  it('renders "<" button', () => {
+    const { getByText } = renderMonthButton({ direction: '<' });
 
     fireEvent.click(getByText('<'));
 
@@ -18,11 +23,7 @@ describe('MonthButton', () => {
   });
 
   it('renders "<" button', () => {
-    const { getByText } = render((
-      <MonthButton
-        direction="&gt;"
-        onclick={handleClick}
-      />));
+    const { getByText } = renderMonthButton({ direction: '>' });
 
     fireEvent.click(getByText('>'));
 

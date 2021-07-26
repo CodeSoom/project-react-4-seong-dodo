@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,6 +7,8 @@ import { get } from './utils';
 
 import {
   selectType,
+  changeTransactionType,
+  changeTransactionCategory,
 } from './slice';
 
 import colors from './style/colors';
@@ -66,6 +68,11 @@ export default function OptionsField() {
 
   const handleClick = (name) => {
     dispatch(selectType(name));
+    dispatch(changeTransactionType(name));
+  };
+
+  const handleChange = (name) => {
+    dispatch(changeTransactionCategory(name));
   };
 
   return (
@@ -108,8 +115,16 @@ export default function OptionsField() {
         <div>
           {
             selectedType === '지출'
-              ? <ExpenseCategory />
-              : <IncomeCategory />
+              ? (
+                <ExpenseCategory
+                  onChange={handleChange}
+                />
+              )
+              : (
+                <IncomeCategory
+                  onChange={handleChange}
+                />
+              )
           }
         </div>
       </Container>

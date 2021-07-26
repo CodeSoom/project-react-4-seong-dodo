@@ -22,19 +22,21 @@ const Container = styled.div({
   },
 });
 
-export default function IncomeCategory() {
+export default function IncomeCategory({ onChange }) {
   const incomeCategories = [
     '미분류',
     '급여', '용돈', '금융수입', '사업수입', '기타수입',
   ];
 
-  function handleChange() {
-    // Todo: ...
+  function handleChange(event) {
+    const { target } = event;
+    onChange({ value: target.value });
   }
 
   return (
     <Container>
       <select
+        data-testid="select"
         name="income-category"
         onChange={handleChange}
       >
@@ -42,6 +44,7 @@ export default function IncomeCategory() {
           incomeCategories.map((category) => (
             <option
               key={category}
+              value={category}
             >
               {category}
             </option>

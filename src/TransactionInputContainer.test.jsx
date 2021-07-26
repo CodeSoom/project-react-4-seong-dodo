@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TransactionInputContainer from './TransactionInputContainer';
 
+import mockInitState from '../fixtures/mockInitState';
+
 jest.mock('react-redux');
 
 describe('TransactionInputContainer', () => {
@@ -14,16 +16,7 @@ describe('TransactionInputContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      selectedType: null,
-      transaction: {
-        type: '',
-        category: '',
-        transactionFields: {
-          breakdown: 0,
-          source: '',
-          memo: '',
-        },
-      },
+      ...mockInitState,
     }));
   });
 
@@ -42,6 +35,37 @@ describe('TransactionInputContainer', () => {
         type: 'application/changeTransactionFields',
         payload: { name, value },
       });
+    });
+  });
+
+  it('listens click event', () => {
+    const { getByText } = render(<TransactionInputContainer />);
+
+    fireEvent.click(getByText('저장'), {
+      transaction: {
+        type: '',
+        category: '',
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
+      },
+    });
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/setTransaction',
+      payload: {
+        transaction: {
+          type: '',
+          category: '',
+          transactionFields: {
+            breakdown: 0,
+            source: '',
+            memo: '',
+          },
+        },
+      },
     });
   });
 });

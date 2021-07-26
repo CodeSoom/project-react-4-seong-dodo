@@ -14,6 +14,7 @@ describe('TypeButton', () => {
       />
     ));
   }
+
   it('renders type button', () => {
     const { queryByText } = renderTypeButton({ name: '수입' });
 

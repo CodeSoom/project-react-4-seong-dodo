@@ -19,22 +19,22 @@ describe('BudgetPage', () => {
     }));
   });
 
-  it('renders budget page text', () => {
-    const { container } = render((
+  function renderBudgetPage() {
+    return render((
       <MemoryRouter>
         <BudgetPage />
       </MemoryRouter>
     ));
+  }
+
+  it('renders budget page text', () => {
+    const { container } = renderBudgetPage();
 
     expect(container).toHaveTextContent('한 달 예산을 세워볼까요?');
   });
 
   it('renders budget setup control', () => {
-    const { getByLabelText } = render((
-      <MemoryRouter>
-        <BudgetPage />
-      </MemoryRouter>
-    ));
+    const { getByLabelText } = renderBudgetPage();
 
     expect(getByLabelText('한 달 예산')).not.toBeNull();
   });

@@ -1,7 +1,13 @@
+import mockInitState from '../fixtures/mockInitState';
+
 import reducer, {
   changeBudget,
   selectType,
+  changeTransactionType,
+  changeTransactionCategory,
   changeTransactionFields,
+  setTransaction,
+  setTransactionHistory,
   setPreviousMonth,
   setNextMonth,
   setDailyTransaction,
@@ -10,26 +16,7 @@ import reducer, {
 describe('reducer', () => {
   context('without state', () => {
     const initialState = {
-      budget: 0,
-      year: 2021,
-      month: 7,
-      selectedType: null,
-      transaction: {
-        type: '',
-        category: '',
-        transactionFields: {
-          breakdown: 0,
-          source: '',
-          memo: '',
-        },
-      },
-      dailyTransaction: {
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
-        transactionHistory: [],
-      },
+      ...mockInitState,
     };
 
     it('returns initialState', () => {
@@ -51,7 +38,7 @@ describe('reducer', () => {
 
   it('listens selectType action', () => {
     const initialState = {
-      selectedType: null,
+      ...mockInitState,
     };
 
     const state = reducer(initialState, selectType('수입'));
@@ -59,17 +46,29 @@ describe('reducer', () => {
     expect(state.selectedType).toBe('수입');
   });
 
+  it('listens changeTransactionType action', () => {
+    const initialState = {
+      ...mockInitState,
+    };
+
+    const state = reducer(initialState, changeTransactionType('수입'));
+
+    expect(state.transaction.type).toBe('수입');
+  });
+
+  it('listens changeTransactionCategory action', () => {
+    const initialState = {
+      ...mockInitState,
+    };
+
+    const state = reducer(initialState, changeTransactionCategory('식비'));
+
+    expect(state.transaction.category).toBe('식비');
+  });
+
   describe('change TransactionFields action', () => {
     const initialState = {
-      transaction: {
-        type: '',
-        category: '',
-        transactionFields: {
-          breakdown: 0,
-          source: '',
-          memo: '',
-        },
-      },
+      ...mockInitState,
     };
 
     it('changes a field of breakdown', () => {
@@ -98,6 +97,53 @@ describe('reducer', () => {
 
       expect(state.transaction.transactionFields.memo).toBe('친구들이랑');
     });
+  });
+
+  it('listens setTransaction action', () => {
+    const initialState = {
+      ...mockInitState,
+    };
+
+    const state = reducer(initialState,
+      setTransaction({
+        transaction: {
+          type: '지출',
+          category: '카페',
+          transactionFields: {
+            breakdown: 1000,
+            source: '스타벅스',
+            memo: '혼자',
+          },
+        },
+      }));
+
+    expect(state.transaction.type).toBe('지출');
+    expect(state.transaction.category).toBe('카페');
+    expect(state.transaction.transactionFields.breakdown).toBe(1000);
+    expect(state.transaction.transactionFields.source).toBe('스타벅스');
+    expect(state.transaction.transactionFields.memo).toBe('혼자');
+  });
+
+  it('listens setTransactionHistory action', () => {
+    const initialState = {
+      dailyTransaction: {
+        transactionHistory: [],
+      },
+    };
+
+    const transaction = {
+      type: '지출',
+      category: '카페',
+      transactionFields: {
+        breakdown: 1000,
+        source: '스타벅스',
+        memo: '혼자',
+      },
+    };
+
+    const state = reducer(initialState, setTransactionHistory({ transactionHistory: transaction }));
+
+    expect(state.dailyTransaction.transactionHistory).toHaveLength(1);
   });
 
   describe('setPreviousMonth action', () => {

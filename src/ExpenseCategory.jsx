@@ -22,7 +22,7 @@ const Container = styled.div({
   },
 });
 
-export default function ExpenseCategory() {
+export default function ExpenseCategory({ onChange }) {
   const expenseCategories = [
     '미분류',
     '식비', '카페/간식', '술/유흥', '생활',
@@ -32,13 +32,15 @@ export default function ExpenseCategory() {
     '반려동물', '경조/선물',
   ];
 
-  function handleChange() {
-    // Todo: ...
+  function handleChange(event) {
+    const { target } = event;
+    onChange({ value: target.value });
   }
 
   return (
     <Container>
       <select
+        data-testid="select"
         name="expense-category"
         onChange={handleChange}
       >
@@ -46,6 +48,7 @@ export default function ExpenseCategory() {
           expenseCategories.map((category) => (
             <option
               key={category}
+              value={category}
             >
               {category}
             </option>
