@@ -15,6 +15,8 @@ export default function CalendarWeeks({ week, onClick }) {
       {
         week.map((date) => (
           <CalendarDate
+            year={date.year}
+            month={date.month}
             date={date.date}
             day={date.day}
             onClick={onClick}
