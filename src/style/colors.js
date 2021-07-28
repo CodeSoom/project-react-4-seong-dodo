@@ -7,6 +7,8 @@ const colors = {
   gray_text02: 'rgb(94, 94, 94)',
   gray_text03: 'rgb(190, 190, 190)',
   gray_backgroud: 'rgba(224, 224, 224, 0.39)',
+  red_text: 'rgb(227, 128, 118)',
+  blue_text: 'rgb(95, 164, 209)',
   black: 'rgb(51, 51, 51)',
 };
 
