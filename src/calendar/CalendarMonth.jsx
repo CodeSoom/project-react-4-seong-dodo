@@ -58,7 +58,7 @@ export default function CalendarMonth({ month, year, onClick }) {
         year: startOfNextMonth.year,
         month: startOfNextMonth.month,
         date: startOfNextMonth.date + i,
-        days: startOfNextMonth.day + i,
+        day: startOfNextMonth.day + i,
       });
     }
     return nextDates;
