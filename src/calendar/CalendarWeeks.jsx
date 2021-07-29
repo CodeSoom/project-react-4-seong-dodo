@@ -9,12 +9,13 @@ const WeekRowBox = styled.div(mediaquery({
   margin: '0 auto',
 }));
 
-export default function CalendarWeeks({ week, onClick }) {
+export default function CalendarWeeks({ currentMonth, week, onClick }) {
   return (
     <WeekRowBox>
       {
         week.map((date) => (
           <CalendarDate
+            currentMonth={currentMonth}
             year={date.year}
             month={date.month}
             date={date.date}
