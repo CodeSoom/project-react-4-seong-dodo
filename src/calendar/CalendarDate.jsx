@@ -18,6 +18,10 @@ const TodayColor = {
   fontWeight: '600',
 };
 
+const OtherColor = {
+  color: `${colors.gray_text04}`,
+};
+
 const BasicColor = {
   color: `${colors.gray_text}`,
 };
@@ -31,21 +35,24 @@ const SundayColor = {
 };
 
 export default function CalendarDate({
-  year, month, date, day, onClick,
+  currentMonth, year, month, date, day, onClick,
 }) {
   const [today] = useState(new Date());
 
   const dateColorStyle = () => {
-    if (day === 6) {
+    if (day === 6 && currentMonth === month) {
       return SaturdayColor;
     }
-    if (day === 0) {
+    if (day === 0 && currentMonth === month) {
       return SundayColor;
     }
     if (year === today.getFullYear()
     && month === today.getMonth() + 1
     && date === today.getDate()) {
       return TodayColor;
+    }
+    if (currentMonth !== month) {
+      return OtherColor;
     }
     return BasicColor;
   };

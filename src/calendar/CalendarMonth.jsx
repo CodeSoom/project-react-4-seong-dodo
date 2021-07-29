@@ -75,6 +75,7 @@ export default function CalendarMonth({ month, year, onClick }) {
 
   return getWeeks().map((week) => (
     <CalendarWeeks
+      currentMonth={month}
       week={week}
       onClick={onClick}
     />
