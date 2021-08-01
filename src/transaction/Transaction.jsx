@@ -1,74 +1,92 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+
 import styled from '@emotion/styled';
 import colors from '../style/colors';
+import mediaquery from '../style/mediaquery';
 
-const Container = styled.div({
-  width: '97%',
-  height: '20%',
-  margin: '1em .5em',
+const Container = styled.div(mediaquery({
+  width: '100%',
+  height: ['31%', '34%', '35%', '16%', '18%'],
+  margin: '.5em auto',
   padding: ' .5em',
-  fontSize: '.8em',
+  border: `${colors.gray_backgroud} solid 1px`,
+  borderRadius: '.3em',
+}));
+
+const DeleteBox = styled.div({
+  float: 'left',
+  width: '100%',
+  fontSize: ['.8em', '.9em', '.9em', '.9em', '.9em'],
+  opacity: 0.5,
+  '& div': {
+    float: 'right',
+    padding: '0 .3em',
+  },
 });
 
-const TypeBox = styled.div({
+const OptionBox = styled.div(mediaquery({
   float: 'left',
-  width: '4em',
-  height: '1.5em',
-  padding: '0',
+  width: '35%',
+  height: '80%',
+  padding: '.5em',
+}));
+
+const TextBox = styled.div(mediaquery({
+  float: 'left',
+  width: '65%',
+  height: '80%',
+  padding: '.5em',
+}));
+
+const Type = styled.div(mediaquery({
+  float: 'left',
+  width: '40%',
+  height: '40%',
+  margin: '.2em',
   borderRadius: '5em',
   backgroundColor: 'pink',
-  fontSize: '.9em',
-  lineHeight: '1.5em',
+  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
+  lineHeight: ['18em', '4.5em', '2.6em', '1.3em', '1.7em'],
   opacity: 0.8,
-});
+}));
 
-const CategoryBox = styled.div({
+const Category = styled.div(mediaquery({
   float: 'left',
-  width: '8em',
-  height: '2em',
-  margin: '0 1em',
+  width: '70%',
+  height: '45%',
+  margin: '.3em',
   padding: '.4em',
   borderRadius: '.2em',
   backgroundColor: `${colors.teal_border}`,
+  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
+  lineHeight: ['18em', '4em', '2em', '.8em', '1.2em'],
   opacity: 0.8,
-});
+}));
 
-const TextBox = styled.div({
-  float: 'none',
-  width: '35em',
-  height: '2em',
-  marginTop: '3em',
-  marginLeft: '5em',
-  padding: '0 1em',
-  borderRadius: '3em',
-  color: `${colors.gray_text}`,
-  fontSize: '.8em',
-  textAlign: 'left',
-  lineHeight: '2em',
-});
-
-const BreakdownBox = styled.div({
-  position: 'relative',
-  bottom: '4.5em',
-  left: '15em',
-  width: '20em',
-  height: '2em',
+const Breakdown = styled.div(mediaquery({
+  width: '95%',
+  height: '40%',
+  margin: '0 .5em',
+  padding: '.5em',
   color: `${colors.gray_text02}`,
-  fontSize: '.9em',
+  fontSize: ['.5em', '.5em', '.6em', '.8em', '.9em'],
+  fontWeight: '600',
   textAlign: 'right',
-});
+  lineHeight: ['2em', '2em', '1em', '.7em', '1em'],
+}));
 
-const DeleteBox = styled.div({
-  position: 'relative',
-  bottom: '16em',
-  left: '90em',
-  width: '8em',
-  height: '3em',
-  fontSize: '.4em',
-  opacity: 0.5,
-  '& button': {
-    padding: '.5em',
-  },
-});
+const Text = styled.div(mediaquery({
+  width: '95%',
+  height: '40%',
+  margin: '0 .5em',
+  padding: '.5em',
+  color: `${colors.gray_text}`,
+  fontSize: ['.1em', '.4em', '.5em', '.7em', '.8em'],
+  textAlign: 'left',
+  lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
+}));
 
 export default function Transaction({ dailyTransaction }) {
   const { transactionHistory } = dailyTransaction;
@@ -80,29 +98,27 @@ export default function Transaction({ dailyTransaction }) {
           <Container
             key={type}
           >
-            <TypeBox>{type}</TypeBox>
-            <CategoryBox>{category.value}</CategoryBox>
-            <TextBox>
-              {`${transactionFields.source} / ${transactionFields.memo}`}
-            </TextBox>
-            <BreakdownBox>{transactionFields.breakdown}</BreakdownBox>
             <DeleteBox>
-              <button
-                type="button"
-              >
-                🔧
-              </button>
-              <button
-                type="button"
-              >
-                ✂️
-              </button>
+              <div>
+                <FontAwesomeIcon icon={faEdit} />
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </div>
             </DeleteBox>
+            <OptionBox>
+              <Type>{type}</Type>
+              <Category>{category.value}</Category>
+            </OptionBox>
+            <TextBox>
+              <Breakdown>{transactionFields.breakdown}</Breakdown>
+              <Text>
+                {`${transactionFields.source} / ${transactionFields.memo}`}
+              </Text>
+            </TextBox>
           </Container>
         ))
       }
-
     </>
-
   );
 }

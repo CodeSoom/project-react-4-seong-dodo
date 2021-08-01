@@ -18,30 +18,26 @@ import IncomeCategory from './IncomeCategory';
 import TypeButton from './TypeButton';
 
 const Container = styled.div({
-  height: '3em',
-  margin: '.5em 1.2em',
-  padding: '0 .2em',
+  width: '100%',
+  height: '47.5%',
+  marginBottom: '.5em',
   textAlign: 'center',
-  lineHeight: '3em',
-});
-
-const LabelBox = styled.div({
-  float: 'left',
-  width: '5em',
-  height: '3em',
-  linehigt: '3em',
+  lineHeight: '4em',
   '& label': {
-    fontSize: '.8em',
-    letterSpacing: '.3em',
+    float: 'left',
+    width: '25%',
+    height: '100%',
+    fontSize: '0.7em',
   },
 });
 
 const TypeBox = styled.div({
   float: 'left',
-  height: '3em',
-  margin: '0 auto',
-  padding: '.2em 2.2em',
+  width: '37.5%',
+  height: '100%',
+  padding: '1em',
   '& button': {
+    width: '50%',
     margin: '0 auto',
     padding: '.4em',
     fontSize: '.7em',
@@ -52,10 +48,9 @@ const TypeBox = styled.div({
 });
 
 const Active = styled.div(({ active }) => ({
-  width: '3.5em',
-  height: '2em',
-  marginTop: '.2em',
-  lineHeight: '1.6em',
+  width: '100%',
+  height: '100%',
+  lineHeight: '1em',
   borderRadius: '.5em',
   color: active ? `${colors.white}` : `${colors.gray_text03}`,
   backgroundColor: active ? `${colors.teal}` : 'none',
@@ -78,11 +73,9 @@ export default function OptionsFieldContainer() {
   return (
     <>
       <Container>
-        <LabelBox>
-          <label htmlFor="type">
-            분류
-          </label>
-        </LabelBox>
+        <label htmlFor="type">
+          분류
+        </label>
         <TypeBox>
           <Active
             active={selectedType === '지출'}
@@ -107,11 +100,9 @@ export default function OptionsFieldContainer() {
         </TypeBox>
       </Container>
       <Container>
-        <LabelBox>
-          <label htmlFor="category">
-            카테고리
-          </label>
-        </LabelBox>
+        <label htmlFor="category">
+          카테고리
+        </label>
         <div>
           {
             selectedType === '지출'

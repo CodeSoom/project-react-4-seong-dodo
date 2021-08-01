@@ -9,7 +9,7 @@ describe('MonthButton', () => {
     return render((
       <MonthButton
         direction={direction}
-        onclick={handleClick}
+        onClick={handleClick}
       />
     ));
   }

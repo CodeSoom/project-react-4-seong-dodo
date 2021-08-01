@@ -2,36 +2,36 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 
 const Container = styled.div({
-  height: '3em',
-  margin: '.5em 1.2em',
-  padding: '0 .2em',
+  width: '100%',
+  height: '98%',
   textAlign: 'center',
-  lineHeight: '3em',
 });
 
 const LabelBox = styled.div({
   float: 'left',
-  width: '5em',
-  height: '3em',
-  linehigt: '3em',
+  width: '25%',
+  height: '100%',
+  padding: '.5em',
   '& label': {
-    fontSize: '.8em',
+    fontSize: '.7em',
     letterSpacing: '.3em',
   },
 });
 
 const InputBox = styled.div({
   float: 'left',
+  width: '75%',
+  height: '100%',
   '& input': {
-    width: '20em',
-    height: '3em',
+    width: '100%',
+    height: '80%',
+    margin: '0.5em auto',
     padding: '.5em',
     border: 'none',
     borderRadius: '1em',
     color: `${colors.gray_text02}`,
     fontSize: '.8em',
     textAlign: 'right',
-    lineHeight: '3em',
     outlineStyle: 'none',
   },
 });
