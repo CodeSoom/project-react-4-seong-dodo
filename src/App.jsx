@@ -10,8 +10,8 @@ import colors from './style/colors';
 import mediaquery from './style/mediaquery';
 
 import HomePage from './HomePage';
-import BudgetPage from './BudgetPage';
-import CalendarPage from './CalendarPage';
+import BudgetPage from './budget/BudgetPage';
+import CalendarPage from './calendar/CalendarPage';
 
 const Container = styled.header(mediaquery({
   margin: '0 auto',
