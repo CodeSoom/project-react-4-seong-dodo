@@ -46,11 +46,11 @@ export default function MonthSwiperContainer() {
       />
       <MonthButton
         direction="&lt;"
-        onclick={handleChangePreviousMonth}
+        onClick={handleChangePreviousMonth}
       />
       <MonthButton
         direction="&gt;"
-        onclick={handleChangeNextMonth}
+        onClick={handleChangeNextMonth}
       />
     </Container>
   );

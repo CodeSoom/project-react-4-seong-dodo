@@ -4,14 +4,12 @@ import colors from '../style/colors';
 const Container = styled.div({
   margin: '0 auto',
   '& select': {
-    width: '18em',
-    height: '3em',
-    padding: '.5em',
+    width: '70%',
+    padding: '.8em',
     border: 'none',
     borderRadius: '1em',
     color: `${colors.gray_text03}`,
     fontSize: '.8em',
-    lineHeight: '3em',
     outlineStyle: 'none',
   },
   '& option': {

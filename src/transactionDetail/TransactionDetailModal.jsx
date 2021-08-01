@@ -1,18 +1,29 @@
 import styled from '@emotion/styled';
 import colors from '../style/colors';
+import mediaquery from '../style/mediaquery';
 
 import TransactionInputContainer from './TransactionInputContainer';
 
-const Container = styled.div({
-  position: 'fixed',
-  top: 180,
-  right: 160,
-  width: '37%',
-  height: '55%',
-  borderLeft: `${colors.gray_backgroud} solid 1px`,
-  paddingTop: '3em',
+const Container = styled.div(mediaquery({
+  width: '100%',
+  height: '100%',
+  padding: '.5em',
+  borderTop: [
+    `${colors.gray_backgroud} solid 1px`,
+    `${colors.gray_backgroud} solid 1px`,
+    `${colors.gray_backgroud} solid 1px`,
+    'none',
+    'none',
+  ],
+  borderLeft: [
+    'none',
+    'none',
+    'none',
+    `${colors.gray_backgroud} solid 1px`,
+    `${colors.gray_backgroud} solid 1px`,
+  ],
   overflow: 'auto',
-});
+}));
 
 export default function TransactionDetailModal() {
   return (

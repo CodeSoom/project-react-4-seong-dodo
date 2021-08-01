@@ -8,13 +8,13 @@ const Button = styled.button(mediaquery({
   fontSize: ['.3em', '.4em', '.5em', '.7em', '.8em'],
 }));
 
-export default function MonthButton({ direction, onclick }) {
+export default function MonthButton({ direction, onClick }) {
   return (
     <>
       <Button
         type="button"
         name={direction}
-        onClick={onclick}
+        onClick={onClick}
       >
         {direction}
       </Button>

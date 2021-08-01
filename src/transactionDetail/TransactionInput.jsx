@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 
@@ -6,44 +9,43 @@ import OptionsFieldContainer from './OptionsFieldContainer';
 
 const Container = styled.div({
   width: '100%',
-  margin: '0 auto',
+  height: '100%',
   color: `${colors.gray_test02}`,
 });
 
-const NumberBox = styled.div({
-  position: 'absolute',
-  top: 0,
-  left: 40,
-  width: '90%',
-  margin: '0 auto',
-  fontSize: '.9em',
-  lineHeight: '4em',
-  '& span': {
-    position: 'absolute',
-    top: 0,
-    right: 60,
-  },
+const InputBox = styled.div({
+  width: '100%',
+  height: '15%',
+  marginBottom: '.5em',
+  padding: '.5em',
 });
 
-const InputBox = styled.div({
-  width: '90%',
-  height: '3em',
-  margin: '.5em 2em',
-  textAlign: 'left',
-  lineHeight: '3em',
+const Number = styled.div({
+  float: 'left',
+  width: '85%',
+  height: '100%',
+  fontSize: '.9em',
+});
+
+const Child = styled.div({
+  float: 'left',
+  width: '15%',
+  height: '100%',
+  fontSize: '.8em',
+  lineHeight: '3.6em',
+  letterSpacing: 3,
 });
 
 const OptionBox = styled.div({
-  width: '85%',
-  height: '7em',
-  margin: '0 auto',
-  marginTop: '2em',
+  width: '100%',
+  height: '32%',
+  marginBottom: '.5em',
 });
 
 const SubmitBox = styled.div({
-  width: '75%',
-  height: '2em',
-  margin: '2.5em auto',
+  width: '50%',
+  height: '7%',
+  margin: '3em auto 0',
   textAlign: 'center',
   lineHeight: '2em',
   borderRadius: '.2em',
@@ -59,22 +61,24 @@ export default function TransactionInput({ fields, onChange, onClick }) {
 
   return (
     <Container>
-      <NumberBox>
-        <InputField
-          label=""
-          id="breakdown"
-          name="breakdown"
-          type="number"
-          placeholder="0"
-          value={breakdown}
-          onChange={onChange}
-        />
-        <span>
+      <InputBox>
+        <Number>
+          <InputField
+            label=""
+            id="breakdown"
+            name="breakdown"
+            type="number"
+            placeholder="0"
+            value={breakdown}
+            onChange={onChange}
+          />
+        </Number>
+        <Child>
           원
           {' '}
-          🖋️
-        </span>
-      </NumberBox>
+          <FontAwesomeIcon icon={faPen} />
+        </Child>
+      </InputBox>
       <OptionBox>
         <OptionsFieldContainer />
       </OptionBox>
