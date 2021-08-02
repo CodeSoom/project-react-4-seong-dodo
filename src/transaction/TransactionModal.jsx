@@ -57,7 +57,7 @@ const TextBox = styled.div(mediaquery({
 const TransactionBox = styled.div(mediaquery({
   float: 'left',
   width: ['100%', '100%', '100%', '50%', '50%'],
-  height: ['50%', '50%', '50%', '100%', '100%'],
+  height: ['40%', '40%', '40%', '100%', '100%'],
   padding: '.5em',
   fontSize: ['.5em', '.5em', '.6em', '.7em', '.7em'],
   overflow: 'auto',
@@ -66,7 +66,7 @@ const TransactionBox = styled.div(mediaquery({
 const TransactionFieldsBox = styled.div(mediaquery({
   float: 'left',
   width: ['100%', '100%', '100%', '50%', '50%'],
-  height: ['50%', '50%', '50%', '100%', '100%'],
+  height: ['60%', '60%', '60%', '100%', '100%'],
 }));
 
 const AddButtonBox = styled.div(mediaquery({
