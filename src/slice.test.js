@@ -6,6 +6,7 @@ import reducer, {
   changeTransactionType,
   changeTransactionCategory,
   changeTransactionFields,
+  clearTransactionFields,
   setTransaction,
   setTransactionHistory,
   setPreviousMonth,
@@ -97,6 +98,18 @@ describe('reducer', () => {
 
       expect(state.transaction.transactionFields.memo).toBe('친구들이랑');
     });
+  });
+
+  it('listens clearTransactionFields action', () => {
+    const initialState = {
+      ...mockInitState,
+    };
+
+    const state = reducer(initialState, clearTransactionFields());
+
+    expect(state.transaction.transactionFields.breakdown).toBe(0);
+    expect(state.transaction.transactionFields.source).toBe('');
+    expect(state.transaction.transactionFields.memo).toBe('');
   });
 
   it('listens setTransaction action', () => {

@@ -2,7 +2,7 @@ const mockInitState = {
   budget: 0,
   year: 2021,
   month: 7,
-  selectedType: null,
+  selectedType: '지출',
   transaction: {
     type: '',
     category: '',
