@@ -5,7 +5,9 @@ import TransactionInput from './TransactionInput';
 import { get } from '../utils/utils';
 
 import {
+  changeTransactionType,
   changeTransactionFields,
+  clearTransactionFields,
   setTransaction,
   setTransactionHistory,
 } from '../slice';
@@ -24,6 +26,8 @@ export default function TransactionInputContainer() {
   const handleSubmit = () => {
     dispatch(setTransaction({ transaction }));
     dispatch(setTransactionHistory({ transaction }));
+    dispatch(clearTransactionFields());
+    dispatch(changeTransactionType());
   };
 
   return (
