@@ -4,7 +4,7 @@ const mockInitState = {
   month: 7,
   selectedType: '지출',
   transaction: {
-    type: '',
+    type: '지출',
     category: '',
     transactionFields: {
       breakdown: 0,

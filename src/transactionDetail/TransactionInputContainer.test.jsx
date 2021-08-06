@@ -43,7 +43,7 @@ describe('TransactionInputContainer', () => {
 
     fireEvent.click(getByText('저장'), {
       transaction: {
-        type: '',
+        type: '지출',
         category: '',
         transactionFields: {
           breakdown: 0,
@@ -57,7 +57,7 @@ describe('TransactionInputContainer', () => {
       type: 'application/setTransaction',
       payload: {
         transaction: {
-          type: '',
+          type: '지출',
           category: '',
           transactionFields: {
             breakdown: 0,
