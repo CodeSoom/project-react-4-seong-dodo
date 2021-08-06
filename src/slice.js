@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const today = new Date();
 const initialTransactionFields = {
   breakdown: 0,
   source: '',
@@ -10,8 +11,8 @@ const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     budget: 0,
-    year: 2021,
-    month: 7,
+    year: today.getFullYear(),
+    month: today.getMonth() + 1,
     selectedType: '지출',
     transaction: {
       type: '지출',

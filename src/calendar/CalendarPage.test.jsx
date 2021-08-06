@@ -21,6 +21,7 @@ describe('CalendarPage', () => {
 
     useSelector.mockImplementation((selector) => selector({
       ...mockInitState,
+      month: 7,
     }));
   });
 
