@@ -111,7 +111,13 @@ export default function Transaction({ dailyTransaction }) {
               <Category>{category.value}</Category>
             </OptionBox>
             <TextBox>
-              <Breakdown>{transactionFields.breakdown}</Breakdown>
+              <Breakdown>
+                {type === '수입'
+                  ? '+'
+                  : '-'}
+                {' '}
+                {transactionFields.breakdown}
+              </Breakdown>
               <Text>
                 {`${transactionFields.source} / ${transactionFields.memo}`}
               </Text>
