@@ -16,8 +16,11 @@ import reducer, {
 
 describe('reducer', () => {
   context('without state', () => {
+    const today = new Date();
     const initialState = {
       ...mockInitState,
+      year: today.getFullYear(),
+      month: today.getMonth() + 1,
     };
 
     it('returns initialState', () => {

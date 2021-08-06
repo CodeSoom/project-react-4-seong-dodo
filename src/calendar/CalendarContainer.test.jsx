@@ -21,6 +21,8 @@ describe('CalendarContainer', () => {
 
     useSelector.mockImplementation((selector) => selector({
       ...mockInitState,
+      year: 2021,
+      month: 7,
     }));
   });
 
