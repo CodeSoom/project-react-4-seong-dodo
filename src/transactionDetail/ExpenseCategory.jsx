@@ -42,6 +42,7 @@ export default function ExpenseCategory({ onChange }) {
         data-testid="select"
         name="expense-category"
         onChange={handleChange}
+        defaultValue={expenseCategories[0]}
       >
         {
           expenseCategories.map((category) => (
