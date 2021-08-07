@@ -10,9 +10,12 @@ jest.mock('react-redux');
 
 describe('TransactionInputContainer', () => {
   const dispatch = jest.fn();
+  global.alert = jest.fn();
 
   beforeEach(() => {
     dispatch.mockClear();
+    global.alert.mockClear();
+
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
@@ -38,34 +41,88 @@ describe('TransactionInputContainer', () => {
     });
   });
 
-  it('listens click event', () => {
-    const { getByText } = render(<TransactionInputContainer />);
+  describe('handleSubmit event', () => {
+    it('click without change feilds', () => {
+      const { getByText } = render(<TransactionInputContainer />);
 
-    fireEvent.click(getByText('저장'), {
-      transaction: {
-        type: '지출',
-        category: '',
-        transactionFields: {
-          breakdown: 0,
-          source: '',
-          memo: '',
-        },
-      },
+      fireEvent.click(getByText('저장'));
+
+      expect(global.alert).toHaveBeenCalledTimes(1);
+      expect(global.alert).toHaveBeenCalledWith('금액을 입력해주세요.');
     });
 
-    expect(dispatch).toBeCalledWith({
-      type: 'application/setTransaction',
-      payload: {
+    it('click with breakdown and without category feilds', () => {
+      useSelector.mockImplementation((selector) => selector({
         transaction: {
           type: '지출',
           category: '',
           transactionFields: {
-            breakdown: 0,
+            breakdown: 1000,
             source: '',
             memo: '',
           },
         },
-      },
+      }));
+
+      const { getByText } = render(<TransactionInputContainer />);
+
+      fireEvent.click(getByText('저장'));
+
+      expect(global.alert).toHaveBeenCalledTimes(1);
+      expect(global.alert).toHaveBeenCalledWith('카테고리를 선택해주세요.');
+    });
+
+    it('click with breakdown and category and without source feilds', () => {
+      useSelector.mockImplementation((selector) => selector({
+        transaction: {
+          type: '지출',
+          category: '식비',
+          transactionFields: {
+            breakdown: 1000,
+            source: '',
+            memo: '',
+          },
+        },
+      }));
+
+      const { getByText } = render(<TransactionInputContainer />);
+
+      fireEvent.click(getByText('저장'));
+
+      expect(global.alert).toHaveBeenCalledTimes(1);
+      expect(global.alert).toHaveBeenCalledWith('거래처를 입력헤주세요.');
+    });
+
+    it('click with breakdown, type, category and source feilds', () => {
+      useSelector.mockImplementation((selector) => selector({
+        transaction: {
+          type: '지출',
+          category: '식비',
+          transactionFields: {
+            breakdown: 1000,
+            source: '마트',
+            memo: '',
+          },
+        },
+      }));
+
+      const { getByText } = render(<TransactionInputContainer />);
+      fireEvent.click(getByText('저장'));
+
+      expect(dispatch).toBeCalledWith({
+        type: 'application/setTransaction',
+        payload: {
+          transaction: {
+            type: '지출',
+            category: '식비',
+            transactionFields: {
+              breakdown: 1000,
+              source: '마트',
+              memo: '',
+            },
+          },
+        },
+      });
     });
   });
 });
