@@ -1,19 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const today = new Date();
+const initialTransactionFields = {
+  breakdown: 0,
+  source: '',
+  memo: '',
+};
+
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     budget: 0,
-    year: 2021,
-    month: 7,
-    selectedType: null,
+    year: today.getFullYear(),
+    month: today.getMonth() + 1,
+    selectedType: '지출',
     transaction: {
-      type: '',
+      type: '지출',
       category: '',
       transactionFields: {
-        breakdown: 0,
-        source: '',
-        memo: '',
+        ...initialTransactionFields,
       },
     },
     dailyTransaction: {
@@ -68,6 +73,17 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         transaction: newTransactionFields,
+      };
+    },
+    clearTransactionFields(state) {
+      return {
+        ...state,
+        transaction: {
+          ...state.transaction,
+          transactionFields: {
+            ...initialTransactionFields,
+          },
+        },
       };
     },
     setTransaction(state, { payload: { transaction } }) {
@@ -131,6 +147,7 @@ export const {
   changeTransactionType,
   changeTransactionCategory,
   changeTransactionFields,
+  clearTransactionFields,
   setTransaction,
   setTransactionHistory,
   setPreviousMonth,

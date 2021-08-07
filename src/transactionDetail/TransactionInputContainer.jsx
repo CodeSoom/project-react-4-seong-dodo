@@ -6,6 +6,7 @@ import { get } from '../utils/utils';
 
 import {
   changeTransactionFields,
+  clearTransactionFields,
   setTransaction,
   setTransactionHistory,
 } from '../slice';
@@ -22,8 +23,24 @@ export default function TransactionInputContainer() {
   };
 
   const handleSubmit = () => {
+    if (transactionFields.breakdown === 0) {
+      // eslint-disable-next-line no-alert
+      alert('금액을 입력해주세요.');
+      return;
+    }
+    if (transaction.category === '') {
+      // eslint-disable-next-line no-alert
+      alert('카테고리를 선택해주세요.');
+      return;
+    }
+    if (transactionFields.source === '') {
+      // eslint-disable-next-line no-alert
+      alert('거래처를 입력헤주세요.');
+      return;
+    }
     dispatch(setTransaction({ transaction }));
     dispatch(setTransactionHistory({ transaction }));
+    dispatch(clearTransactionFields());
   };
 
   return (

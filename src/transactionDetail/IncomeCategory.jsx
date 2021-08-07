@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import colors from '../style/colors';
+import mediaquery from '../style/mediaquery';
 
-const Container = styled.div({
+const Container = styled.div(mediaquery({
   margin: '0 auto',
   '& select': {
-    width: '70%',
-    padding: '.8em',
+    width: ['60%', '60%', '60%', '70%', '70%'],
+    padding: ['.4em', '.4em', '.4em', '.8em', '.8em'],
     border: 'none',
     borderRadius: '1em',
     color: `${colors.gray_text03}`,
-    fontSize: '.8em',
+    fontSize: ['.6em', '.6em', '.7em', '.8em', '.8em'],
     outlineStyle: 'none',
   },
   '& option': {
@@ -18,7 +19,7 @@ const Container = styled.div({
     borderRadius: '2em',
     color: `${colors.gray_text02}`,
   },
-});
+}));
 
 export default function IncomeCategory({ onChange }) {
   const incomeCategories = [
@@ -37,6 +38,7 @@ export default function IncomeCategory({ onChange }) {
         data-testid="select"
         name="income-category"
         onChange={handleChange}
+        defaultValue={incomeCategories[0]}
       >
         {
           incomeCategories.map((category) => (
