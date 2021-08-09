@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import styled from '@emotion/styled';
 import mediaquery from '../style/mediaquery';
 
@@ -15,6 +17,7 @@ export default function CalendarWeeks({ currentMonth, week, onClick }) {
       {
         week.map((date) => (
           <CalendarDate
+            key={uuid()}
             currentMonth={currentMonth}
             year={date.year}
             month={date.month}

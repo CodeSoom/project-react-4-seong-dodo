@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import CalendarWeeks from './CalendarWeeks';
 
 export default function CalendarMonth({ month, year, onClick }) {
@@ -75,6 +76,7 @@ export default function CalendarMonth({ month, year, onClick }) {
 
   return getWeeks().map((week) => (
     <CalendarWeeks
+      key={uuid()}
       currentMonth={month}
       week={week}
       onClick={onClick}
