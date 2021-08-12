@@ -88,13 +88,18 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
-export default function Transaction({ dailyTransaction }) {
-  const { transactionHistory } = dailyTransaction;
+export default function Transaction({ monthlyTransaction, dailyData }) {
+  const histories = monthlyTransaction.find(
+    (daily) => daily.year === dailyData.year
+  && daily.month === dailyData.month
+  && daily.date === dailyData.date
+  && daily.day === dailyData.day,
+  );
 
   return (
     <>
-      {
-        transactionHistory.map(({ type, category, transactionFields }) => (
+      {histories === undefined ? null
+        : histories.transactionHistories.map(({ type, category, transactionFields }) => (
           <Container
             key={type}
           >
@@ -123,8 +128,7 @@ export default function Transaction({ dailyTransaction }) {
               </Text>
             </TextBox>
           </Container>
-        ))
-      }
+        ))}
     </>
   );
 }

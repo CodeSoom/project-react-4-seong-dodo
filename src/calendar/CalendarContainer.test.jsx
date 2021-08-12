@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CalendarContainer from './CalendarContainer';
 
 import {
-  setDailyTransaction,
+  setDailyData,
 } from '../slice';
 
 import mockInitState from '../../fixtures/mockInitState';
@@ -50,7 +50,7 @@ describe('CalendarContainer', () => {
 
       fireEvent.click(getByText(1));
 
-      expect(dispatch).toBeCalledWith(setDailyTransaction({ date: 1, day: 4 }));
+      expect(dispatch).toBeCalledWith(setDailyData({ date: 1, day: 4 }));
       expect(container).toHaveTextContent('내역추가');
     });
   });

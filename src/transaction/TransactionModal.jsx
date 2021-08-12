@@ -101,7 +101,7 @@ const DefaultBox = styled.div(mediaquery({
   ],
 }));
 
-export default function TransactionModal({ dailyTransaction, onClick }) {
+export default function TransactionModal({ monthlyTransaction, dailyData, onClick }) {
   const [isDisplay, setDisplay] = useState(false);
 
   // 내역추가 버튼 이벤트
@@ -109,7 +109,7 @@ export default function TransactionModal({ dailyTransaction, onClick }) {
     setDisplay(!isDisplay);
   };
 
-  const { date, day } = dailyTransaction;
+  const { date, day } = dailyData;
 
   function convertDay() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -135,7 +135,8 @@ export default function TransactionModal({ dailyTransaction, onClick }) {
         <TextBox>
           <TransactionBox>
             <Transaction
-              dailyTransaction={dailyTransaction}
+              monthlyTransaction={monthlyTransaction}
+              dailyData={dailyData}
             />
           </TransactionBox>
           <TransactionFieldsBox>
