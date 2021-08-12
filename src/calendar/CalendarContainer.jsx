@@ -11,7 +11,7 @@ import TransactionModal from '../transaction/TransactionModal';
 import { get } from '../utils/utils';
 
 import {
-  setDailyTransaction,
+  setDailyData,
 } from '../slice';
 
 const CalendarBox = styled.div({
@@ -25,11 +25,12 @@ export default function CalendarContainer() {
 
   const month = useSelector(get('month'));
   const year = useSelector(get('year'));
-  const dailyTransaction = useSelector(get('dailyTransaction'));
+  const dailyData = useSelector(get('dailyData'));
+  const monthlyTransaction = useSelector(get('monthlyTransaction'));
 
   const handleOpenModal = (date, day) => {
     setDisplay(!isDisplay);
-    dispatch(setDailyTransaction({ date, day }));
+    dispatch(setDailyData({ date, day }));
   };
 
   return (
@@ -45,7 +46,8 @@ export default function CalendarContainer() {
           isDisplay === true
             ? (
               <TransactionModal
-                dailyTransaction={dailyTransaction}
+                monthlyTransaction={monthlyTransaction}
+                dailyData={dailyData}
                 onClick={handleOpenModal}
               />
             )
