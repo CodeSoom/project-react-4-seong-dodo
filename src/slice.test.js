@@ -8,6 +8,7 @@ import reducer, {
   selectType,
   changeTransactionType,
   changeTransactionCategory,
+  changeBreakdownFields,
   changeTransactionFields,
   clearTransactionFields,
   setDailyData,
@@ -16,7 +17,6 @@ import reducer, {
   setPreviousMonth,
   setNextMonth,
 } from './slice';
-import Transaction from './transaction/Transaction';
 
 describe('reducer', () => {
   context('without state', () => {
@@ -74,7 +74,7 @@ describe('reducer', () => {
     expect(state.transaction.category).toBe('식비');
   });
 
-  describe('change TransactionFields action', () => {
+  describe('change BreakdownFields action', () => {
     const initialState = {
       ...mockInitState,
     };
@@ -82,11 +82,17 @@ describe('reducer', () => {
     it('changes a field of breakdown', () => {
       const state = reducer(
         initialState,
-        changeTransactionFields({ name: 'breakdown', value: 1000 }),
+        changeBreakdownFields({ value: 1000 }),
       );
 
       expect(state.transaction.transactionFields.breakdown).toBe(1000);
     });
+  });
+
+  describe('change TransactionFields action', () => {
+    const initialState = {
+      ...mockInitState,
+    };
 
     it('changes a field of source', () => {
       const state = reducer(

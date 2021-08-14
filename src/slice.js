@@ -62,6 +62,19 @@ const { actions, reducer } = createSlice({
         transaction: selectedCategory,
       };
     },
+    changeBreakdownFields(state, { payload: { value } }) {
+      const newBreakdown = {
+        ...state.transaction,
+        transactionFields: {
+          ...state.transaction.transactionFields,
+          breakdown: parseInt(value, 10),
+        },
+      };
+      return {
+        ...state,
+        transaction: newBreakdown,
+      };
+    },
     changeTransactionFields(state, { payload: { name, value } }) {
       const newTransactionFields = {
         ...state.transaction,
@@ -129,14 +142,14 @@ const { actions, reducer } = createSlice({
         ];
       }
       // 중복 데이터 발생한 것을 삭제해야한다
-      const tragetIndex = newMonthlyTransaction
+      const targetIndex = newMonthlyTransaction
         .findIndex((transactionData) => transactionData.year === year
       && transactionData.month === month
       && transactionData.date === date);
-      // (tragetIndex > -1): 인덱스가 존재한다
+      // (targetIndex > -1): 인덱스가 존재한다
       // 중복 데이터를 삭제해준다
-      if (tragetIndex > -1) {
-        newMonthlyTransaction.splice(tragetIndex, 1);
+      if (targetIndex > -1) {
+        newMonthlyTransaction.splice(targetIndex, 1);
       }
 
       return {
@@ -178,6 +191,7 @@ export const {
   selectType,
   changeTransactionType,
   changeTransactionCategory,
+  changeBreakdownFields,
   changeTransactionFields,
   clearTransactionFields,
   setDailyData,

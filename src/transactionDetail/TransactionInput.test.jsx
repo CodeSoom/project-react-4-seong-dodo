@@ -4,6 +4,7 @@ import TransactionInput from './TransactionInput';
 
 describe('TransactionInput', () => {
   const handleChange = jest.fn();
+  const handleChangeBreakdown = jest.fn();
   const handleSubmit = jest.fn();
 
   beforeEach(() => {
@@ -17,6 +18,8 @@ describe('TransactionInput', () => {
         fields={{ breakdown, source, memo }}
         onChange={handleChange}
         onClick={handleSubmit}
+        onChangeBreakdown={handleChangeBreakdown}
+
       />
     ));
   }

@@ -6,6 +6,7 @@ import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
 import InputField from './InputField';
+import InputBreakdownField from './InputBreakdownField';
 import OptionsFieldContainer from './OptionsFieldContainer';
 
 const Container = styled.div(mediaquery({
@@ -58,21 +59,20 @@ const SubmitBox = styled.div(mediaquery({
   letterSpacing: 5,
 }));
 
-export default function TransactionInput({ fields, onChange, onClick }) {
+export default function TransactionInput({
+  fields, onChange, onClick, onChangeBreakdown,
+}) {
   const { breakdown, source, memo } = fields;
 
   return (
     <Container>
       <InputBox>
         <Number>
-          <InputField
+          <InputBreakdownField
             label=""
-            id="breakdown"
-            name="breakdown"
-            type="number"
             placeholder="0"
             value={breakdown}
-            onChange={onChange}
+            onChangeBreakdown={onChangeBreakdown}
           />
         </Number>
         <Child>
@@ -89,7 +89,6 @@ export default function TransactionInput({ fields, onChange, onClick }) {
           label="거래처"
           id="source"
           name="source"
-          type="text"
           placeholder="거래처명을 입력하세요."
           value={source}
           onChange={onChange}
@@ -100,7 +99,6 @@ export default function TransactionInput({ fields, onChange, onClick }) {
           label="메모"
           id="memo"
           name="memo"
-          type="text"
           placeholder="메모를 입력하세요."
           value={memo}
           onChange={onChange}
