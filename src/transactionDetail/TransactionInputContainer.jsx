@@ -5,6 +5,7 @@ import TransactionInput from './TransactionInput';
 import { get } from '../utils/utils';
 
 import {
+  changeBreakdownFields,
   changeTransactionFields,
   clearTransactionFields,
   setTransaction,
@@ -18,7 +19,11 @@ export default function TransactionInputContainer() {
 
   const { transactionFields } = transaction;
 
-  const handleChange = ({ name, value }) => {
+  const handleChangeBreakdown = ({ value }) => {
+    dispatch(changeBreakdownFields({ value }));
+  };
+
+  const handleChangeFields = ({ name, value }) => {
     dispatch(changeTransactionFields({ name, value }));
   };
 
@@ -47,7 +52,8 @@ export default function TransactionInputContainer() {
     <>
       <TransactionInput
         fields={transactionFields}
-        onChange={handleChange}
+        onChange={handleChangeFields}
+        onChangeBreakdown={handleChangeBreakdown}
         onClick={handleSubmit}
       />
     </>
