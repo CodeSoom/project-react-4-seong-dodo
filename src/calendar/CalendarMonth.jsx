@@ -1,6 +1,9 @@
+import { v4 as uuid } from 'uuid';
 import CalendarWeeks from './CalendarWeeks';
 
-export default function CalendarMonth({ month, year, onClick }) {
+export default function CalendarMonth({
+  year, month, monthlyTransaction, onClick,
+}) {
   const lastOfPreviousMonth = {
     year: new Date(year, month - 1, 0).getFullYear(),
     month: new Date(year, month - 1, 0).getMonth() + 1,
@@ -75,8 +78,10 @@ export default function CalendarMonth({ month, year, onClick }) {
 
   return getWeeks().map((week) => (
     <CalendarWeeks
+      key={uuid()}
       currentMonth={month}
       week={week}
+      monthlyTransaction={monthlyTransaction}
       onClick={onClick}
     />
   ));

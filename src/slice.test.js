@@ -1,17 +1,21 @@
 import mockInitState from '../fixtures/mockInitState';
+import mockDailyData from '../fixtures/mockDailyData';
+import mockExpenseTransaction from '../fixtures/mockExpenseTransaction';
+import mockIncomeTransaction from '../fixtures/mockIncomeTransaction';
 
 import reducer, {
   changeBudget,
   selectType,
   changeTransactionType,
   changeTransactionCategory,
+  changeBreakdownFields,
   changeTransactionFields,
   clearTransactionFields,
+  setDailyData,
   setTransaction,
-  setTransactionHistory,
+  setMonthlyTransaction,
   setPreviousMonth,
   setNextMonth,
-  setDailyTransaction,
 } from './slice';
 
 describe('reducer', () => {
@@ -70,7 +74,7 @@ describe('reducer', () => {
     expect(state.transaction.category).toBe('식비');
   });
 
-  describe('change TransactionFields action', () => {
+  describe('change BreakdownFields action', () => {
     const initialState = {
       ...mockInitState,
     };
@@ -78,11 +82,17 @@ describe('reducer', () => {
     it('changes a field of breakdown', () => {
       const state = reducer(
         initialState,
-        changeTransactionFields({ name: 'breakdown', value: 1000 }),
+        changeBreakdownFields({ value: 1000 }),
       );
 
       expect(state.transaction.transactionFields.breakdown).toBe(1000);
     });
+  });
+
+  describe('change TransactionFields action', () => {
+    const initialState = {
+      ...mockInitState,
+    };
 
     it('changes a field of source', () => {
       const state = reducer(
@@ -115,6 +125,22 @@ describe('reducer', () => {
     expect(state.transaction.transactionFields.memo).toBe('');
   });
 
+  it('listens setDailyData action', () => {
+    const initialState = {
+      dailyData: {
+        year: 2021,
+        month: 7,
+        date: 1,
+        day: 4,
+      },
+    };
+
+    const state = reducer(initialState, setDailyData({ date: 2, day: 5 }));
+
+    expect(state.dailyData.date).toBe(2);
+    expect(state.dailyData.day).toBe(5);
+  });
+
   it('listens setTransaction action', () => {
     const initialState = {
       ...mockInitState,
@@ -124,7 +150,7 @@ describe('reducer', () => {
       setTransaction({
         transaction: {
           type: '지출',
-          category: '카페',
+          category: { value: '카페' },
           transactionFields: {
             breakdown: 1000,
             source: '스타벅스',
@@ -134,32 +160,57 @@ describe('reducer', () => {
       }));
 
     expect(state.transaction.type).toBe('지출');
-    expect(state.transaction.category).toBe('카페');
+    expect(state.transaction.category.value).toBe('카페');
     expect(state.transaction.transactionFields.breakdown).toBe(1000);
     expect(state.transaction.transactionFields.source).toBe('스타벅스');
     expect(state.transaction.transactionFields.memo).toBe('혼자');
   });
 
-  it('listens setTransactionHistory action', () => {
-    const initialState = {
-      dailyTransaction: {
-        transactionHistory: [],
-      },
-    };
+  describe('listens setMonthlyTransaction action', () => {
+    context('without dailyTransaction', () => {
+      it('add monthlyTransaction', () => {
+        const initialState = {
+          ...mockInitState,
+        };
 
-    const transaction = {
-      type: '지출',
-      category: '카페',
-      transactionFields: {
-        breakdown: 1000,
-        source: '스타벅스',
-        memo: '혼자',
-      },
-    };
+        const state = reducer(initialState,
+          setMonthlyTransaction({ transaction: mockIncomeTransaction }));
 
-    const state = reducer(initialState, setTransactionHistory({ transactionHistory: transaction }));
+        expect(state.monthlyTransaction).toHaveLength(1);
+      });
+    });
 
-    expect(state.dailyTransaction.transactionHistory).toHaveLength(1);
+    context('with dailyTransaction', () => {
+      it('add transctionHistories when equal dailyData', () => {
+        const initialState = {
+          ...mockInitState,
+          monthlyTransaction: [{
+            dailyData: mockDailyData,
+            transactionHistories: [mockExpenseTransaction],
+          }],
+        };
+
+        const state = reducer(initialState,
+          setMonthlyTransaction({ transaction: mockIncomeTransaction }));
+
+        expect(state.monthlyTransaction[0].transactionHistories).toHaveLength(1);
+      });
+
+      it('add dailyTransaction when not equal dailyData', () => {
+        const initialState = {
+          ...mockInitState,
+          monthlyTransaction: [{
+            dailyData: mockDailyData,
+            transactionHistories: [mockExpenseTransaction],
+          }],
+        };
+
+        const state = reducer(initialState,
+          setMonthlyTransaction({ transaction: mockIncomeTransaction }));
+
+        expect(state.monthlyTransaction).toHaveLength(2);
+      });
+    });
   });
 
   describe('setPreviousMonth action', () => {
@@ -210,22 +261,5 @@ describe('reducer', () => {
       expect(state.year).toBe(2022);
       expect(state.month).toBe(1);
     });
-  });
-
-  it('listens setDailyTransaction action', () => {
-    const initialState = {
-      dailyTransaction: {
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
-        transactionHistory: [],
-      },
-    };
-
-    const state = reducer(initialState, setDailyTransaction({ date: 2, day: 5 }));
-
-    expect(state.dailyTransaction.date).toBe(2);
-    expect(state.dailyTransaction.day).toBe(5);
   });
 });

@@ -4,14 +4,16 @@ import CalendarMonth from './CalendarMonth';
 
 describe('CalendarMonth', () => {
   const handleClick = jest.fn();
-  const month = 7;
   const year = 2021;
+  const month = 7;
+  const monthlyTransaction = [];
 
   function renderCalendarMonth() {
     return render((
       <CalendarMonth
-        month={month}
         year={year}
+        month={month}
+        monthlyTransaction={monthlyTransaction}
         onClick={handleClick}
       />
     ));

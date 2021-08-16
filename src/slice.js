@@ -13,20 +13,20 @@ const { actions, reducer } = createSlice({
     budget: 0,
     year: today.getFullYear(),
     month: today.getMonth() + 1,
-    selectedType: '지출',
-    transaction: {
-      type: '지출',
-      category: '',
-      transactionFields: {
-        ...initialTransactionFields,
-      },
-    },
-    dailyTransaction: {
+    dailyData: {
       year: 2021,
       month: 7,
       date: 1,
       day: 4,
-      transactionHistory: [],
+    },
+    monthlyTransaction: [],
+    selectedType: '지출',
+    transaction: {
+      type: '지출',
+      category: { value: '' },
+      transactionFields: {
+        ...initialTransactionFields,
+      },
     },
   },
   reducers: {
@@ -62,6 +62,19 @@ const { actions, reducer } = createSlice({
         transaction: selectedCategory,
       };
     },
+    changeBreakdownFields(state, { payload: { value } }) {
+      const newBreakdown = {
+        ...state.transaction,
+        transactionFields: {
+          ...state.transaction.transactionFields,
+          breakdown: parseInt(value, 10),
+        },
+      };
+      return {
+        ...state,
+        transaction: newBreakdown,
+      };
+    },
     changeTransactionFields(state, { payload: { name, value } }) {
       const newTransactionFields = {
         ...state.transaction,
@@ -86,23 +99,75 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setDailyData(state, { payload: { date, day } }) {
+      const newDailyData = {
+        ...state.dailyData,
+        year: state.year,
+        month: state.month,
+        date,
+        day,
+      };
+      return {
+        ...state,
+        dailyData: newDailyData,
+      };
+    },
     setTransaction(state, { payload: { transaction } }) {
       return {
         ...state,
         transaction,
       };
     },
-    setTransactionHistory(state, { payload: { transaction } }) {
-      const newDailyTransaction = {
-        ...state.dailyTransaction,
-        transactionHistory: [
-          ...state.dailyTransaction.transactionHistory,
-          transaction,
-        ],
+    setMonthlyTransaction(state, { payload: { transaction } }) {
+      const { monthlyTransaction, dailyData } = state;
+      const { year, month, date } = dailyData;
+      const newMonthlyTransaction = [...monthlyTransaction];
+      const newTransaction = {
+        ...dailyData,
+        totalExpense: 0,
+        totalIncome: 0,
+        transactionHistories: [transaction],
       };
+
+      const targetTransaction = newMonthlyTransaction
+        .find((transactionData) => transactionData.year === year
+      && transactionData.month === month
+      && transactionData.date === date);
+      // (targetTransaction !== undefined): 같은 날짜인 정보가 있다
+      // 리액트는 기존 데이터 수정은 안되고 새로 만들 수 있으니깐 기존 내용이랑 새로운 내용을 합체
+      if (targetTransaction !== undefined) {
+        newTransaction.transactionHistories = [
+          // 이미 안에 있는 히스토리
+          ...targetTransaction.transactionHistories,
+          // 새로 만들어서 넣을 히스토리
+          ...newTransaction.transactionHistories,
+        ];
+      }
+      // 중복 데이터 발생한 것을 삭제해야한다
+      const targetIndex = newMonthlyTransaction
+        .findIndex((transactionData) => transactionData.year === year
+      && transactionData.month === month
+      && transactionData.date === date);
+      // (targetIndex > -1): 인덱스가 존재한다
+      // 중복 데이터를 삭제해준다
+      if (targetIndex > -1) {
+        newMonthlyTransaction.splice(targetIndex, 1);
+      }
+
+      const getTotal = (transactionType) => {
+        const total = newTransaction.transactionHistories
+          .filter((history) => history.type === transactionType)
+          .reduce((sum, b) => sum + b.transactionFields.breakdown, 0);
+
+        return parseInt(total, 10);
+      };
+
+      newTransaction.totalExpense = getTotal('지출');
+      newTransaction.totalIncome = getTotal('수입');
+
       return {
         ...state,
-        dailyTransaction: newDailyTransaction,
+        monthlyTransaction: [...newMonthlyTransaction, newTransaction],
       };
     },
     setPreviousMonth(state, { payload: { month } }) {
@@ -131,13 +196,6 @@ const { actions, reducer } = createSlice({
         month: state.month + 1,
       };
     },
-    setDailyTransaction(state, { payload: { date, day } }) {
-      const newDailyTransaction = { ...state.dailyTransaction, date, day };
-      return {
-        ...state,
-        dailyTransaction: newDailyTransaction,
-      };
-    },
   },
 });
 
@@ -146,13 +204,14 @@ export const {
   selectType,
   changeTransactionType,
   changeTransactionCategory,
+  changeBreakdownFields,
   changeTransactionFields,
   clearTransactionFields,
+  setDailyData,
   setTransaction,
-  setTransactionHistory,
+  setMonthlyTransaction,
   setPreviousMonth,
   setNextMonth,
-  setDailyTransaction,
 } = actions;
 
 export default reducer;

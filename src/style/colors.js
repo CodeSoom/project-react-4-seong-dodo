@@ -10,7 +10,9 @@ const colors = {
   gray_text04: 'rgb(224, 224, 224)',
   gray_backgroud: 'rgba(224, 224, 224, 0.39)',
   red_text: 'rgb(227, 128, 118)',
+  red_text02: 'rgb(227, 128, 118, 0.5)',
   blue_text: 'rgb(95, 164, 209)',
+  blue_text02: 'rgb(95, 164, 209, 0.5)',
   black: 'rgb(51, 51, 51)',
 };
 

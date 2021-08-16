@@ -21,25 +21,25 @@ describe('TransactionModal', () => {
   });
 
   const handleOpenModal = jest.fn();
-
-  const dailyTransaction = {
+  const monthlyTransaction = [];
+  const dailyData = {
     year: 2021,
     month: 7,
     date: 1,
     day: 4,
-    transactionHistory: [],
   };
 
   function renderTransactionModal() {
     return render((
       <TransactionModal
-        dailyTransaction={dailyTransaction}
+        monthlyTransaction={monthlyTransaction}
+        dailyData={dailyData}
         onClick={handleOpenModal}
       />
     ));
   }
 
-  it('renders transaction modal', () => {
+  it('renders daily transaction modal', () => {
     const { container } = renderTransactionModal();
 
     expect(container).toHaveTextContent('1일');

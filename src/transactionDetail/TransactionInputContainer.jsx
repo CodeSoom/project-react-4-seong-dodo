@@ -5,10 +5,11 @@ import TransactionInput from './TransactionInput';
 import { get } from '../utils/utils';
 
 import {
+  changeBreakdownFields,
   changeTransactionFields,
   clearTransactionFields,
   setTransaction,
-  setTransactionHistory,
+  setMonthlyTransaction,
 } from '../slice';
 
 export default function TransactionInputContainer() {
@@ -18,7 +19,11 @@ export default function TransactionInputContainer() {
 
   const { transactionFields } = transaction;
 
-  const handleChange = ({ name, value }) => {
+  const handleChangeBreakdown = ({ value }) => {
+    dispatch(changeBreakdownFields({ value }));
+  };
+
+  const handleChangeFields = ({ name, value }) => {
     dispatch(changeTransactionFields({ name, value }));
   };
 
@@ -39,7 +44,7 @@ export default function TransactionInputContainer() {
       return;
     }
     dispatch(setTransaction({ transaction }));
-    dispatch(setTransactionHistory({ transaction }));
+    dispatch(setMonthlyTransaction({ transaction }));
     dispatch(clearTransactionFields());
   };
 
@@ -47,7 +52,8 @@ export default function TransactionInputContainer() {
     <>
       <TransactionInput
         fields={transactionFields}
-        onChange={handleChange}
+        onChange={handleChangeFields}
+        onChangeBreakdown={handleChangeBreakdown}
         onClick={handleSubmit}
       />
     </>

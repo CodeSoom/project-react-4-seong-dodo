@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { v4 as uuid } from 'uuid';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -88,13 +91,12 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
-export default function Transaction({ dailyTransaction }) {
-  const { transactionHistory } = dailyTransaction;
-
+export default function DailyTransaction({ histories }) {
   return (
     <>
-      {
-        transactionHistory.map(({ type, category, transactionFields }) => (
+      { histories === undefined
+        ? null
+        : histories.transactionHistories.map(({ type, category, transactionFields }) => (
           <Container
             key={type}
           >
@@ -117,14 +119,15 @@ export default function Transaction({ dailyTransaction }) {
                   : '-'}
                 {' '}
                 {transactionFields.breakdown}
+                {' '}
+                원
               </Breakdown>
               <Text>
                 {`${transactionFields.source} / ${transactionFields.memo}`}
               </Text>
             </TextBox>
           </Container>
-        ))
-      }
+        ))}
     </>
   );
 }

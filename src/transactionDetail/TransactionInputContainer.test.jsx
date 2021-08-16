@@ -23,6 +23,21 @@ describe('TransactionInputContainer', () => {
     }));
   });
 
+  it('listens changeBreakdownFields events', () => {
+    const { getByPlaceholderText } = render(<TransactionInputContainer />);
+
+    fireEvent.change(getByPlaceholderText('0'), {
+      target: {
+        value: '1000',
+      },
+    });
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/changeBreakdownFields',
+      payload: { value: '1000' },
+    });
+  });
+
   it('listens change events', () => {
     const { getByLabelText } = render(<TransactionInputContainer />);
 
