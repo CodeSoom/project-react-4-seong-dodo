@@ -2,21 +2,20 @@ import { render } from '@testing-library/react';
 
 import Transaction from './Transaction';
 
-import mockDailyData from '../../fixtures/mockDailyData';
 import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
-import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction copy';
+import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
+import mockDailyData from '../../fixtures/mockDailyData';
 
 describe('Transaction', () => {
-  function renderTransaction(monthlyTransaction = [], dailyData = mockDailyData) {
+  function renderTransaction(histories = undefined) {
     return render((
       <Transaction
-        monthlyTransaction={monthlyTransaction}
-        dailyData={dailyData}
+        histories={histories}
       />
     ));
   }
 
-  context('without monthlyTransaction', () => {
+  context('without histories', () => {
     it('renders nothing', () => {
       const { queryByText } = renderTransaction();
 
@@ -27,58 +26,32 @@ describe('Transaction', () => {
     });
   });
 
-  context('with monthlyTransaction', () => {
-    const dailyData = {
-      year: 2021,
-      month: 7,
-      date: 1,
-      day: 4,
-    };
+  context('with histories', () => {
+    it('renders with "지출" type transaction', () => {
+      const histories = {
+        dailyData: mockDailyData,
+        transactionHistories: [mockExpenseTransaction],
+      };
 
-    it('renders transaction', () => {
-      const monthlyTransaction = [{
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
-        transactionHistories: [mockExpenseTransaction, mockIncomeTransaction],
-      }];
-
-      const { container } = renderTransaction(monthlyTransaction, dailyData);
+      const { container } = renderTransaction(histories);
 
       expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('수입');
       expect(container).toHaveTextContent('식비');
-      expect(container).toHaveTextContent('용돈');
       expect(container).toHaveTextContent('마트');
-      expect(container).toHaveTextContent('심부름');
-    });
-
-    it('renders "-" when "지출" type', () => {
-      const monthlyExpenseTransaction = [{
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
-        transactionHistories: [mockExpenseTransaction],
-      }];
-
-      const { container } = renderTransaction(monthlyExpenseTransaction, dailyData);
-
       expect(container).toHaveTextContent('-');
     });
 
-    it('renders "+" when "수입" type', () => {
-      const monthlyIncomeTransaction = [{
-        year: 2021,
-        month: 7,
-        date: 1,
-        day: 4,
+    it('renders with "수입" type transaction', () => {
+      const histories = {
+        dailyData: mockDailyData,
         transactionHistories: [mockIncomeTransaction],
-      }];
+      };
 
-      const { container } = renderTransaction(monthlyIncomeTransaction, dailyData);
+      const { container } = renderTransaction(histories);
 
+      expect(container).toHaveTextContent('수입');
+      expect(container).toHaveTextContent('용돈');
+      expect(container).toHaveTextContent('심부름');
       expect(container).toHaveTextContent('+');
     });
   });

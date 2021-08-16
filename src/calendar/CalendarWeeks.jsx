@@ -11,7 +11,9 @@ const WeekRowBox = styled.div(mediaquery({
   margin: '0 auto',
 }));
 
-export default function CalendarWeeks({ currentMonth, week, onClick }) {
+export default function CalendarWeeks({
+  currentMonth, week, monthlyTransaction, onClick,
+}) {
   return (
     <WeekRowBox>
       {
@@ -23,6 +25,7 @@ export default function CalendarWeeks({ currentMonth, week, onClick }) {
             month={date.month}
             date={date.date}
             day={date.day}
+            monthlyTransaction={monthlyTransaction}
             onClick={onClick}
           />
         ))

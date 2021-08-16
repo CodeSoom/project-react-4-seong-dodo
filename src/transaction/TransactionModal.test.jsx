@@ -39,7 +39,7 @@ describe('TransactionModal', () => {
     ));
   }
 
-  it('renders transaction modal', () => {
+  it('renders daily transaction modal', () => {
     const { container } = renderTransactionModal();
 
     expect(container).toHaveTextContent('1일');

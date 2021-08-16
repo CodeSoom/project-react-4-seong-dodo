@@ -4,7 +4,8 @@ import CalendarWeeks from './CalendarWeeks';
 
 describe('CalendarWeeks', () => {
   const handleClick = jest.fn();
-
+  const monthlyTransaction = [];
+  const currentMonth = 7;
   const week = [
     {
       year: 2021,
@@ -17,7 +18,9 @@ describe('CalendarWeeks', () => {
   function renderCalendarWeeks() {
     return render((
       <CalendarWeeks
+        currentMonth={currentMonth}
         week={week}
+        monthlyTransaction={monthlyTransaction}
         onClick={handleClick}
       />
     ));

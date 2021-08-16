@@ -5,7 +5,7 @@ import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
 import Button from './Button';
-import Transaction from './Transaction';
+import DailyTransaction from './DailyTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
 
 const Container = styled.div(mediaquery({
@@ -134,7 +134,7 @@ export default function TransactionModal({ monthlyTransaction, dailyData, onClic
         </DateBox>
         <TextBox>
           <TransactionBox>
-            <Transaction
+            <DailyTransaction
               monthlyTransaction={monthlyTransaction}
               dailyData={dailyData}
             />

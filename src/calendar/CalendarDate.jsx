@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 
+import DateData from './DateData';
+
 const DateBox = styled.div({
   width: '20em',
   height: '12em',
@@ -35,7 +37,7 @@ const SundayColor = {
 };
 
 export default function CalendarDate({
-  currentMonth, year, month, date, day, onClick,
+  currentMonth, year, month, date, day, monthlyTransaction, onClick,
 }) {
   const [today] = useState(new Date());
 
@@ -57,6 +59,13 @@ export default function CalendarDate({
     return BasicColor;
   };
 
+  const histories = monthlyTransaction.find(
+    (daily) => daily.year === year
+  && daily.month === month
+  && daily.date === date
+  && daily.day === day,
+  );
+
   return (
     <DateBox
       style={dateColorStyle()}
@@ -66,6 +75,14 @@ export default function CalendarDate({
         role="presentation"
       >
         {date}
+        {
+          histories === undefined ? null
+            : (
+              <DateData
+                histories={histories}
+              />
+            )
+        }
       </div>
     </DateBox>
   );
