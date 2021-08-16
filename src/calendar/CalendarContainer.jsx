@@ -23,8 +23,8 @@ export default function CalendarContainer() {
   const dispatch = useDispatch();
   const [isDisplay, setDisplay] = useState(false);
 
-  const month = useSelector(get('month'));
   const year = useSelector(get('year'));
+  const month = useSelector(get('month'));
   const dailyData = useSelector(get('dailyData'));
   const monthlyTransaction = useSelector(get('monthlyTransaction'));
 
@@ -37,8 +37,9 @@ export default function CalendarContainer() {
     <CalendarBox>
       <CalendarDays />
       <CalendarMonth
-        month={month}
         year={year}
+        month={month}
+        monthlyTransaction={monthlyTransaction}
         onClick={handleOpenModal}
       />
       <div>
@@ -46,8 +47,8 @@ export default function CalendarContainer() {
           isDisplay === true
             ? (
               <TransactionModal
-                monthlyTransaction={monthlyTransaction}
                 dailyData={dailyData}
+                monthlyTransaction={monthlyTransaction}
                 onClick={handleOpenModal}
               />
             )

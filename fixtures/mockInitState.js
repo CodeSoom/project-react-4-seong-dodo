@@ -12,7 +12,7 @@ const mockInitState = {
   selectedType: '지출',
   transaction: {
     type: '지출',
-    category: '',
+    category: { value: '' },
     transactionFields: {
       breakdown: 0,
       source: '',

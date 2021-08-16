@@ -23,7 +23,7 @@ const { actions, reducer } = createSlice({
     selectedType: '지출',
     transaction: {
       type: '지출',
-      category: '',
+      category: { value: '' },
       transactionFields: {
         ...initialTransactionFields,
       },
@@ -124,6 +124,8 @@ const { actions, reducer } = createSlice({
       const newMonthlyTransaction = [...monthlyTransaction];
       const newTransaction = {
         ...dailyData,
+        totalExpense: 0,
+        totalIncome: 0,
         transactionHistories: [transaction],
       };
 
@@ -151,6 +153,17 @@ const { actions, reducer } = createSlice({
       if (targetIndex > -1) {
         newMonthlyTransaction.splice(targetIndex, 1);
       }
+
+      const getTotal = (transactionType) => {
+        const total = newTransaction.transactionHistories
+          .filter((history) => history.type === transactionType)
+          .reduce((sum, b) => sum + b.transactionFields.breakdown, 0);
+
+        return parseInt(total, 10);
+      };
+
+      newTransaction.totalExpense = getTotal('지출');
+      newTransaction.totalIncome = getTotal('수입');
 
       return {
         ...state,

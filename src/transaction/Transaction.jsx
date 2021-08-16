@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { v4 as uuid } from 'uuid';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -88,104 +91,43 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
-export default function Transaction({ monthlyTransaction, dailyData }) {
-  const histories = monthlyTransaction.find(
-    (daily) => daily.year === dailyData.year
-  && daily.month === dailyData.month
-  && daily.date === dailyData.date
-  && daily.day === dailyData.day,
-  );
-
+export default function DailyTransaction({ histories }) {
   return (
     <>
-      <div>
-        {
-          histories !== undefined
-            ? (
-              <>
-                <div>
-                  총
-                  {' '}
-                  {histories.transactionHistories.length}
-                  {' '}
-                  건
-                </div>
-                <div>
-                  -
-                  {' '}
-                  {
-                    histories.transactionHistories
-                      .filter((history) => history.type === '지출')
-                      // eslint-disable-next-line max-len
-                      .reduce((sum, b) => sum + b.transactionFields.breakdown, 0)
-                  }
-                  원
-                </div>
-                <div>
-                  +
-                  {' '}
-                  {
-                    histories.transactionHistories
-                      .filter((history) => history.type === '수입')
-                      // eslint-disable-next-line max-len
-                      .reduce((sum, b) => sum + b.transactionFields.breakdown, 0)
-                  }
-                  원
-                </div>
-              </>
-            )
-            : (
-              <>
-                <div>
-                  {' '}
-                  총
-                  {' '}
-                  0
-                  {' '}
-                  건
-                </div>
-              </>
-            )
-        }
-      </div>
-
-      {
-        histories === undefined
-          ? null
-          : histories.transactionHistories.map(({ type, category, transactionFields }) => (
-            <Container
-              key={type}
-            >
-              <DeleteBox>
-                <div>
-                  <FontAwesomeIcon icon={faEdit} />
-                </div>
-                <div>
-                  <FontAwesomeIcon icon={faTrashAlt} />
-                </div>
-              </DeleteBox>
-              <OptionBox>
-                <Type>{type}</Type>
-                <Category>{category.value}</Category>
-              </OptionBox>
-              <TextBox>
-                <Breakdown>
-                  {type === '수입'
-                    ? '+'
-                    : '-'}
-                  {' '}
-                  {transactionFields.breakdown}
-                  {' '}
-                  원
-                </Breakdown>
-                <Text>
-                  {`${transactionFields.source} / ${transactionFields.memo}`}
-                </Text>
-              </TextBox>
-            </Container>
-          ))
-      }
-
+      { histories === undefined
+        ? null
+        : histories.transactionHistories.map(({ type, category, transactionFields }) => (
+          <Container
+            key={type}
+          >
+            <DeleteBox>
+              <div>
+                <FontAwesomeIcon icon={faEdit} />
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </div>
+            </DeleteBox>
+            <OptionBox>
+              <Type>{type}</Type>
+              <Category>{category.value}</Category>
+            </OptionBox>
+            <TextBox>
+              <Breakdown>
+                {type === '수입'
+                  ? '+'
+                  : '-'}
+                {' '}
+                {transactionFields.breakdown}
+                {' '}
+                원
+              </Breakdown>
+              <Text>
+                {`${transactionFields.source} / ${transactionFields.memo}`}
+              </Text>
+            </TextBox>
+          </Container>
+        ))}
     </>
   );
 }
