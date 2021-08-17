@@ -1,12 +1,23 @@
 import { render } from '@testing-library/react';
 
+import { useDispatch } from 'react-redux';
+
 import Transaction from './Transaction';
 
 import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
 import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
 import mockDailyData from '../../fixtures/mockDailyData';
 
+jest.mock('react-redux');
+
 describe('Transaction', () => {
+  const dispatch = jest.fn();
+
+  beforeEach(() => {
+    dispatch.mockClear();
+    useDispatch.mockImplementation(() => dispatch);
+  });
+
   function renderTransaction(histories = undefined) {
     return render((
       <Transaction
@@ -29,7 +40,7 @@ describe('Transaction', () => {
   context('with histories', () => {
     it('renders with "지출" type transaction', () => {
       const histories = {
-        dailyData: mockDailyData,
+        ...mockDailyData,
         transactionHistories: [mockExpenseTransaction],
       };
 
@@ -43,7 +54,7 @@ describe('Transaction', () => {
 
     it('renders with "수입" type transaction', () => {
       const histories = {
-        dailyData: mockDailyData,
+        ...mockDailyData,
         transactionHistories: [mockIncomeTransaction],
       };
 

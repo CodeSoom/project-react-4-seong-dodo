@@ -9,7 +9,7 @@ import {
   changeTransactionFields,
   clearTransactionFields,
   setTransaction,
-  setMonthlyTransaction,
+  addMonthlyTransaction,
 } from '../slice';
 
 export default function TransactionInputContainer() {
@@ -44,7 +44,7 @@ export default function TransactionInputContainer() {
       return;
     }
     dispatch(setTransaction({ transaction }));
-    dispatch(setMonthlyTransaction({ transaction }));
+    dispatch(addMonthlyTransaction({ transaction }));
     dispatch(clearTransactionFields());
   };
 
