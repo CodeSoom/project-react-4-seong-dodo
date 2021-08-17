@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { v4 as uuid } from 'uuid';
+import { useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,10 @@ import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
+
+import {
+  deleteTransaction,
+} from '../slice';
 
 const Container = styled.div(mediaquery({
   width: '100%',
@@ -26,6 +30,7 @@ const DeleteBox = styled.div({
   '& div': {
     float: 'right',
     padding: '0 .3em',
+    cursor: 'pointer',
   },
 });
 
@@ -91,12 +96,20 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
-export default function DailyTransaction({ histories }) {
+export default function Transaction({ histories }) {
+  const dispatch = useDispatch();
+
+  const handleClickDelete = (id) => {
+    dispatch(deleteTransaction({ id }));
+  };
+
   return (
     <>
       { histories === undefined
         ? null
-        : histories.transactionHistories.map(({ type, category, transactionFields }) => (
+        : histories.transactionHistories.map(({
+          id, type, category, transactionFields,
+        }) => (
           <Container
             key={type}
           >
@@ -104,7 +117,10 @@ export default function DailyTransaction({ histories }) {
               <div>
                 <FontAwesomeIcon icon={faEdit} />
               </div>
-              <div>
+              <div
+                onClick={() => handleClickDelete(id)}
+                role="presentation"
+              >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </div>
             </DeleteBox>
