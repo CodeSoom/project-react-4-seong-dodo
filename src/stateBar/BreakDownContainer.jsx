@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
+
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
+
+import { get } from '../utils/utils';
 
 const Container = styled.div(mediaquery({
   float: 'left',
@@ -18,13 +22,45 @@ const Container = styled.div(mediaquery({
 }));
 
 export default function BreakDownContainer() {
+  const currentYear = useSelector(get('year'));
+  const currentMonth = useSelector(get('month'));
+  const monthlyTransaction = useSelector(get('monthlyTransaction'));
+
+  const getTotalIncome = () => {
+    const total = monthlyTransaction
+      .filter(
+        (monthly) => monthly.year === currentYear
+      && monthly.month === currentMonth,
+      )
+      .reduce((sum, b) => sum + b.totalIncome, 0);
+
+    return parseInt(total, 10);
+  };
+
+  const getTotalExpense = () => {
+    const total = monthlyTransaction
+      .filter(
+        (monthly) => monthly.year === currentYear
+      && monthly.month === currentMonth,
+      )
+      .reduce((sum, b) => sum + b.totalExpense, 0);
+
+    return parseInt(total, 10);
+  };
+
   return (
     <Container>
       <div>
         수입
+        {' '}
+        {getTotalIncome()}
+        원
       </div>
       <div>
         지출
+        {' '}
+        {getTotalExpense()}
+        원
       </div>
     </Container>
   );
