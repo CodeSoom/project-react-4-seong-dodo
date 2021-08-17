@@ -6,7 +6,7 @@ import StateBarCard from './StateBarCard';
 
 jest.mock('react-redux');
 
-describe('MonthlyBudgetContainer', () => {
+describe('StateBarCard', () => {
   const dispatch = jest.fn();
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('MonthlyBudgetContainer', () => {
     useSelector.mockImplementation((selector) => selector({
       year: 2021,
       month: 7,
+      monthlyTransaction: [],
     }));
   });
 
@@ -40,6 +41,7 @@ describe('MonthlyBudgetContainer', () => {
       useSelector.mockImplementation((selector) => selector({
         year: 2021,
         month: 0,
+        monthlyTransaction: [],
       }));
 
       const { queryByText } = render(<StateBarCard />);
@@ -53,6 +55,7 @@ describe('MonthlyBudgetContainer', () => {
       useSelector.mockImplementation((selector) => selector({
         year: 2021,
         month: 13,
+        monthlyTransaction: [],
       }));
 
       const { queryByText } = render(<StateBarCard />);
