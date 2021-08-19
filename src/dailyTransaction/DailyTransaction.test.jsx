@@ -7,11 +7,16 @@ import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
 import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
 
 describe('DailyTransaction', () => {
+  const handleClickEdit = jest.fn();
+  const handleClickDelete = jest.fn();
+
   function renderDailyTransaction(monthlyTransaction = [], dailyData = mockDailyData) {
     return render((
       <DailyTransaction
         monthlyTransaction={monthlyTransaction}
         dailyData={dailyData}
+        onClickEdit={handleClickEdit}
+        onClickDelete={handleClickDelete}
       />
     ));
   }

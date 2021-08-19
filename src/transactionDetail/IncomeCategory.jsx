@@ -21,7 +21,7 @@ const Container = styled.div(mediaquery({
   },
 }));
 
-export default function IncomeCategory({ onChange }) {
+export default function IncomeCategory({ transaction, onChange }) {
   const incomeCategories = [
     '미분류',
     '급여', '용돈', '금융수입', '사업수입', '기타수입',
@@ -32,19 +32,23 @@ export default function IncomeCategory({ onChange }) {
     onChange({ value: target.value });
   }
 
+  function isSelectedCategory(categoryName) {
+    return categoryName === transaction.category.value;
+  }
+
   return (
     <Container>
       <select
         data-testid="select"
         name="income-category"
         onChange={handleChange}
-        defaultValue={incomeCategories[0]}
       >
         {
           incomeCategories.map((category) => (
             <option
               key={category}
               value={category}
+              selected={isSelectedCategory(category)}
             >
               {category}
             </option>

@@ -60,7 +60,7 @@ const SubmitBox = styled.div(mediaquery({
 }));
 
 export default function TransactionInput({
-  fields, onChange, onClick, onChangeBreakdown,
+  targetId, fields, onChange, onClick, onChangeBreakdown,
 }) {
   const { breakdown, source, memo } = fields;
 
@@ -107,7 +107,7 @@ export default function TransactionInput({
       <SubmitBox>
         <button
           type="button"
-          onClick={onClick}
+          onClick={() => onClick(targetId)}
         >
           저장
         </button>

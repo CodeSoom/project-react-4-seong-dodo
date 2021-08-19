@@ -1,17 +1,11 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
-
-import {
-  deleteTransaction,
-} from '../slice';
 
 const Container = styled.div(mediaquery({
   width: '100%',
@@ -96,13 +90,7 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
-export default function Transaction({ histories }) {
-  const dispatch = useDispatch();
-
-  const handleClickDelete = (id) => {
-    dispatch(deleteTransaction({ id }));
-  };
-
+export default function Transaction({ histories, onClickEdit, onClickDelete }) {
   return (
     <>
       { histories === undefined
@@ -114,14 +102,17 @@ export default function Transaction({ histories }) {
             key={type}
           >
             <DeleteBox>
-              <div>
-                <FontAwesomeIcon icon={faEdit} />
-              </div>
               <div
-                onClick={() => handleClickDelete(id)}
+                onClick={() => onClickDelete(id)}
                 role="presentation"
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
+              </div>
+              <div
+                onClick={() => onClickEdit(id)}
+                role="presentation"
+              >
+                <FontAwesomeIcon icon={faEdit} />
               </div>
             </DeleteBox>
             <OptionBox>

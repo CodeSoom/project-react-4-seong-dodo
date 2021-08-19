@@ -12,9 +12,10 @@ describe('TransactionInput', () => {
     handleSubmit.mockClear();
   });
 
-  function renderTransactionInput({ breakdown, source, memo } = {}) {
+  function renderTransactionInput(targetId = null, { breakdown, source, memo } = {}) {
     return render((
       <TransactionInput
+        targetId={targetId}
         fields={{ breakdown, source, memo }}
         onChange={handleChange}
         onClick={handleSubmit}

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { v4 as uuid } from 'uuid';
-import DailyTransaction from './transaction/Transaction';
 
 const today = new Date();
 const initialTransactionFields = {
@@ -22,11 +21,13 @@ const { actions, reducer } = createSlice({
       date: 1,
       day: 4,
     },
+    targetId: null,
     monthlyTransaction: [],
     selectedType: '지출',
+    selectedCategory: { value: '미분류' },
     transaction: {
       type: '지출',
-      category: { value: '' },
+      category: { value: '미분류' },
       transactionFields: {
         ...initialTransactionFields,
       },
@@ -39,10 +40,28 @@ const { actions, reducer } = createSlice({
         budget: value,
       };
     },
+    setTargetId(state, { payload: { id } }) {
+      return {
+        ...state,
+        targetId: id,
+      };
+    },
+    clearTargetId(state) {
+      return {
+        ...state,
+        targetId: null,
+      };
+    },
     selectType(state, { payload: name }) {
       return {
         ...state,
         selectedType: name,
+      };
+    },
+    selectCategory(state, { payload: name }) {
+      return {
+        ...state,
+        selectedCategory: name,
       };
     },
     changeTransactionType(state, { payload: name }) {
@@ -96,6 +115,8 @@ const { actions, reducer } = createSlice({
         ...state,
         transaction: {
           ...state.transaction,
+          type: state.selectedType,
+          category: { value: '미분류' },
           transactionFields: {
             ...initialTransactionFields,
           },
@@ -116,9 +137,16 @@ const { actions, reducer } = createSlice({
       };
     },
     setTransaction(state, { payload: { transaction } }) {
+      const newTransaction = {
+        ...state.transaction,
+        transactionFields: {
+          ...state.transaction.transactionFields,
+        },
+        transaction,
+      };
       return {
         ...state,
-        transaction,
+        transaction: newTransaction,
       };
     },
     addMonthlyTransaction(state, { payload: { transaction } }) {
@@ -255,7 +283,10 @@ const { actions, reducer } = createSlice({
 
 export const {
   changeBudget,
+  setTargetId,
+  clearTargetId,
   selectType,
+  selectCategory,
   changeTransactionType,
   changeTransactionCategory,
   changeBreakdownFields,

@@ -2,13 +2,13 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import TransactionModal from './TransactionModal';
+import DailyTransactionContainer from './DailyTransactionContainer';
 
 import mockInitState from '../../fixtures/mockInitState';
 
 jest.mock('react-redux');
 
-describe('TransactionModal', () => {
+describe('DailyTransactionContainer', () => {
   const dispatch = jest.fn();
 
   beforeEach(() => {
@@ -29,9 +29,9 @@ describe('TransactionModal', () => {
     day: 4,
   };
 
-  function renderTransactionModal() {
+  function renderDailyTransactionContainer() {
     return render((
-      <TransactionModal
+      <DailyTransactionContainer
         monthlyTransaction={monthlyTransaction}
         dailyData={dailyData}
         onClick={handleOpenModal}
@@ -40,7 +40,7 @@ describe('TransactionModal', () => {
   }
 
   it('renders daily transaction modal', () => {
-    const { container } = renderTransactionModal();
+    const { container } = renderDailyTransactionContainer();
 
     expect(container).toHaveTextContent('1일');
     expect(container).toHaveTextContent('X');
@@ -50,7 +50,7 @@ describe('TransactionModal', () => {
   it('litens "X" button click event', () => {
     const onClick = jest.fn();
 
-    const { getByText } = renderTransactionModal();
+    const { getByText } = renderDailyTransactionContainer();
 
     fireEvent.click(getByText('X'));
 
@@ -58,7 +58,7 @@ describe('TransactionModal', () => {
   });
 
   it('listens "내역추가" button click event', () => {
-    const { getByText } = renderTransactionModal();
+    const { getByText } = renderDailyTransactionContainer();
 
     const onClick = jest.fn();
 

@@ -1,27 +1,21 @@
 import { render } from '@testing-library/react';
 
-import { useDispatch } from 'react-redux';
-
 import Transaction from './Transaction';
 
 import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
 import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
 import mockDailyData from '../../fixtures/mockDailyData';
 
-jest.mock('react-redux');
-
 describe('Transaction', () => {
-  const dispatch = jest.fn();
-
-  beforeEach(() => {
-    dispatch.mockClear();
-    useDispatch.mockImplementation(() => dispatch);
-  });
+  const handleClickEdit = jest.fn();
+  const handleClickDelete = jest.fn();
 
   function renderTransaction(histories = undefined) {
     return render((
       <Transaction
         histories={histories}
+        onClickEdit={handleClickEdit}
+        onClickDelete={handleClickDelete}
       />
     ));
   }

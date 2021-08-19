@@ -21,7 +21,7 @@ const Container = styled.div(mediaquery({
   },
 }));
 
-export default function ExpenseCategory({ onChange }) {
+export default function ExpenseCategory({ transaction, onChange }) {
   const expenseCategories = [
     '미분류',
     '식비', '카페/간식', '술/유흥', '생활',
@@ -36,19 +36,23 @@ export default function ExpenseCategory({ onChange }) {
     onChange({ value: target.value });
   }
 
+  function isSelectedCategory(categoryName) {
+    return categoryName === transaction.category.value;
+  }
+
   return (
     <Container>
       <select
         data-testid="select"
-        name="expense-category"
+        name="income-category"
         onChange={handleChange}
-        defaultValue={expenseCategories[0]}
       >
         {
           expenseCategories.map((category) => (
             <option
               key={category}
               value={category}
+              selected={isSelectedCategory(category)}
             >
               {category}
             </option>
