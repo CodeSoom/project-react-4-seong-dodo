@@ -10,6 +10,7 @@ import { get } from '../utils/utils';
 
 import {
   selectType,
+  selectCategory,
   changeTransactionType,
   changeTransactionCategory,
 } from '../slice';
@@ -63,6 +64,7 @@ export default function OptionsFieldContainer() {
   const dispatch = useDispatch();
 
   const selectedType = useSelector(get('selectedType'));
+  const transaction = useSelector(get('transaction'));
 
   const handleClick = (name) => {
     dispatch(selectType(name));
@@ -70,6 +72,7 @@ export default function OptionsFieldContainer() {
   };
 
   const handleChange = (name) => {
+    dispatch(selectCategory(name));
     dispatch(changeTransactionCategory(name));
   };
 
@@ -111,11 +114,13 @@ export default function OptionsFieldContainer() {
             selectedType === '지출'
               ? (
                 <ExpenseCategory
+                  transaction={transaction}
                   onChange={handleChange}
                 />
               )
               : (
                 <IncomeCategory
+                  transaction={transaction}
                   onChange={handleChange}
                 />
               )

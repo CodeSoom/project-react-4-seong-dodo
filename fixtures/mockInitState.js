@@ -8,11 +8,13 @@ const mockInitState = {
     date: 1,
     day: 4,
   },
+  targetId: null,
   monthlyTransaction: [],
   selectedType: '지출',
+  selectedCategory: { value: '미분류' },
   transaction: {
     type: '지출',
-    category: { value: '' },
+    category: { value: '미분류' },
     transactionFields: {
       breakdown: 0,
       source: '',

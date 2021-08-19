@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import OptionsFieldContainer from './OptionsFieldContainer';
 
+import mockInitState from '../../fixtures/mockInitState';
+
 jest.mock('react-redux');
 
 describe('OptionsField', () => {
@@ -14,7 +16,17 @@ describe('OptionsField', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      ...mockInitState,
       selectedType: null,
+      transaction: {
+        type: '지출',
+        category: { value: '미분류' },
+        transactionFields: {
+          breakdown: 0,
+          source: '',
+          memo: '',
+        },
+      },
     }));
   });
 
@@ -67,6 +79,7 @@ describe('OptionsField', () => {
   context('when selected "지출" type', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
+        ...mockInitState,
         selectedType: '지출',
       }));
     });
@@ -82,6 +95,7 @@ describe('OptionsField', () => {
   context('when selected "수입" type', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
+        ...mockInitState,
         selectedType: '수입',
       }));
     });

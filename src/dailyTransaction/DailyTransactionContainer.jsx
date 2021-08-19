@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
@@ -7,6 +9,17 @@ import mediaquery from '../style/mediaquery';
 import Button from './Button';
 import DailyTransaction from './DailyTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
+
+import {
+  setTargetId,
+  selectType,
+  selectCategory,
+  changeTransactionType,
+  changeTransactionCategory,
+  changeBreakdownFields,
+  changeTransactionFields,
+  deleteTransaction,
+} from '../slice';
 
 const Container = styled.div(mediaquery({
   position: 'fixed',
@@ -101,20 +114,59 @@ const DefaultBox = styled.div(mediaquery({
   ],
 }));
 
-export default function TransactionModal({ monthlyTransaction, dailyData, onClick }) {
+export default function DailyTransactionContainer({
+  monthlyTransaction, dailyData, onClick,
+}) {
+  const dispatch = useDispatch();
   const [isDisplay, setDisplay] = useState(false);
 
-  // 내역추가 버튼 이벤트
-  const handleClickDetailModal = () => {
-    setDisplay(!isDisplay);
-  };
-
-  const { date, day } = dailyData;
+  const {
+    year, month, date, day,
+  } = dailyData;
 
   function convertDay() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return days[day];
   }
+  // 내역추가 버튼 이벤트
+  const handleClickDetailModal = () => {
+    setDisplay(!isDisplay);
+  };
+
+  const handleClickEdit = (id) => {
+    setDisplay(true);
+    dispatch(setTargetId({ id }));
+
+    const targetDailyTransaction = monthlyTransaction
+      .find((target) => target.year === year
+      && target.month === month
+      && target.date === date);
+
+    const targetTransaction = targetDailyTransaction.transactionHistories
+      .find((target) => target.id === id);
+
+    const { type, category, transactionFields } = targetTransaction;
+
+    dispatch(changeTransactionType(type));
+    dispatch(selectType(type));
+
+    dispatch(changeTransactionCategory({ value: category.value }));
+    dispatch(selectCategory({ value: category.value }));
+
+    dispatch(changeBreakdownFields({ value: transactionFields.breakdown }));
+    dispatch(changeTransactionFields({
+      name: 'source',
+      value: transactionFields.source,
+    }));
+    dispatch(changeTransactionFields({
+      name: 'memo',
+      value: transactionFields.memo,
+    }));
+  };
+
+  const handleClickDelete = (id) => {
+    dispatch(deleteTransaction({ id }));
+  };
 
   return (
     <Container>
@@ -137,6 +189,8 @@ export default function TransactionModal({ monthlyTransaction, dailyData, onClic
             <DailyTransaction
               monthlyTransaction={monthlyTransaction}
               dailyData={dailyData}
+              onClickEdit={handleClickEdit}
+              onClickDelete={handleClickDelete}
             />
           </TransactionBox>
           <TransactionFieldsBox>

@@ -4,10 +4,20 @@ import ExpenseCategory from './ExpenseCategory';
 
 describe('ExpenseCategory', () => {
   const handleChange = jest.fn();
+  const transaction = {
+    type: '지출',
+    category: { value: '미분류' },
+    transactionFields: {
+      breakdown: 0,
+      source: '',
+      memo: '',
+    },
+  };
 
   function renderExpenseCategory() {
     return render((
       <ExpenseCategory
+        transaction={transaction}
         onChange={handleChange}
       />
     ));

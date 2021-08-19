@@ -10,13 +10,14 @@ import {
   clearTransactionFields,
   setTransaction,
   addMonthlyTransaction,
+  deleteTransaction,
+  clearTargetId,
 } from '../slice';
 
 export default function TransactionInputContainer() {
   const dispatch = useDispatch();
-
   const transaction = useSelector(get('transaction'));
-
+  const targetId = useSelector(get('targetId'));
   const { transactionFields } = transaction;
 
   const handleChangeBreakdown = ({ value }) => {
@@ -27,7 +28,7 @@ export default function TransactionInputContainer() {
     dispatch(changeTransactionFields({ name, value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (id) => {
     if (transactionFields.breakdown === 0) {
       // eslint-disable-next-line no-alert
       alert('금액을 입력해주세요.');
@@ -43,14 +44,24 @@ export default function TransactionInputContainer() {
       alert('거래처를 입력헤주세요.');
       return;
     }
-    dispatch(setTransaction({ transaction }));
-    dispatch(addMonthlyTransaction({ transaction }));
-    dispatch(clearTransactionFields());
+    if (targetId !== null && targetId === id) {
+      dispatch(deleteTransaction({ id }));
+      dispatch(setTransaction({ transaction }));
+      dispatch(addMonthlyTransaction({ transaction }));
+      dispatch(clearTransactionFields());
+      dispatch(clearTargetId());
+    }
+    if (targetId === null) {
+      dispatch(setTransaction({ transaction }));
+      dispatch(addMonthlyTransaction({ transaction }));
+      dispatch(clearTransactionFields());
+    }
   };
 
   return (
     <>
       <TransactionInput
+        targetId={targetId}
         fields={transactionFields}
         onChange={handleChangeFields}
         onChangeBreakdown={handleChangeBreakdown}
