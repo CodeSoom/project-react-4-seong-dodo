@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { v4 as uuid } from 'uuid';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,6 +24,7 @@ const DeleteBox = styled.div({
   '& div': {
     float: 'right',
     padding: '0 .3em',
+    cursor: 'pointer',
   },
 });
 
@@ -91,21 +90,29 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
-export default function DailyTransaction({ histories }) {
+export default function Transaction({ histories, onClickEdit, onClickDelete }) {
   return (
     <>
       { histories === undefined
         ? null
-        : histories.transactionHistories.map(({ type, category, transactionFields }) => (
+        : histories.transactionHistories.map(({
+          id, type, category, transactionFields,
+        }) => (
           <Container
             key={type}
           >
             <DeleteBox>
-              <div>
-                <FontAwesomeIcon icon={faEdit} />
-              </div>
-              <div>
+              <div
+                onClick={() => onClickDelete(id)}
+                role="presentation"
+              >
                 <FontAwesomeIcon icon={faTrashAlt} />
+              </div>
+              <div
+                onClick={() => onClickEdit(id)}
+                role="presentation"
+              >
+                <FontAwesomeIcon icon={faEdit} />
               </div>
             </DeleteBox>
             <OptionBox>

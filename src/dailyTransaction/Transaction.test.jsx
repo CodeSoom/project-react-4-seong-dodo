@@ -7,10 +7,15 @@ import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
 import mockDailyData from '../../fixtures/mockDailyData';
 
 describe('Transaction', () => {
+  const handleClickEdit = jest.fn();
+  const handleClickDelete = jest.fn();
+
   function renderTransaction(histories = undefined) {
     return render((
       <Transaction
         histories={histories}
+        onClickEdit={handleClickEdit}
+        onClickDelete={handleClickDelete}
       />
     ));
   }
@@ -29,7 +34,7 @@ describe('Transaction', () => {
   context('with histories', () => {
     it('renders with "지출" type transaction', () => {
       const histories = {
-        dailyData: mockDailyData,
+        ...mockDailyData,
         transactionHistories: [mockExpenseTransaction],
       };
 
@@ -43,7 +48,7 @@ describe('Transaction', () => {
 
     it('renders with "수입" type transaction', () => {
       const histories = {
-        dailyData: mockDailyData,
+        ...mockDailyData,
         transactionHistories: [mockIncomeTransaction],
       };
 

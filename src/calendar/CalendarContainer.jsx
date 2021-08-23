@@ -6,12 +6,13 @@ import styled from '@emotion/styled';
 
 import CalendarDays from './CalendarDays';
 import CalendarMonth from './CalendarMonth';
-import TransactionModal from '../transaction/TransactionModal';
+import DailyTransactionModal from '../dailyTransaction/DailyTransactionModal';
 
 import { get } from '../utils/utils';
 
 import {
   setDailyData,
+  clearTransactionFields,
 } from '../slice';
 
 const CalendarBox = styled.div({
@@ -31,6 +32,7 @@ export default function CalendarContainer() {
   const handleOpenModal = (date, day) => {
     setDisplay(!isDisplay);
     dispatch(setDailyData({ date, day }));
+    dispatch(clearTransactionFields());
   };
 
   return (
@@ -46,7 +48,7 @@ export default function CalendarContainer() {
         {
           isDisplay === true
             ? (
-              <TransactionModal
+              <DailyTransactionModal
                 dailyData={dailyData}
                 monthlyTransaction={monthlyTransaction}
                 onClick={handleOpenModal}

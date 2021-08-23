@@ -4,10 +4,20 @@ import IncomeCategory from './IncomeCategory';
 
 describe('IncomeCategory', () => {
   const handleChange = jest.fn();
+  const transaction = {
+    type: '수입',
+    category: { value: '미분류' },
+    transactionFields: {
+      breakdown: 0,
+      source: '',
+      memo: '',
+    },
+  };
 
   function renderIncomeCategory() {
     return render((
       <IncomeCategory
+        transaction={transaction}
         onChange={handleChange}
       />
     ));

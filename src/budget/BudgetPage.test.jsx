@@ -16,6 +16,7 @@ describe('BudgetPage', () => {
       budget: 0,
       year: 2021,
       month: 7,
+      monthlyTransaction: [],
     }));
   });
 
