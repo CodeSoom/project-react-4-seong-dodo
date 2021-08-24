@@ -32,8 +32,8 @@ export default function IncomeCategory({ transaction, onChange }) {
     onChange({ value: target.value });
   }
 
-  function isSelectedCategory(categoryName) {
-    return categoryName === transaction.category.value;
+  function isSelectedCategory() {
+    return incomeCategories.find((categoryName) => transaction.category.value === categoryName);
   }
 
   return (
@@ -42,13 +42,13 @@ export default function IncomeCategory({ transaction, onChange }) {
         data-testid="select"
         name="income-category"
         onChange={handleChange}
+        value={isSelectedCategory()}
       >
         {
           incomeCategories.map((category) => (
             <option
               key={category}
               value={category}
-              selected={isSelectedCategory(category)}
             >
               {category}
             </option>
