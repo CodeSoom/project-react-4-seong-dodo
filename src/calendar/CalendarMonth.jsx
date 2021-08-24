@@ -27,6 +27,10 @@ export default function CalendarMonth({
 
   const getPreviousDates = () => {
     const previousDates = [];
+
+    if (lastOfPreviousMonth.day === 6) {
+      return previousDates;
+    }
     // eslint-disable-next-line no-plusplus
     for (let i = lastOfPreviousMonth.day; i >= 0; i--) {
       previousDates.push({
