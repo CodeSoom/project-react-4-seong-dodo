@@ -37,14 +37,14 @@ const InputBox = styled.div(mediaquery({
   },
 }));
 
-export default function InputBreakdownField({
-  label, placeholder, value, onChangeBreakdown,
+export default function BreakdownField({
+  label, placeholder, value, onChange,
 }) {
   const id = 'input-breakdown';
 
   function handleChange(event) {
     const { target } = event;
-    onChangeBreakdown({ value: target.value });
+    onChange({ value: target.value });
   }
 
   return (

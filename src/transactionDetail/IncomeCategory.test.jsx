@@ -36,4 +36,26 @@ describe('IncomeCategory', () => {
 
     expect(handleChange).toBeCalledWith({ value: '미분류' });
   });
+
+  it('거래내역이 등록되어있을때, 거래내역 수정버튼을 클릭하면 등록된 거래내역의 카테고리가 선택된다', () => {
+    // given
+    const testTransaction = {
+      type: '수입',
+      category: { value: '용돈' },
+      transactionFields: {
+        breakdown: 0,
+        source: '',
+        memo: '',
+      },
+    };
+    // when
+    const { queryByText } = render((
+      <IncomeCategory
+        transaction={testTransaction}
+        onChange={handleChange}
+      />
+    ));
+    // then
+    expect(queryByText('용돈').value).not.toBeNull();
+  });
 });

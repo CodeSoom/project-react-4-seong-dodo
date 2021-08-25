@@ -2,13 +2,13 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import OptionsFieldContainer from './OptionsFieldContainer';
+import CategoryContainer from './CategoryContainer';
 
 import mockInitState from '../../fixtures/mockInitState';
 
 jest.mock('react-redux');
 
-describe('OptionsField', () => {
+describe('CategoryContainer', () => {
   const dispatch = jest.fn();
 
   beforeEach(() => {
@@ -30,50 +30,11 @@ describe('OptionsField', () => {
     }));
   });
 
-  it('renders options', () => {
-    const { container } = render(<OptionsFieldContainer />);
+  it('renders category container', () => {
+    const { container } = render(<CategoryContainer />);
 
-    expect(container).toHaveTextContent('분류');
     expect(container).toHaveTextContent('카테고리');
-  });
-
-  it('renders type container', () => {
-    const { container } = render(<OptionsFieldContainer />);
-
-    expect(container).toHaveTextContent('지출');
-    expect(container).toHaveTextContent('수입');
-  });
-
-  it('listens "지출" click event', () => {
-    const { getByText } = render(<OptionsFieldContainer />);
-
-    fireEvent.click(getByText('지출'));
-
-    expect(dispatch).toBeCalledWith({
-      type: 'application/selectType',
-      payload: '지출',
-    });
-
-    expect(dispatch).toBeCalledWith({
-      type: 'application/changeTransactionType',
-      payload: '지출',
-    });
-  });
-
-  it('listens "수입" click event', () => {
-    const { getByText } = render(<OptionsFieldContainer />);
-
-    fireEvent.click(getByText('수입'));
-
-    expect(dispatch).toBeCalledWith({
-      type: 'application/selectType',
-      payload: '수입',
-    });
-
-    expect(dispatch).toBeCalledWith({
-      type: 'application/changeTransactionType',
-      payload: '수입',
-    });
+    expect(container).toHaveTextContent('미분류');
   });
 
   context('when selected "지출" type', () => {
@@ -85,7 +46,7 @@ describe('OptionsField', () => {
     });
 
     it('renders category', () => {
-      const { queryByText } = render(<OptionsFieldContainer />);
+      const { queryByText } = render(<CategoryContainer />);
 
       expect(queryByText('미분류')).not.toBeNull();
       expect(queryByText('식비')).not.toBeNull();
@@ -101,7 +62,7 @@ describe('OptionsField', () => {
     });
 
     it('renders category', () => {
-      const { queryByText } = render(<OptionsFieldContainer />);
+      const { queryByText } = render(<CategoryContainer />);
 
       expect(queryByText('미분류')).not.toBeNull();
       expect(queryByText('급여')).not.toBeNull();
@@ -109,7 +70,7 @@ describe('OptionsField', () => {
   });
 
   it('listen category change event', () => {
-    const { getByTestId } = render(<OptionsFieldContainer />);
+    const { getByTestId } = render(<CategoryContainer />);
 
     fireEvent.change(getByTestId('select'));
 

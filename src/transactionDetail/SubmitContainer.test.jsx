@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import TransactionInputContainer from './TransactionInputContainer';
+import SubmitContainer from './SubmitContainer';
 
 import mockInitState from '../../fixtures/mockInitState';
 import mockDailyData from '../../fixtures/mockDailyData';
@@ -10,7 +10,7 @@ import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
 
 jest.mock('react-redux');
 
-describe('TransactionInputContainer', () => {
+describe('SubmitContainer', () => {
   const dispatch = jest.fn();
   global.alert = jest.fn();
 
@@ -25,110 +25,95 @@ describe('TransactionInputContainer', () => {
     }));
   });
 
-  it('listens changeBreakdownFields events', () => {
-    const { getByPlaceholderText } = render(<TransactionInputContainer />);
+  it('rnders submit container', () => {
+    const { container } = render(<SubmitContainer />);
 
-    fireEvent.change(getByPlaceholderText('0'), {
-      target: {
-        value: '1000',
-      },
-    });
-
-    expect(dispatch).toBeCalledWith({
-      type: 'application/changeBreakdownFields',
-      payload: { value: '1000' },
-    });
+    expect(container).toHaveTextContent(('저장'));
   });
 
-  it('listens change events', () => {
-    const { getByLabelText } = render(<TransactionInputContainer />);
+  describe('listens click event', () => {
+    useSelector.mockImplementation((selector) => selector({
+      ...mockInitState,
+      targetId: null,
+      monthlyTransaction: [
+        {
+          ...mockDailyData,
+          transactionHistories: [
+            {
+              id: 100,
+              ...mockExpenseTransaction,
+            },
+          ],
+        },
+      ],
+    }));
 
-    const controls = [
-      { label: '거래처', name: 'source', value: '카페' },
-      { label: '메모', name: 'memo', value: '친구들이랑' },
-    ];
+    it('click without change feilds', () => {
+      const { getByText } = render(<SubmitContainer />);
 
-    controls.forEach(({ label, name, value }) => {
-      fireEvent.change(getByLabelText(label), { target: { value } });
+      fireEvent.click(getByText('저장'));
 
-      expect(dispatch).toBeCalledWith({
-        type: 'application/changeTransactionFields',
-        payload: { name, value },
-      });
+      expect(global.alert).toHaveBeenCalledTimes(1);
+      expect(global.alert).toHaveBeenCalledWith('금액을 입력해주세요.');
     });
-  });
 
-  describe('handleSubmit event', () => {
-    context('does not exist targetId', () => {
+    it('click with breakdown and without category feilds', () => {
       useSelector.mockImplementation((selector) => selector({
-        ...mockInitState,
-        targetId: null,
-        monthlyTransaction: [
-          {
-            ...mockDailyData,
-            transactionHistories: [
-              {
-                id: 100,
-                ...mockExpenseTransaction,
-              },
-            ],
+        transaction: {
+          type: '지출',
+          category: '',
+          transactionFields: {
+            breakdown: 1000,
+            source: '',
+            memo: '',
           },
-        ],
+        },
       }));
 
-      it('click without change feilds', () => {
-        const { getByText } = render(<TransactionInputContainer />);
+      const { getByText } = render(<SubmitContainer />);
 
-        fireEvent.click(getByText('저장'));
+      fireEvent.click(getByText('저장'));
 
-        expect(global.alert).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveBeenCalledWith('금액을 입력해주세요.');
-      });
+      expect(global.alert).toHaveBeenCalledTimes(1);
+      expect(global.alert).toHaveBeenCalledWith('카테고리를 선택해주세요.');
+    });
 
-      it('click with breakdown and without category feilds', () => {
-        useSelector.mockImplementation((selector) => selector({
-          transaction: {
-            type: '지출',
-            category: '',
-            transactionFields: {
-              breakdown: 1000,
-              source: '',
-              memo: '',
-            },
+    it('click with breakdown and category and without source feilds', () => {
+      useSelector.mockImplementation((selector) => selector({
+        transaction: {
+          type: '지출',
+          category: '식비',
+          transactionFields: {
+            breakdown: 1000,
+            source: '',
+            memo: '',
           },
-        }));
+        },
+      }));
 
-        const { getByText } = render(<TransactionInputContainer />);
+      const { getByText } = render(<SubmitContainer />);
 
-        fireEvent.click(getByText('저장'));
+      fireEvent.click(getByText('저장'));
 
-        expect(global.alert).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveBeenCalledWith('카테고리를 선택해주세요.');
-      });
+      expect(global.alert).toHaveBeenCalledTimes(1);
+      expect(global.alert).toHaveBeenCalledWith('거래처를 입력헤주세요.');
+    });
 
-      it('click with breakdown and category and without source feilds', () => {
-        useSelector.mockImplementation((selector) => selector({
-          transaction: {
-            type: '지출',
-            category: '식비',
-            transactionFields: {
-              breakdown: 1000,
-              source: '',
-              memo: '',
-            },
-          },
-        }));
-
-        const { getByText } = render(<TransactionInputContainer />);
-
-        fireEvent.click(getByText('저장'));
-
-        expect(global.alert).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveBeenCalledWith('거래처를 입력헤주세요.');
-      });
-
+    context('does not exist targetId', () => {
       it('click with breakdown, type, category and source feilds', () => {
         useSelector.mockImplementation((selector) => selector({
+          targetId: null,
+          monthlyTransaction: [
+            {
+              ...mockDailyData,
+              transactionHistories: [
+                {
+                  id: 100,
+                  ...mockExpenseTransaction,
+                },
+              ],
+            },
+          ],
           transaction: {
             type: '지출',
             category: { value: '식비' },
@@ -140,7 +125,7 @@ describe('TransactionInputContainer', () => {
           },
         }));
 
-        const { getByText } = render(<TransactionInputContainer />);
+        const { getByText } = render(<SubmitContainer />);
         fireEvent.click(getByText('저장'));
 
         expect(dispatch).toBeCalledWith({
@@ -201,7 +186,7 @@ describe('TransactionInputContainer', () => {
           },
         }));
 
-        const { getByText } = render(<TransactionInputContainer />);
+        const { getByText } = render(<SubmitContainer />);
         fireEvent.click(getByText('저장'));
 
         expect(dispatch).toBeCalledWith({

@@ -20,12 +20,34 @@ describe('TransactionDetailModal', () => {
     }));
   });
 
-  it('renders transaction modal', () => {
-    const { container } = render(
-      <TransactionDetailModal />,
-    );
+  it('renders breakdown container', () => {
+    const { queryByPlaceholderText } = render(<TransactionDetailModal />);
+
+    expect(queryByPlaceholderText('0')).not.toBeNull();
+  });
+
+  it('renders type container', () => {
+    const { container } = render(<TransactionDetailModal />);
+
+    expect(container).toHaveTextContent('분류');
+  });
+
+  it('renders category container', () => {
+    const { container } = render(<TransactionDetailModal />);
+
+    expect(container).toHaveTextContent('카테고리');
+  });
+
+  it('renders input fields container', () => {
+    const { container } = render(<TransactionDetailModal />);
 
     expect(container).toHaveTextContent('거래처');
     expect(container).toHaveTextContent('메모');
+  });
+
+  it('renders submit container', () => {
+    const { container } = render(<TransactionDetailModal />);
+
+    expect(container).toHaveTextContent('저장');
   });
 });
