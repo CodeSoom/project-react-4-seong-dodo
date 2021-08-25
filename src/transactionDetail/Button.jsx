@@ -1,4 +1,4 @@
-export default function TypeButton({ name, onClick }) {
+export default function Button({ name, onClick }) {
   const id = `button-${name}`;
 
   return (

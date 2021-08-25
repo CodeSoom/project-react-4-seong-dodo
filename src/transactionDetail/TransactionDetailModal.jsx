@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
-import TransactionInputContainer from './TransactionInputContainer';
+import BreakdownContainer from './BreakdownContainer';
+import TypeContainer from './TypeContainer';
+import CategoryContainer from './CategoryContainer';
+import InputFieldsContainer from './InputFieldsContainer';
+import SubmitContainer from './SubmitContainer';
 
 const Container = styled.div(mediaquery({
   width: '100%',
@@ -25,10 +29,23 @@ const Container = styled.div(mediaquery({
   overflow: 'auto',
 }));
 
+const Box = styled.div(mediaquery({
+  width: '95%',
+  height: '100%',
+  color: `${colors.gray_test02}`,
+  margin: '0 auto',
+}));
+
 export default function TransactionDetailModal() {
   return (
     <Container>
-      <TransactionInputContainer />
+      <Box>
+        <BreakdownContainer />
+        <TypeContainer />
+        <CategoryContainer />
+        <InputFieldsContainer />
+        <SubmitContainer />
+      </Box>
     </Container>
   );
 }

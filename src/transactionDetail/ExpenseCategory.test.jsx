@@ -36,4 +36,26 @@ describe('ExpenseCategory', () => {
 
     expect(handleChange).toBeCalledWith({ value: '미분류' });
   });
+
+  it('거래내역이 등록되어있을때, 거래내역 수정버튼을 클릭하면 등록된 거래내역의 카테고리가 선택된다', () => {
+    // given
+    const testTransaction = {
+      type: '지출',
+      category: { value: '카페/간식' },
+      transactionFields: {
+        breakdown: 0,
+        source: '',
+        memo: '',
+      },
+    };
+    // when
+    const { queryByText } = render((
+      <ExpenseCategory
+        transaction={testTransaction}
+        onChange={handleChange}
+      />
+    ));
+    // then
+    expect(queryByText('카페/간식').value).not.toBeNull();
+  });
 });
