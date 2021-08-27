@@ -3,6 +3,7 @@ const colors = {
   teal_modal: 'rgb(229, 250, 246)',
   teal_border: 'rgb(205, 236, 231)',
   teal_text: 'rgba(44, 119, 104, 0.73)',
+  teal_login: 'rgba(169, 209, 201, 0.44)',
   teal: 'rgba(26, 188, 156, 0.44)',
   gray_text: 'rgb(127, 127, 127)',
   gray_text02: 'rgb(94, 94, 94)',
