@@ -43,9 +43,19 @@ export default function CalendarDate({
 
   const dateColorStyle = () => {
     if (day === 6 && currentMonth === month) {
+      if (year === today.getFullYear()
+      && month === today.getMonth() + 1
+      && date === today.getDate()) {
+        return TodayColor;
+      }
       return SaturdayColor;
     }
     if (day === 0 && currentMonth === month) {
+      if (year === today.getFullYear()
+      && month === today.getMonth() + 1
+      && date === today.getDate()) {
+        return TodayColor;
+      }
       return SundayColor;
     }
     if (year === today.getFullYear()
