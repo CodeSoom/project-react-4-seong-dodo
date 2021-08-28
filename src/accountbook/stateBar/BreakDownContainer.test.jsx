@@ -25,7 +25,7 @@ describe('BreakDownContainer', () => {
 
       expect(container).toHaveTextContent('수입');
       expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('0원');
+      expect(container).toHaveTextContent('0 원');
     });
   });
 
@@ -62,7 +62,7 @@ describe('BreakDownContainer', () => {
 
       expect(container).toHaveTextContent('수입');
       expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('1000원');
+      expect(container).toHaveTextContent('1000 원');
     });
   });
 });

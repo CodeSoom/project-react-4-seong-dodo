@@ -6,17 +6,38 @@ import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
   float: 'left',
+  heiht: '100%',
   width: '60%',
-  margin: ['.5em auto', '.8em auto', '1.1em auto', '1.5em auto', '1.7em auto'],
-  padding: '.2em',
+  padding: ['.7em 0.2em', '.7em 0.2em', '1.3em 0.2em', '1.85em 0.2em', '2.05em 0.2em'],
+}));
+
+const TypeBox = styled.div(mediaquery({
+  float: 'left',
+  width: '100%',
+  margin: '0 auto',
+  padding: '0 .2em',
   borderLeft: `${colors.gray_backgroud} solid .2em`,
-  '& div': {
-    padding: ['4em', '.8em', '.5em', '.6em', '.6em'],
-    fontSize: ['.1em', '.4em', '.6em', '.7em', '.8em'],
-    fontWeight: '600',
-    textAlign: 'left',
-    lineHeight: ['.1em', '.4em', '.6em', '.7em', '.8em'],
-  },
+  fontSize: ['.1em', '.4em', '.6em', '.7em', '.8em'],
+  fontWeight: '600',
+  lineHeight: ['.1em', '.4em', '.6em', '.7em', '.8em'],
+  textAlign: 'left',
+}));
+
+const LabelBox = styled.div(mediaquery({
+  float: 'left',
+  width: ['50%', '35%', '30%', '20%', '20%'],
+  padding: ['4em', '1.1em', '.5em', '.5em', '.5em'],
+  textAlign: 'center',
+  letterSpacing: '.3em',
+}));
+
+const NumberBox = styled.div(mediaquery({
+  float: 'left',
+  width: ['50%', '65%', '70%', '80%', '80%'],
+  padding: ['4.5em', '1.2em', '.5em 1.5em', '.5em 1.5em', '.5em 1.5em'],
+  fontSize: ['.1em', '.3em', '.5em', '.6em', '.9em'],
+  color: `${colors.teal_modal}`,
+  lineHeight: ['70em', '6em', '2em', '1.8em', '1.1em'],
 }));
 
 export default function BreakDownContainer() {
@@ -50,18 +71,26 @@ export default function BreakDownContainer() {
 
   return (
     <Container>
-      <div>
-        수입
-        {' '}
-        {getTotalIncome()}
-        원
-      </div>
-      <div>
-        지출
-        {' '}
-        {getTotalExpense()}
-        원
-      </div>
+      <TypeBox>
+        <LabelBox>
+          수입
+        </LabelBox>
+        <NumberBox>
+          {getTotalIncome()}
+          {' '}
+          원
+        </NumberBox>
+      </TypeBox>
+      <TypeBox>
+        <LabelBox>
+          지출
+        </LabelBox>
+        <NumberBox>
+          {getTotalExpense()}
+          {' '}
+          원
+        </NumberBox>
+      </TypeBox>
     </Container>
   );
 }
