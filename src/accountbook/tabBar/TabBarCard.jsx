@@ -24,6 +24,7 @@ const List = styled.ul(mediaquery({
   fontSize: ['.4em', '.5em', '.7em', '.8em', '.9em'],
   lineHeight: ['3.8em', '3.4em', '2.6em', '2.5em', '2.3em'],
 }));
+
 const Item = styled.li(mediaquery({
   width: '30%',
   margin: '0 auto',
