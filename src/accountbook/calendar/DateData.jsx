@@ -1,15 +1,22 @@
-import styled from '@emotion/styled';
-import mediaquery from '../../style/mediaquery';
+import colors from '../../style/colors';
 
-const DataBox = styled.div(mediaquery({
-  margin: '0 auto',
-  padding: '0',
-  fontSize: '.1em',
-}));
+const ExpenseColor = {
+  color: `${colors.gray_text05}`,
+  fontWeight: '300',
+};
+
+const IncomeColor = {
+  color: `${colors.teal_text02}`,
+  fontWeight: '300',
+};
 
 export default function DateData({ histories }) {
+  const expenseStyle = () => ExpenseColor;
+
+  const incomeStyle = () => IncomeColor;
+
   return (
-    <DataBox>
+    <>
       { histories === undefined
         ? null
         : (
@@ -19,7 +26,9 @@ export default function DateData({ histories }) {
                 ? null
                 : (
                   <>
-                    <div>
+                    <div
+                      style={expenseStyle()}
+                    >
                       -
                       {' '}
                       {histories.totalExpense}
@@ -33,7 +42,9 @@ export default function DateData({ histories }) {
                 ? null
                 : (
                   <>
-                    <div>
+                    <div
+                      style={incomeStyle()}
+                    >
                       +
                       {' '}
                       {histories.totalIncome}
@@ -44,6 +55,6 @@ export default function DateData({ histories }) {
             }
           </>
         )}
-    </DataBox>
+    </>
   );
 }

@@ -7,12 +7,13 @@ import DateData from './DateData';
 
 const DateBox = styled.div({
   width: '20em',
-  height: '12em',
+  height: '15em',
   padding: '.4em',
   borderBottom: `${colors.gray_backgroud} solid .1em`,
   fontSize: '.3em',
   lineHeight: '5em',
   cursor: 'pointer',
+  overflow: 'hidden',
 });
 
 const TodayColor = {
