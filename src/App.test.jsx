@@ -20,7 +20,10 @@ describe('App', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      ...mockInitState,
+      accountbook: {
+        ...mockInitState,
+      },
+      user: {},
     }));
   });
 
