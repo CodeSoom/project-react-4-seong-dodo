@@ -2,6 +2,7 @@ import { memo } from 'react';
 
 import styled from '@emotion/styled';
 import colors from '../style/colors';
+import mediaquery from '../style/mediaquery';
 
 const LoginBox = styled.div({
   margin: '0 auto',
@@ -19,35 +20,35 @@ const InputBox = styled.div({
   backgroundColor: `${colors.white}`,
 });
 
-const Label = styled.label({
+const Label = styled.label(mediaquery({
   display: 'inline-block',
-  width: '20%',
+  width: ['100%', '100%', '35%', '20%', '20%'],
   padding: '.5em',
   color: `${colors.gray_text}`,
-  fontSize: '.9em',
+  fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
   fontWeight: '600',
-  textAlign: 'center',
-});
+  textAlign: ['left', 'left', 'center', 'center', 'center'],
+}));
 
-const Input = styled.input({
-  width: '70%',
+const Input = styled.input(mediaquery({
+  width: ['100%', '100%', '55%', '70%', '70%'],
   height: '3em',
   padding: '.2em .5em',
   marginLeft: '1em',
   border: 'none',
   color: `${colors.gray_text01}`,
-  fontSize: '.8em',
+  fontSize: ['.5em', '.6em', '.6em', '.7em', '.8em'],
   outlineStyle: 'none',
   backgroundColor: 'transparent',
-});
+}));
 
-const Button = styled.button({
+const Button = styled.button(mediaquery({
   width: '90%',
   margin: '2em auto 0',
   padding: '.5em 0',
   borderRadius: '.2em',
   backgroundColor: `${colors.teal}`,
-  fontSize: '1em',
+  fontSize: ['.7em', '.8em', '.8em', '.9em', '1em'],
   fontWeight: '500',
   cursor: 'pointer',
   '&:hover': {
@@ -55,7 +56,7 @@ const Button = styled.button({
     backgroundColor: `${colors.blue_text}`,
     fontWeight: '600',
   },
-});
+}));
 
 const LoginForm = memo(({ fields, onChange, onSubmit }) => {
   const { email, password } = fields;
@@ -79,8 +80,6 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
           value={email}
           onChange={handleChange}
         />
-      </InputBox>
-      <InputBox>
         <Label htmlFor="login-password">
           Password
         </Label>
