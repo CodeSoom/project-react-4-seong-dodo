@@ -16,6 +16,7 @@ describe('LoginFormContainer', () => {
 
     useSelector.mockImplementation((selector) => selector({
       user: {
+        accessToken: given.accessToken,
         loginFields: {
           email: '123@test.com',
           password: '123test',
@@ -25,6 +26,8 @@ describe('LoginFormContainer', () => {
   });
 
   context('when logged out', () => {
+    given('accessToken', () => '');
+
     it('renders input controls', () => {
       const { getByLabelText } = render((
         <LoginFormContainer />
@@ -60,5 +63,15 @@ describe('LoginFormContainer', () => {
     });
   });
 
-  context('when logged in', () => { });
+  context('when logged in', () => {
+    given('accessToken', () => 'ACCESS_TOKEN');
+
+    it('renders ', () => {
+      const { container } = render((
+        <LoginFormContainer />
+      ));
+
+      expect(container).toHaveTextContent('반갑습니다');
+    });
+  });
 });

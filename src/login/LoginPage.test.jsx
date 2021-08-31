@@ -12,6 +12,7 @@ describe('LoginPage', () => {
   beforeEach(() => {
     useSelector.mockImplementation((selector) => selector({
       user: {
+        accessToken: '',
         loginFields: {
           email: '123@test.com',
           password: '123test',
