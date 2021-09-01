@@ -66,12 +66,28 @@ describe('LoginFormContainer', () => {
   context('when logged in', () => {
     given('accessToken', () => 'ACCESS_TOKEN');
 
-    it('renders ', () => {
+    it('renders “Log out” button', () => {
       const { container } = render((
         <LoginFormContainer />
       ));
 
-      expect(container).toHaveTextContent('반갑습니다');
+      expect(container).toHaveTextContent('Log out');
+    });
+
+    it('listens click event of “Log out” button', () => {
+      const { getByText } = render((
+        <LoginFormContainer />
+      ));
+
+      fireEvent.click(getByText('Log out'));
+
+      expect(dispatch).toBeCalledWith({
+        type: 'user/logout',
+      });
+
+      expect(dispatch).toBeCalledWith({
+        type: 'user/clearLoginField',
+      });
     });
   });
 });
