@@ -31,12 +31,30 @@ const { reducer, actions } = createSlice({
         },
       };
     },
+    clearLoginField(state) {
+      return {
+        ...state,
+        loginFields: {
+          ...state.loginFields,
+          email: '',
+          password: '',
+        },
+      };
+    },
+    logout(state) {
+      return {
+        ...state,
+        accessToken: '',
+      };
+    },
   },
 });
 
 export const {
   setAccessToken,
   changeLoginField,
+  clearLoginField,
+  logout,
 } = actions;
 
 export function requestLogin() {

@@ -1,6 +1,8 @@
 import reducer, {
   setAccessToken,
   changeLoginField,
+  clearLoginField,
+  logout,
 } from './user';
 
 describe('user reducer', () => {
@@ -52,6 +54,34 @@ describe('user reducer', () => {
         changeLoginField({ name: 'password', value: '123test' }));
 
       expect(state.loginFields.password).toBe('123test');
+    });
+  });
+
+  describe('clearLoginField', () => {
+    it('clears fields of login', () => {
+      const initialState = {
+        loginFields: {
+          email: 'EMAIl',
+          password: 'PASSWORD',
+        },
+      };
+
+      const state = reducer(initialState, clearLoginField());
+
+      expect(state.loginFields.email).toBe('');
+      expect(state.loginFields.password).toBe('');
+    });
+  });
+
+  describe('logout', () => {
+    it('clears access token', () => {
+      const initialState = {
+        accessToken: 'ACCESS_TOKEN',
+      };
+
+      const state = reducer(initialState, logout());
+
+      expect(state.accessToken).toBe('');
     });
   });
 });

@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginForm from './LoginForm';
+import LogoutForm from './LogoutForm';
 
 import {
   changeLoginField,
+  clearLoginField,
   requestLogin,
+  logout,
 } from '../reducers/user';
 
 export default function LoginFormContainer() {
@@ -23,19 +26,19 @@ export default function LoginFormContainer() {
     dispatch(requestLogin());
   };
 
+  const handleClickLogout = () => {
+    dispatch(logout());
+    dispatch(clearLoginField());
+  };
+
   return (
     <>
       { accessToken
         ? (
-          <div>
-            {loginFields.email}
-            {' '}
-            님
-            {' '}
-            환영합니다
-            {' '}
-            :)
-          </div>
+          <LogoutForm
+            loginFields={loginFields}
+            onClick={handleClickLogout}
+          />
         )
         : (
           <LoginForm
