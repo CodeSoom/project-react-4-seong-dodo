@@ -1,5 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginFormContainer from './LoginFormContainer';
@@ -30,7 +32,9 @@ describe('LoginFormContainer', () => {
 
     it('renders input controls', () => {
       const { getByLabelText } = render((
-        <LoginFormContainer />
+        <MemoryRouter>
+          <LoginFormContainer />
+        </MemoryRouter>
       ));
 
       expect(getByLabelText('E-mail').value).toBe('123@test.com');
@@ -39,7 +43,9 @@ describe('LoginFormContainer', () => {
 
     it('listens change events', () => {
       const { getByLabelText } = render((
-        <LoginFormContainer />
+        <MemoryRouter>
+          <LoginFormContainer />
+        </MemoryRouter>
       ));
 
       fireEvent.change(getByLabelText('E-mail'), {
@@ -54,7 +60,9 @@ describe('LoginFormContainer', () => {
 
     it('renders “Log In” button', () => {
       const { getByText } = render((
-        <LoginFormContainer />
+        <MemoryRouter>
+          <LoginFormContainer />
+        </MemoryRouter>
       ));
 
       fireEvent.click(getByText('Log In'));
@@ -68,7 +76,9 @@ describe('LoginFormContainer', () => {
 
     it('renders “Log out” button', () => {
       const { container } = render((
-        <LoginFormContainer />
+        <MemoryRouter>
+          <LoginFormContainer />
+        </MemoryRouter>
       ));
 
       expect(container).toHaveTextContent('Log out');
@@ -76,7 +86,9 @@ describe('LoginFormContainer', () => {
 
     it('listens click event of “Log out” button', () => {
       const { getByText } = render((
-        <LoginFormContainer />
+        <MemoryRouter>
+          <LoginFormContainer />
+        </MemoryRouter>
       ));
 
       fireEvent.click(getByText('Log out'));

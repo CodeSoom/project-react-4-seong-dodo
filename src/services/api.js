@@ -11,6 +11,15 @@ export async function postLogin({ email, password }) {
   return accessToken;
 }
 
-export function xxx() {
-  // ...
+export async function postJoin({ email, password, age }) {
+  const url = 'api/members';
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password, age }),
+  });
+
+  return response;
 }

@@ -9,8 +9,6 @@ import mediaquery from '../style/mediaquery';
 import TabBarCard from './tabBar/TabBarCard';
 
 const Container = styled.div({
-  // width: '90%',
-  // margin: '0 auto',
   width: '90%',
   height: '50%',
   margin: '.5em auto',
@@ -18,7 +16,6 @@ const Container = styled.div({
 });
 
 const LinkBox = styled.div(mediaquery({
-  // width: '80%',
   width: '60%',
   height: ['3.5em', '3.5em', '3.5em', '3em', '3.5em'],
   margin: ['.6em auto', '.6em auto', '.8em auto', '.8em auto', '.8em auto'],
