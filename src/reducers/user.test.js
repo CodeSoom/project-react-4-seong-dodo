@@ -1,5 +1,6 @@
 import reducer, {
   setAccessToken,
+  changeJoinField,
   changeLoginField,
   clearLoginField,
   logout,
@@ -12,6 +13,12 @@ describe('user reducer', () => {
       loginFields: {
         email: '',
         password: '',
+      },
+      joinFields: {
+        age: '',
+        email: '',
+        password: '',
+        repassword: '',
       },
     };
 
@@ -31,6 +38,45 @@ describe('user reducer', () => {
       const state = reducer(initialState, setAccessToken('ACCESS_TOKEN'));
 
       expect(state.accessToken).toBe('ACCESS_TOKEN');
+    });
+  });
+
+  describe('changeJoinField action', () => {
+    const initialState = {
+      joinFields: {
+        age: '',
+        email: '',
+        password: '',
+        repassword: '',
+      },
+    };
+
+    it('changes age Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'age', value: '23' }));
+
+      expect(state.joinFields.age).toBe('23');
+    });
+
+    it('changes email Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'email', value: 'test@test.com' }));
+
+      expect(state.joinFields.email).toBe('test@test.com');
+    });
+
+    it('changes password Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'password', value: 'test' }));
+
+      expect(state.joinFields.password).toBe('test');
+    });
+
+    it('changes repassword Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'repassword', value: 'test' }));
+
+      expect(state.joinFields.repassword).toBe('test');
     });
   });
 

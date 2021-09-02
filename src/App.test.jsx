@@ -23,7 +23,19 @@ describe('App', () => {
       accountbook: {
         ...mockInitState,
       },
-      user: {},
+      user: {
+        accessToken: '',
+        loginFields: {
+          email: '',
+          password: '',
+        },
+        joinFields: {
+          age: '',
+          email: '',
+          password: '',
+          repassword: '',
+        },
+      },
     }));
   });
 
@@ -43,6 +55,22 @@ describe('App', () => {
     });
   });
 
+  context('with path /login', () => {
+    it('renders login page', () => {
+      const { container } = renderApp({ path: '/login' });
+
+      expect(container).toHaveTextContent('로그인');
+    });
+  });
+
+  context('with path /join', () => {
+    it('renders join page', () => {
+      const { container } = renderApp({ path: '/join' });
+
+      expect(container).toHaveTextContent('회원가입');
+    });
+  });
+
   context('with path /budget', () => {
     it('renders budget page', () => {
       const { container } = renderApp({ path: '/budget' });
@@ -56,6 +84,15 @@ describe('App', () => {
       const { container } = renderApp({ path: '/calendar' });
 
       expect(container).toHaveTextContent('달력');
+    });
+  });
+
+  context('with path /accountbook', () => {
+    it('renders accountbook page', () => {
+      const { container } = renderApp({ path: '/accountbook' });
+
+      expect(container).toHaveTextContent('예산');
+      expect(container).toHaveTextContent('자산');
     });
   });
 });

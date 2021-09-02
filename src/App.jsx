@@ -11,6 +11,7 @@ import mediaquery from './style/mediaquery';
 
 import Navbar from './navbar/navbar';
 import HomePage from './HomePage';
+import JoinPage from './join/JoinPage';
 import LoginPage from './login/LoginPage';
 import AccountBookPage from './accountbook/AccountBookPage';
 import BudgetPage from './accountbook/budget/BudgetPage';
@@ -39,6 +40,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/join" component={JoinPage} />
         <Route path="/budget" component={BudgetPage} />
         <Route path="/calendar" component={CalendarPage} />
         <Route path="/accountbook" component={AccountBookPage} />

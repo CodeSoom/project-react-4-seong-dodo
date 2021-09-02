@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   postLogin,
+  postJoin,
 } from '../services/api';
 
 import { saveItem } from '../services/storage';
@@ -14,12 +15,27 @@ const { reducer, actions } = createSlice({
       email: '',
       password: '',
     },
+    joinFields: {
+      age: '',
+      email: '',
+      password: '',
+      repassword: '',
+    },
   },
   reducers: {
     setAccessToken(state, { payload: accessToken }) {
       return {
         ...state,
         accessToken,
+      };
+    },
+    changeJoinField(state, { payload: { name, value } }) {
+      return {
+        ...state,
+        joinFields: {
+          ...state.joinFields,
+          [name]: value,
+        },
       };
     },
     changeLoginField(state, { payload: { name, value } }) {
@@ -52,6 +68,7 @@ const { reducer, actions } = createSlice({
 
 export const {
   setAccessToken,
+  changeJoinField,
   changeLoginField,
   clearLoginField,
   logout,
@@ -65,6 +82,21 @@ export function requestLogin() {
     saveItem('accessToken', accessToken);
 
     dispatch(setAccessToken(accessToken));
+  };
+}
+
+export function requestJoin() {
+  return async (dispatch, getState) => {
+    const { user: { joinFields: { email, password, age } } } = getState();
+    const data = await postJoin({ email, password, age });
+
+    if (data.status === 201) {
+      // eslint-disable-next-line no-alert
+      alert('성공');
+    // eslint-disable-next-line no-alert
+    } else { alert('실패'); }
+
+    dispatch();
   };
 }
 

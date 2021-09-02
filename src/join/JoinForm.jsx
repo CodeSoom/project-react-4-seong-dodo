@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
@@ -18,25 +16,25 @@ const FormBox = styled.div(mediaquery({
   textAlign: 'center',
   borderRadius: '.2em',
   backgroundColor: `${colors.white}`,
+  '& label': {
+    display: 'inline-block',
+    width: ['100%', '100%', '100%', '30%', '30%'],
+    padding: '.5em',
+    color: `${colors.gray_text}`,
+    fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
+    fontWeight: '500',
+    textAlign: 'left',
+  },
   '& input': {
-    width: ['100%', '100%', '55%', '70%', '70%'],
+    width: ['100%', '100%', '100%', '60%', '60%'],
     height: '3em',
-    padding: '.2em .5em',
+    padding: '.5em',
     marginLeft: '1em',
     border: 'none',
     color: `${colors.gray_text01}`,
     fontSize: ['.5em', '.6em', '.6em', '.7em', '.8em'],
     outlineStyle: 'none',
     backgroundColor: 'transparent',
-  },
-  '& label': {
-    display: 'inline-block',
-    width: ['100%', '100%', '35%', '20%', '20%'],
-    padding: '.5em',
-    color: `${colors.gray_text}`,
-    fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
-    fontWeight: '600',
-    textAlign: ['left', 'left', 'center', 'center', 'center'],
   },
 }));
 
@@ -56,8 +54,10 @@ const Button = styled.button(mediaquery({
   },
 }));
 
-const LoginForm = memo(({ fields, onChange, onSubmit }) => {
-  const { email, password } = fields;
+export default function JoinForm({ fields, onChange, onSubmit }) {
+  const {
+    email, age, password, repassword,
+  } = fields;
 
   function handleChange(event) {
     const { target: { name, value } } = event;
@@ -65,28 +65,51 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
   }
 
   return (
+
     <Container>
       <FormBox>
-        <label htmlFor="login-email">
-          E-mail
+        <label htmlFor="join-email">
+          이메일 주소
         </label>
         <input
           type="email"
-          id="login-email"
+          id="join-email"
           name="email"
-          placeholder="이메일을 입력해 주세요"
+          placeholder="이메일 주소를 입력 해주세요"
           value={email}
           onChange={handleChange}
         />
-        <label htmlFor="login-password">
-          Password
+        <label htmlFor="join-age">
+          나이
+        </label>
+        <input
+          type="number"
+          id="join-age"
+          name="age"
+          placeholder="나이를 입력해 주세요"
+          value={age}
+          onChange={handleChange}
+        />
+        <label htmlFor="join-password">
+          비밀번호 입력
         </label>
         <input
           type="password"
-          id="login-password"
+          id="join-password"
           name="password"
           placeholder="비밀번호를 입력해 주세요"
           value={password}
+          onChange={handleChange}
+        />
+        <label htmlFor="join-repassword">
+          비밀번호 재입력
+        </label>
+        <input
+          type="repassword"
+          id="join-repassword"
+          name="repassword"
+          placeholder="비밀번호를 재입력해 주세요"
+          value={repassword}
           onChange={handleChange}
         />
       </FormBox>
@@ -94,10 +117,8 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
         type="button"
         onClick={onSubmit}
       >
-        Log In
+        가입하기
       </Button>
     </Container>
   );
-});
-
-export default LoginForm;
+}
