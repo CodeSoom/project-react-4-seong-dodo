@@ -56,7 +56,7 @@ export default function TransactionData({ histories }) {
               건
             </CountBox>
             {
-              histories.totalExpense === 0
+              histories.totalExpense === ''
                 ? null
                 : (
                   <>
@@ -71,7 +71,7 @@ export default function TransactionData({ histories }) {
                 )
             }
             {
-              histories.totalIncome === 0
+              histories.totalIncome === ''
                 ? null
                 : (
                   <>
