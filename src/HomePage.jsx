@@ -34,13 +34,18 @@ export default function HomePage() {
   return (
     <Container>
       <LinkBox>
-        <Link to="/budget">
-          한 달 예산을 세워볼까요?
+        <Link to="/accountbook">
+          가계부
         </Link>
       </LinkBox>
       <LinkBox>
-        <Link to="/calendar">
-          자산 관리 시작해볼까요?
+        <Link to="xxx">
+          업데이트 예정
+        </Link>
+      </LinkBox>
+      <LinkBox>
+        <Link to="xxx">
+          업데이트 예정
         </Link>
       </LinkBox>
     </Container>
