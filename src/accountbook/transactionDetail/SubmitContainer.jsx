@@ -37,7 +37,7 @@ export default function SubmitContainer() {
   const { transactionFields } = transaction;
 
   const handleSubmit = (id) => {
-    if (transactionFields.breakdown === 0) {
+    if (transactionFields.breakdown === '') {
       // eslint-disable-next-line no-alert
       alert('금액을 입력해주세요.');
       return;

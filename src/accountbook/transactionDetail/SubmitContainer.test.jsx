@@ -68,7 +68,7 @@ describe('SubmitContainer', () => {
             type: '지출',
             category: '',
             transactionFields: {
-              breakdown: 1000,
+              breakdown: '1,000',
               source: '',
               memo: '',
             },
@@ -91,7 +91,7 @@ describe('SubmitContainer', () => {
             type: '지출',
             category: '식비',
             transactionFields: {
-              breakdown: 1000,
+              breakdown: '1,000',
               source: '',
               memo: '',
             },
@@ -127,7 +127,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: 1000,
+                breakdown: '1,000',
                 source: '마트',
                 memo: '',
               },
@@ -145,7 +145,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: 1000,
+                breakdown: '1,000',
                 source: '마트',
                 memo: '',
               },
@@ -160,7 +160,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: 1000,
+                breakdown: '1,000',
                 source: '마트',
                 memo: '',
               },
@@ -190,7 +190,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: 1000,
+                breakdown: '1,000',
                 source: '마트',
                 memo: '장보기',
               },
@@ -213,7 +213,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: 1000,
+                breakdown: '1,000',
                 memo: '장보기',
                 source: '마트',
               },
@@ -228,7 +228,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: 1000,
+                breakdown: '1,000',
                 memo: '장보기',
                 source: '마트',
               },

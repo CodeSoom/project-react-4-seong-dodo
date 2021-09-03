@@ -45,8 +45,8 @@ describe('CalendarDate', () => {
       ];
       const { queryByText } = renderCalendarDate(monthlyTransaction);
 
-      expect(queryByText('- 1000 원')).toBeNull();
-      expect(queryByText('+ 1000 원')).toBeNull();
+      expect(queryByText('- 1,000 원')).toBeNull();
+      expect(queryByText('+ 1,000 원')).toBeNull();
     });
   });
 });

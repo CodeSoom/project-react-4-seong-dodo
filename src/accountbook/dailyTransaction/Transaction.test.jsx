@@ -26,7 +26,7 @@ describe('Transaction', () => {
 
       expect(queryByText('지출')).toBeNull();
       expect(queryByText('식비')).toBeNull();
-      expect(queryByText(1000)).toBeNull();
+      expect(queryByText('1,000')).toBeNull();
       expect(queryByText('마트')).toBeNull();
     });
   });

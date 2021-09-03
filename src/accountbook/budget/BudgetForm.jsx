@@ -6,7 +6,13 @@ const Container = styled.div(mediaquery({
   width: ['80%', '65%', '60%', '55%', '50%'],
   height: ['8em', '9em', '8em', '14em', '15em'],
   margin: ['2em auto', '3.5em auto', '4em auto', '2em auto', '2em auto .5em'],
-  borderBottom: [`${colors.teal} solid .3em`, `${colors.teal} solid .4em`, `${colors.teal} solid .4em`, `${colors.teal} solid .5em`, `${colors.teal} solid .8em`],
+  borderBottom: [
+    `${colors.teal} solid .3em`,
+    `${colors.teal} solid .4em`,
+    `${colors.teal} solid .4em`,
+    `${colors.teal} solid .5em`,
+    `${colors.teal} solid .8em`,
+  ],
   textAlign: 'center',
 }));
 
@@ -55,7 +61,7 @@ export default function BudgetForm({ budget, onChange }) {
           한 달 예산
         </label>
         <input
-          type="number"
+          type="text"
           placeholder="0"
           id="budget"
           name="budget"

@@ -19,8 +19,8 @@ describe('DateData', () => {
     it('renders nothing', () => {
       const { queryByText } = renderDateData();
 
-      expect(queryByText('- 1000 원')).toBeNull();
-      expect(queryByText('+ 1000 원')).toBeNull();
+      expect(queryByText('- 1,000 원')).toBeNull();
+      expect(queryByText('+ 1,000 원')).toBeNull();
     });
   });
 
@@ -28,45 +28,43 @@ describe('DateData', () => {
     describe('renders transaction data with "지출" and "수입" type', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: 1000,
-        totalIncome: 1000,
+        totalExpense: '1,000',
+        totalIncome: '1,000',
         transactionHistories: [mockExpenseTransaction, mockIncomeTransaction],
       };
 
       it('renders transaction data', () => {
         const { container } = renderDateData(histories);
 
-        expect(container).toHaveTextContent('- 1000원');
-        expect(container).toHaveTextContent('+ 1000원');
+        expect(container).toHaveTextContent('- 1,000원');
+        expect(container).toHaveTextContent('+ 1,000원');
       });
     });
 
     it('when with only "지출" type data', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: 1000,
-        totalIncome: 0,
+        totalExpense: '1,000',
+        totalIncome: '',
         transactionHistories: [mockExpenseTransaction],
       };
 
       const { container } = renderDateData(histories);
 
-      expect(container).toHaveTextContent('- 1000원');
-      expect(container).not.toHaveTextContent('+');
+      expect(container).toHaveTextContent('- 1,000원');
     });
 
     it('when with only "수입" type data', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: 0,
-        totalIncome: 1000,
+        totalExpense: '',
+        totalIncome: '1,000',
         transactionHistories: [mockIncomeTransaction],
       };
 
       const { container } = renderDateData(histories);
 
-      expect(container).toHaveTextContent('+ 1000원');
-      expect(container).not.toHaveTextContent('-');
+      expect(container).toHaveTextContent('+ 1,000원');
     });
   });
 });

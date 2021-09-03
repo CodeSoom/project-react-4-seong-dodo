@@ -2,9 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { v4 as uuid } from 'uuid';
 
+import { exchangeRegEX } from '../utils/utils';
+
 const today = new Date();
 const initialTransactionFields = {
-  breakdown: 0,
+  breakdown: '',
   source: '',
   memo: '',
 };
@@ -12,7 +14,7 @@ const initialTransactionFields = {
 const { actions, reducer } = createSlice({
   name: 'accountbook',
   initialState: {
-    budget: 0,
+    budget: '',
     year: today.getFullYear(),
     month: today.getMonth() + 1,
     dailyData: {
@@ -37,7 +39,7 @@ const { actions, reducer } = createSlice({
     changeBudget(state, { payload: { value } }) {
       return {
         ...state,
-        budget: value,
+        budget: exchangeRegEX(value.replace(/,/gi, '')),
       };
     },
     setTargetId(state, { payload: { id } }) {
@@ -89,7 +91,7 @@ const { actions, reducer } = createSlice({
         ...state.transaction,
         transactionFields: {
           ...state.transaction.transactionFields,
-          breakdown: parseInt(value, 10),
+          breakdown: exchangeRegEX(value.replace(/,/gi, '')),
         },
       };
       return {
@@ -155,8 +157,8 @@ const { actions, reducer } = createSlice({
       const newMonthlyTransaction = [...monthlyTransaction];
       const newDailyTransaction = {
         ...dailyData,
-        totalExpense: 0,
-        totalIncome: 0,
+        totalExpense: '',
+        totalIncome: '',
         transactionHistories: [{
           ...transaction,
           id: uuid(),
@@ -191,9 +193,9 @@ const { actions, reducer } = createSlice({
       const getTotal = (transactionType) => {
         const total = newDailyTransaction.transactionHistories
           .filter((history) => history.type === transactionType)
-          .reduce((sum, b) => sum + b.transactionFields.breakdown, 0);
+          .reduce((sum, b) => sum + parseInt(b.transactionFields.breakdown.replace(/,/gi, ''), 10), 0);
 
-        return parseInt(total, 10);
+        return exchangeRegEX(total);
       };
 
       newDailyTransaction.totalExpense = getTotal('지출');
@@ -239,9 +241,9 @@ const { actions, reducer } = createSlice({
       const getTotal = (transactionType) => {
         const total = newDailyTransaction.transactionHistories
           .filter((history) => history.type === transactionType)
-          .reduce((sum, b) => sum + b.transactionFields.breakdown, 0);
+          .reduce((sum, b) => sum + parseInt(b.transactionFields.breakdown.replace(/,/gi, ''), 10), 0);
 
-        return parseInt(total, 10);
+        return exchangeRegEX(total);
       };
 
       newDailyTransaction.totalExpense = getTotal('지출');

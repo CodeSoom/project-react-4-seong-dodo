@@ -26,7 +26,7 @@ describe('TypeContainer', () => {
           type: '지출',
           category: { value: '미분류' },
           transactionFields: {
-            breakdown: 0,
+            breakdown: '',
             source: '',
             memo: '',
           },
@@ -52,7 +52,7 @@ describe('TypeContainer', () => {
           type: '수입',
           category: { value: '미분류' },
           transactionFields: {
-            breakdown: 0,
+            breakdown: '',
             source: '',
             memo: '',
           },
@@ -86,7 +86,7 @@ describe('TypeContainer', () => {
           type: '지출',
           category: { value: '미분류' },
           transactionFields: {
-            breakdown: 0,
+            breakdown: '',
             source: '',
             memo: '',
           },

@@ -25,7 +25,7 @@ describe('BreakDownContainer', () => {
 
       expect(container).toHaveTextContent('수입');
       expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('0 원');
+      expect(container).toHaveTextContent('원');
     });
   });
 
@@ -41,8 +41,8 @@ describe('BreakDownContainer', () => {
               month: 8,
               date: 13,
               day: 4,
-              totalExpense: 1000,
-              totalIncome: 0,
+              totalExpense: '1,000',
+              totalIncome: '',
               transactionHistories: [{ transaction: mockExpenseTransaction }],
             },
             {
@@ -50,8 +50,8 @@ describe('BreakDownContainer', () => {
               month: 7,
               date: 1,
               day: 4,
-              totalExpense: 1000,
-              totalIncome: 0,
+              totalExpense: '1,000',
+              totalIncome: '',
               transactionHistories: [{ transaction: mockExpenseTransaction }],
             },
           ],
@@ -62,7 +62,7 @@ describe('BreakDownContainer', () => {
 
       expect(container).toHaveTextContent('수입');
       expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('1000 원');
+      expect(container).toHaveTextContent('1,000 원');
     });
   });
 });

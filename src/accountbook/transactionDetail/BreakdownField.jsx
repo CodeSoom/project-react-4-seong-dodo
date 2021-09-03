@@ -56,7 +56,7 @@ export default function BreakdownField({
       </LabelBox>
       <InputBox>
         <input
-          type="number"
+          type="text"
           id={id}
           placeholder={placeholder}
           value={value}

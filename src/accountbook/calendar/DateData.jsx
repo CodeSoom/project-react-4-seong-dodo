@@ -22,7 +22,7 @@ export default function DateData({ histories }) {
         : (
           <>
             {
-              histories.totalExpense === 0
+              histories.totalExpense === ''
                 ? null
                 : (
                   <>
@@ -38,7 +38,7 @@ export default function DateData({ histories }) {
                 )
             }
             {
-              histories.totalIncome === 0
+              histories.totalIncome === ''
                 ? null
                 : (
                   <>

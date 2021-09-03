@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
+
+import { exchangeRegEX, replaceString } from '../../utils/utils';
+
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
@@ -53,9 +56,9 @@ export default function BreakDownContainer() {
         (monthly) => monthly.year === currentYear
       && monthly.month === currentMonth,
       )
-      .reduce((sum, b) => sum + b.totalIncome, 0);
+      .reduce((sum, b) => sum + parseInt(replaceString(b.totalIncome), 10), 0);
 
-    return parseInt(total, 10);
+    return exchangeRegEX(total);
   };
 
   const getTotalExpense = () => {
@@ -64,33 +67,65 @@ export default function BreakDownContainer() {
         (monthly) => monthly.year === currentYear
       && monthly.month === currentMonth,
       )
-      .reduce((sum, b) => sum + b.totalExpense, 0);
+      .reduce((sum, b) => sum + parseInt(replaceString(b.totalExpense), 10), 0);
 
-    return parseInt(total, 10);
+    return exchangeRegEX(total);
   };
 
   return (
     <Container>
-      <TypeBox>
-        <LabelBox>
-          수입
-        </LabelBox>
-        <NumberBox>
-          {getTotalIncome()}
-          {' '}
-          원
-        </NumberBox>
-      </TypeBox>
-      <TypeBox>
-        <LabelBox>
-          지출
-        </LabelBox>
-        <NumberBox>
-          {getTotalExpense()}
-          {' '}
-          원
-        </NumberBox>
-      </TypeBox>
+      {
+        monthlyTransaction.length !== 0
+          ? (
+            <>
+              <TypeBox>
+                <LabelBox>
+                  수입
+                </LabelBox>
+                <NumberBox>
+                  {getTotalIncome()}
+                  {' '}
+                  원
+                </NumberBox>
+              </TypeBox>
+              <TypeBox>
+                <LabelBox>
+                  지출
+                </LabelBox>
+                <NumberBox>
+                  {getTotalExpense()}
+                  {' '}
+                  원
+                </NumberBox>
+              </TypeBox>
+            </>
+          )
+          : (
+            <>
+              <TypeBox>
+                <LabelBox>
+                  수입
+                </LabelBox>
+                <NumberBox>
+                  0
+                  {' '}
+                  원
+                </NumberBox>
+              </TypeBox>
+              <TypeBox>
+                <LabelBox>
+                  지출
+                </LabelBox>
+                <NumberBox>
+                  0
+                  {' '}
+                  원
+                </NumberBox>
+              </TypeBox>
+            </>
+          )
+      }
+      ;
     </Container>
   );
 }
