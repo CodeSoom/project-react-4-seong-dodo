@@ -16,6 +16,9 @@ describe('CategoryContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: 'ACCESS_TOKEN',
+      },
       accountbook: {
         ...mockInitState,
         selectedType: null,

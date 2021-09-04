@@ -20,6 +20,9 @@ describe('CalendarContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: given.accessToken,
+      },
       accountbook: {
         ...mockInitState,
         year: 2021,

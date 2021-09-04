@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { v4 as uuid } from 'uuid';
 
-import { exchangeRegEX } from '../utils/utils';
+import { exchangeRegEX, replaceString } from '../utils/utils';
 
 const today = new Date();
 const initialTransactionFields = {
@@ -39,7 +39,7 @@ const { actions, reducer } = createSlice({
     changeBudget(state, { payload: { value } }) {
       return {
         ...state,
-        budget: exchangeRegEX(value.replace(/,/gi, '')),
+        budget: exchangeRegEX(replaceString(value)),
       };
     },
     setTargetId(state, { payload: { id } }) {
@@ -193,7 +193,7 @@ const { actions, reducer } = createSlice({
       const getTotal = (transactionType) => {
         const total = newDailyTransaction.transactionHistories
           .filter((history) => history.type === transactionType)
-          .reduce((sum, b) => sum + parseInt(b.transactionFields.breakdown.replace(/,/gi, ''), 10), 0);
+          .reduce((sum, b) => sum + parseInt(replaceString(b.transactionFields.breakdown), 10), 0);
 
         return exchangeRegEX(total);
       };
@@ -241,7 +241,7 @@ const { actions, reducer } = createSlice({
       const getTotal = (transactionType) => {
         const total = newDailyTransaction.transactionHistories
           .filter((history) => history.type === transactionType)
-          .reduce((sum, b) => sum + parseInt(b.transactionFields.breakdown.replace(/,/gi, ''), 10), 0);
+          .reduce((sum, b) => sum + parseInt(replaceString(b.transactionFields.breakdown), 10), 0);
 
         return exchangeRegEX(total);
       };

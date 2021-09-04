@@ -10,7 +10,7 @@ import reset from './style/reset';
 import colors from './style/colors';
 import mediaquery from './style/mediaquery';
 
-import Navbar from './navbar/navbar';
+import Navbar from './navbar/Navbar';
 import HomePage from './HomePage';
 import JoinPage from './join/JoinPage';
 import LoginPage from './login/LoginPage';
