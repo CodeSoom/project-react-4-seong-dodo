@@ -2,6 +2,7 @@ import {
   get,
   exchangeRegEX,
   replaceString,
+  exchangeLocalDate,
 } from './utils';
 
 test('get', () => {
@@ -28,4 +29,22 @@ test('replaceString', () => {
   const result = replaceString(string);
 
   expect(result).toBe('1000000');
+});
+
+describe('exchangeLocalDate', () => {
+  it('when "x < 10"', () => {
+    const x = '9';
+
+    const result = exchangeLocalDate(x);
+
+    expect(result).toBe('09');
+  });
+
+  it('when "10 <= x"', () => {
+    const x = '12';
+
+    const result = exchangeLocalDate(x);
+
+    expect(result).toBe('12');
+  });
 });

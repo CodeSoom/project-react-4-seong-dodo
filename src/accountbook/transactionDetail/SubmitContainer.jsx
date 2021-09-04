@@ -6,10 +6,10 @@ import mediaquery from '../../style/mediaquery';
 
 import {
   clearTransactionFields,
-  setTransaction,
   addMonthlyTransaction,
   deleteTransaction,
   clearTargetId,
+  sendTransaction,
 } from '../../reducers/accountbook';
 
 const SubmitBox = styled.div(mediaquery({
@@ -54,14 +54,14 @@ export default function SubmitContainer() {
     }
     if (targetId !== null && targetId === id) {
       dispatch(deleteTransaction({ id }));
-      dispatch(setTransaction({ transaction }));
       dispatch(addMonthlyTransaction({ transaction }));
-      dispatch(clearTransactionFields());
       dispatch(clearTargetId());
+      dispatch(sendTransaction());
+      dispatch(clearTransactionFields());
     }
     if (targetId === null) {
-      dispatch(setTransaction({ transaction }));
       dispatch(addMonthlyTransaction({ transaction }));
+      dispatch(sendTransaction());
       dispatch(clearTransactionFields());
     }
   };

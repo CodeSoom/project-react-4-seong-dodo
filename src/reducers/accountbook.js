@@ -4,6 +4,10 @@ import { v4 as uuid } from 'uuid';
 
 import { exchangeRegEX, replaceString } from '../utils/utils';
 
+import {
+  postTransaction,
+} from '../services/api';
+
 const today = new Date();
 const initialTransactionFields = {
   breakdown: '',
@@ -301,5 +305,40 @@ export const {
   setPreviousMonth,
   setNextMonth,
 } = actions;
+
+export function sendTransaction() {
+  return async (dispatch, getState) => {
+    const {
+      user: {
+        accessToken,
+      },
+      accountbook: {
+        dailyData: {
+          year, month, date,
+        },
+        transaction: {
+          type,
+          category,
+          transactionFields,
+        },
+      },
+    } = getState();
+
+    await postTransaction({
+      accessToken,
+      dailyData: {
+        year, month, date,
+      },
+      transaction: {
+        type,
+        category,
+        transactionFields,
+      },
+    });
+
+    // dispatch(loadTransaction());
+    dispatch(clearTransactionFields());
+  };
+}
 
 export default reducer;

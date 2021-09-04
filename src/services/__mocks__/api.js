@@ -2,6 +2,30 @@ export async function postLogin() {
   return {};
 }
 
-export function xxx() {
-  // ...
+export async function postJoin() {
+  return {};
+}
+
+export async function postTransaction({
+  accessToken,
+  dailyData: {
+    year, month, date,
+  },
+  transaction: {
+    type,
+    category,
+    transactionFields,
+  },
+}) {
+  return {
+    accessToken,
+    dailyData: {
+      year, month, date,
+    },
+    transaction: {
+      type,
+      category,
+      transactionFields,
+    },
+  };
 }
