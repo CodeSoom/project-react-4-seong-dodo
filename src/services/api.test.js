@@ -1,9 +1,12 @@
 import {
   postLogin,
   postJoin,
+  postTransaction,
 } from './api';
 
 import ACCESS_TOKEN from '../../fixtures/access-token';
+import DAILY_DATE from '../../fixtures/mockDailyData';
+import TRANSACTION from '../../fixtures/mockExpenseTransaction';
 
 describe('api', () => {
   describe('postLogin', () => {
@@ -46,6 +49,28 @@ describe('api', () => {
       });
 
       expect(result.status).toEqual(201);
+    });
+  });
+
+  describe('postTransaction', () => {
+    const mockFetch = (data) => {
+      global.fetch = jest.fn().mockResolvedValue(
+        data,
+      );
+    };
+
+    beforeEach(() => {
+      mockFetch();
+    });
+
+    it('returns nothing', async () => {
+      const result = await postTransaction({
+        accessToken: ACCESS_TOKEN,
+        dailyData: DAILY_DATE,
+        transaction: TRANSACTION,
+      });
+
+      expect(result).toBeUndefined();
     });
   });
 });

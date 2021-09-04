@@ -30,7 +30,7 @@ describe('SubmitContainer', () => {
     }));
   });
 
-  it('rnders submit container', () => {
+  it('renders submit container', () => {
     const { container } = render(<SubmitContainer />);
 
     expect(container).toHaveTextContent(('저장'));
@@ -142,21 +142,6 @@ describe('SubmitContainer', () => {
         fireEvent.click(getByText('저장'));
 
         expect(dispatch).toBeCalledWith({
-          type: 'accountbook/setTransaction',
-          payload: {
-            transaction: {
-              type: '지출',
-              category: { value: '식비' },
-              transactionFields: {
-                breakdown: '1,000',
-                source: '마트',
-                memo: '',
-              },
-            },
-          },
-        });
-
-        expect(dispatch).toBeCalledWith({
           type: 'accountbook/addMonthlyTransaction',
           payload: {
             transaction: {
@@ -207,21 +192,6 @@ describe('SubmitContainer', () => {
         expect(dispatch).toBeCalledWith({
           type: 'accountbook/deleteTransaction',
           payload: { id: 1 },
-        });
-
-        expect(dispatch).toBeCalledWith({
-          type: 'accountbook/setTransaction',
-          payload: {
-            transaction: {
-              type: '지출',
-              category: { value: '식비' },
-              transactionFields: {
-                breakdown: '1,000',
-                memo: '장보기',
-                source: '마트',
-              },
-            },
-          },
         });
 
         expect(dispatch).toBeCalledWith({
