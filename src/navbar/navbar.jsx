@@ -2,6 +2,8 @@ import {
   Link,
 } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCog } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,17 +12,20 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
+import {
+  clearLoginField,
+  logout,
+} from '../reducers/user';
+
 const ToolBox = styled.div(mediaquery({
   width: '90%',
   margin: '0 auto',
-  // backgroundColor: 'silver',
 }));
 
 const TabList = styled.ul({
   display: 'flex',
   padding: '0 2.5em',
   textAlign: 'center',
-  // backgroundColor: 'pink',
 });
 
 const List = styled.ul({
@@ -28,7 +33,6 @@ const List = styled.ul({
   float: 'right',
   padding: '0 2.5em',
   textAlign: 'center',
-  // backgroundColor: 'coral',
 });
 
 const Item = styled.li({
@@ -36,8 +40,6 @@ const Item = styled.li({
   height: '2.5em',
   margin: '0 .5em',
   padding: '.5em',
-  // border: `${colors.teal_border} solid 1px`,
-  // borderRadius: '1em',
   fontSize: '.9em',
   lineHeight: '1.2em',
   '& a': {
@@ -50,13 +52,37 @@ const Item = styled.li({
 });
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+
+  const { accessToken } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+  }));
+
+  const handleClickLogout = () => {
+    dispatch(logout());
+    dispatch(clearLoginField());
+  };
+
   return (
     <>
       <ToolBox>
         <List>
-          <Item>
-            <Link to="/login"> Log in</Link>
-          </Item>
+          {accessToken
+            ? (
+              <Item>
+                <button
+                  type="button"
+                  onClick={handleClickLogout}
+                >
+                  Log out
+                </button>
+              </Item>
+            )
+            : (
+              <Item>
+                <Link to="/login"> Log in</Link>
+              </Item>
+            )}
           <Item>
             <Link to="/setting">
               <FontAwesomeIcon icon={faCog} />

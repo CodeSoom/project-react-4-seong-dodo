@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 import colors from '../../style/colors';
@@ -124,13 +124,24 @@ export default function DailyTransactionContainer({
     year, month, date, day,
   } = dailyData;
 
+  const { accessToken } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+  }));
+
   function convertDay() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return days[day];
   }
   // 내역추가 버튼 이벤트
   const handleClickDetailModal = () => {
-    setDisplay(!isDisplay);
+    if (accessToken === '' || accessToken === undefined) {
+      // eslint-disable-next-line no-alert
+      alert('로그인이 필요한 서비스 입니다.');
+      return;
+    }
+    if (accessToken !== '' || accessToken !== undefined) {
+      setDisplay(!isDisplay);
+    }
   };
 
   const handleClickEdit = (id) => {
