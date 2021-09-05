@@ -5,6 +5,8 @@ import { v4 as uuid } from 'uuid';
 import { exchangeRegEX, replaceString } from '../utils/utils';
 
 import {
+  fetchDailyTransaction,
+  fetchMonthlyTransaction,
   postTransaction,
 } from '../services/api';
 
@@ -28,6 +30,7 @@ const { actions, reducer } = createSlice({
       day: 4,
     },
     targetId: null,
+    dailyTransaction: [],
     monthlyTransaction: [],
     selectedType: '지출',
     selectedCategory: { value: '미분류' },
@@ -153,6 +156,18 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         transaction: newTransaction,
+      };
+    },
+    setDailyTransaction(state, { payload: { dailyTransaction } }) {
+      return {
+        ...state,
+        dailyTransaction,
+      };
+    },
+    setMonthlyTransaction(state, { payload: { monthlyTransaction } }) {
+      return {
+        ...state,
+        monthlyTransaction,
       };
     },
     addMonthlyTransaction(state, { payload: { transaction } }) {
@@ -300,43 +315,66 @@ export const {
   clearTransactionFields,
   setDailyData,
   setTransaction,
+  setDailyTransaction,
+  setMonthlyTransaction,
   addMonthlyTransaction,
   deleteTransaction,
   setPreviousMonth,
   setNextMonth,
 } = actions;
 
+export function loadDailyTransaction({
+  accessToken, year, month, date,
+}) {
+  return async (dispatch) => {
+    const dailyTransaction = await fetchDailyTransaction({
+      accessToken,
+      dailyData: {
+        year, month, date,
+      },
+    });
+
+    dispatch(setDailyTransaction({ dailyTransaction }));
+  };
+}
+
+export function loadMonthlyTransaction({
+  accessToken, year, month, date,
+}) {
+  return async (dispatch) => {
+    const monthlyTransaction = await fetchMonthlyTransaction({
+      accessToken,
+      dailyData: {
+        year, month, date,
+      },
+    });
+
+    dispatch(setMonthlyTransaction({ monthlyTransaction }));
+  };
+}
+
 export function sendTransaction() {
   return async (dispatch, getState) => {
     const {
-      user: {
-        accessToken,
-      },
+      user: { accessToken },
       accountbook: {
-        dailyData: {
-          year, month, date,
-        },
-        transaction: {
-          type,
-          category,
-          transactionFields,
-        },
+        dailyData: { year, month, date },
+        transaction: { type, category, transactionFields },
       },
     } = getState();
 
     await postTransaction({
       accessToken,
-      dailyData: {
-        year, month, date,
-      },
-      transaction: {
-        type,
-        category,
-        transactionFields,
-      },
+      dailyData: { year, month, date },
+      transaction: { type, category, transactionFields },
     });
 
-    // dispatch(loadTransaction());
+    dispatch(loadDailyTransaction({
+      accessToken, year, month, date,
+    }));
+    dispatch(loadMonthlyTransaction({
+      accessToken, year, month, date,
+    }));
     dispatch(clearTransactionFields());
   };
 }

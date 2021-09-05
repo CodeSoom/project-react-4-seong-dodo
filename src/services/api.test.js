@@ -1,15 +1,19 @@
 import {
   postLogin,
   postJoin,
+  fetchDailyTransaction,
+  fetchMonthlyTransaction,
   postTransaction,
 } from './api';
 
 import ACCESS_TOKEN from '../../fixtures/access-token';
 import DAILY_DATE from '../../fixtures/mockDailyData';
 import TRANSACTION from '../../fixtures/mockExpenseTransaction';
+import DAILY_TRANSACTION from '../../fixtures/daily-transaction';
+import MONTHLY_TRANSACTION from '../../fixtures/monthly-transaction';
 
 describe('api', () => {
-  describe('postLogin', () => {
+  describe('user: postLogin', () => {
     const mockFetch = (data) => {
       global.fetch = jest.fn().mockResolvedValue({
         async json() { return data; },
@@ -30,7 +34,7 @@ describe('api', () => {
     });
   });
 
-  describe('postJoin', () => {
+  describe('user: postJoin', () => {
     const mockFetch = (data) => {
       global.fetch = jest.fn().mockResolvedValue(
         data,
@@ -52,7 +56,57 @@ describe('api', () => {
     });
   });
 
-  describe('postTransaction', () => {
+  describe('accountbook: fetchDailyTransaction', () => {
+    const mockFetch = (data) => {
+      global.fetch = jest.fn().mockResolvedValue({
+        async json() { return data; },
+      });
+    };
+
+    beforeEach(() => {
+      mockFetch(DAILY_TRANSACTION);
+    });
+
+    it('returns daily transaction', async () => {
+      const dailyTransaction = await fetchDailyTransaction({
+        accessToken: ACCESS_TOKEN,
+        dailyData: {
+          year: 2021,
+          month: 7,
+          date: 1,
+        },
+      });
+
+      expect(dailyTransaction).toEqual(DAILY_TRANSACTION);
+    });
+  });
+
+  describe('accountbook: fetchMonthlyTransaction', () => {
+    const mockFetch = (data) => {
+      global.fetch = jest.fn().mockResolvedValue({
+        async json() { return data; },
+      });
+    };
+
+    beforeEach(() => {
+      mockFetch(MONTHLY_TRANSACTION);
+    });
+
+    it('returns monthly transaction', async () => {
+      const monthlyTransaction = await fetchMonthlyTransaction({
+        accessToken: ACCESS_TOKEN,
+        dailyData: {
+          year: 2021,
+          month: 7,
+          date: 1,
+        },
+      });
+
+      expect(monthlyTransaction).toEqual(MONTHLY_TRANSACTION);
+    });
+  });
+
+  describe('accountbook: postTransaction', () => {
     const mockFetch = (data) => {
       global.fetch = jest.fn().mockResolvedValue(
         data,

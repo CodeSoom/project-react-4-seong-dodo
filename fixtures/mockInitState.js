@@ -9,6 +9,7 @@ const mockInitState = {
     day: 4,
   },
   targetId: null,
+  dailyTransaction: [],
   monthlyTransaction: [],
   selectedType: '지출',
   selectedCategory: { value: '미분류' },

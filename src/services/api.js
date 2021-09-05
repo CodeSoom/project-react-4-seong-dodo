@@ -11,6 +11,7 @@ export async function postLogin({ email, password }) {
     body: JSON.stringify({ email, password }),
   });
   const { accessToken } = await response.json();
+
   return accessToken;
 }
 
@@ -28,19 +29,46 @@ export async function postJoin({ email, password, age }) {
 }
 
 // accountbook
+export async function fetchDailyTransaction({
+  accessToken, dailyData: { year, month, date },
+}) {
+  const localDate = `${year}-${exchangeLocalDate(month)}-${exchangeLocalDate(date)}`;
+  const url = `/api/member/transaction?startDate=${localDate}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}
+
+export async function fetchMonthlyTransaction({
+  accessToken, dailyData: { year, month, date },
+}) {
+  const localDate = `${year}-${exchangeLocalDate(month)}-${exchangeLocalDate(date)}`;
+  const url = `/api/member/transaction/monthly?startDate=${localDate}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}
+
 export async function postTransaction({
   accessToken,
-  dailyData: {
-    year, month, date,
-  },
-  transaction: {
-    type,
-    category,
-    transactionFields,
-  },
+  dailyData: { year, month, date },
+  transaction: { type, category, transactionFields },
 }) {
   const url = 'api/member/transaction';
-
   const response = await fetch(url, {
     method: 'POST',
     headers: {
