@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +19,7 @@ import {
   changeBreakdownFields,
   changeTransactionFields,
   deleteTransaction,
+  loadDailyTransaction,
 } from '../../reducers/accountbook';
 
 const Container = styled.div(mediaquery({
@@ -124,9 +125,19 @@ export default function DailyTransactionContainer({
     year, month, date, day,
   } = dailyData;
 
-  const { accessToken } = useSelector((state) => ({
+  const { accessToken, dailyTransaction } = useSelector((state) => ({
     accessToken: state.user.accessToken,
+    dailyTransaction: state.accountbook.dailyTransaction,
   }));
+
+  useEffect(() => {
+    dispatch(loadDailyTransaction({
+      accessToken,
+      year,
+      month,
+      date,
+    }));
+  }, []);
 
   function convertDay() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -198,7 +209,7 @@ export default function DailyTransactionContainer({
         <TextBox>
           <TransactionBox>
             <DailyTransaction
-              monthlyTransaction={monthlyTransaction}
+              dailyTransaction={dailyTransaction}
               dailyData={dailyData}
               onClickEdit={handleClickEdit}
               onClickDelete={handleClickDelete}

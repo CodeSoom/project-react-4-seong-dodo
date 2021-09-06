@@ -2,6 +2,7 @@ import {
   get,
   exchangeRegEX,
   replaceString,
+  removeDecimalPoint,
   exchangeLocalDate,
 } from './utils';
 
@@ -29,6 +30,14 @@ test('replaceString', () => {
   const result = replaceString(string);
 
   expect(result).toBe('1000000');
+});
+
+test('removeDecimalPoint', () => {
+  const string = '1000.0';
+
+  const result = removeDecimalPoint(string);
+
+  expect(result).toBe('1000');
 });
 
 describe('exchangeLocalDate', () => {

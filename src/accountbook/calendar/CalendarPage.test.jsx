@@ -20,6 +20,9 @@ describe('CalendarPage', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: '',
+      },
       accountbook: {
         ...mockInitState,
         month: 7,

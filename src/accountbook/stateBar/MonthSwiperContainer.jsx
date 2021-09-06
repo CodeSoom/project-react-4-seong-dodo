@@ -7,6 +7,7 @@ import MonthButton from './MonthButton';
 import MonthItem from './MonthItem';
 
 import {
+  loadMonthlyTransaction,
   setPreviousMonth,
   setNextMonth,
 } from '../../reducers/accountbook';
@@ -21,7 +22,8 @@ const Container = styled.header(mediaquery({
 export default function MonthSwiperContainer() {
   const dispatch = useDispatch();
 
-  const { year, month } = useSelector((state) => ({
+  const { accessToken, year, month } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
     year: state.accountbook.year,
     month: state.accountbook.month,
   }));
@@ -29,12 +31,42 @@ export default function MonthSwiperContainer() {
   const handleChangePreviousMonth = () => {
     if (month > 0) {
       dispatch(setPreviousMonth({ month }));
+      if (month === 1) {
+        dispatch(loadMonthlyTransaction({
+          accessToken,
+          year: year - 1,
+          month: month + 11,
+          date: 1,
+        }));
+      } else {
+        dispatch(loadMonthlyTransaction({
+          accessToken,
+          year,
+          month: month - 1,
+          date: 1,
+        }));
+      }
     }
   };
 
   const handleChangeNextMonth = () => {
     if (month < 13) {
       dispatch(setNextMonth({ month }));
+      if (month === 12) {
+        dispatch(loadMonthlyTransaction({
+          accessToken,
+          year: year + 1,
+          month: month - 11,
+          date: 1,
+        }));
+      } else {
+        dispatch(loadMonthlyTransaction({
+          accessToken,
+          year,
+          month: month + 1,
+          date: 1,
+        }));
+      }
     }
   };
 

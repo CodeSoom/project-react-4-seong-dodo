@@ -16,6 +16,9 @@ describe('TransactionDetailModal', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: 'ACCESS_TOKEN',
+      },
       accountbook: {
         ...mockInitState,
       },
@@ -49,13 +52,16 @@ describe('TransactionDetailModal', () => {
 
   it('renders submit container', () => {
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: 'ACCESS_TOKEN',
+      },
       accountbook: {
         ...mockInitState,
         transaction: {
           type: '수입',
           category: { value: '용돈' },
           transactionFields: {
-            breakdown: '1,000',
+            breakdown: '1000.0',
             source: '심부름',
             memo: '1회 성공',
           },

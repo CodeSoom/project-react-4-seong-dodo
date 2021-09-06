@@ -13,6 +13,9 @@ jest.mock('react-redux');
 describe('BudgetPage', () => {
   beforeEach(() => {
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: '',
+      },
       accountbook: {
         budget: '',
         year: 2021,
