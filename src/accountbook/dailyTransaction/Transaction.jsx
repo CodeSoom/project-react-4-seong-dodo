@@ -45,18 +45,6 @@ const TextBox = styled.div(mediaquery({
   padding: '.5em',
 }));
 
-const Type = styled.div(mediaquery({
-  float: 'left',
-  width: '40%',
-  height: '40%',
-  margin: '.2em',
-  borderRadius: '5em',
-  backgroundColor: 'pink',
-  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
-  lineHeight: ['18em', '4.5em', '2.6em', '1.3em', '1.7em'],
-  opacity: 0.8,
-}));
-
 const Category = styled.div(mediaquery({
   float: 'left',
   width: '70%',
@@ -64,7 +52,7 @@ const Category = styled.div(mediaquery({
   margin: '.3em',
   padding: '.4em',
   borderRadius: '.2em',
-  backgroundColor: `${colors.teal_border}`,
+  border: `${colors.gray_text04} solid 1px`,
   fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
   lineHeight: ['18em', '4em', '2em', '.8em', '1.2em'],
   opacity: 0.8,
@@ -93,7 +81,41 @@ const Text = styled.div(mediaquery({
   lineHeight: ['18em', '4.5em', '2em', '.7em', '1em'],
 }));
 
+const ExpenseStyle = {
+  float: 'left',
+  width: '40%',
+  height: '40%',
+  margin: '.2em',
+  borderRadius: '5em',
+  backgroundColor: `${colors.gray_text03}`,
+  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
+  lineHeight: ['18em', '4.5em', '2.6em', '1.3em', '1.7em'],
+  opacity: 0.8,
+};
+
+const IncomeStyle = {
+  float: 'left',
+  width: '40%',
+  height: '40%',
+  margin: '.2em',
+  borderRadius: '5em',
+  backgroundColor: `${colors.red_text02}`,
+  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
+  lineHeight: ['18em', '4.5em', '2.6em', '1.3em', '1.7em'],
+  opacity: 0.8,
+};
+
 export default function Transaction({ histories, onClickEdit, onClickDelete }) {
+  // eslint-disable-next-line consistent-return
+  const typeStyle = (type) => {
+    if (type === '수입') {
+      return IncomeStyle;
+    }
+    if (type === '지출') {
+      return ExpenseStyle;
+    }
+  };
+
   return (
     <>
       { histories === undefined
@@ -119,8 +141,14 @@ export default function Transaction({ histories, onClickEdit, onClickDelete }) {
               </div>
             </DeleteBox>
             <OptionBox>
-              <Type>{type}</Type>
-              <Category>{category.value}</Category>
+              <div
+                style={typeStyle(type)}
+              >
+                {type}
+              </div>
+              <Category>
+                {category.value}
+              </Category>
             </OptionBox>
             <TextBox>
               <Breakdown>
