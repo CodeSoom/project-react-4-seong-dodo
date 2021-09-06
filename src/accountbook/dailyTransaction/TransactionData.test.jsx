@@ -20,8 +20,8 @@ describe('TransactionData', () => {
       const { queryByText } = renderTransactionData();
 
       expect(queryByText('총 1 건')).toBeNull();
-      expect(queryByText('- 1000 원')).toBeNull();
-      expect(queryByText('+ 1000 원')).toBeNull();
+      expect(queryByText('- 1,000 원')).toBeNull();
+      expect(queryByText('+ 1,000 원')).toBeNull();
     });
   });
 
@@ -29,8 +29,8 @@ describe('TransactionData', () => {
     describe('renders transaction data with "지출" and "수입" type', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: 1000,
-        totalIncome: 1000,
+        totalExpense: '1000.0',
+        totalIncome: '1000.0',
         transactionHistories: [mockExpenseTransaction, mockIncomeTransaction],
       };
 
@@ -38,39 +38,37 @@ describe('TransactionData', () => {
         const { container } = renderTransactionData(histories);
 
         expect(container).toHaveTextContent('총 2 건');
-        expect(container).toHaveTextContent('- 1000 원');
-        expect(container).toHaveTextContent('+ 1000 원');
+        expect(container).toHaveTextContent('- 1,000 원');
+        expect(container).toHaveTextContent('+ 1,000 원');
       });
     });
 
     it('when with only "지출" type data', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: 1000,
-        totalIncome: 0,
+        totalExpense: '1000.0',
+        totalIncome: '',
         transactionHistories: [mockExpenseTransaction],
       };
 
       const { container } = renderTransactionData(histories);
 
       expect(container).toHaveTextContent('총 1 건');
-      expect(container).toHaveTextContent('- 1000 원');
-      expect(container).not.toHaveTextContent('+');
+      expect(container).toHaveTextContent('- 1,000 원');
     });
 
     it('when with only "수입" type data', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: 0,
-        totalIncome: 1000,
+        totalExpense: '',
+        totalIncome: '1000.0',
         transactionHistories: [mockIncomeTransaction],
       };
 
       const { container } = renderTransactionData(histories);
 
       expect(container).toHaveTextContent('총 1 건');
-      expect(container).toHaveTextContent('+ 1000 원');
-      expect(container).not.toHaveTextContent('-');
+      expect(container).toHaveTextContent('+ 1,000 원');
     });
   });
 });

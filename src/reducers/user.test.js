@@ -1,13 +1,24 @@
 import reducer, {
+  setAccessToken,
+  changeJoinField,
   changeLoginField,
+  clearLoginField,
+  logout,
 } from './user';
 
 describe('user reducer', () => {
-  context('without state', () => {
+  context('when previous state is undefined', () => {
     const initialState = {
+      accessToken: '',
       loginFields: {
         email: '',
         password: '',
+      },
+      joinFields: {
+        age: '',
+        email: '',
+        password: '',
+        repassword: '',
       },
     };
 
@@ -18,7 +29,58 @@ describe('user reducer', () => {
     });
   });
 
-  context('with state', () => {
+  describe('setAccessToken', () => {
+    it('changes access token', () => {
+      const initialState = {
+        accessToken: '',
+      };
+
+      const state = reducer(initialState, setAccessToken('ACCESS_TOKEN'));
+
+      expect(state.accessToken).toBe('ACCESS_TOKEN');
+    });
+  });
+
+  describe('changeJoinField action', () => {
+    const initialState = {
+      joinFields: {
+        age: '',
+        email: '',
+        password: '',
+        repassword: '',
+      },
+    };
+
+    it('changes age Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'age', value: '23' }));
+
+      expect(state.joinFields.age).toBe('23');
+    });
+
+    it('changes email Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'email', value: 'test@test.com' }));
+
+      expect(state.joinFields.email).toBe('test@test.com');
+    });
+
+    it('changes password Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'password', value: 'test' }));
+
+      expect(state.joinFields.password).toBe('test');
+    });
+
+    it('changes repassword Field', () => {
+      const state = reducer(initialState,
+        changeJoinField({ name: 'repassword', value: 'test' }));
+
+      expect(state.joinFields.repassword).toBe('test');
+    });
+  });
+
+  describe('changeLoginField action', () => {
     const initialState = {
       loginFields: {
         email: '',
@@ -26,20 +88,46 @@ describe('user reducer', () => {
       },
     };
 
-    describe('changeLoginField action', () => {
-      it('changes email Field', () => {
-        const state = reducer(initialState,
-          changeLoginField({ name: 'email', value: '123@test.com' }));
+    it('changes email Field', () => {
+      const state = reducer(initialState,
+        changeLoginField({ name: 'email', value: '123@test.com' }));
 
-        expect(state.loginFields.email).toBe('123@test.com');
-      });
+      expect(state.loginFields.email).toBe('123@test.com');
+    });
 
-      it('changes password Field', () => {
-        const state = reducer(initialState,
-          changeLoginField({ name: 'password', value: '123test' }));
+    it('changes password Field', () => {
+      const state = reducer(initialState,
+        changeLoginField({ name: 'password', value: '123test' }));
 
-        expect(state.loginFields.password).toBe('123test');
-      });
+      expect(state.loginFields.password).toBe('123test');
+    });
+  });
+
+  describe('clearLoginField', () => {
+    it('clears fields of login', () => {
+      const initialState = {
+        loginFields: {
+          email: 'EMAIl',
+          password: 'PASSWORD',
+        },
+      };
+
+      const state = reducer(initialState, clearLoginField());
+
+      expect(state.loginFields.email).toBe('');
+      expect(state.loginFields.password).toBe('');
+    });
+  });
+
+  describe('logout', () => {
+    it('clears access token', () => {
+      const initialState = {
+        accessToken: 'ACCESS_TOKEN',
+      };
+
+      const state = reducer(initialState, logout());
+
+      expect(state.accessToken).toBe('');
     });
   });
 });

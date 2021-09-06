@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
-const LoginBox = styled.div({
+const Container = styled.div({
   margin: '0 auto',
   padding: '0.5em',
   textAlign: 'center',
 });
 
-const InputBox = styled.div({
+const FormBox = styled.div(mediaquery({
   width: '90%',
   height: '100%',
   margin: '0 auto',
@@ -18,28 +18,26 @@ const InputBox = styled.div({
   textAlign: 'center',
   borderRadius: '.2em',
   backgroundColor: `${colors.white}`,
-});
-
-const Label = styled.label(mediaquery({
-  display: 'inline-block',
-  width: ['100%', '100%', '35%', '20%', '20%'],
-  padding: '.5em',
-  color: `${colors.gray_text}`,
-  fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
-  fontWeight: '600',
-  textAlign: ['left', 'left', 'center', 'center', 'center'],
-}));
-
-const Input = styled.input(mediaquery({
-  width: ['100%', '100%', '55%', '70%', '70%'],
-  height: '3em',
-  padding: '.2em .5em',
-  marginLeft: '1em',
-  border: 'none',
-  color: `${colors.gray_text01}`,
-  fontSize: ['.5em', '.6em', '.6em', '.7em', '.8em'],
-  outlineStyle: 'none',
-  backgroundColor: 'transparent',
+  '& input': {
+    width: ['100%', '100%', '55%', '70%', '70%'],
+    height: '3em',
+    padding: '.2em .5em',
+    marginLeft: '1em',
+    border: 'none',
+    color: `${colors.gray_text01}`,
+    fontSize: ['.5em', '.6em', '.6em', '.7em', '.8em'],
+    outlineStyle: 'none',
+    backgroundColor: 'transparent',
+  },
+  '& label': {
+    display: 'inline-block',
+    width: ['100%', '100%', '35%', '20%', '20%'],
+    padding: '.5em',
+    color: `${colors.gray_text}`,
+    fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
+    fontWeight: '600',
+    textAlign: ['left', 'left', 'center', 'center', 'center'],
+  },
 }));
 
 const Button = styled.button(mediaquery({
@@ -67,12 +65,12 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
   }
 
   return (
-    <LoginBox>
-      <InputBox>
-        <Label htmlFor="login-email">
+    <Container>
+      <FormBox>
+        <label htmlFor="login-email">
           E-mail
-        </Label>
-        <Input
+        </label>
+        <input
           type="email"
           id="login-email"
           name="email"
@@ -80,10 +78,10 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
           value={email}
           onChange={handleChange}
         />
-        <Label htmlFor="login-password">
+        <label htmlFor="login-password">
           Password
-        </Label>
-        <Input
+        </label>
+        <input
           type="password"
           id="login-password"
           name="password"
@@ -91,14 +89,14 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
           value={password}
           onChange={handleChange}
         />
-      </InputBox>
+      </FormBox>
       <Button
         type="button"
         onClick={onSubmit}
       >
         Log In
       </Button>
-    </LoginBox>
+    </Container>
   );
 });
 

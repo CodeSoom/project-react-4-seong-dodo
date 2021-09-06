@@ -15,8 +15,14 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
+
     historyApiFallback: {
       index: 'index.html',
+    },
+    proxy: {
+      '/api/*': {
+        target: 'http://192.168.219.162:8080',
+      },
     },
   },
 };

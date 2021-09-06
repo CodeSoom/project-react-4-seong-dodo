@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import styled from '@emotion/styled';
+
+import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
+
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
@@ -125,7 +128,7 @@ export default function Transaction({ histories, onClickEdit, onClickDelete }) {
                   ? '+'
                   : '-'}
                 {' '}
-                {transactionFields.breakdown}
+                {exchangeRegEX(replaceString(removeDecimalPoint(transactionFields.breakdown)))}
                 {' '}
                 원
               </Breakdown>

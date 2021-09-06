@@ -22,12 +22,12 @@ describe('BudgetForm', () => {
     const { getByLabelText } = renderBudgetForm();
 
     fireEvent.change(getByLabelText('한 달 예산'), {
-      target: { value: '100' },
+      target: { value: '1000' },
     });
 
     expect(handleChange).toBeCalledWith({
       name: 'budget',
-      value: '100',
+      value: '1000',
     });
   });
 });

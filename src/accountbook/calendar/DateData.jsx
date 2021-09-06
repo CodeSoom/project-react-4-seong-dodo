@@ -1,5 +1,7 @@
 import colors from '../../style/colors';
 
+import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
+
 const ExpenseColor = {
   color: `${colors.gray_text05}`,
   fontWeight: '300',
@@ -22,7 +24,7 @@ export default function DateData({ histories }) {
         : (
           <>
             {
-              histories.totalExpense === 0
+              histories.totalExpense === '0.0'
                 ? null
                 : (
                   <>
@@ -31,14 +33,14 @@ export default function DateData({ histories }) {
                     >
                       -
                       {' '}
-                      {histories.totalExpense}
+                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
                       원
                     </div>
                   </>
                 )
             }
             {
-              histories.totalIncome === 0
+              histories.totalIncome === '0.0'
                 ? null
                 : (
                   <>
@@ -47,7 +49,7 @@ export default function DateData({ histories }) {
                     >
                       +
                       {' '}
-                      {histories.totalIncome}
+                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
                       원
                     </div>
                   </>

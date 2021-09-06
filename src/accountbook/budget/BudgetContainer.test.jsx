@@ -15,7 +15,7 @@ describe('BudgetContainer', () => {
 
     useSelector.mockImplementation((selector) => selector({
       accountbook: {
-        budget: 0,
+        budget: '',
       },
     }));
   });
@@ -25,12 +25,12 @@ describe('BudgetContainer', () => {
       const { getByLabelText } = render(<BudgetContainer />);
 
       fireEvent.change(getByLabelText('한 달 예산'), {
-        target: { value: '100' },
+        target: { value: '1000' },
       });
 
       expect(dispatch).toBeCalledWith({
         type: 'accountbook/changeBudget',
-        payload: { value: '100' },
+        payload: { value: '1000' },
       });
     });
   });
@@ -39,7 +39,7 @@ describe('BudgetContainer', () => {
     it('renders nothiong', () => {
       const { getByLabelText } = render(<BudgetContainer />);
 
-      fireEvent.change(getByLabelText('한 달 예산'), { target: { value: 0 } });
+      fireEvent.change(getByLabelText('한 달 예산'), { target: { value: '' } });
 
       expect(dispatch).not.toBeCalled();
     });

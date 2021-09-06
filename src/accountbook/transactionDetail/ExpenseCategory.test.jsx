@@ -8,7 +8,7 @@ describe('ExpenseCategory', () => {
     type: '지출',
     category: { value: '미분류' },
     transactionFields: {
-      breakdown: 0,
+      breakdown: '',
       source: '',
       memo: '',
     },
@@ -43,7 +43,7 @@ describe('ExpenseCategory', () => {
       type: '지출',
       category: { value: '카페/간식' },
       transactionFields: {
-        breakdown: 0,
+        breakdown: '',
         source: '',
         memo: '',
       },

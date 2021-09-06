@@ -2,9 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { v4 as uuid } from 'uuid';
 
+import { exchangeRegEX, replaceString } from '../utils/utils';
+
+import {
+  fetchDailyTransaction,
+  fetchMonthlyTransaction,
+  postTransaction,
+} from '../services/api';
+
 const today = new Date();
 const initialTransactionFields = {
-  breakdown: 0,
+  breakdown: '',
   source: '',
   memo: '',
 };
@@ -12,7 +20,7 @@ const initialTransactionFields = {
 const { actions, reducer } = createSlice({
   name: 'accountbook',
   initialState: {
-    budget: 0,
+    budget: '',
     year: today.getFullYear(),
     month: today.getMonth() + 1,
     dailyData: {
@@ -22,6 +30,7 @@ const { actions, reducer } = createSlice({
       day: 4,
     },
     targetId: null,
+    dailyTransaction: [],
     monthlyTransaction: [],
     selectedType: '지출',
     selectedCategory: { value: '미분류' },
@@ -37,7 +46,7 @@ const { actions, reducer } = createSlice({
     changeBudget(state, { payload: { value } }) {
       return {
         ...state,
-        budget: value,
+        budget: exchangeRegEX(replaceString(value)),
       };
     },
     setTargetId(state, { payload: { id } }) {
@@ -89,7 +98,7 @@ const { actions, reducer } = createSlice({
         ...state.transaction,
         transactionFields: {
           ...state.transaction.transactionFields,
-          breakdown: parseInt(value, 10),
+          breakdown: exchangeRegEX(value.replace(/,/gi, '')),
         },
       };
       return {
@@ -149,14 +158,26 @@ const { actions, reducer } = createSlice({
         transaction: newTransaction,
       };
     },
+    setDailyTransaction(state, { payload: { dailyTransaction } }) {
+      return {
+        ...state,
+        dailyTransaction,
+      };
+    },
+    setMonthlyTransaction(state, { payload: { monthlyTransaction } }) {
+      return {
+        ...state,
+        monthlyTransaction,
+      };
+    },
     addMonthlyTransaction(state, { payload: { transaction } }) {
       const { monthlyTransaction, dailyData } = state;
       const { year, month, date } = dailyData;
       const newMonthlyTransaction = [...monthlyTransaction];
       const newDailyTransaction = {
         ...dailyData,
-        totalExpense: 0,
-        totalIncome: 0,
+        totalExpense: '',
+        totalIncome: '',
         transactionHistories: [{
           ...transaction,
           id: uuid(),
@@ -191,9 +212,9 @@ const { actions, reducer } = createSlice({
       const getTotal = (transactionType) => {
         const total = newDailyTransaction.transactionHistories
           .filter((history) => history.type === transactionType)
-          .reduce((sum, b) => sum + b.transactionFields.breakdown, 0);
+          .reduce((sum, b) => sum + parseInt(replaceString(b.transactionFields.breakdown), 10), 0);
 
-        return parseInt(total, 10);
+        return exchangeRegEX(total);
       };
 
       newDailyTransaction.totalExpense = getTotal('지출');
@@ -239,9 +260,9 @@ const { actions, reducer } = createSlice({
       const getTotal = (transactionType) => {
         const total = newDailyTransaction.transactionHistories
           .filter((history) => history.type === transactionType)
-          .reduce((sum, b) => sum + b.transactionFields.breakdown, 0);
+          .reduce((sum, b) => sum + parseInt(replaceString(b.transactionFields.breakdown), 10), 0);
 
-        return parseInt(total, 10);
+        return exchangeRegEX(total);
       };
 
       newDailyTransaction.totalExpense = getTotal('지출');
@@ -294,10 +315,65 @@ export const {
   clearTransactionFields,
   setDailyData,
   setTransaction,
+  setDailyTransaction,
+  setMonthlyTransaction,
   addMonthlyTransaction,
   deleteTransaction,
   setPreviousMonth,
   setNextMonth,
 } = actions;
+
+export function loadDailyTransaction({
+  accessToken, year, month, date,
+}) {
+  return async (dispatch) => {
+    const dailyTransaction = await fetchDailyTransaction({
+      accessToken,
+      dailyData: {
+        year, month, date,
+      },
+    });
+
+    dispatch(setDailyTransaction({ dailyTransaction }));
+  };
+}
+
+export function loadMonthlyTransaction({
+  accessToken, year, month, date,
+}) {
+  return async (dispatch) => {
+    const monthlyTransaction = await fetchMonthlyTransaction({
+      accessToken,
+      dailyData: {
+        year, month, date,
+      },
+    });
+
+    dispatch(setMonthlyTransaction({ monthlyTransaction }));
+  };
+}
+
+export function sendTransaction() {
+  return async (dispatch, getState) => {
+    const {
+      user: { accessToken },
+      accountbook: {
+        dailyData: { year, month, date },
+        transaction: { type, category, transactionFields },
+      },
+    } = getState();
+
+    await postTransaction({
+      accessToken,
+      dailyData: { year, month, date },
+      transaction: { type, category, transactionFields },
+    });
+
+    dispatch(loadDailyTransaction({
+      accessToken, year, month, date,
+    }));
+    dispatch(clearTransactionFields());
+  };
+}
 
 export default reducer;

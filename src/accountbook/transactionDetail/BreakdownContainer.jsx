@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
+import { exchangeRegEX, replaceString } from '../../utils/utils';
+
 import mediaquery from '../../style/mediaquery';
 
 import BreakdownField from './BreakdownField';
@@ -55,7 +57,7 @@ export default function BreakdownContainer() {
           <BreakdownField
             label=""
             placeholder="0"
-            value={breakdown}
+            value={exchangeRegEX(replaceString(breakdown))}
             onChange={handleChange}
           />
         </Number>

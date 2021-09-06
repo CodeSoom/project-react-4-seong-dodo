@@ -3,6 +3,9 @@ import mockDailyData from '../../fixtures/mockDailyData';
 import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
 import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
 
+import DAILY_TRANSACTION from '../../fixtures/daily-transaction';
+import MONTHLY_TRANSACTION from '../../fixtures/monthly-transaction';
+
 import reducer, {
   changeBudget,
   setTargetId,
@@ -16,6 +19,8 @@ import reducer, {
   clearTransactionFields,
   setDailyData,
   setTransaction,
+  setDailyTransaction,
+  setMonthlyTransaction,
   addMonthlyTransaction,
   deleteTransaction,
   setPreviousMonth,
@@ -40,12 +45,12 @@ describe('accountbook reducer', () => {
 
   it('listens changeBudget action', () => {
     const initialState = {
-      budget: { value: 0 },
+      budget: { value: '' },
     };
 
-    const state = reducer(initialState, changeBudget({ value: 10 }));
+    const state = reducer(initialState, changeBudget({ value: '1000' }));
 
-    expect(state.budget).toBe(10);
+    expect(state.budget).toBe('1,000');
   });
 
   it('listens setTargetId action', () => {
@@ -116,10 +121,10 @@ describe('accountbook reducer', () => {
     it('changes a field of breakdown', () => {
       const state = reducer(
         initialState,
-        changeBreakdownFields({ value: 1000 }),
+        changeBreakdownFields({ value: '1000' }),
       );
 
-      expect(state.transaction.transactionFields.breakdown).toBe(1000);
+      expect(state.transaction.transactionFields.breakdown).toBe('1,000');
     });
   });
 
@@ -154,7 +159,7 @@ describe('accountbook reducer', () => {
 
     const state = reducer(initialState, clearTransactionFields());
 
-    expect(state.transaction.transactionFields.breakdown).toBe(0);
+    expect(state.transaction.transactionFields.breakdown).toBe('');
     expect(state.transaction.transactionFields.source).toBe('');
     expect(state.transaction.transactionFields.memo).toBe('');
   });
@@ -186,7 +191,7 @@ describe('accountbook reducer', () => {
           type: '지출',
           category: { value: '카페' },
           transactionFields: {
-            breakdown: 1000,
+            breakdown: '1,000',
             source: '스타벅스',
             memo: '혼자',
           },
@@ -194,6 +199,28 @@ describe('accountbook reducer', () => {
       }));
 
     expect(state.transaction.type).toBe('지출');
+  });
+
+  it('listens setDailyTransaction action', () => {
+    const dailyTransaction = DAILY_TRANSACTION;
+    const initialState = {
+      dailyTransaction: [],
+    };
+
+    const state = reducer(initialState, setDailyTransaction({ dailyTransaction }));
+
+    expect(state.dailyTransaction).toEqual(DAILY_TRANSACTION);
+  });
+
+  it('listens setMonthlyTransaction action', () => {
+    const monthlyTransaction = MONTHLY_TRANSACTION;
+    const initialState = {
+      monthlyTransaction: [],
+    };
+
+    const state = reducer(initialState, setMonthlyTransaction({ monthlyTransaction }));
+
+    expect(state.monthlyTransaction).toEqual(MONTHLY_TRANSACTION);
   });
 
   describe('listens addMonthlyTransaction action', () => {

@@ -1,8 +1,30 @@
 import { render, fireEvent } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 import DailyTransactionModal from './DailyTransactionModal';
 
+jest.mock('react-redux');
+
 describe('DailyTransactionModal', () => {
+  const dispatch = jest.fn();
+
+  beforeEach(() => {
+    dispatch.mockClear();
+    useDispatch.mockImplementation(() => dispatch);
+
+    useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: given.accessToken,
+      },
+      accountbook: {
+        dailyTransaction: [],
+      },
+    }));
+  });
+
   const handleOpenModal = jest.fn();
   const monthlyTransaction = [];
   const dailyData = {
@@ -14,29 +36,39 @@ describe('DailyTransactionModal', () => {
 
   function renderDailyTransactionModal() {
     return render((
-      <DailyTransactionModal
-        dailyData={dailyData}
-        monthlyTransaction={monthlyTransaction}
-        onClick={handleOpenModal}
-      />
+      <MemoryRouter>
+        <DailyTransactionModal
+          dailyData={dailyData}
+          monthlyTransaction={monthlyTransaction}
+          onClick={handleOpenModal}
+        />
+      </MemoryRouter>
     ));
   }
 
-  it('renders daily transaction modal', () => {
-    const { container } = renderDailyTransactionModal();
+  context('with loggeg-out', () => {
+    given('accessToken', () => undefined);
 
-    expect(container).toHaveTextContent('1일');
-    expect(container).toHaveTextContent('X');
-    expect(container).toHaveTextContent('내역추가');
+    it('renders daily transaction modal', () => {
+      const { container } = renderDailyTransactionModal();
+
+      expect(container).toHaveTextContent('1일');
+      expect(container).toHaveTextContent('X');
+      expect(container).toHaveTextContent('내역추가');
+    });
+
+    it('litens "X" button click event', () => {
+      const onClick = jest.fn();
+
+      const { getByText } = renderDailyTransactionModal();
+
+      fireEvent.click(getByText('X'));
+
+      expect(onClick).not.toBeFalsy();
+    });
   });
 
-  it('litens "X" button click event', () => {
-    const onClick = jest.fn();
-
-    const { getByText } = renderDailyTransactionModal();
-
-    fireEvent.click(getByText('X'));
-
-    expect(onClick).not.toBeFalsy();
+  context('with loggeg-in', () => {
+    given('accessToken', () => 'ACCESS_TOKEN');
   });
 });

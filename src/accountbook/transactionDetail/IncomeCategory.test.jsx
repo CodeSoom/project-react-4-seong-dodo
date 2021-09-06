@@ -8,7 +8,7 @@ describe('IncomeCategory', () => {
     type: '수입',
     category: { value: '미분류' },
     transactionFields: {
-      breakdown: 0,
+      breakdown: '',
       source: '',
       memo: '',
     },
@@ -43,7 +43,7 @@ describe('IncomeCategory', () => {
       type: '수입',
       category: { value: '용돈' },
       transactionFields: {
-        breakdown: 0,
+        breakdown: '',
         source: '',
         memo: '',
       },

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 import colors from '../../style/colors';
@@ -19,6 +19,7 @@ import {
   changeBreakdownFields,
   changeTransactionFields,
   deleteTransaction,
+  loadDailyTransaction,
 } from '../../reducers/accountbook';
 
 const Container = styled.div(mediaquery({
@@ -124,13 +125,34 @@ export default function DailyTransactionContainer({
     year, month, date, day,
   } = dailyData;
 
+  const { accessToken, dailyTransaction } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+    dailyTransaction: state.accountbook.dailyTransaction,
+  }));
+
+  useEffect(() => {
+    dispatch(loadDailyTransaction({
+      accessToken,
+      year,
+      month,
+      date,
+    }));
+  }, []);
+
   function convertDay() {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return days[day];
   }
   // 내역추가 버튼 이벤트
   const handleClickDetailModal = () => {
-    setDisplay(!isDisplay);
+    if (accessToken === '' || accessToken === undefined) {
+      // eslint-disable-next-line no-alert
+      alert('로그인이 필요한 서비스 입니다.');
+      return;
+    }
+    if (accessToken !== '' || accessToken !== undefined) {
+      setDisplay(!isDisplay);
+    }
   };
 
   const handleClickEdit = (id) => {
@@ -187,7 +209,7 @@ export default function DailyTransactionContainer({
         <TextBox>
           <TransactionBox>
             <DailyTransaction
-              monthlyTransaction={monthlyTransaction}
+              dailyTransaction={dailyTransaction}
               dailyData={dailyData}
               onClickEdit={handleClickEdit}
               onClickDelete={handleClickDelete}

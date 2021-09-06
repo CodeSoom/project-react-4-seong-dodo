@@ -1,5 +1,5 @@
 const mockInitState = {
-  budget: 0,
+  budget: '',
   year: 2021,
   month: 7,
   dailyData: {
@@ -9,6 +9,7 @@ const mockInitState = {
     day: 4,
   },
   targetId: null,
+  dailyTransaction: [],
   monthlyTransaction: [],
   selectedType: '지출',
   selectedCategory: { value: '미분류' },
@@ -16,7 +17,7 @@ const mockInitState = {
     type: '지출',
     category: { value: '미분류' },
     transactionFields: {
-      breakdown: 0,
+      breakdown: '',
       source: '',
       memo: '',
     },

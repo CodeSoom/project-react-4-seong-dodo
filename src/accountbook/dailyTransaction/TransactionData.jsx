@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
+import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
+
 const DataBox = styled.div(mediaquery({
   width: '95%',
   height: ['10%', '10%', '10%', '5%', '5%'],
@@ -56,14 +58,14 @@ export default function TransactionData({ histories }) {
               건
             </CountBox>
             {
-              histories.totalExpense === 0
+              histories.totalExpense === ''
                 ? null
                 : (
                   <>
                     <TotalExpenseBox>
                       -
                       {' '}
-                      {histories.totalExpense}
+                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
                       {' '}
                       원
                     </TotalExpenseBox>
@@ -71,14 +73,14 @@ export default function TransactionData({ histories }) {
                 )
             }
             {
-              histories.totalIncome === 0
+              histories.totalIncome === ''
                 ? null
                 : (
                   <>
                     <TotalIncomeBox>
                       +
                       {' '}
-                      {histories.totalIncome}
+                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
                       {' '}
                       원
                     </TotalIncomeBox>

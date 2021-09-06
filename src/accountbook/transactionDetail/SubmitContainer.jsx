@@ -5,11 +5,11 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 import {
-  clearTransactionFields,
-  setTransaction,
+  loadMonthlyTransaction,
   addMonthlyTransaction,
   deleteTransaction,
   clearTargetId,
+  sendTransaction,
 } from '../../reducers/accountbook';
 
 const SubmitBox = styled.div(mediaquery({
@@ -29,15 +29,27 @@ const SubmitBox = styled.div(mediaquery({
 export default function SubmitContainer() {
   const dispatch = useDispatch();
 
-  const { transaction, targetId } = useSelector((state) => ({
+  const {
+    accessToken, year, month, transaction, targetId,
+  } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+    year: state.accountbook.year,
+    month: state.accountbook.month,
     transaction: state.accountbook.transaction,
     targetId: state.accountbook.targetId,
   }));
 
   const { transactionFields } = transaction;
 
+  dispatch(loadMonthlyTransaction({
+    accessToken,
+    year,
+    month,
+    date: 1,
+  }));
+
   const handleSubmit = (id) => {
-    if (transactionFields.breakdown === 0) {
+    if (transactionFields.breakdown === '') {
       // eslint-disable-next-line no-alert
       alert('금액을 입력해주세요.');
       return;
@@ -54,15 +66,13 @@ export default function SubmitContainer() {
     }
     if (targetId !== null && targetId === id) {
       dispatch(deleteTransaction({ id }));
-      dispatch(setTransaction({ transaction }));
-      dispatch(addMonthlyTransaction({ transaction }));
-      dispatch(clearTransactionFields());
+      // dispatch(addMonthlyTransaction({ transaction }));
       dispatch(clearTargetId());
+      dispatch(sendTransaction());
     }
     if (targetId === null) {
-      dispatch(setTransaction({ transaction }));
-      dispatch(addMonthlyTransaction({ transaction }));
-      dispatch(clearTransactionFields());
+      // dispatch(addMonthlyTransaction({ transaction }));
+      dispatch(sendTransaction());
     }
   };
 
