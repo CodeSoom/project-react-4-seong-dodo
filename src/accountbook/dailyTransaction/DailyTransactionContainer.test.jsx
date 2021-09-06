@@ -30,7 +30,6 @@ describe('DailyTransactionContainer', () => {
   });
 
   const handleOpenModal = jest.fn();
-  const monthlyTransaction = [];
   const dailyData = {
     year: 2021,
     month: 7,
@@ -41,7 +40,6 @@ describe('DailyTransactionContainer', () => {
   function renderDailyTransactionContainer() {
     return render((
       <DailyTransactionContainer
-        monthlyTransaction={monthlyTransaction}
         dailyData={dailyData}
         onClick={handleOpenModal}
       />

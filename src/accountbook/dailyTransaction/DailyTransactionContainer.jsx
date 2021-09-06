@@ -22,6 +22,8 @@ import {
   loadDailyTransaction,
 } from '../../reducers/accountbook';
 
+import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
+
 const Container = styled.div(mediaquery({
   position: 'fixed',
   top: 0,
@@ -115,9 +117,7 @@ const DefaultBox = styled.div(mediaquery({
   ],
 }));
 
-export default function DailyTransactionContainer({
-  monthlyTransaction, dailyData, onClick,
-}) {
+export default function DailyTransactionContainer({ dailyData, onClick }) {
   const dispatch = useDispatch();
   const [isDisplay, setDisplay] = useState(false);
 
@@ -159,7 +159,7 @@ export default function DailyTransactionContainer({
     setDisplay(true);
     dispatch(setTargetId({ id }));
 
-    const targetDailyTransaction = monthlyTransaction
+    const targetDailyTransaction = dailyTransaction
       .find((target) => target.year === year
       && target.month === month
       && target.date === date);
@@ -171,11 +171,12 @@ export default function DailyTransactionContainer({
 
     dispatch(changeTransactionType(type));
     dispatch(selectType(type));
-
     dispatch(changeTransactionCategory({ value: category.value }));
     dispatch(selectCategory({ value: category.value }));
-
-    dispatch(changeBreakdownFields({ value: transactionFields.breakdown }));
+    dispatch(changeBreakdownFields({
+      value:
+      exchangeRegEX(replaceString(removeDecimalPoint(transactionFields.breakdown))),
+    }));
     dispatch(changeTransactionFields({
       name: 'source',
       value: transactionFields.source,
