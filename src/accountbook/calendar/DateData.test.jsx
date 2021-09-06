@@ -28,8 +28,8 @@ describe('DateData', () => {
     describe('renders transaction data with "지출" and "수입" type', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: '1,000',
-        totalIncome: '1,000',
+        totalExpense: '1000.0',
+        totalIncome: '1000.0',
         transactionHistories: [mockExpenseTransaction, mockIncomeTransaction],
       };
 
@@ -44,7 +44,7 @@ describe('DateData', () => {
     it('when with only "지출" type data', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: '1,000',
+        totalExpense: '1000.0',
         totalIncome: '',
         transactionHistories: [mockExpenseTransaction],
       };
@@ -58,7 +58,7 @@ describe('DateData', () => {
       const histories = {
         dailyData: mockDailyData,
         totalExpense: '',
-        totalIncome: '1,000',
+        totalIncome: '1000.0',
         transactionHistories: [mockIncomeTransaction],
       };
 

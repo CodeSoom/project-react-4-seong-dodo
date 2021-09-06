@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,6 +11,7 @@ import DailyTransactionModal from '../dailyTransaction/DailyTransactionModal';
 import {
   setDailyData,
   clearTransactionFields,
+  loadMonthlyTransaction,
 } from '../../reducers/accountbook';
 
 const CalendarBox = styled.div({
@@ -23,13 +24,23 @@ export default function CalendarContainer() {
   const [isDisplay, setDisplay] = useState(false);
 
   const {
-    year, month, dailyData, monthlyTransaction,
+    accessToken, year, month, dailyData, monthlyTransaction,
   } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
     year: state.accountbook.year,
     month: state.accountbook.month,
     dailyData: state.accountbook.dailyData,
     monthlyTransaction: state.accountbook.monthlyTransaction,
   }));
+
+  useEffect(() => {
+    dispatch(loadMonthlyTransaction({
+      accessToken,
+      year,
+      month,
+      date: 1,
+    }));
+  }, []);
 
   const handleOpenModal = (date, day) => {
     setDisplay(!isDisplay);

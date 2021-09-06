@@ -14,6 +14,9 @@ describe('StateBarCard', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: '',
+      },
       accountbook: {
         year: 2021,
         month: 7,
@@ -41,6 +44,9 @@ describe('StateBarCard', () => {
   describe('renders conditional statement', () => {
     it('when month > 0', () => {
       useSelector.mockImplementation((selector) => selector({
+        user: {
+          accessToken: '',
+        },
         accountbook: {
           year: 2021,
           month: 0,
@@ -57,6 +63,9 @@ describe('StateBarCard', () => {
 
     it('when month < 13', () => {
       useSelector.mockImplementation((selector) => selector({
+        user: {
+          accessToken: '',
+        },
         accountbook: {
           year: 2021,
           month: 13,

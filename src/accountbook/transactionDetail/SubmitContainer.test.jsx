@@ -38,6 +38,9 @@ describe('SubmitContainer', () => {
 
   describe('listens click event', () => {
     useSelector.mockImplementation((selector) => selector({
+      user: {
+        accessToken: 'ACCESS_TOKEN',
+      },
       accountbook: {
         ...mockInitState,
         targetId: null,
@@ -66,6 +69,9 @@ describe('SubmitContainer', () => {
 
     it('click with breakdown and without category feilds', () => {
       useSelector.mockImplementation((selector) => selector({
+        user: {
+          accessToken: 'ACCESS_TOKEN',
+        },
         accountbook: {
           transaction: {
             type: '지출',
@@ -89,6 +95,9 @@ describe('SubmitContainer', () => {
 
     it('click with breakdown and category and without source feilds', () => {
       useSelector.mockImplementation((selector) => selector({
+        user: {
+          accessToken: 'ACCESS_TOKEN',
+        },
         accountbook: {
           transaction: {
             type: '지출',
@@ -113,6 +122,9 @@ describe('SubmitContainer', () => {
     context('does not exist targetId', () => {
       it('click with breakdown, type, category and source feilds', () => {
         useSelector.mockImplementation((selector) => selector({
+          user: {
+            accessToken: 'ACCESS_TOKEN',
+          },
           accountbook: {
             targetId: null,
             monthlyTransaction: [
@@ -141,26 +153,16 @@ describe('SubmitContainer', () => {
         const { getByText } = render(<SubmitContainer />);
         fireEvent.click(getByText('저장'));
 
-        expect(dispatch).toBeCalledWith({
-          type: 'accountbook/addMonthlyTransaction',
-          payload: {
-            transaction: {
-              type: '지출',
-              category: { value: '식비' },
-              transactionFields: {
-                breakdown: '1,000',
-                source: '마트',
-                memo: '',
-              },
-            },
-          },
-        });
+        expect(dispatch).toBeCalledTimes(2);
       });
     });
 
     context('does exist targetId and id equal targetId', () => {
       it('renders edit transaction', () => {
         useSelector.mockImplementation((selector) => selector({
+          user: {
+            accessToken: 'ACCESS_TOKEN',
+          },
           accountbook: {
             targetId: 1,
             monthlyTransaction: [
@@ -194,20 +196,7 @@ describe('SubmitContainer', () => {
           payload: { id: 1 },
         });
 
-        expect(dispatch).toBeCalledWith({
-          type: 'accountbook/addMonthlyTransaction',
-          payload: {
-            transaction: {
-              type: '지출',
-              category: { value: '식비' },
-              transactionFields: {
-                breakdown: '1,000',
-                memo: '장보기',
-                source: '마트',
-              },
-            },
-          },
-        });
+        expect(dispatch).toBeCalledTimes(4);
       });
     });
   });

@@ -5,7 +5,7 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 import {
-  clearTransactionFields,
+  loadMonthlyTransaction,
   addMonthlyTransaction,
   deleteTransaction,
   clearTargetId,
@@ -29,12 +29,24 @@ const SubmitBox = styled.div(mediaquery({
 export default function SubmitContainer() {
   const dispatch = useDispatch();
 
-  const { transaction, targetId } = useSelector((state) => ({
+  const {
+    accessToken, year, month, transaction, targetId,
+  } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+    year: state.accountbook.year,
+    month: state.accountbook.month,
     transaction: state.accountbook.transaction,
     targetId: state.accountbook.targetId,
   }));
 
   const { transactionFields } = transaction;
+
+  dispatch(loadMonthlyTransaction({
+    accessToken,
+    year,
+    month,
+    date: 1,
+  }));
 
   const handleSubmit = (id) => {
     if (transactionFields.breakdown === '') {
@@ -54,15 +66,13 @@ export default function SubmitContainer() {
     }
     if (targetId !== null && targetId === id) {
       dispatch(deleteTransaction({ id }));
-      dispatch(addMonthlyTransaction({ transaction }));
+      // dispatch(addMonthlyTransaction({ transaction }));
       dispatch(clearTargetId());
       dispatch(sendTransaction());
-      dispatch(clearTransactionFields());
     }
     if (targetId === null) {
-      dispatch(addMonthlyTransaction({ transaction }));
+      // dispatch(addMonthlyTransaction({ transaction }));
       dispatch(sendTransaction());
-      dispatch(clearTransactionFields());
     }
   };
 

@@ -10,10 +10,10 @@ describe('DailyTransaction', () => {
   const handleClickEdit = jest.fn();
   const handleClickDelete = jest.fn();
 
-  function renderDailyTransaction(monthlyTransaction = [], dailyData = mockDailyData) {
+  function renderDailyTransaction(dailyTransaction = [], dailyData = mockDailyData) {
     return render((
       <DailyTransaction
-        monthlyTransaction={monthlyTransaction}
+        dailyTransaction={dailyTransaction}
         dailyData={dailyData}
         onClickEdit={handleClickEdit}
         onClickDelete={handleClickDelete}
@@ -34,7 +34,7 @@ describe('DailyTransaction', () => {
 
   context('with transaction when daily data equal click date', () => {
     it('renders daily transaction and daily transaction data', () => {
-      const monthlyTransaction = [{
+      const dailyTransaction = [{
         year: 2021,
         month: 7,
         date: 1,
@@ -44,7 +44,7 @@ describe('DailyTransaction', () => {
         transactionHistories: [mockExpenseTransaction, mockIncomeTransaction],
       }];
 
-      const { container } = renderDailyTransaction(monthlyTransaction);
+      const { container } = renderDailyTransaction(dailyTransaction);
 
       expect(container).toHaveTextContent('지출');
       expect(container).toHaveTextContent('수입');

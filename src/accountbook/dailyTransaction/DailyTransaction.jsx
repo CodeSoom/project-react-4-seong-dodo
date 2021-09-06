@@ -3,9 +3,9 @@ import TransactionData from './TransactionData';
 import Transaction from './Transaction';
 
 export default function DailyTransaction({
-  monthlyTransaction, dailyData, onClickEdit, onClickDelete,
+  dailyTransaction, dailyData, onClickEdit, onClickDelete,
 }) {
-  const histories = monthlyTransaction.find(
+  const histories = dailyTransaction.find(
     (daily) => daily.year === dailyData.year
   && daily.month === dailyData.month
   && daily.date === dailyData.date

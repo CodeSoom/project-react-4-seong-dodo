@@ -372,9 +372,6 @@ export function sendTransaction() {
     dispatch(loadDailyTransaction({
       accessToken, year, month, date,
     }));
-    dispatch(loadMonthlyTransaction({
-      accessToken, year, month, date,
-    }));
     dispatch(clearTransactionFields());
   };
 }

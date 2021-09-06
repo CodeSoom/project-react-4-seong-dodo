@@ -19,6 +19,9 @@ describe('DailyTransactionModal', () => {
       user: {
         accessToken: given.accessToken,
       },
+      accountbook: {
+        dailyTransaction: [],
+      },
     }));
   });
 
