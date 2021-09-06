@@ -39,3 +39,7 @@ export async function postTransaction({
     },
   };
 }
+
+export async function putTransaction() {
+  return { };
+}

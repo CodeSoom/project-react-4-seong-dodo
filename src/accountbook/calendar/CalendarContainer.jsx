@@ -45,6 +45,12 @@ export default function CalendarContainer() {
   const handleOpenModal = (date, day) => {
     setDisplay(!isDisplay);
     dispatch(setDailyData({ date, day }));
+    dispatch(loadMonthlyTransaction({
+      accessToken,
+      year,
+      month,
+      date: 1,
+    }));
     dispatch(clearTransactionFields());
   };
 
@@ -63,7 +69,6 @@ export default function CalendarContainer() {
             ? (
               <DailyTransactionModal
                 dailyData={dailyData}
-                monthlyTransaction={monthlyTransaction}
                 onClick={handleOpenModal}
               />
             )

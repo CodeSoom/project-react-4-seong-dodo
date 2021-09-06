@@ -8,6 +8,7 @@ import {
   fetchDailyTransaction,
   fetchMonthlyTransaction,
   postTransaction,
+  putTransaction,
 } from '../services/api';
 
 const today = new Date();
@@ -32,8 +33,8 @@ const { actions, reducer } = createSlice({
     targetId: null,
     dailyTransaction: [],
     monthlyTransaction: [],
-    selectedType: '지출',
-    selectedCategory: { value: '미분류' },
+    selectedType: null,
+    selectedCategory: null,
     transaction: {
       type: '지출',
       category: { value: '미분류' },
@@ -367,6 +368,33 @@ export function sendTransaction() {
       accessToken,
       dailyData: { year, month, date },
       transaction: { type, category, transactionFields },
+    });
+
+    dispatch(loadDailyTransaction({
+      accessToken, year, month, date,
+    }));
+    dispatch(clearTransactionFields());
+  };
+}
+
+export function sendEditTransaction({ id }) {
+  return async (dispatch, getState) => {
+    const {
+      user: { accessToken },
+      accountbook: {
+        dailyData: { year, month, date },
+        transaction: {
+          type, category, transactionFields,
+        },
+      },
+    } = getState();
+
+    await putTransaction({
+      accessToken,
+      dailyData: { year, month, date },
+      transaction: {
+        id, type, category, transactionFields,
+      },
     });
 
     dispatch(loadDailyTransaction({

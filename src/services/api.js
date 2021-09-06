@@ -87,3 +87,31 @@ export async function postTransaction({
 
   return response;
 }
+
+export async function putTransaction({
+  accessToken,
+  dailyData: { year, month, date },
+  transaction: {
+    id, type, category, transactionFields,
+  },
+}) {
+  const url = 'api/member/transaction';
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      localDate: `${year}-${exchangeLocalDate(month)}-${exchangeLocalDate(date)}`,
+      id,
+      type: type === '수입' ? 'INCOME' : 'OUTCOME',
+      categoryName: category.value,
+      price: parseInt(replaceString(transactionFields.breakdown), 10),
+      source: transactionFields.source,
+      memo: transactionFields.memo,
+    }),
+  });
+
+  return response;
+}

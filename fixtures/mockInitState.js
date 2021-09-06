@@ -11,8 +11,8 @@ const mockInitState = {
   targetId: null,
   dailyTransaction: [],
   monthlyTransaction: [],
-  selectedType: '지출',
-  selectedCategory: { value: '미분류' },
+  selectedType: null,
+  selectedCategory: null,
   transaction: {
     type: '지출',
     category: { value: '미분류' },
