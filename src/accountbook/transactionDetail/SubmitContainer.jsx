@@ -5,7 +5,6 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 import {
-  clearTargetId,
   sendTransaction,
   sendEditTransaction,
 } from '../../reducers/accountbook';
@@ -52,7 +51,6 @@ export default function SubmitContainer() {
     }
     if (targetId !== null && targetId === id) {
       dispatch(sendEditTransaction({ id }));
-      dispatch(clearTargetId());
       // eslint-disable-next-line no-alert
       alert('수정 완료');
       return;

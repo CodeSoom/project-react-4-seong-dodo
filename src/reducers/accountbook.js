@@ -295,6 +295,7 @@ export function sendEditTransaction({ id }) {
       accessToken, year, month, date,
     }));
     dispatch(clearTransactionFields());
+    dispatch(clearTargetId());
   };
 }
 
