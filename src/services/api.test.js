@@ -150,4 +150,26 @@ describe('api', () => {
       expect(result).toBeUndefined();
     });
   });
+
+  describe('accountbook: deleteTransaction', () => {
+    const mockFetch = (data) => {
+      global.fetch = jest.fn().mockResolvedValue(
+        data,
+      );
+    };
+
+    beforeEach(() => {
+      mockFetch();
+    });
+
+    it('returns nothing', async () => {
+      const result = await putTransaction({
+        accessToken: ACCESS_TOKEN,
+        dailyData: DAILY_DATE,
+        transaction: TRANSACTION,
+      });
+
+      expect(result).toBeUndefined();
+    });
+  });
 });

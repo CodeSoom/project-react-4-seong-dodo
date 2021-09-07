@@ -18,8 +18,10 @@ import {
   changeTransactionCategory,
   changeBreakdownFields,
   changeTransactionFields,
-  deleteTransaction,
+  clearTransactionFields,
+  clearTargetId,
   loadDailyTransaction,
+  sendDeleteTransaction,
 } from '../../reducers/accountbook';
 
 import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
@@ -152,6 +154,8 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     }
     if (accessToken !== '' || accessToken !== undefined) {
       setDisplay(!isDisplay);
+      dispatch(clearTransactionFields());
+      dispatch(clearTargetId());
     }
   };
 
@@ -188,7 +192,7 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
   };
 
   const handleClickDelete = (id) => {
-    dispatch(deleteTransaction({ id }));
+    dispatch(sendDeleteTransaction({ id }));
   };
 
   return (
