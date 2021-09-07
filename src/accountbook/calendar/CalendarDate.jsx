@@ -42,6 +42,12 @@ export default function CalendarDate({
 }) {
   const [today] = useState(new Date());
 
+  function handleClick() {
+    if (currentMonth === month) {
+      onClick(date, day);
+    }
+  }
+
   const dateColorStyle = () => {
     if (day === 6 && currentMonth === month) {
       if (year === today.getFullYear()
@@ -82,7 +88,7 @@ export default function CalendarDate({
       style={dateColorStyle()}
     >
       <div
-        onClick={() => onClick(date, day)}
+        onClick={handleClick}
         role="presentation"
       >
         {date}
