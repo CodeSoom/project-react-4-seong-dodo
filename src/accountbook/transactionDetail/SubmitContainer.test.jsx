@@ -191,11 +191,7 @@ describe('SubmitContainer', () => {
         const { getByText } = render(<SubmitContainer />);
         fireEvent.click(getByText('저장'));
 
-        expect(dispatch).toBeCalledTimes(2);
-
-        expect(dispatch).toBeCalledWith({
-          type: 'accountbook/clearTargetId',
-        });
+        expect(dispatch).toBeCalledTimes(1);
 
         expect(global.alert).toHaveBeenCalledTimes(1);
         expect(global.alert).toHaveBeenCalledWith('수정 완료');
