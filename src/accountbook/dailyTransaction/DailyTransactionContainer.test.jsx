@@ -6,6 +6,8 @@ import DailyTransactionContainer from './DailyTransactionContainer';
 
 import mockInitState from '../../../fixtures/mockInitState';
 
+import DAILY_TRANSACTION from '../../../fixtures/daily-transaction';
+
 jest.mock('react-redux');
 
 describe('DailyTransactionContainer', () => {
@@ -25,6 +27,7 @@ describe('DailyTransactionContainer', () => {
       },
       accountbook: {
         ...mockInitState,
+        dailyTransaction: given.dailyTransaction,
       },
     }));
   });
@@ -48,6 +51,7 @@ describe('DailyTransactionContainer', () => {
 
   context('with loggeg-out', () => {
     given('accessToken', () => undefined);
+    given('dailyTransaction', () => []);
 
     it('renders daily transaction modal', () => {
       const { container } = renderDailyTransactionContainer();
@@ -81,6 +85,15 @@ describe('DailyTransactionContainer', () => {
 
   context('with logged-in', () => {
     given('accessToken', () => 'ACCESS_TOKEN');
+    given('dailyTransaction', () => DAILY_TRANSACTION);
+
+    it('사용자의 데이터를 불러온다', () => {
+      const { container } = renderDailyTransactionContainer();
+
+      expect(container).toHaveTextContent('지출');
+      expect(container).toHaveTextContent('과자');
+      expect(container).toHaveTextContent('- 1,000 원');
+    });
 
     describe('내역추가 button', () => {
       it('listens click event', () => {

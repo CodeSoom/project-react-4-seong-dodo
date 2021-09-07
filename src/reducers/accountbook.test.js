@@ -1,7 +1,4 @@
 import mockInitState from '../../fixtures/mockInitState';
-import mockDailyData from '../../fixtures/mockDailyData';
-import mockExpenseTransaction from '../../fixtures/mockExpenseTransaction';
-import mockIncomeTransaction from '../../fixtures/mockIncomeTransaction';
 
 import DAILY_TRANSACTION from '../../fixtures/daily-transaction';
 import MONTHLY_TRANSACTION from '../../fixtures/monthly-transaction';
@@ -21,8 +18,6 @@ import reducer, {
   setTransaction,
   setDailyTransaction,
   setMonthlyTransaction,
-  addMonthlyTransaction,
-  deleteTransaction,
   setPreviousMonth,
   setNextMonth,
 } from './accountbook';
@@ -221,109 +216,6 @@ describe('accountbook reducer', () => {
     const state = reducer(initialState, setMonthlyTransaction({ monthlyTransaction }));
 
     expect(state.monthlyTransaction).toEqual(MONTHLY_TRANSACTION);
-  });
-
-  describe('listens addMonthlyTransaction action', () => {
-    context('without dailyTransaction', () => {
-      it('add monthlyTransaction', () => {
-        const initialState = {
-          ...mockInitState,
-        };
-
-        const state = reducer(initialState,
-          addMonthlyTransaction({ transaction: mockIncomeTransaction }));
-
-        expect(state.monthlyTransaction).toHaveLength(1);
-      });
-    });
-
-    context('with dailyTransaction', () => {
-      it('add transctionHistories when equal dailyData', () => {
-        const initialState = {
-          ...mockInitState,
-          monthlyTransaction: [{
-            ...mockDailyData,
-            transactionHistories: [mockExpenseTransaction],
-          }],
-        };
-
-        const state = reducer(initialState,
-          addMonthlyTransaction({ transaction: mockIncomeTransaction }));
-
-        expect(state.monthlyTransaction[0].transactionHistories).toHaveLength(2);
-      });
-
-      it('add dailyTransaction when not equal dailyData', () => {
-        const initialState = {
-          ...mockInitState,
-          monthlyTransaction: [{
-            year: 2021,
-            month: 8,
-            date: 13,
-            day: 4,
-            transactionHistories: [mockExpenseTransaction],
-          }],
-        };
-
-        const state = reducer(initialState,
-          addMonthlyTransaction({ transaction: mockIncomeTransaction }));
-
-        expect(state.monthlyTransaction).toHaveLength(2);
-      });
-    });
-  });
-
-  describe('listens deleteTransaction action', () => {
-    context('without Transaction id', () => {
-      it('no changes', () => {
-        const initialState = {
-          ...mockInitState,
-          monthlyTransaction: [
-            {
-              year: 2021,
-              month: 7,
-              date: 1,
-              day: 4,
-              transactionHistories: [],
-            },
-          ],
-        };
-
-        const state = reducer(initialState, deleteTransaction({ id: undefined }));
-
-        expect(state.monthlyTransaction).toHaveLength(1);
-      });
-    });
-
-    context('with Transaction id', () => {
-      it('deletes target Transaction', () => {
-        const initialState = {
-          ...mockInitState,
-          monthlyTransaction: [
-            {
-              year: 2021,
-              month: 7,
-              date: 1,
-              day: 4,
-              transactionHistories: [
-                {
-                  id: 1,
-                  ...mockExpenseTransaction,
-                },
-                {
-                  id: 2,
-                  ...mockExpenseTransaction,
-                },
-              ],
-            },
-          ],
-        };
-
-        const state = reducer(initialState, deleteTransaction({ id: 1 }));
-
-        expect(state.monthlyTransaction[0].transactionHistories).toHaveLength(1);
-      });
-    });
   });
 
   describe('setPreviousMonth action', () => {

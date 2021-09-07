@@ -115,3 +115,16 @@ export async function putTransaction({
 
   return response;
 }
+
+export async function deleteTransaction({ accessToken, id }) {
+  const url = `/api/member/transaction?id=${id}`;
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return response;
+}

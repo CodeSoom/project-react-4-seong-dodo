@@ -45,7 +45,7 @@ describe('DateData', () => {
       const histories = {
         dailyData: mockDailyData,
         totalExpense: '1000.0',
-        totalIncome: '',
+        totalIncome: '0.0',
         transactionHistories: [mockExpenseTransaction],
       };
 
@@ -57,7 +57,7 @@ describe('DateData', () => {
     it('when with only "수입" type data', () => {
       const histories = {
         dailyData: mockDailyData,
-        totalExpense: '',
+        totalExpense: '0.0',
         totalIncome: '1000.0',
         transactionHistories: [mockIncomeTransaction],
       };
