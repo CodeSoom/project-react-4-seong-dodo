@@ -14,15 +14,17 @@ React와 Redux를 이용한 달력 기반 가계부 웹애플리케이션 입니
 프로젝트 요구사항을 구현하는 과정에서 발생한 다양한 이슈들은 [wiki](https://github.com/CodeSoom/project-react-4-seong-dodo/wiki )페이지를 통해서 관리하고 있습니다.
 
 </br>
-</br>
-</br>
+
 
 ## 1. 프로젝트 목표
 
 - 컴포넌트 단위테스트를 진행하여 검증 가능한 프론트엔드 코드를 작성한다. 
--  Phase 1 : 백엔드 API 없이 프론트엔드환경에서만 돌아갈수있는 웹애플리케이션을 React와 Redux를이용해서개발 (여기까지 진행한 github 브랜치 주소 넣기)
+-  [Phase1](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week10) : 백엔드 API 없이 프론트엔드환경에서만 돌아갈수있는 웹애플리케이션을 React와 Redux를이용해서개발 
 
--  Phase 2 : Phase 1에서 완료한 프론트엔드환경에서 백엔드 API를 붙여서영구적인데이터저장이가능하도록개발 (여기까지 진행한 github 브랜치 주소 넣기)
+-  [Phase2](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week11) : Phase 1에서 완료한 프론트엔드환경에서 백엔드 API를 붙여서영구적인데이터저장이가능하도록개발 (여기까지 진행한 github 브랜치 주소 넣기) 
+
+</br>
+
 
 ## 2. 실행 스크립트
 
@@ -62,6 +64,9 @@ npm run lint
 ``` javascript
 npm run build
 ```
+
+</br>
+
 
 ## 3. 프로젝트 디렉토리 구조
 
@@ -124,6 +129,7 @@ npm run build
 
 ```
 
+</br>
 
 
 
@@ -150,6 +156,7 @@ npm run build
 
 ![](https://images.velog.io/images/seong-dodo/post/4e7b69b5-eab7-43c1-a45c-a24464527105/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-11.39.03.gif)
 
+</br>
 
 
 ## 5. 프로젝트 관리 
