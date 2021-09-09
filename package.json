@@ -8,7 +8,8 @@
     "test:unit": "jest",
     "coverage": "npm run test:unit -- --coverage",
     "test": "npm run coverage",
-    "lint": "eslint --ext js,jsx ."
+    "lint": "eslint --ext js,jsx .",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
