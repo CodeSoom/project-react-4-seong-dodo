@@ -12,10 +12,9 @@ import mediaquery from './style/mediaquery';
 
 import Navbar from './navbar/Navbar';
 
-import HomePage from './HomePage';
-import JoinPage from './join/JoinPage';
-import LoginPage from './login/LoginPage';
 import AccountBookPage from './accountbook/AccountBookPage';
+import LoginPage from './login/LoginPage';
+import JoinPage from './join/JoinPage';
 import BudgetPage from './accountbook/budget/BudgetPage';
 import CalendarPage from './accountbook/calendar/CalendarPage';
 import NotFoundPage from './NotFoundPage';
@@ -51,7 +50,7 @@ export default function App() {
         <Navbar />
       </Container>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={CalendarPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/join" component={JoinPage} />
         <Route path="/budget" component={BudgetPage} />
