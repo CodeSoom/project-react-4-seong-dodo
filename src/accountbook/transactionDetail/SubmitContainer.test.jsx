@@ -77,7 +77,7 @@ describe('SubmitContainer', () => {
             type: '지출',
             category: '',
             transactionFields: {
-              breakdown: '1,000',
+              breakdown: '1000.0',
               source: '',
               memo: '',
             },
@@ -103,7 +103,7 @@ describe('SubmitContainer', () => {
             type: '지출',
             category: '식비',
             transactionFields: {
-              breakdown: '1,000',
+              breakdown: '1000.0',
               source: '',
               memo: '',
             },
@@ -142,7 +142,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: '1,000',
+                breakdown: '1000.0',
                 source: '마트',
                 memo: '',
               },
@@ -153,7 +153,7 @@ describe('SubmitContainer', () => {
         const { getByText } = render(<SubmitContainer />);
         fireEvent.click(getByText('저장'));
 
-        expect(dispatch).toBeCalledTimes(2);
+        expect(dispatch).toBeCalledTimes(1);
       });
     });
 
@@ -180,7 +180,7 @@ describe('SubmitContainer', () => {
               type: '지출',
               category: { value: '식비' },
               transactionFields: {
-                breakdown: '1,000',
+                breakdown: '1000.0',
                 source: '마트',
                 memo: '장보기',
               },
@@ -191,12 +191,10 @@ describe('SubmitContainer', () => {
         const { getByText } = render(<SubmitContainer />);
         fireEvent.click(getByText('저장'));
 
-        expect(dispatch).toBeCalledWith({
-          type: 'accountbook/deleteTransaction',
-          payload: { id: 1 },
-        });
+        expect(dispatch).toBeCalledTimes(1);
 
-        expect(dispatch).toBeCalledTimes(4);
+        expect(global.alert).toHaveBeenCalledTimes(1);
+        expect(global.alert).toHaveBeenCalledWith('수정 완료');
       });
     });
   });

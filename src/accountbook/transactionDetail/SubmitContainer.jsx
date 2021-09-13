@@ -5,11 +5,8 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 import {
-  loadMonthlyTransaction,
-  addMonthlyTransaction,
-  deleteTransaction,
-  clearTargetId,
   sendTransaction,
+  sendEditTransaction,
 } from '../../reducers/accountbook';
 
 const SubmitBox = styled.div(mediaquery({
@@ -29,24 +26,12 @@ const SubmitBox = styled.div(mediaquery({
 export default function SubmitContainer() {
   const dispatch = useDispatch();
 
-  const {
-    accessToken, year, month, transaction, targetId,
-  } = useSelector((state) => ({
-    accessToken: state.user.accessToken,
-    year: state.accountbook.year,
-    month: state.accountbook.month,
+  const { transaction, targetId } = useSelector((state) => ({
     transaction: state.accountbook.transaction,
     targetId: state.accountbook.targetId,
   }));
 
   const { transactionFields } = transaction;
-
-  dispatch(loadMonthlyTransaction({
-    accessToken,
-    year,
-    month,
-    date: 1,
-  }));
 
   const handleSubmit = (id) => {
     if (transactionFields.breakdown === '') {
@@ -65,13 +50,12 @@ export default function SubmitContainer() {
       return;
     }
     if (targetId !== null && targetId === id) {
-      dispatch(deleteTransaction({ id }));
-      // dispatch(addMonthlyTransaction({ transaction }));
-      dispatch(clearTargetId());
-      dispatch(sendTransaction());
+      dispatch(sendEditTransaction({ id }));
+      // eslint-disable-next-line no-alert
+      alert('수정 완료');
+      return;
     }
     if (targetId === null) {
-      // dispatch(addMonthlyTransaction({ transaction }));
       dispatch(sendTransaction());
     }
   };

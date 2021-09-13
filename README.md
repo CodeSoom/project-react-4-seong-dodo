@@ -1,182 +1,174 @@
-# project-react-4-seong-dodo
-<br/>
+# 🐜 Mine AccountBook Web Application 
 
-##### 4주 프로젝트 (2021.6/28~2021.7/25)
-# 🐜 Mine 
-#### React & Redux 자산 관리 애플리케이션
+React와 Redux를 이용한 달력 기반 가계부 웹애플리케이션 입니다.
+해당 문서는 프로젝트를 진행할때 다른 동료가 쉽게 이해할 수 있도록 아래와 같은 내용이 기술되어 있습니다.
 
-<br/>
-
-# 🚀 Getting Started
-> 다수의 컴포넌트를 페이지로 구성하고 복잡해진 상태를 관리합니다.
-
-<br/>
-
-### 📌 프로젝트 목적 
-#### ✔️ 데스크탑 타겟의 웹 앱을 구현하며 가계부 작성을 기반으로 나의 것을 지키는 습관을 만들어주고 더 나아가 자산 관리로 이어지도록 다양한 정보를 제공하는 서비스를 도출해봅니다.
-#### ✔️ 상태 관리를 위해 Flux Architecture 기반의 Redux를 활용합니다.
-#### ✔️ Router를 활용해 여러 페이지 전환을 고려합니다.
-<br/> 
-   
-# 📝 Requirements
-## Step1
-### 요구 사항
-- [ ] README.md에 요구 사항 도출
-- [ ] 재사용 가능한 Component 작성
-
-#### 구현 페이지
-- [ ] HomePage
-- [ ] BudgetPage
-- [ ] CalendarPage
-
-
-<br/>
-
-## Step2
-### 요구 사항
-- [ ] Google Firebase(https://firebase.google.com/?hl=ko)를 이용하여 백엔드를 직접 구현하지 않고 백엔드 기능을 사용합니다.
-
-#### 구현 페이지
-- [ ] 내역 추가 상세
-- [ ] 내역 수정 상세
-
-<br/>
-
-## Step3
-### 요구 사항
-- [ ] ESLint를 돌린 결과 아무런 문제가 없어야 합니다.
-- [ ] 모든 인수 테스트를 통과시켜야 합니다.
-- [ ] 한 파일에는 하나의 컴포넌트만 있어야 합니다.
-- [ ] 테스트 커버리지 100%를 달성해야 합니다.
-
-### 설치하기
-``` javascript
-npm install
 ```
-### 실행하기
+1. 프로젝트 목표
+2. 실행 스크립트
+3. 프로젝트 디렉토리 구조 
+4. 프로젝트 주요 기능 소개
+5. 프로젝트 관리
+```
+
+프로젝트 요구사항을 구현하는 과정에서 발생한 다양한 이슈들은 [wiki](https://github.com/CodeSoom/project-react-4-seong-dodo/wiki )페이지를 통해서 관리하고 있습니다.
+
+</br>
+
+
+## 1. 프로젝트 목표
+
+- 컴포넌트 단위테스트를 진행하여 검증 가능한 프론트엔드 코드를 작성한다. 
+-  [Phase1](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week10) : 백엔드 API 없이 프론트엔드환경에서만 돌아갈수있는 웹애플리케이션을 React와 Redux를이용해서개발 
+
+-  [Phase2](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week11) : Phase 1에서 완료한 프론트엔드환경에서 백엔드 API를 붙여서영구적인데이터저장이가능하도록개발 (여기까지 진행한 github 브랜치 주소 넣기) 
+
+</br>
+
+
+## 2. 실행 스크립트
+
+
+### 2.1 개발모드 실행
+
+webpack-dev-server를 통해 개발환경에서 즉시 실행가능한 리액트 웹애플리케이션을 구동하는 명령어 입니다.
+
 ``` javascript
  npm start
 ```
-### 린트 실행하기
+
+### 2.2 Unit 테스트
+
+컴포넌트 전체의 Unit테스트를 돌릴때 사용합니다. 
+
+``` javascript
+npm run test:unit
+```
+
+모듈별로 테스트 하고 싶다면 아래와 같이 명령어를 실행합니다.
+예를들어 NotFoundPage컴포넌트 unit 테스트를 수행하고 싶으면 `npm run test unit: src/NotFoundPage.test.jsx` 와 같이 명령어를 입력합니다.
+```
+npm run test unit: src/파일명
+```
+
+### 2.3 Lint 검사
+
+eslint로 전체 프로젝트에 대해서 lint를 수행합니다.
+
 ``` javascript
 npm run lint
 ```
 
-### 테스트 실행하기
-#### 전체 테스트 실행하기
-``` javascript
-npm test
-```
-#### 유닛 테스트 실행하기
-``` javascript
-npm run test:unit
+### 2.4 번들링 빌드
 
- # 파일이 저장됐을 때 자동으로 테스트 실행하기
-npm run test:unit -- --watch-all
- 
- # 커버리지 출력하기
-npm run coverage
+``` javascript
+npm run build
 ```
 
-<br/>
-
-# 🏊 1주차
-##### 6월 28일 (월) - 7월 4일 (일)
-> 요구 사항
-
-- 사용자는 홈 페이지에서 예산 페이지와 가계부 달력 페이지로 이동할 수 있다.
-  - [x] 홈 페이지 컴포넌트 개발
-  - [x] 가계부 컴포넌트, 예산 설정 컴포넌트 라우팅 추가
-- 사용자는 한 달 예산을 입력할 수 있다.
-  - [x] 예산 입력 input 기능 개발
-  - [x] 예산 입력 컴포넌트 개발
-  - [x] 예산 입력 데이터 스키마 정의
-- 사용자는 하단 내비게이션 탭에서 홈, 달력, 예산 페이지로 이동할 수 있다.
-  - [x] 홈, 달력, 예산 페이지 이동 링크 추가
-- 사용자는 상단 탭 화면을 확인 할 수 있다.
-
-<br/>
-
-# 🏊 2주차
-##### 7월 5일 (월) - 7월 11일 (일)
-> 요구 사항
-
-- 사용자는 상단 탭에서 이전 달, 다음 달로 이동을 할 수 있다.
-  - [x] 월 이동 기능 개발을 추가
-- 사용자는 달력 페이지에서 달력 화면을 확인 할 수 있다.
-  - [x] 달력 화면에 그려주는 로직 개발
-  - [x] 달력 데이터 스키마를 정의
-- 사용자는 달력 페이지에서 날짜를 클릭하면 내역 추가 팝업창을 확인할 수 있다.
-  - [x] 날짜 클릭 기능 개발
-  - [x] 내역 추가 컴포넌트 추가
- 
-<br/>
-
-# 🏊 3주차
-##### 7월 12일 (월) - 7월 18일 (일)
-> 요구 사항
-
-- 사용자는 내역 추가 버튼을 누르면 내역 추가 상세페이지로 이동할 수 있다.
-  - [x] 내역 추가 클릭 기능 개발
-  - [x] 내역 추가 상세페이지 컴포넌트 추가
-
-- 사용자는 내역추가 상세페이지 팝업 창에 거래 금액, 수입 또는 지출, 카테고리, 거래처, 메모 내용을 작성할 수 있다.
-  - [x] 거래 금액 입력 기능 개발
-  - [x] 지출, 수입을 선택 기능 개발
-  - [x] 분류에 따른 카테고리 선택 기능 개발
-  - [x] 거래처와 메모내용을 입력 기능 개발
-
-<br/>
-
-# 🏊 4주차
-##### 7월 19일 (월) - 7월 25일 (일)
-> 요구 사항
-
-- 사용자는 거래 내역으로 입력된 데이터를 거래내역 모달창에서 확인 할 수 있다.
-  - [x] 거래 내역 입력하고 저장 버튼 누르면 데이터 리덕스에 저장
-  - [x] 저장한 거래내역 모달창에 보이도록 기능 개발
-
-<br/>
-
-# 🏄 더 나아가기
-##### 7월 25일 (월) - 
-> 더 나은 서비스 제공을 위한 기능 추가 필요 시 업데이트 될 예정입니다.
-
-<br/>
+</br>
 
 
-# 🙏 프로젝트 권장사항
-#### ✔️ 매주 동작하는 소프트웨어를 만들어야 합니다.
-#### ✔️ 4주 안에 완성 가능한 규모로 합니다
-#### ✔️ 프론트엔드 위주의 프로젝트로 진행합니다.
-#### ✔️ 디자인이 예뻐야 합니다.
-<br/>
+## 3. 프로젝트 디렉토리 구조
 
-# 🙋 진행 방법 및 마감 기한
-### ▶️ 문서 작성
-#### 한 주가 시작될 때 마다 개인레포에 이슈를 생성하고 문서를 작성합니다.
-#### 매주 월요일 자정까지 문서 작성을 완료
-<br/>
 
-### ▶️ 기능 구현
-#### 매주 필수 요구사항에 맞게 기능 구현을 해야 합니다.
-#### 매주 일요일 자정까지 구현
-<br/>
+개발이 진행되면서 리액트 컴포넌트가 많아지면서 이를 알아보기 힘들어지는 문제가 있었습니다. 컴포넌트를 기능별로 모아서 구조화 시켰습니다. 예를들어 가계부 관련 컴포넌트들은 accountbook이라는 하위 디렉토리에 위치합니다. 또한, 컴포넌트의 유닛테스틑 코드들도 같은 경로에 위치합니다. 디렉토리 구조에 대해서 설명하기 위해 남긴내용이므로 전체 디렉토리를 출력하지는 않고 일부 디렉토리만 아래에서 확인할 수 있습니다.
 
-### ▶️ 4주 프로젝트 완료
-#### 3분 ~ 4분 사이의 짧은 피칭 영상을 만들어서 제출합니다.
-<br/>
+```
 
-# 🧑‍🎨 시안
+├── package.json
+├── src
+│   ├── App.jsx
+│   ├── App.test.jsx
+│   ├── NotFoundPage.jsx
+│   ├── NotFoundPage.test.jsx
+│   ├── accountbook
+│   │   ├── AccountBookPage.jsx
+│   │   ├── AccountBookPage.test.jsx
+│   │   ├── budget
+│   │   │   ├── BudgetContainer.jsx
+│   │   │   ├── BudgetContainer.test.jsx
+│   │   │   ├── BudgetForm.jsx
+│   │   │   ├── BudgetForm.test.jsx
+│   │   │   ├── BudgetPage.jsx
+│   │   │   └── BudgetPage.test.jsx
+│   │   ├── calendar
+│   │   │   ├── CalendarContainer.jsx
+│   │   │   ├── CalendarContainer.test.jsx
+│   │   │   ├── CalendarDate.jsx
+│   │   │   ├── CalendarDate.test.jsx
+│   │   │   ├── CalendarDays.jsx
+│   │   │   ├── CalendarDays.test.jsx
+│   │   │   ├── CalendarMonth.jsx
+│   │   │   ├── CalendarMonth.test.jsx
+│   │   │   ├── CalendarPage.jsx
+│   │   │   ├── CalendarPage.test.jsx
+│   │   │   ├── CalendarWeeks.jsx
+│   │   │   ├── CalendarWeeks.test.jsx
+│   │   │   ├── DateData.jsx
+│   │   │   └── DateData.test.jsx
+│   │   ├── dailyTransaction
+│   │   │   ├── Button.jsx
+│   │   │   ├── Button.test.jsx
+│   │   │   ├── DailyTransaction.jsx
+│   │   │   ├── DailyTransaction.test.jsx
+│   │   │   ├── DailyTransactionContainer.jsx
+│   │   │   ├── DailyTransactionContainer.test.jsx
+│   │   │   ├── DailyTransactionModal.jsx
+│   │   │   ├── DailyTransactionModal.test.jsx
+│   │   │   ├── DefalutTransaction.jsx
+│   │   │   ├── DefalutTransaction.test.jsx
+│   │   │   ├── Transaction.jsx
+│   │   │   ├── Transaction.test.jsx
+│   │   │   ├── TransactionData.jsx
+│   │   │   └── TransactionData.test.jsx
 
-> 홈 Page
+.
+.
+.
+생략
 
-![image](https://user-images.githubusercontent.com/68280407/123620485-3fd1f700-d845-11eb-96bd-786ebbdc773d.png)
-> 예산 Page
+```
 
-![image](https://user-images.githubusercontent.com/68280407/123620577-5b3d0200-d845-11eb-9d41-b5a6d0d814cd.png)
-> 캘린더 Page
+</br>
 
-![image](https://user-images.githubusercontent.com/68280407/123620677-73ad1c80-d845-11eb-8526-e6394360fcb0.png)
 
-> 추후 업데이트 될 예정입니다.
+
+## 4. 프로젝트 주요 기능 소개
+
+
+### 4.1 캘린더 기능
+
+![](https://images.velog.io/images/seong-dodo/post/2621cf75-5fd2-4f4e-9a17-be68bb44e892/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-10.50.14.gif)
+
+### 4.2 가계부 작성 기능
+
+![](https://images.velog.io/images/seong-dodo/post/81f10767-c114-46da-9cd7-ed61deed86cb/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-11.15.58.gif)
+
+### 4.3 가계부 수정 기능
+
+![](https://images.velog.io/images/seong-dodo/post/1caf6226-15d5-4a11-aef8-d4562e1172b8/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-11.27.27.gif)
+
+### 4.4 가계부 삭제 기능
+
+![](https://images.velog.io/images/seong-dodo/post/04d03939-3635-4481-be97-5f9cedb47f3f/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-11.36.51.gif)
+
+### 4.5 캘린더 가계부 현황 조회
+
+![](https://images.velog.io/images/seong-dodo/post/4e7b69b5-eab7-43c1-a45c-a24464527105/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-11.39.03.gif)
+
+</br>
+
+
+## 5. 프로젝트 관리 
+
+
+프로젝트 진행을 github repository의 project탭에 있는  [ 칸반 대시보드](https://github.com/CodeSoom/project-react-4-seong-dodo/projects/1
+)를 통해 프로젝트 진행 현황을 관리하고 있습니다. 모든 작업은 github issue로 생성해서 [issue](https://github.com/CodeSoom/project-react-4-seong-dodo/issues?q=is%3Aissue+is%3Aclosed)에서 발급되는 id를 브랜치로 생성해서 작업하고 있습니다.
+
+모든 작업은 feature에서 작업하고 PR을 통해서 base브랜치에 merge하는 방식으로 진행했습니다. 혼자서 진행한 프로젝트지만 최대한 협업 process를 따르고 싶어서 위와 같은 방법으로 진행했습니다.
+
+
+![](https://images.velog.io/images/seong-dodo/post/6e36da96-abb5-45f1-9d35-4f275074c3ed/image.png)
+
+
+

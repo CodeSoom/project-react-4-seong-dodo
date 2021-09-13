@@ -9,6 +9,8 @@ import {
   setMonthlyTransaction,
   sendTransaction,
   clearTransactionFields,
+  sendEditTransaction,
+  // sendDeleteTransaction,
 } from '../accountbook';
 
 const middlewares = [thunk];
@@ -89,5 +91,43 @@ describe('account actions', () => {
 
       expect(actions[0]).toEqual(clearTransactionFields());
     });
+  });
+
+  describe('sendEditTransaction', () => {
+    beforeEach(() => {
+      store = mockStore({
+        user: {
+          accessToken: '',
+        },
+        accountbook: {
+          dailyData: {
+            year: 2021,
+            month: 7,
+            date: 1,
+          },
+          transaction: {
+            type: '',
+            category: { value: '' },
+            transactionFields: {
+              breakdown: '',
+              source: '',
+              memo: '',
+            },
+          },
+        },
+      });
+    });
+
+    it('dispatchs clearTransactionFields', async () => {
+      await store.dispatch(sendEditTransaction({ id: 1 }));
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(clearTransactionFields());
+    });
+  });
+
+  describe('sendDeleteTransaction', () => {
+    // Todo: ...
   });
 });

@@ -27,14 +27,14 @@ const TotalExpenseBox = styled.div(mediaquery({
   float: 'left',
   width: '35%',
   textAlign: 'right',
-  color: `${colors.blue_text02}`,
+  color: `${colors.gray_text05}`,
 }));
 
 const TotalIncomeBox = styled.div(mediaquery({
   float: 'left',
   width: '35%',
   textAlign: 'right',
-  color: `${colors.red_text02}`,
+  color: `${colors.teal_text02}`,
 }));
 
 export default function TransactionData({ histories }) {

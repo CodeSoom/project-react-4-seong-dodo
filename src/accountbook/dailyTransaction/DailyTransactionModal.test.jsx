@@ -26,7 +26,6 @@ describe('DailyTransactionModal', () => {
   });
 
   const handleOpenModal = jest.fn();
-  const monthlyTransaction = [];
   const dailyData = {
     year: 2021,
     month: 7,
@@ -39,7 +38,6 @@ describe('DailyTransactionModal', () => {
       <MemoryRouter>
         <DailyTransactionModal
           dailyData={dailyData}
-          monthlyTransaction={monthlyTransaction}
           onClick={handleOpenModal}
         />
       </MemoryRouter>
