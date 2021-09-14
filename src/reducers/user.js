@@ -93,8 +93,14 @@ export function requestJoin() {
     if (data.status === 201) {
       // eslint-disable-next-line no-alert
       alert('성공');
+      return;
+    }
+    if (data.status === 400) {
+      // eslint-disable-next-line no-alert
+      alert('이미 등록된 이메일 입니다. 이메일을 다시 확인해 주세요.');
+      return;
     // eslint-disable-next-line no-alert
-    } else { alert('실패'); }
+    } alert('실패');
 
     dispatch();
   };
