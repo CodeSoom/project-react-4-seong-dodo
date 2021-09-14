@@ -47,6 +47,18 @@ const { reducer, actions } = createSlice({
         },
       };
     },
+    clearJoinField(state) {
+      return {
+        ...state,
+        joinFields: {
+          ...state.joinFields,
+          age: '',
+          email: '',
+          password: '',
+          repassword: '',
+        },
+      };
+    },
     clearLoginField(state) {
       return {
         ...state,
@@ -70,6 +82,7 @@ export const {
   setAccessToken,
   changeJoinField,
   changeLoginField,
+  clearJoinField,
   clearLoginField,
   logout,
 } = actions;
@@ -102,7 +115,7 @@ export function requestJoin() {
     // eslint-disable-next-line no-alert
     } alert('실패');
 
-    dispatch();
+    dispatch(clearJoinField());
   };
 }
 
