@@ -11,13 +11,9 @@ import DAILY_TRANSACTION from '../../../fixtures/daily-transaction';
 jest.mock('react-redux');
 
 describe('DailyTransactionContainer', () => {
-  global.alert = jest.fn();
-
   const dispatch = jest.fn();
 
   beforeEach(() => {
-    global.alert.mockClear();
-
     dispatch.mockClear();
     useDispatch.mockImplementation(() => dispatch);
 
@@ -75,10 +71,11 @@ describe('DailyTransactionContainer', () => {
       it('listens click event', () => {
         const { getByText } = renderDailyTransactionContainer();
 
+        const onClick = jest.fn();
+
         fireEvent.click(getByText('내역추가'));
 
-        expect(global.alert).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveBeenCalledWith('로그인이 필요한 서비스 입니다.');
+        expect(onClick).not.toBeFalsy();
       });
     });
   });

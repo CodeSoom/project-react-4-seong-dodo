@@ -147,16 +147,9 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
   }
   // 내역추가 버튼 이벤트
   const handleClickDetailModal = () => {
-    if (accessToken === '' || accessToken === undefined) {
-      // eslint-disable-next-line no-alert
-      alert('로그인이 필요한 서비스 입니다.');
-      return;
-    }
-    if (accessToken !== '' || accessToken !== undefined) {
-      setDisplay(!isDisplay);
-      dispatch(clearTransactionFields());
-      dispatch(clearTargetId());
-    }
+    setDisplay(!isDisplay);
+    dispatch(clearTransactionFields());
+    dispatch(clearTargetId());
   };
 
   const handleClickEdit = (id) => {
