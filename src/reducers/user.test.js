@@ -2,6 +2,7 @@ import reducer, {
   setAccessToken,
   changeJoinField,
   changeLoginField,
+  clearJoinField,
   clearLoginField,
   logout,
 } from './user';
@@ -100,6 +101,26 @@ describe('user reducer', () => {
         changeLoginField({ name: 'password', value: '123test' }));
 
       expect(state.loginFields.password).toBe('123test');
+    });
+  });
+
+  describe('clearJoinField', () => {
+    it('clears fields of join', () => {
+      const initialState = {
+        joinFields: {
+          age: '23',
+          email: 'test@test.com',
+          password: '12345test',
+          repassword: '12345test',
+        },
+      };
+
+      const state = reducer(initialState, clearJoinField());
+
+      expect(state.joinFields.age).toBe('');
+      expect(state.joinFields.email).toBe('');
+      expect(state.joinFields.password).toBe('');
+      expect(state.joinFields.repassword).toBe('');
     });
   });
 
