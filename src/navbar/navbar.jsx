@@ -14,6 +14,10 @@ import {
   logout,
 } from '../reducers/user';
 
+import {
+  clearMonthlyTransaction,
+} from '../reducers/accountbook';
+
 const List = styled.ul({
   width: '90%',
   margin: '0 auto',
@@ -46,6 +50,7 @@ export default function Navbar() {
   const handleClickLogout = () => {
     dispatch(logout());
     dispatch(clearLoginField());
+    dispatch(clearMonthlyTransaction());
   };
 
   return (
