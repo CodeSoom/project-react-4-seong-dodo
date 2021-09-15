@@ -1,4 +1,5 @@
 # 🐜 Mine AccountBook Web Application 
+[Mine 바로가기](https://mine-accountbook.herokuapp.com/)
 
 React와 Redux를 이용한 달력 기반 가계부 웹애플리케이션 입니다.
 해당 문서는 프로젝트를 진행할때 다른 동료가 쉽게 이해할 수 있도록 아래와 같은 내용이 기술되어 있습니다.

@@ -90,11 +90,16 @@ export const {
 export function requestLogin() {
   return async (dispatch, getState) => {
     const { user: { loginFields: { email, password } } } = getState();
-    const accessToken = await postLogin({ email, password });
+    const { accessToken, message, data } = await postLogin({ email, password });
 
     saveItem('accessToken', accessToken);
 
     dispatch(setAccessToken(accessToken));
+
+    if (data.status === 400) {
+      // eslint-disable-next-line no-alert
+      alert(message);
+    }
   };
 }
 
