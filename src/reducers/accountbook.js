@@ -170,6 +170,12 @@ const { actions, reducer } = createSlice({
         monthlyTransaction,
       };
     },
+    clearMonthlyTransaction(state) {
+      return {
+        ...state,
+        monthlyTransaction: [],
+      };
+    },
     setPreviousMonth(state, { payload: { month } }) {
       if (month === 1) {
         return {
@@ -214,6 +220,7 @@ export const {
   setTransaction,
   setDailyTransaction,
   setMonthlyTransaction,
+  clearMonthlyTransaction,
   setPreviousMonth,
   setNextMonth,
 } = actions;
