@@ -21,17 +21,51 @@ describe('api', () => {
       });
     };
 
-    beforeEach(() => {
-      mockFetch({ accessToken: ACCESS_TOKEN });
-    });
-
-    it('returns accessToken', async () => {
-      const accessToken = await postLogin({
-        email: 'test@test.com',
-        password: 'test',
+    context('로그인 성공', () => {
+      beforeEach(() => {
+        mockFetch({ accessToken: ACCESS_TOKEN });
       });
 
-      expect(accessToken).toEqual(ACCESS_TOKEN);
+      it('returns accessToken', async () => {
+        const { accessToken } = await postLogin({
+          email: 'test@test.com',
+          password: 'test',
+        });
+
+        expect(accessToken).toEqual(ACCESS_TOKEN);
+      });
+    });
+
+    context('로그인 실패 : 응답 코드 400', () => {
+      describe('사용자가 등록되지 않은 이메일로 로그인 시도했을 경우', () => {
+        beforeEach(() => {
+          mockFetch({ accessToken: undefined, data: { status: 400 }, message: '등록되지 않은 사용자 입니다.' });
+        });
+
+        it('renders alert message', async () => {
+          const { message } = await postLogin({
+            email: 'test22@test.com',
+            password: 'test',
+          });
+
+          expect(message).toEqual('등록되지 않은 사용자 입니다.');
+        });
+      });
+
+      describe('사용자 비밀번호 불일치 할 경우', () => {
+        beforeEach(() => {
+          mockFetch({ accessToken: undefined, data: { status: 400 }, message: '비밀번호가 일치하지 않습니다.' });
+        });
+
+        it('renders alert message', async () => {
+          const { message } = await postLogin({
+            email: 'test@test.com',
+            password: 'test11111',
+          });
+
+          expect(message).toEqual('비밀번호가 일치하지 않습니다.');
+        });
+      });
     });
   });
 
