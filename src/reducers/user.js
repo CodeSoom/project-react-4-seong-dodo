@@ -108,6 +108,8 @@ export function requestJoin() {
     const { user: { joinFields: { email, password, age } } } = getState();
     const data = await postJoin({ email, password, age });
 
+    dispatch(clearJoinField());
+
     if (data.status === 201) {
       // eslint-disable-next-line no-alert
       alert('성공');
@@ -119,8 +121,6 @@ export function requestJoin() {
       return;
     // eslint-disable-next-line no-alert
     } alert('실패');
-
-    dispatch(clearJoinField());
   };
 }
 
