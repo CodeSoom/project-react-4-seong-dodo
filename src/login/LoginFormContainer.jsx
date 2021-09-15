@@ -18,6 +18,10 @@ import {
   logout,
 } from '../reducers/user';
 
+import {
+  clearMonthlyTransaction,
+} from '../reducers/accountbook';
+
 const LinkBox = styled.div(mediaquery({
   width: '90%',
   margin: '1em auto',
@@ -55,6 +59,7 @@ export default function LoginFormContainer() {
   const handleClickLogout = () => {
     dispatch(logout());
     dispatch(clearLoginField());
+    dispatch(clearMonthlyTransaction());
   };
 
   return (

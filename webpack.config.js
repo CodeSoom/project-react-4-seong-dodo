@@ -21,7 +21,10 @@ module.exports = {
     },
     proxy: {
       '/api/*': {
-        target: 'http://192.168.219.162:8080',
+        target: 'https://mine-accountbook.herokuapp.com',
+        secure: false,
+        changeOrigin: true,
+
       },
     },
   },

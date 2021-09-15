@@ -18,6 +18,7 @@ import reducer, {
   setTransaction,
   setDailyTransaction,
   setMonthlyTransaction,
+  clearMonthlyTransaction,
   setPreviousMonth,
   setNextMonth,
 } from './accountbook';
@@ -216,6 +217,15 @@ describe('accountbook reducer', () => {
     const state = reducer(initialState, setMonthlyTransaction({ monthlyTransaction }));
 
     expect(state.monthlyTransaction).toEqual(MONTHLY_TRANSACTION);
+  });
+
+  it('listens clearMonthlyTransaction action', () => {
+    const initialState = {
+      monthlyTransaction: MONTHLY_TRANSACTION,
+    };
+
+    const state = reducer(initialState, clearMonthlyTransaction());
+    expect(state.monthlyTransaction).toEqual([]);
   });
 
   describe('setPreviousMonth action', () => {
