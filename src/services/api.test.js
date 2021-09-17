@@ -71,23 +71,45 @@ describe('api', () => {
 
   describe('user: postJoin', () => {
     const mockFetch = (data) => {
-      global.fetch = jest.fn().mockResolvedValue(
-        data,
-      );
+      global.fetch = jest.fn().mockResolvedValue({
+        async json() { return data; },
+      });
     };
 
-    beforeEach(() => {
-      mockFetch({ status: 201 });
+    context('회원 가입 성공', () => {
+      describe('회원 가입 양식 및 조건에 맞게 입력했을 경우', () => {
+        beforeEach(() => {
+          mockFetch({ data: { status: 201 }, message: '회원가입 성공' });
+        });
+
+        it('returns reponse message', async () => {
+          const { message } = await postJoin({
+            email: 'test@test.com',
+            password: 'test',
+            age: '23',
+          });
+
+          expect(message).toEqual('회원가입 성공');
+        });
+      });
     });
 
-    it('returns reponse', async () => {
-      const result = await postJoin({
-        email: 'test@test.com',
-        password: 'test',
-        age: '23',
-      });
+    context('회원 가입 실패', () => {
+      describe('이미 등록된 이메일로 가입 했을 경우', () => {
+        beforeEach(() => {
+          mockFetch({ data: { status: 400 }, message: '이미 등록된 이메일 입니다. 이메일을 다시 확인해 주세요.' });
+        });
 
-      expect(result.status).toEqual(201);
+        it('renders alert message', async () => {
+          const { message } = await postJoin({
+            email: 'test@test.com',
+            password: 'test',
+            age: '23',
+          });
+
+          expect(message).toEqual('이미 등록된 이메일 입니다. 이메일을 다시 확인해 주세요.');
+        });
+      });
     });
   });
 

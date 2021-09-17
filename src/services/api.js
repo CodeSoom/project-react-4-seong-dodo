@@ -25,8 +25,10 @@ export async function postJoin({ email, password, age }) {
     },
     body: JSON.stringify({ email, password, age }),
   });
+  const { message } = await response.json();
+  const data = response;
 
-  return response;
+  return { data, message };
 }
 
 // accountbook

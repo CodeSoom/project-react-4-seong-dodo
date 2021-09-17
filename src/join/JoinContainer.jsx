@@ -7,7 +7,7 @@ import {
 
 import JoinForm from './JoinForm';
 
-export default function JoinContainer() {
+export default function JoinContainer({ history }) {
   const dispatch = useDispatch();
 
   const joinFields = useSelector((state) => state.user.joinFields);
@@ -60,7 +60,7 @@ export default function JoinContainer() {
       alert('비밀번호가 일치 하지 않습니다.');
       return;
     }
-    dispatch(requestJoin());
+    dispatch(requestJoin({ history }));
   };
 
   return (
