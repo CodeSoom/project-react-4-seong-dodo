@@ -21,39 +21,95 @@ describe('api', () => {
       });
     };
 
-    beforeEach(() => {
-      mockFetch({ accessToken: ACCESS_TOKEN });
-    });
-
-    it('returns accessToken', async () => {
-      const accessToken = await postLogin({
-        email: 'test@test.com',
-        password: 'test',
+    context('로그인 성공', () => {
+      beforeEach(() => {
+        mockFetch({ accessToken: ACCESS_TOKEN });
       });
 
-      expect(accessToken).toEqual(ACCESS_TOKEN);
+      it('returns accessToken', async () => {
+        const { accessToken } = await postLogin({
+          email: 'test@test.com',
+          password: 'test',
+        });
+
+        expect(accessToken).toEqual(ACCESS_TOKEN);
+      });
+    });
+
+    context('로그인 실패 : 응답 코드 400', () => {
+      describe('사용자가 등록되지 않은 이메일로 로그인 시도했을 경우', () => {
+        beforeEach(() => {
+          mockFetch({ accessToken: undefined, data: { status: 400 }, message: '등록되지 않은 사용자 입니다.' });
+        });
+
+        it('renders alert message', async () => {
+          const { message } = await postLogin({
+            email: 'test22@test.com',
+            password: 'test',
+          });
+
+          expect(message).toEqual('등록되지 않은 사용자 입니다.');
+        });
+      });
+
+      describe('사용자 비밀번호 불일치 할 경우', () => {
+        beforeEach(() => {
+          mockFetch({ accessToken: undefined, data: { status: 400 }, message: '비밀번호가 일치하지 않습니다.' });
+        });
+
+        it('renders alert message', async () => {
+          const { message } = await postLogin({
+            email: 'test@test.com',
+            password: 'test11111',
+          });
+
+          expect(message).toEqual('비밀번호가 일치하지 않습니다.');
+        });
+      });
     });
   });
 
   describe('user: postJoin', () => {
     const mockFetch = (data) => {
-      global.fetch = jest.fn().mockResolvedValue(
-        data,
-      );
+      global.fetch = jest.fn().mockResolvedValue({
+        async json() { return data; },
+      });
     };
 
-    beforeEach(() => {
-      mockFetch({ status: 201 });
+    context('회원 가입 성공', () => {
+      describe('회원 가입 양식 및 조건에 맞게 입력했을 경우', () => {
+        beforeEach(() => {
+          mockFetch({ data: { status: 201 }, message: '회원가입 성공' });
+        });
+
+        it('returns reponse message', async () => {
+          const { message } = await postJoin({
+            email: 'test@test.com',
+            password: 'test',
+            age: '23',
+          });
+
+          expect(message).toEqual('회원가입 성공');
+        });
+      });
     });
 
-    it('returns reponse', async () => {
-      const result = await postJoin({
-        email: 'test@test.com',
-        password: 'test',
-        age: '23',
-      });
+    context('회원 가입 실패', () => {
+      describe('이미 등록된 이메일로 가입 했을 경우', () => {
+        beforeEach(() => {
+          mockFetch({ data: { status: 400 }, message: '이미 등록된 이메일 입니다. 이메일을 다시 확인해 주세요.' });
+        });
 
-      expect(result.status).toEqual(201);
+        it('renders alert message', async () => {
+          const { message } = await postJoin({
+            email: 'test@test.com',
+            password: 'test',
+            age: '23',
+          });
+
+          expect(message).toEqual('이미 등록된 이메일 입니다. 이메일을 다시 확인해 주세요.');
+        });
+      });
     });
   });
 

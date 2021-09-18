@@ -1,4 +1,5 @@
 # 🐜 Mine AccountBook Web Application 
+[Mine 바로가기](https://mine-accountbook.herokuapp.com/)
 
 React와 Redux를 이용한 달력 기반 가계부 웹애플리케이션 입니다.
 해당 문서는 프로젝트를 진행할때 다른 동료가 쉽게 이해할 수 있도록 아래와 같은 내용이 기술되어 있습니다.
@@ -21,7 +22,7 @@ React와 Redux를 이용한 달력 기반 가계부 웹애플리케이션 입니
 - 컴포넌트 단위테스트를 진행하여 검증 가능한 프론트엔드 코드를 작성한다. 
 -  [Phase1](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week10) : 백엔드 API 없이 프론트엔드환경에서만 돌아갈수있는 웹애플리케이션을 React와 Redux를이용해서개발 
 
--  [Phase2](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week11) : Phase 1에서 완료한 프론트엔드환경에서 백엔드 API를 붙여서영구적인데이터저장이가능하도록개발 (여기까지 진행한 github 브랜치 주소 넣기) 
+-  [Phase2](https://github.com/CodeSoom/project-react-4-seong-dodo/tree/week11) : Phase 1에서 완료한 프론트엔드환경에서 백엔드 API를 붙여서영구적인데이터저장이가능하도록개발 
 
 </br>
 

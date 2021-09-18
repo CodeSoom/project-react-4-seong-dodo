@@ -47,6 +47,18 @@ const { reducer, actions } = createSlice({
         },
       };
     },
+    clearJoinField(state) {
+      return {
+        ...state,
+        joinFields: {
+          ...state.joinFields,
+          age: '',
+          email: '',
+          password: '',
+          repassword: '',
+        },
+      };
+    },
     clearLoginField(state) {
       return {
         ...state,
@@ -70,6 +82,7 @@ export const {
   setAccessToken,
   changeJoinField,
   changeLoginField,
+  clearJoinField,
   clearLoginField,
   logout,
 } = actions;
@@ -77,26 +90,33 @@ export const {
 export function requestLogin() {
   return async (dispatch, getState) => {
     const { user: { loginFields: { email, password } } } = getState();
-    const accessToken = await postLogin({ email, password });
+    const { accessToken, message, data } = await postLogin({ email, password });
 
     saveItem('accessToken', accessToken);
 
     dispatch(setAccessToken(accessToken));
+
+    if (data.status === 400) {
+      // eslint-disable-next-line no-alert
+      alert(message);
+    }
   };
 }
 
-export function requestJoin() {
+export function requestJoin({ history }) {
   return async (dispatch, getState) => {
     const { user: { joinFields: { email, password, age } } } = getState();
-    const data = await postJoin({ email, password, age });
+    const { message, data } = await postJoin({ email, password, age });
+
+    dispatch(clearJoinField());
 
     if (data.status === 201) {
+      history.replace('/login');
+    }
+    if (data.status === 400) {
       // eslint-disable-next-line no-alert
-      alert('성공');
-    // eslint-disable-next-line no-alert
-    } else { alert('실패'); }
-
-    dispatch();
+      alert(message);
+    }
   };
 }
 

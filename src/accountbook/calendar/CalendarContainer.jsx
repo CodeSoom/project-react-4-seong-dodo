@@ -43,15 +43,22 @@ export default function CalendarContainer() {
   }, []);
 
   const handleOpenModal = (date, day) => {
-    setDisplay(!isDisplay);
-    dispatch(setDailyData({ date, day }));
-    dispatch(loadMonthlyTransaction({
-      accessToken,
-      year,
-      month,
-      date: 1,
-    }));
-    dispatch(clearTransactionFields());
+    if (accessToken === '' || accessToken === undefined) {
+      // eslint-disable-next-line no-alert
+      alert('로그인이 필요한 서비스 입니다.');
+      return;
+    }
+    if (accessToken !== '' || accessToken !== undefined) {
+      setDisplay(!isDisplay);
+      dispatch(setDailyData({ date, day }));
+      dispatch(loadMonthlyTransaction({
+        accessToken,
+        year,
+        month,
+        date: 1,
+      }));
+      dispatch(clearTransactionFields());
+    }
   };
 
   return (

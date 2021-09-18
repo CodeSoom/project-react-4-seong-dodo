@@ -10,9 +10,10 @@ export async function postLogin({ email, password }) {
     },
     body: JSON.stringify({ email, password }),
   });
-  const { accessToken } = await response.json();
+  const { accessToken, message } = await response.json();
+  const data = response;
 
-  return accessToken;
+  return { accessToken, message, data };
 }
 
 export async function postJoin({ email, password, age }) {
@@ -24,8 +25,10 @@ export async function postJoin({ email, password, age }) {
     },
     body: JSON.stringify({ email, password, age }),
   });
+  const { message } = await response.json();
+  const data = response;
 
-  return response;
+  return { data, message };
 }
 
 // accountbook

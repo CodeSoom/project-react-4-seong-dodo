@@ -18,11 +18,13 @@ const Title = styled.h2(mediaquery({
   letterSpacing: '.2em',
 }));
 
-export default function JoinPage() {
+export default function JoinPage({ history }) {
   return (
     <Container>
       <Title>회원가입</Title>
-      <JoinContainer />
+      <JoinContainer
+        history={history}
+      />
     </Container>
   );
 }
