@@ -271,9 +271,9 @@ export function sendTransaction() {
       transaction: { type, category, transactionFields },
     });
 
-    dispatch(loadDailyTransaction({
-      accessToken, year, month, date,
-    }));
+    // dispatch(loadDailyTransaction({
+    //   accessToken, year, month, date,
+    // }));
     dispatch(clearTransactionFields());
   };
 }
@@ -298,9 +298,6 @@ export function sendEditTransaction({ id }) {
       },
     });
 
-    dispatch(loadDailyTransaction({
-      accessToken, year, month, date,
-    }));
     dispatch(clearTransactionFields());
     dispatch(clearTargetId());
   };
@@ -315,10 +312,6 @@ export function sendDeleteTransaction({ id }) {
       },
     } = getState();
     await deleteTransaction({ accessToken, id });
-
-    dispatch(loadDailyTransaction({
-      accessToken, year, month, date,
-    }));
   };
 }
 

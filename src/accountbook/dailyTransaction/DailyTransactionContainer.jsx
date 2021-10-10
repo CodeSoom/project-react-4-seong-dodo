@@ -52,17 +52,6 @@ const TextContainer = styled.div(mediaquery({
   backgroundColor: `${colors.white}`,
 }));
 
-const LoadingLayout = styled.div(mediaquery({
-  height: '100%',
-  padding: [
-    '15em 0',
-    '15em 0',
-    '15em 0',
-    '17em 0',
-    '17em 0',
-  ],
-}));
-
 const CloseButtonBox = styled.div(mediaquery({
   textAlign: 'right',
   padding: '.1em .5em',
@@ -145,15 +134,15 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     accessToken: state.user.accessToken,
     dailyTransaction: state.accountbook.dailyTransaction,
   }));
+  const load = async () => {
+    await dispatch(loadDailyTransaction({
+      accessToken, year, month, date,
+    }));
+  };
 
   useEffect(async () => {
     setIsLoading(true);
-    await dispatch(loadDailyTransaction({
-      accessToken,
-      year,
-      month,
-      date,
-    }));
+    await load();
     setIsLoading(false);
   }, []);
 
@@ -203,60 +192,61 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
   const handleClickDelete = async (id) => {
     setIsLoading(true);
     await dispatch(sendDeleteTransaction({ id }));
+    await load();
     setIsLoading(false);
   };
 
   return (
     <Container>
       <TextContainer>
-        {
-          isLoading
-            ? (
-              <LoadingLayout>
-                <Loading />
-              </LoadingLayout>
-            )
-            : (
-              <>
-                <CloseButtonBox>
-                  <Button
-                    value="X"
-                    onClick={onClick}
+        <CloseButtonBox>
+          <Button
+            value="X"
+            onClick={onClick}
+          />
+        </CloseButtonBox>
+        <DateBox>
+          {date}
+          일
+          {' '}
+          {convertDay()}
+          요일
+        </DateBox>
+        <TextBox>
+          <TransactionBox>
+            {
+              isLoading
+                ? <Loading />
+                : (
+                  <DailyTransaction
+                    dailyTransaction={dailyTransaction}
+                    dailyData={dailyData}
+                    onClickEdit={handleClickEdit}
+                    onClickDelete={handleClickDelete}
+                    load={load}
                   />
-                </CloseButtonBox>
-                <DateBox>
-                  {date}
-                  일
-                  {' '}
-                  {convertDay()}
-                  요일
-                </DateBox>
-                <TextBox>
-                  <TransactionBox>
-                    <DailyTransaction
-                      dailyTransaction={dailyTransaction}
-                      dailyData={dailyData}
-                      onClickEdit={handleClickEdit}
-                      onClickDelete={handleClickDelete}
-                    />
-                  </TransactionBox>
-                  <TransactionFieldsBox>
-                    {
-                      isDisplay === true
-                        ? <TransactionDetailModal />
-                        : <DefaultBox />
-                    }
-                  </TransactionFieldsBox>
-                </TextBox>
-                <AddButtonBox>
-                  <Button
-                    value="내역추가"
-                    onClick={handleClickDetailModal}
+                )
+            }
+
+          </TransactionBox>
+          <TransactionFieldsBox>
+            {
+              isDisplay === true
+                ? (
+                  <TransactionDetailModal
+                    load={load}
                   />
-                </AddButtonBox>
-              </>
-            )
-        }
+                )
+                : <DefaultBox />
+            }
+          </TransactionFieldsBox>
+        </TextBox>
+        <AddButtonBox>
+          <Button
+            value="내역추가"
+            onClick={handleClickDetailModal}
+          />
+        </AddButtonBox>
       </TextContainer>
     </Container>
   );

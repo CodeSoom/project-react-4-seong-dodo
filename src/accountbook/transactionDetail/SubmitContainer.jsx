@@ -27,7 +27,7 @@ const SubmitBox = styled.div(mediaquery({
   letterSpacing: 5,
 }));
 
-export default function SubmitContainer() {
+export default function SubmitContainer({ load }) {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -58,6 +58,7 @@ export default function SubmitContainer() {
     if (targetId !== null && targetId === id) {
       setIsLoading(true);
       await dispatch(sendEditTransaction({ id }));
+      await load();
       setIsLoading(false);
       // eslint-disable-next-line no-alert
       alert('수정 완료');
@@ -66,6 +67,7 @@ export default function SubmitContainer() {
     if (targetId === null) {
       setIsLoading(true);
       await dispatch(sendTransaction());
+      await load();
       setIsLoading(false);
     }
   };

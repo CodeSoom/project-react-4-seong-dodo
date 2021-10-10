@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -105,7 +105,9 @@ const IncomeStyle = {
   opacity: 0.8,
 };
 
-export default function Transaction({ histories, onClickEdit, onClickDelete }) {
+export default function Transaction({
+  histories, onClickEdit, onClickDelete, load,
+}) {
   // eslint-disable-next-line consistent-return
   const typeStyle = (type) => {
     if (type === '수입') {
@@ -116,56 +118,71 @@ export default function Transaction({ histories, onClickEdit, onClickDelete }) {
     }
   };
 
+  useEffect(async () => {
+    await load();
+  }, []);
+
   return (
     <>
       { histories === undefined
         ? null
-        : histories.transactionHistories.map(({
-          id, type, category, transactionFields,
-        }) => (
-          <Container
-            key={type}
-          >
-            <DeleteBox>
-              <div
-                onClick={() => onClickDelete(id)}
-                role="presentation"
-              >
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </div>
-              <div
-                onClick={() => onClickEdit(id)}
-                role="presentation"
-              >
-                <FontAwesomeIcon icon={faEdit} />
-              </div>
-            </DeleteBox>
-            <OptionBox>
-              <div
-                style={typeStyle(type)}
-              >
-                {type}
-              </div>
-              <Category>
-                {category.value}
-              </Category>
-            </OptionBox>
-            <TextBox>
-              <Breakdown>
-                {type === '수입'
-                  ? '+'
-                  : '-'}
-                {' '}
-                {exchangeRegEX(replaceString(removeDecimalPoint(transactionFields.breakdown)))}
-                {' '}
-                원
-              </Breakdown>
-              <Text>
-                {`${transactionFields.source} / ${transactionFields.memo}`}
-              </Text>
-            </TextBox>
-          </Container>
-        ))}
+        : (
+          <>
+            {
+              histories.transactionHistories.map(({
+                id, type, category, transactionFields,
+              }) => (
+                <Container
+                  key={type}
+                >
+                  <DeleteBox>
+                    <div
+                      onClick={() => onClickDelete(id)}
+                      role="presentation"
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </div>
+                    <div
+                      onClick={() => onClickEdit(id)}
+                      role="presentation"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </div>
+                  </DeleteBox>
+                  <OptionBox>
+                    <div
+                      style={typeStyle(type)}
+                    >
+                      {type}
+                    </div>
+                    <Category>
+                      {category.value}
+                    </Category>
+                  </OptionBox>
+                  <TextBox>
+                    <Breakdown>
+                      {type === '수입'
+                        ? '+'
+                        : '-'}
+                      {' '}
+                      {
+                        exchangeRegEX(replaceString(removeDecimalPoint(
+                          transactionFields.breakdown,
+                        )))
+                      }
+                      {' '}
+                      원
+                    </Breakdown>
+                    <Text>
+                      {`${transactionFields.source} / ${transactionFields.memo}`}
+                    </Text>
+                  </TextBox>
+                </Container>
+              ))
+            }
+          </>
+        )}
     </>
+
   );
 }

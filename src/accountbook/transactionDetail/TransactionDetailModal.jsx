@@ -36,7 +36,7 @@ const Box = styled.div(mediaquery({
   margin: '0 auto',
 }));
 
-export default function TransactionDetailModal() {
+export default function TransactionDetailModal({ load }) {
   return (
     <Container>
       <Box>
@@ -44,7 +44,7 @@ export default function TransactionDetailModal() {
         <TypeContainer />
         <CategoryContainer />
         <InputFieldsContainer />
-        <SubmitContainer />
+        <SubmitContainer load={load} />
       </Box>
     </Container>
   );
