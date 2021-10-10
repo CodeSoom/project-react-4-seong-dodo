@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 
 import CalendarDays from './CalendarDays';
 import CalendarMonth from './CalendarMonth';
+import Loading from '../../loading/Loading';
 import DailyTransactionModal from '../dailyTransaction/DailyTransactionModal';
 
 import {
@@ -21,7 +22,9 @@ const CalendarBox = styled.div({
 
 export default function CalendarContainer() {
   const dispatch = useDispatch();
+
   const [isDisplay, setDisplay] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     accessToken, year, month, dailyData, monthlyTransaction,
@@ -33,16 +36,20 @@ export default function CalendarContainer() {
     monthlyTransaction: state.accountbook.monthlyTransaction,
   }));
 
-  useEffect(() => {
-    dispatch(loadMonthlyTransaction({
-      accessToken,
-      year,
-      month,
-      date: 1,
-    }));
+  useEffect(async () => {
+    setIsLoading(true);
+    if (accessToken) {
+      await dispatch(loadMonthlyTransaction({
+        accessToken,
+        year,
+        month,
+        date: 1,
+      }));
+    }
+    setIsLoading(false);
   }, []);
 
-  const handleOpenModal = (date, day) => {
+  const handleOpenModal = async (date, day) => {
     if (accessToken === '' || accessToken === undefined) {
       // eslint-disable-next-line no-alert
       alert('로그인이 필요한 서비스 입니다.');
@@ -51,37 +58,49 @@ export default function CalendarContainer() {
     if (accessToken !== '' || accessToken !== undefined) {
       setDisplay(!isDisplay);
       dispatch(setDailyData({ date, day }));
-      dispatch(loadMonthlyTransaction({
+      if (isDisplay) {
+        setIsLoading(true);
+      }
+      await dispatch(loadMonthlyTransaction({
         accessToken,
         year,
         month,
         date: 1,
       }));
       dispatch(clearTransactionFields());
+      setIsLoading(false);
     }
   };
 
   return (
     <CalendarBox>
-      <CalendarDays />
-      <CalendarMonth
-        year={year}
-        month={month}
-        monthlyTransaction={monthlyTransaction}
-        onClick={handleOpenModal}
-      />
-      <div>
-        {
-          isDisplay === true
-            ? (
-              <DailyTransactionModal
-                dailyData={dailyData}
+      {
+        isLoading
+          ? <Loading />
+          : (
+            <>
+              <CalendarDays />
+              <CalendarMonth
+                year={year}
+                month={month}
+                monthlyTransaction={monthlyTransaction}
                 onClick={handleOpenModal}
               />
-            )
-            : null
-        }
-      </div>
+              <div>
+                {
+                  isDisplay === true
+                    ? (
+                      <DailyTransactionModal
+                        dailyData={dailyData}
+                        onClick={handleOpenModal}
+                      />
+                    )
+                    : null
+                }
+              </div>
+            </>
+          )
+      }
     </CalendarBox>
   );
 }

@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../loading/Loading';
 
 import {
   changeJoinField,
@@ -10,6 +13,8 @@ import JoinForm from './JoinForm';
 export default function JoinContainer({ history }) {
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const joinFields = useSelector((state) => state.user.joinFields);
   const {
     age, email, password, repassword,
@@ -19,7 +24,7 @@ export default function JoinContainer({ history }) {
     dispatch(changeJoinField({ name, value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const ageRegEx = /\d/;
     const emailRegEx = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/i;
     //  8 ~ 10자 영문, 숫자 조합
@@ -60,14 +65,24 @@ export default function JoinContainer({ history }) {
       alert('비밀번호가 일치 하지 않습니다.');
       return;
     }
-    dispatch(requestJoin({ history }));
+    setIsLoading(true);
+    await dispatch(requestJoin({ history }));
+    setIsLoading(false);
   };
 
   return (
-    <JoinForm
-      fields={joinFields}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    />
+    <>
+      {
+        isLoading
+          ? <Loading />
+          : (
+            <JoinForm
+              fields={joinFields}
+              onChange={handleChange}
+              onSubmit={handleSubmit}
+            />
+          )
+      }
+    </>
   );
 }

@@ -1,8 +1,12 @@
+import { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
+
+import Loading from '../../loading/Loading';
 
 import {
   sendTransaction,
@@ -26,6 +30,8 @@ const SubmitBox = styled.div(mediaquery({
 export default function SubmitContainer() {
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { transaction, targetId } = useSelector((state) => ({
     transaction: state.accountbook.transaction,
     targetId: state.accountbook.targetId,
@@ -33,7 +39,7 @@ export default function SubmitContainer() {
 
   const { transactionFields } = transaction;
 
-  const handleSubmit = (id) => {
+  const handleSubmit = async (id) => {
     if (transactionFields.breakdown === '') {
       // eslint-disable-next-line no-alert
       alert('금액을 입력해주세요.');
@@ -50,24 +56,36 @@ export default function SubmitContainer() {
       return;
     }
     if (targetId !== null && targetId === id) {
-      dispatch(sendEditTransaction({ id }));
+      setIsLoading(true);
+      await dispatch(sendEditTransaction({ id }));
+      setIsLoading(false);
       // eslint-disable-next-line no-alert
       alert('수정 완료');
       return;
     }
     if (targetId === null) {
-      dispatch(sendTransaction());
+      setIsLoading(true);
+      await dispatch(sendTransaction());
+      setIsLoading(false);
     }
   };
 
   return (
-    <SubmitBox>
-      <button
-        type="button"
-        onClick={() => handleSubmit(targetId)}
-      >
-        저장
-      </button>
-    </SubmitBox>
+    <>
+      {
+        isLoading
+          ? <Loading />
+          : (
+            <SubmitBox>
+              <button
+                type="button"
+                onClick={() => handleSubmit(targetId)}
+              >
+                저장
+              </button>
+            </SubmitBox>
+          )
+      }
+    </>
   );
 }

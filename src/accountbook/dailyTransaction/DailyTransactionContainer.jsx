@@ -25,6 +25,7 @@ import {
 } from '../../reducers/accountbook';
 
 import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
+import Loading from '../../loading/Loading';
 
 const Container = styled.div(mediaquery({
   position: 'fixed',
@@ -49,6 +50,17 @@ const TextContainer = styled.div(mediaquery({
   borderRadius: '.4em',
   color: `${colors.gray_text02}`,
   backgroundColor: `${colors.white}`,
+}));
+
+const LoadingLayout = styled.div(mediaquery({
+  height: '100%',
+  padding: [
+    '15em 0',
+    '15em 0',
+    '15em 0',
+    '17em 0',
+    '17em 0',
+  ],
 }));
 
 const CloseButtonBox = styled.div(mediaquery({
@@ -121,7 +133,9 @@ const DefaultBox = styled.div(mediaquery({
 
 export default function DailyTransactionContainer({ dailyData, onClick }) {
   const dispatch = useDispatch();
+
   const [isDisplay, setDisplay] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     year, month, date, day,
@@ -132,13 +146,15 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     dailyTransaction: state.accountbook.dailyTransaction,
   }));
 
-  useEffect(() => {
-    dispatch(loadDailyTransaction({
+  useEffect(async () => {
+    setIsLoading(true);
+    await dispatch(loadDailyTransaction({
       accessToken,
       year,
       month,
       date,
     }));
+    setIsLoading(false);
   }, []);
 
   function convertDay() {
@@ -184,51 +200,63 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     }));
   };
 
-  const handleClickDelete = (id) => {
-    dispatch(sendDeleteTransaction({ id }));
+  const handleClickDelete = async (id) => {
+    setIsLoading(true);
+    await dispatch(sendDeleteTransaction({ id }));
+    setIsLoading(false);
   };
 
   return (
     <Container>
       <TextContainer>
-        <CloseButtonBox>
-          <Button
-            value="X"
-            onClick={onClick}
-          />
-        </CloseButtonBox>
-        <DateBox>
-          {date}
-          일
-          {' '}
-          {convertDay()}
-          요일
-        </DateBox>
-        <TextBox>
-          <TransactionBox>
-            <DailyTransaction
-              dailyTransaction={dailyTransaction}
-              dailyData={dailyData}
-              onClickEdit={handleClickEdit}
-              onClickDelete={handleClickDelete}
-            />
-          </TransactionBox>
-          <TransactionFieldsBox>
-            {
-              isDisplay === true
-                ? (
-                  <TransactionDetailModal />
-                )
-                : <DefaultBox />
-            }
-          </TransactionFieldsBox>
-        </TextBox>
-        <AddButtonBox>
-          <Button
-            value="내역추가"
-            onClick={handleClickDetailModal}
-          />
-        </AddButtonBox>
+        {
+          isLoading
+            ? (
+              <LoadingLayout>
+                <Loading />
+              </LoadingLayout>
+            )
+            : (
+              <>
+                <CloseButtonBox>
+                  <Button
+                    value="X"
+                    onClick={onClick}
+                  />
+                </CloseButtonBox>
+                <DateBox>
+                  {date}
+                  일
+                  {' '}
+                  {convertDay()}
+                  요일
+                </DateBox>
+                <TextBox>
+                  <TransactionBox>
+                    <DailyTransaction
+                      dailyTransaction={dailyTransaction}
+                      dailyData={dailyData}
+                      onClickEdit={handleClickEdit}
+                      onClickDelete={handleClickDelete}
+                    />
+                  </TransactionBox>
+                  <TransactionFieldsBox>
+                    {
+                      isDisplay === true
+                        ? <TransactionDetailModal />
+                        : <DefaultBox />
+                    }
+                  </TransactionFieldsBox>
+                </TextBox>
+                <AddButtonBox>
+                  <Button
+                    value="내역추가"
+                    onClick={handleClickDetailModal}
+                  />
+                </AddButtonBox>
+              </>
+            )
+        }
       </TextContainer>
     </Container>
   );
