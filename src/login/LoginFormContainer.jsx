@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -10,6 +12,7 @@ import mediaquery from '../style/mediaquery';
 
 import LoginForm from './LoginForm';
 import LogoutForm from './LogoutForm';
+import Loading from '../loading/Loading';
 
 import {
   changeLoginField,
@@ -43,6 +46,8 @@ const LinkBox = styled.div(mediaquery({
 export default function LoginFormContainer() {
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { accessToken, loginFields } = useSelector((state) => ({
     loginFields: state.user.loginFields,
     accessToken: state.user.accessToken,
@@ -52,39 +57,61 @@ export default function LoginFormContainer() {
     dispatch(changeLoginField({ name, value }));
   };
 
-  const handleSubmit = () => {
-    dispatch(requestLogin());
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    await dispatch(requestLogin());
+    setIsLoading(false);
   };
 
-  const handleClickLogout = () => {
-    dispatch(logout());
-    dispatch(clearLoginField());
-    dispatch(clearMonthlyTransaction());
+  const handleClickLogout = async () => {
+    setIsLoading(true);
+    await dispatch(logout());
+    await dispatch(clearLoginField());
+    await dispatch(clearMonthlyTransaction());
+    setIsLoading(false);
   };
 
   return (
     <>
-      { accessToken
-        ? (
-          <LogoutForm
-            loginFields={loginFields}
-            onClick={handleClickLogout}
-          />
-        )
-        : (
-          <>
-            <LoginForm
-              fields={loginFields}
-              onChange={handleChange}
-              onSubmit={handleSubmit}
-            />
-            <LinkBox>
-              <Link to="/join">
-                회원가입
-              </Link>
-            </LinkBox>
-          </>
-        )}
+      {
+        accessToken
+          ? (
+            <>
+              {
+                isLoading
+                  ? <Loading />
+                  : (
+                    <LogoutForm
+                      loginFields={loginFields}
+                      onClick={handleClickLogout}
+                    />
+                  )
+              }
+            </>
+          )
+          : (
+            <>
+              {
+                isLoading
+                  ? <Loading />
+                  : (
+
+                    <LoginForm
+                      fields={loginFields}
+                      onChange={handleChange}
+                      onSubmit={handleSubmit}
+                    />
+
+                  )
+              }
+              <LinkBox>
+                <Link to="/join">
+                  회원가입
+                </Link>
+              </LinkBox>
+            </>
+          )
+      }
     </>
   );
 }

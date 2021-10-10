@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Link,
 } from 'react-router-dom';
@@ -17,6 +19,7 @@ import {
 import {
   clearMonthlyTransaction,
 } from '../reducers/accountbook';
+import Loading from '../loading/Loading';
 
 const List = styled.ul({
   width: '90%',
@@ -43,36 +46,47 @@ const Item = styled.li(mediaquery({
 export default function Navbar() {
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState(false);
   const { accessToken } = useSelector((state) => ({
     accessToken: state.user.accessToken,
   }));
 
-  const handleClickLogout = () => {
-    dispatch(logout());
-    dispatch(clearLoginField());
-    dispatch(clearMonthlyTransaction());
+  const handleClickLogout = async () => {
+    setIsLoading(true);
+    await dispatch(logout());
+    await dispatch(clearLoginField());
+    await dispatch(clearMonthlyTransaction());
+    setIsLoading(false);
   };
 
   return (
-    <>
-      <List>
-        {accessToken
+    <List>
+      {
+        accessToken
           ? (
-            <Item>
-              <button
-                type="button"
-                onClick={handleClickLogout}
-              >
-                Log out
-              </button>
-            </Item>
+            <>
+              {
+                isLoading
+                  ? <Loading />
+                  : (
+                    <Item>
+                      <button
+                        type="button"
+                        onClick={handleClickLogout}
+                      >
+                        Log out
+                      </button>
+                    </Item>
+                  )
+              }
+            </>
           )
           : (
             <Item>
               <Link to="/login"> Log in</Link>
             </Item>
-          )}
-      </List>
-    </>
+          )
+      }
+    </List>
   );
 }

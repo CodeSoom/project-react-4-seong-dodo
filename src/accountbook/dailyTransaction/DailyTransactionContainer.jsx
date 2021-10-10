@@ -25,6 +25,7 @@ import {
 } from '../../reducers/accountbook';
 
 import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
+import Loading from '../../loading/Loading';
 
 const Container = styled.div(mediaquery({
   position: 'fixed',
@@ -121,7 +122,9 @@ const DefaultBox = styled.div(mediaquery({
 
 export default function DailyTransactionContainer({ dailyData, onClick }) {
   const dispatch = useDispatch();
+
   const [isDisplay, setDisplay] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     year, month, date, day,
@@ -131,14 +134,16 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     accessToken: state.user.accessToken,
     dailyTransaction: state.accountbook.dailyTransaction,
   }));
-
-  useEffect(() => {
-    dispatch(loadDailyTransaction({
-      accessToken,
-      year,
-      month,
-      date,
+  const load = async () => {
+    await dispatch(loadDailyTransaction({
+      accessToken, year, month, date,
     }));
+  };
+
+  useEffect(async () => {
+    setIsLoading(true);
+    await load();
+    setIsLoading(false);
   }, []);
 
   function convertDay() {
@@ -184,8 +189,11 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     }));
   };
 
-  const handleClickDelete = (id) => {
-    dispatch(sendDeleteTransaction({ id }));
+  const handleClickDelete = async (id) => {
+    setIsLoading(true);
+    await dispatch(sendDeleteTransaction({ id }));
+    await load();
+    setIsLoading(false);
   };
 
   return (
@@ -206,18 +214,28 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
         </DateBox>
         <TextBox>
           <TransactionBox>
-            <DailyTransaction
-              dailyTransaction={dailyTransaction}
-              dailyData={dailyData}
-              onClickEdit={handleClickEdit}
-              onClickDelete={handleClickDelete}
-            />
+            {
+              isLoading
+                ? <Loading />
+                : (
+                  <DailyTransaction
+                    dailyTransaction={dailyTransaction}
+                    dailyData={dailyData}
+                    onClickEdit={handleClickEdit}
+                    onClickDelete={handleClickDelete}
+                    load={load}
+                  />
+                )
+            }
+
           </TransactionBox>
           <TransactionFieldsBox>
             {
               isDisplay === true
                 ? (
-                  <TransactionDetailModal />
+                  <TransactionDetailModal
+                    load={load}
+                  />
                 )
                 : <DefaultBox />
             }

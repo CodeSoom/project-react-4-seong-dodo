@@ -17,6 +17,8 @@ const colors = {
   blue_text: 'rgb(95, 164, 209)',
   blue_text02: 'rgb(95, 164, 209, 0.5)',
   black: 'rgb(51, 51, 51)',
+  loading_01: 'rgb(190, 190, 190)',
+  loading_02: 'rgb(94, 94, 94)',
 };
 
 export default colors;

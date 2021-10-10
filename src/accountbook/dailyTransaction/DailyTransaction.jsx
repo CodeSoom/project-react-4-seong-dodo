@@ -3,7 +3,7 @@ import TransactionData from './TransactionData';
 import Transaction from './Transaction';
 
 export default function DailyTransaction({
-  dailyTransaction, dailyData, onClickEdit, onClickDelete,
+  dailyTransaction, dailyData, onClickEdit, onClickDelete, load,
 }) {
   const histories = dailyTransaction.find(
     (daily) => daily.year === dailyData.year
@@ -25,6 +25,7 @@ export default function DailyTransaction({
               histories={histories}
               onClickEdit={onClickEdit}
               onClickDelete={onClickDelete}
+              load={load}
             />
           </>
         )}
