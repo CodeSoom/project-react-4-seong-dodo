@@ -10,7 +10,6 @@ import {
   sendTransaction,
   clearTransactionFields,
   sendEditTransaction,
-  // sendDeleteTransaction,
 } from '../accountbook';
 
 const middlewares = [thunk];

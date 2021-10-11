@@ -271,9 +271,6 @@ export function sendTransaction() {
       transaction: { type, category, transactionFields },
     });
 
-    // dispatch(loadDailyTransaction({
-    //   accessToken, year, month, date,
-    // }));
     dispatch(clearTransactionFields());
   };
 }

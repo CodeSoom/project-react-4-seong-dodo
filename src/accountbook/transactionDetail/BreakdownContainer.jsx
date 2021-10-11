@@ -4,12 +4,11 @@ import styled from '@emotion/styled';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-
-import { exchangeRegEX, replaceString } from '../../utils/utils';
-
 import mediaquery from '../../style/mediaquery';
 
 import BreakdownField from './BreakdownField';
+
+import { exchangeRegEX, replaceString } from '../../utils/utils';
 
 import {
   changeBreakdownFields,

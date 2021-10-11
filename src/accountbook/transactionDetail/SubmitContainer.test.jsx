@@ -193,8 +193,7 @@ describe('SubmitContainer', () => {
 
         expect(dispatch).toBeCalledTimes(1);
 
-        expect(global.alert).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveBeenCalledWith('수정 완료');
+        expect(global.alert).toHaveBeenCalledTimes(0);
       });
     });
   });

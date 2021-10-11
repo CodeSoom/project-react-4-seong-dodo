@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,7 +52,6 @@ export default function CalendarContainer() {
 
   const handleOpenModal = async (date, day) => {
     if (accessToken === '' || accessToken === undefined) {
-      // eslint-disable-next-line no-alert
       alert('로그인이 필요한 서비스 입니다.');
       return;
     }

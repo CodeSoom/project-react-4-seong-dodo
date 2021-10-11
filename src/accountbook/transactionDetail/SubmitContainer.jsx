@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,17 +42,14 @@ export default function SubmitContainer({ load }) {
 
   const handleSubmit = async (id) => {
     if (transactionFields.breakdown === '') {
-      // eslint-disable-next-line no-alert
       alert('금액을 입력해주세요.');
       return;
     }
     if (transaction.category === '') {
-      // eslint-disable-next-line no-alert
       alert('카테고리를 선택해주세요.');
       return;
     }
     if (transactionFields.source === '') {
-      // eslint-disable-next-line no-alert
       alert('거래처를 입력헤주세요.');
       return;
     }
@@ -60,7 +58,6 @@ export default function SubmitContainer({ load }) {
       await dispatch(sendEditTransaction({ id }));
       await load();
       setIsLoading(false);
-      // eslint-disable-next-line no-alert
       alert('수정 완료');
       return;
     }

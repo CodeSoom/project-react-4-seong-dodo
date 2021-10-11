@@ -7,9 +7,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
-
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
+
+import Loading from '../loading/Loading';
 
 import {
   clearLoginField,
@@ -19,7 +20,6 @@ import {
 import {
   clearMonthlyTransaction,
 } from '../reducers/accountbook';
-import Loading from '../loading/Loading';
 
 const List = styled.ul({
   width: '90%',

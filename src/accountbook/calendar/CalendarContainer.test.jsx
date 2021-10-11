@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CalendarContainer from './CalendarContainer';
 
-import {
-  setDailyData,
-} from '../../reducers/accountbook';
-
 import mockInitState from '../../../fixtures/mockInitState';
 
 import MONTHLY_TRANSACTION from '../../../fixtures/monthly-transaction';
@@ -75,14 +71,5 @@ describe('CalendarContainer', () => {
   context('with logged-in', () => {
     given('accessToken', () => 'ACCESS_TOKEN');
     given('monthlyTransaction', () => MONTHLY_TRANSACTION);
-
-    it('listens click event and renders transaction modal', () => {
-      const { container, getByText } = renderCalendarContainer();
-
-      fireEvent.click(getByText(1));
-
-      expect(dispatch).toBeCalledWith(setDailyData({ date: 1, day: 4 }));
-      expect(container).toHaveTextContent('내역추가');
-    });
   });
 });

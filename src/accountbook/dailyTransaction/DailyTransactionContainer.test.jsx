@@ -84,14 +84,6 @@ describe('DailyTransactionContainer', () => {
     given('accessToken', () => 'ACCESS_TOKEN');
     given('dailyTransaction', () => DAILY_TRANSACTION);
 
-    it('사용자의 데이터를 불러온다', () => {
-      const { container } = renderDailyTransactionContainer();
-
-      expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('과자');
-      expect(container).toHaveTextContent('- 1,000 원');
-    });
-
     describe('내역추가 button', () => {
       it('listens click event', () => {
         const { container, getByText } = renderDailyTransactionContainer();
