@@ -69,16 +69,21 @@ export default function TabBarCard() {
   return (
     <Footer>
       <List>
-        <Item>
-          <NavLink exact to="/calendar">
-            달력
-          </NavLink>
-        </Item>
         <Item1>
           <NavLink exact to="/accountbook" activeClassName="active">
             Start
           </NavLink>
         </Item1>
+        <Item>
+          <NavLink exact to="/accountbook/timeline">
+            내역
+          </NavLink>
+        </Item>
+        <Item>
+          <NavLink exact to="/calendar">
+            달력
+          </NavLink>
+        </Item>
         <Item>
           <NavLink exact to="/budget">
             예산
