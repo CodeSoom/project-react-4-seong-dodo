@@ -67,7 +67,7 @@ export async function fetchMonthlyTransaction({
 }
 
 export async function fetchAnnualTransaction({ accessToken, page }) {
-  const url = `/api/member/transaction/paging?page=${page}&size=10`;
+  const url = `/api/member/transaction/paging?page=${page}&size=5`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {

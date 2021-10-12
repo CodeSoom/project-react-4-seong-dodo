@@ -34,6 +34,7 @@ const { actions, reducer } = createSlice({
     dailyTransaction: [],
     monthlyTransaction: [],
     nextPage: 0,
+    totalPages: 0,
     totalCount: 0,
     transactionHistoryResponseList: [],
     selectedType: null,
@@ -174,6 +175,13 @@ const { actions, reducer } = createSlice({
         monthlyTransaction,
       };
     },
+    resetPage(state) {
+      return {
+        ...state,
+        nextPage: 0,
+        transactionHistoryResponseList: [],
+      };
+    },
     setNextPage(state) {
       return {
         ...state,
@@ -181,9 +189,19 @@ const { actions, reducer } = createSlice({
       };
     },
     setAnnualTransaction(state, { payload: { transactionHistoryResponseList } }) {
+      const newTransactionHistoryResponseList = [
+        ...state.transactionHistoryResponseList,
+        ...transactionHistoryResponseList,
+      ];
       return {
         ...state,
-        transactionHistoryResponseList,
+        transactionHistoryResponseList: newTransactionHistoryResponseList,
+      };
+    },
+    setAnnualTransactionTotalPage(state, { payload: { data } }) {
+      return {
+        ...state,
+        totalPages: data.totalPages,
       };
     },
     setAnnualTransactionTotalCount(state, { payload: { totalCount } }) {
@@ -242,8 +260,10 @@ export const {
   setTransaction,
   setDailyTransaction,
   setMonthlyTransaction,
+  resetPage,
   setNextPage,
   setAnnualTransaction,
+  setAnnualTransactionTotalPage,
   setAnnualTransactionTotalCount,
   clearMonthlyTransaction,
   setPreviousMonth,
@@ -284,17 +304,23 @@ export function loadAnnualTransaction() {
   return async (dispatch, getState) => {
     const {
       user: { accessToken },
-      accountbook: { nextPage },
+      accountbook: { nextPage, totalPages },
     } = getState();
+    if (nextPage > totalPages) {
+      return;
+    }
     const data = await fetchAnnualTransaction({
       accessToken,
       page: nextPage,
-      // size: 10,
     });
-    const { totalCount, transactionHistoryResponseList } = data;
+    const {
+      totalCount,
+      transactionHistoryResponseList,
+    } = data;
 
-    dispatch(setAnnualTransaction({ transactionHistoryResponseList }));
+    dispatch(setAnnualTransactionTotalPage({ data }));
     dispatch(setAnnualTransactionTotalCount({ totalCount }));
+    dispatch(setAnnualTransaction({ transactionHistoryResponseList }));
   };
 }
 

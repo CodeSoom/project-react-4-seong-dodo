@@ -4,10 +4,10 @@ import styled from '@emotion/styled';
 
 import Loading from '../../loading/Loading';
 
-import { exchangeRegEX, replaceString } from '../../utils/utils';
+import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
 
 const ItemBox = styled.div({
-  margin: '0 auto 30px',
+  margin: '30px auto 0',
   width: '800px',
   height: '170px',
   border: '1px solid #E1E4E7',
@@ -104,14 +104,20 @@ const MemoText = styled.div({
   lineHeight: '15px',
 });
 
-export default function TransactionList({ transactionList, loadAnnualTransaction }) {
+export default function TransactionList({ transactionList, loadTransaction }) {
   const [target, setTarget] = useState(null);
-  const [isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const load = async () => {
+    setIsLoading(true);
+    await loadTransaction();
+    setIsLoading(false);
+  };
 
   const onIntersectScrollBar = async ([entry], observer) => {
-    if (entry.isIntersectiong) {
+    if (entry.isIntersecting && !isLoading) {
       observer.unobserve(entry.target);
-      await loadAnnualTransaction();
+      await load();
       observer.observe(entry.target);
     }
   };
@@ -120,12 +126,14 @@ export default function TransactionList({ transactionList, loadAnnualTransaction
     let observer;
     if (target) {
       observer = new IntersectionObserver(onIntersectScrollBar, {
-        threshold: 0.2,
+        threshold: 0.5,
       });
       observer.observe(target);
     }
     return () => observer && observer.disconnect();
   }, [target]);
+
+  // console.log(transactionList);
 
   return (
     <>
@@ -147,17 +155,24 @@ export default function TransactionList({ transactionList, loadAnnualTransaction
                       <CategoryText>{category.value}</CategoryText>
                       <SectionBar />
                       <BreakdownBox>
-                        {exchangeRegEX(replaceString(transactionFields.breakdown))}
+                        { exchangeRegEX(replaceString(
+                          removeDecimalPoint(transactionFields.breakdown),
+                        ))}
                         {' '}
                         원
                       </BreakdownBox>
                     </TypeBox>
                     <SourceText>
-                      거래처 :
+                      거래처
+                      {' '}
+                      :
+                      {' '}
                       {transactionFields.source}
                     </SourceText>
                     <MemoText>
-                      메모:
+                      메모
+                      {' '}
+                      :
                       {' '}
                       {transactionFields.memo}
                     </MemoText>
