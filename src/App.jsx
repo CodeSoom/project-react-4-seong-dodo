@@ -11,12 +11,12 @@ import colors from './style/colors';
 import mediaquery from './style/mediaquery';
 
 import Navbar from './navbar/Navbar';
-
-import AccountBookPage from './accountbook/AccountBookPage';
 import LoginPage from './login/LoginPage';
 import JoinPage from './join/JoinPage';
 import BudgetPage from './accountbook/budget/BudgetPage';
+import TimeLinePage from './accountbook/timeline/TimeLinePage';
 import CalendarPage from './accountbook/calendar/CalendarPage';
+import AccountBookPage from './accountbook/AccountBookPage';
 import NotFoundPage from './NotFoundPage';
 
 const Container = styled.header(mediaquery({
@@ -55,7 +55,8 @@ export default function App() {
         <Route path="/join" component={JoinPage} />
         <Route path="/budget" component={BudgetPage} />
         <Route path="/calendar" component={CalendarPage} />
-        <Route path="/accountbook" component={AccountBookPage} />
+        <Route exact path="/accountbook" component={AccountBookPage} />
+        <Route path="/accountbook/timeline" component={TimeLinePage} />
         <Route component={NotFoundPage} />
       </Switch>
       <Global styles={reset} />

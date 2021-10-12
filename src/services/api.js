@@ -66,6 +66,20 @@ export async function fetchMonthlyTransaction({
   return data;
 }
 
+export async function fetchAnnualTransaction({ accessToken, page }) {
+  const url = `/api/member/transaction/paging?page=${page}&size=10`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}
+
 export async function postTransaction({
   accessToken,
   dailyData: { year, month, date },

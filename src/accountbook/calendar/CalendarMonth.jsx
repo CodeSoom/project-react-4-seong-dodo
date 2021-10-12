@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import { v4 as uuid } from 'uuid';
 import CalendarWeeks from './CalendarWeeks';
 
@@ -31,7 +32,7 @@ export default function CalendarMonth({
     if (lastOfPreviousMonth.day === 6) {
       return previousDates;
     }
-    // eslint-disable-next-line no-plusplus
+
     for (let i = lastOfPreviousMonth.day; i >= 0; i--) {
       previousDates.push({
         year: lastOfPreviousMonth.year,
@@ -45,7 +46,6 @@ export default function CalendarMonth({
 
   const getThisDates = () => {
     const thisDates = [];
-    // eslint-disable-next-line no-plusplus
     for (let i = 1; i <= lastOfThisMonth.date; i++) {
       thisDates.push({
         year,
@@ -59,7 +59,6 @@ export default function CalendarMonth({
 
   const getNextDates = () => {
     const nextDates = [];
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < 6 - lastOfThisMonth.day; i++) {
       nextDates.push({
         year: startOfNextMonth.year,

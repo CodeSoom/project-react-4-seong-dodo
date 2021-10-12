@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
-
-import { exchangeRegEX, replaceString } from '../../utils/utils';
-
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
+
+import { exchangeRegEX, replaceString } from '../../utils/utils';
 
 const Container = styled.div(mediaquery({
   float: 'left',

@@ -1,14 +1,14 @@
+/* eslint-disable consistent-return */
 import React, { useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import styled from '@emotion/styled';
-
-import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
-
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
+
+import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
 
 const Container = styled.div(mediaquery({
   width: '100%',
@@ -108,7 +108,6 @@ const IncomeStyle = {
 export default function Transaction({
   histories, onClickEdit, onClickDelete, load,
 }) {
-  // eslint-disable-next-line consistent-return
   const typeStyle = (type) => {
     if (type === '수입') {
       return IncomeStyle;

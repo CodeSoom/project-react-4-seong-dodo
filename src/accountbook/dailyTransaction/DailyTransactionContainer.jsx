@@ -7,6 +7,7 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 import Button from './Button';
+import Loading from '../../loading/Loading';
 import DailyTransaction from './DailyTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
 
@@ -25,7 +26,6 @@ import {
 } from '../../reducers/accountbook';
 
 import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
-import Loading from '../../loading/Loading';
 
 const Container = styled.div(mediaquery({
   position: 'fixed',
@@ -134,6 +134,7 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     accessToken: state.user.accessToken,
     dailyTransaction: state.accountbook.dailyTransaction,
   }));
+
   const load = async () => {
     await dispatch(loadDailyTransaction({
       accessToken, year, month, date,
@@ -227,7 +228,6 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
                   />
                 )
             }
-
           </TransactionBox>
           <TransactionFieldsBox>
             {

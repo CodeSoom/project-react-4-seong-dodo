@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
@@ -97,7 +98,6 @@ export function requestLogin() {
     dispatch(setAccessToken(accessToken));
 
     if (data.status === 400) {
-      // eslint-disable-next-line no-alert
       alert(message);
     }
   };
@@ -114,7 +114,6 @@ export function requestJoin({ history }) {
       history.replace('/login');
     }
     if (data.status === 400) {
-      // eslint-disable-next-line no-alert
       alert(message);
     }
   };

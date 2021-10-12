@@ -5,6 +5,7 @@ import { exchangeRegEX, replaceString } from '../utils/utils';
 import {
   fetchDailyTransaction,
   fetchMonthlyTransaction,
+  fetchAnnualTransaction,
   postTransaction,
   putTransaction,
   deleteTransaction,
@@ -32,6 +33,9 @@ const { actions, reducer } = createSlice({
     targetId: null,
     dailyTransaction: [],
     monthlyTransaction: [],
+    nextPage: 0,
+    totalCount: 0,
+    transactionHistoryResponseList: [],
     selectedType: null,
     selectedCategory: null,
     transaction: {
@@ -170,6 +174,24 @@ const { actions, reducer } = createSlice({
         monthlyTransaction,
       };
     },
+    setNextPage(state) {
+      return {
+        ...state,
+        nextPage: state.nextPage + 1,
+      };
+    },
+    setAnnualTransaction(state, { payload: { transactionHistoryResponseList } }) {
+      return {
+        ...state,
+        transactionHistoryResponseList,
+      };
+    },
+    setAnnualTransactionTotalCount(state, { payload: { totalCount } }) {
+      return {
+        ...state,
+        totalCount,
+      };
+    },
     clearMonthlyTransaction(state) {
       return {
         ...state,
@@ -220,6 +242,9 @@ export const {
   setTransaction,
   setDailyTransaction,
   setMonthlyTransaction,
+  setNextPage,
+  setAnnualTransaction,
+  setAnnualTransactionTotalCount,
   clearMonthlyTransaction,
   setPreviousMonth,
   setNextMonth,
@@ -255,6 +280,24 @@ export function loadMonthlyTransaction({
   };
 }
 
+export function loadAnnualTransaction() {
+  return async (dispatch, getState) => {
+    const {
+      user: { accessToken },
+      accountbook: { nextPage },
+    } = getState();
+    const data = await fetchAnnualTransaction({
+      accessToken,
+      page: nextPage,
+      // size: 10,
+    });
+    const { totalCount, transactionHistoryResponseList } = data;
+
+    dispatch(setAnnualTransaction({ transactionHistoryResponseList }));
+    dispatch(setAnnualTransactionTotalCount({ totalCount }));
+  };
+}
+
 export function sendTransaction() {
   return async (dispatch, getState) => {
     const {
@@ -271,9 +314,6 @@ export function sendTransaction() {
       transaction: { type, category, transactionFields },
     });
 
-    // dispatch(loadDailyTransaction({
-    //   accessToken, year, month, date,
-    // }));
     dispatch(clearTransactionFields());
   };
 }

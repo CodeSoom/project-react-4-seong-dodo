@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,37 +32,30 @@ export default function JoinContainer({ history }) {
     const passwordRegEx = /^[a-zA-Z0-9]{8,10}$/;
 
     if (email === '') {
-      // eslint-disable-next-line no-alert
       alert('이메일 주소를 입력해 주세요');
       return;
     }
     if (!emailRegEx.test(email)) {
-      // eslint-disable-next-line no-alert
       alert('이메일 주소를 잘못 입력 하였습니다.');
       return;
     }
     if (!ageRegEx.test(age)) {
-      // eslint-disable-next-line no-alert
       alert('나이를 다시 입력해주세요.');
       return;
     }
     if (password === '') {
-      // eslint-disable-next-line no-alert
       alert('비밀번호를 입력해 주세요');
       return;
     }
     if (!passwordRegEx.test(password)) {
-      // eslint-disable-next-line no-alert
       alert('비밀번호를 8 ~ 10자 영문, 숫자 조합으로 다시 입력 해주세요.');
       return;
     }
     if (repassword === '') {
-      // eslint-disable-next-line no-alert
       alert('비밀번호 확인해 주세요.');
       return;
     }
     if (password !== repassword) {
-      // eslint-disable-next-line no-alert
       alert('비밀번호가 일치 하지 않습니다.');
       return;
     }

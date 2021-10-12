@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import mediaquery from '../../style/mediaquery';
 
+import ExpenseCategory from './ExpenseCategory';
+import IncomeCategory from './IncomeCategory';
+
 import {
   selectCategory,
   changeTransactionCategory,
 } from '../../reducers/accountbook';
-
-import ExpenseCategory from './ExpenseCategory';
-import IncomeCategory from './IncomeCategory';
 
 const OptionBox = styled.div(mediaquery({
   width: '100%',

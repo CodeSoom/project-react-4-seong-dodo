@@ -15,6 +15,9 @@ export async function fetchDailyTransaction() {
 export async function fetchMonthlyTransaction() {
   return {};
 }
+export async function fetchAnnualTransaction() {
+  return {};
+}
 
 export async function postTransaction({
   accessToken,
