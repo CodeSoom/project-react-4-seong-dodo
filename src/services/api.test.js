@@ -3,6 +3,7 @@ import {
   postJoin,
   fetchDailyTransaction,
   fetchMonthlyTransaction,
+  fetchAnnualTransaction,
   postTransaction,
   putTransaction,
 } from './api';
@@ -12,6 +13,7 @@ import DAILY_DATE from '../../fixtures/mockDailyData';
 import TRANSACTION from '../../fixtures/mockExpenseTransaction';
 import DAILY_TRANSACTION from '../../fixtures/daily-transaction';
 import MONTHLY_TRANSACTION from '../../fixtures/monthly-transaction';
+import ANNUAL_TRANSACTION from '../../fixtures/annual-transaction';
 
 describe('api', () => {
   describe('user: postLogin', () => {
@@ -160,6 +162,27 @@ describe('api', () => {
       });
 
       expect(monthlyTransaction).toEqual(MONTHLY_TRANSACTION);
+    });
+  });
+
+  describe('accountbook: fetchAnnualTransaction', () => {
+    const mockFetch = (data) => {
+      global.fetch = jest.fn().mockResolvedValue({
+        async json() { return data; },
+      });
+    };
+
+    beforeEach(() => {
+      mockFetch(ANNUAL_TRANSACTION);
+    });
+
+    it('1년치 거래내역 데이터를 받아온다.', async () => {
+      const annualTransaction = await fetchAnnualTransaction({
+        accessToken: ACCESS_TOKEN,
+        page: 1,
+      });
+
+      expect(annualTransaction).toEqual(ANNUAL_TRANSACTION);
     });
   });
 

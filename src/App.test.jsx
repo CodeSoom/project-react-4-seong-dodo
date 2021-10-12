@@ -95,4 +95,12 @@ describe('App', () => {
       expect(container).toHaveTextContent('자산');
     });
   });
+
+  context('with path /accountbook/timeline', () => {
+    it('renders accountbook timeline page', () => {
+      const { container } = renderApp({ path: '/accountbook/timeline' });
+
+      expect(container).toHaveTextContent('로그인으로 이동하기');
+    });
+  });
 });

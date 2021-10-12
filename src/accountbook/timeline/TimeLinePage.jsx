@@ -1,5 +1,9 @@
+import TimeLineContainer from './TimeLineContainer';
+
 export default function TimeLinePage() {
   return (
-    <div>내역</div>
+    <div>
+      <TimeLineContainer />
+    </div>
   );
 }

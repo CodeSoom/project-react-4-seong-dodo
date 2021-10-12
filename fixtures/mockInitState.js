@@ -11,6 +11,9 @@ const mockInitState = {
   targetId: null,
   dailyTransaction: [],
   monthlyTransaction: [],
+  nextPage: 0,
+  totalCount: 0,
+  transactionHistoryResponseList: [],
   selectedType: null,
   selectedCategory: null,
   transaction: {
