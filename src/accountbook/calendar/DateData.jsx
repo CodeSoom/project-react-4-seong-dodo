@@ -1,15 +1,23 @@
+import styled from '@emotion/styled';
 import colors from '../../style/colors';
+import mediaquery from '../../style/mediaquery';
 
 import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
 
+const HiddenText = styled.div(mediaquery({
+  display: ['none', 'none', 'initial', 'initial', 'initial'],
+}));
+
+const MoreText = styled.div(mediaquery({
+  display: ['initial', 'initial', 'none', 'none', 'none'],
+}));
+
 const ExpenseColor = {
   color: `${colors.gray_text05}`,
-  fontWeight: '300',
 };
 
 const IncomeColor = {
   color: `${colors.teal_text02}`,
-  fontWeight: '300',
 };
 
 export default function DateData({ histories }) {
@@ -31,10 +39,15 @@ export default function DateData({ histories }) {
                     <div
                       style={expenseStyle()}
                     >
-                      -
-                      {' '}
-                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
-                      원
+                      <HiddenText>
+                        -
+                        {' '}
+                        {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
+                        원
+                      </HiddenText>
+                      <MoreText>
+                        더보기
+                      </MoreText>
                     </div>
                   </>
                 )
@@ -47,10 +60,15 @@ export default function DateData({ histories }) {
                     <div
                       style={incomeStyle()}
                     >
-                      +
-                      {' '}
-                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
-                      원
+                      <HiddenText>
+                        +
+                        {' '}
+                        {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
+                        원
+                      </HiddenText>
+                      <MoreText>
+                        더보기
+                      </MoreText>
                     </div>
                   </>
                 )

@@ -11,7 +11,7 @@ const DaysBox = styled.div({
 
 const DaysRow = styled.div(mediaquery({
   display: 'flex',
-  width: ['12em', '19em', '30em', '35em', '40em'],
+  width: ['12em', '18em', '30em', '35em', '40em'],
   height: '3em',
   margin: '0 auto',
   lineHeight: '3.5em',

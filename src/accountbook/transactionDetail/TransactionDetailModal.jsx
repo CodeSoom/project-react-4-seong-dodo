@@ -11,7 +11,7 @@ import SubmitContainer from './SubmitContainer';
 const Container = styled.div(mediaquery({
   width: '100%',
   height: '100%',
-  padding: '.5em',
+  padding: '.5em 0 0',
   borderTop: [
     `${colors.gray_backgroud} solid 1px`,
     `${colors.gray_backgroud} solid 1px`,
@@ -30,10 +30,14 @@ const Container = styled.div(mediaquery({
 }));
 
 const Box = styled.div(mediaquery({
-  width: '95%',
+  // width: '95%',
+  width: '100%',
   height: '100%',
   color: `${colors.gray_test02}`,
   margin: '0 auto',
+
+  borderRadius: '.5em',
+  border: `1px solid ${colors.gray_backgroud}`,
 }));
 
 export default function TransactionDetailModal({ load }) {

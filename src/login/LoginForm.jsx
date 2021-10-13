@@ -11,19 +11,21 @@ const Container = styled.div({
 });
 
 const FormBox = styled.div(mediaquery({
-  width: '90%',
+  width: ['90%', '95%', '90%', '90%', '90%'],
   height: '100%',
   margin: '0 auto',
-  padding: '.5em',
+  padding: ['.5em', '0.5em 0.5em 1em', '.5em', '.5em', '.5em'],
   textAlign: 'center',
   borderRadius: '.2em',
   backgroundColor: `${colors.white}`,
   '& input': {
     width: ['100%', '100%', '55%', '70%', '70%'],
-    height: '3em',
-    padding: '.2em .5em',
-    marginLeft: '1em',
-    border: 'none',
+    height: ['3em', '4em', '3em', '3em', '3em'],
+    // padding: '.2em .5em',
+    padding: ['1em', '1em', '1em', '1em', '0.5em'],
+    margin: ['0 1em', '0', '0 1em', '0 1em', '0 1em'],
+    border: '1px solid #eee',
+    borderRadius: '.5em',
     color: `${colors.gray_text01}`,
     fontSize: ['.5em', '.6em', '.6em', '.7em', '.8em'],
     outlineStyle: 'none',
@@ -32,21 +34,22 @@ const FormBox = styled.div(mediaquery({
   '& label': {
     display: 'inline-block',
     width: ['100%', '100%', '35%', '20%', '20%'],
-    padding: '.5em',
+    padding: ['.5em', '1em', '.5em', '.5em', '.5em'],
     color: `${colors.gray_text}`,
     fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
     fontWeight: '600',
-    textAlign: ['left', 'left', 'center', 'center', 'center'],
+    textAlign: ['left', 'center', 'center', 'center', 'center'],
   },
 }));
 
 const Button = styled.button(mediaquery({
-  width: '90%',
+  width: ['90%', '95%', '90%', '90%', '90%'],
+  height: ['2em', '2em', '2em', '2em', '2em'],
   margin: '2em auto 0',
   padding: '.5em 0',
   borderRadius: '.2em',
   backgroundColor: `${colors.teal}`,
-  fontSize: ['.7em', '.8em', '.8em', '.9em', '1em'],
+  fontSize: ['.7em', '.9em', '.8em', '.9em', '1em'],
   fontWeight: '500',
   cursor: 'pointer',
   '&:hover': {

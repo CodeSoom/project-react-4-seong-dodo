@@ -36,15 +36,15 @@ const Container = styled.div(mediaquery({
   width: '100%',
   height: '100%',
   backgroundColor: `${colors.teal_modal}`,
-  paddingTop: '4em',
+  paddingTop: ['4em', '1em', '4em', '4em', '4em'],
   zIndex: 1,
 }));
 
 const TextContainer = styled.div(mediaquery({
   bottom: 0,
-  width: '80%',
-  height: '90%',
-  margin: 'auto',
+  width: ['80%', '90%', '80%', '80%', '80%'],
+  height: ['80%', '97%', '80%', '80%', '90%'],
+  margin: '0 auto',
   padding: '.5em',
   border: `${colors.teal_border} solid 1px`,
   borderRadius: '.4em',
@@ -56,7 +56,7 @@ const CloseButtonBox = styled.div(mediaquery({
   textAlign: 'right',
   padding: '.1em .5em',
   color: `${colors.gray_text}`,
-  fontSize: ['.7em', '.7em', '.8em', '.8em', '.9em'],
+  fontSize: ['.7em', '.8em', '.8em', '.8em', '.9em'],
   fontWeight: '600',
 }));
 
@@ -69,7 +69,7 @@ const DateBox = styled.div(mediaquery({
 
 const TextBox = styled.div(mediaquery({
   width: '100%',
-  height: ['84%', '84%', '82%', '82%', '82%'],
+  height: ['84%', '80%', '82%', '82%', '82%'],
   margin: '.5em auto',
 }));
 

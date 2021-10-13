@@ -15,7 +15,7 @@ import Button from './Button';
 
 const OptionBox = styled.div(mediaquery({
   width: '100%',
-  height: ['18%', '18%', '19%', '15%', '15%'],
+  height: ['18%', '15%', '19%', '15%', '15%'],
   marginBottom: ['0', '0', '0', '.5em', '.5em'],
   textAlign: 'center',
   lineHeight: ['2.2em', '2.4em', '2.2em', '4em', '4em'],
@@ -36,10 +36,10 @@ const TypeBox = styled.div(mediaquery({
     width: '50%',
     margin: '0 auto',
     padding: '.4em',
-    fontSize: ['.4em', '.6em', '.7em', '.7em', '.7em'],
+    fontSize: ['.4em', '0.6em', '.7em', '.7em', '.7em'],
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: ['1.5em', '2em', '1.5em', '2em', '2em'],
+    lineHeight: ['1.5em', '1em', '1.5em', '2em', '2em'],
     letterSpacing: '.4em',
   },
 }));

@@ -5,9 +5,9 @@ import mediaquery from '../../style/mediaquery';
 const CountBox = styled.div(mediaquery({
   width: '95%',
   margin: '0 auto',
-  padding: '.2em .5em',
+  padding: '0.2em 0.5em',
   borderBottom: `${colors.gray_backgroud} solid 1px`,
-  fontSize: ['.3em', '.6em', '.6em', '.8em', '.8em'],
+  fontSize: ['0.7em', '0.7em', '.6em', '.8em', '.8em'],
   color: `${colors.gray_text03}`,
   textAlign: 'left',
 }));

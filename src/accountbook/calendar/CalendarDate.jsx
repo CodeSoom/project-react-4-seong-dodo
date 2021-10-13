@@ -6,8 +6,8 @@ import colors from '../../style/colors';
 import DateData from './DateData';
 
 const DateBox = styled.div({
-  width: '20em',
-  height: '15em',
+  width: ['20em', '18em', '20em', '20em', '20em'],
+  height: ['15em', '18em', '15em', '15em', '15em'],
   padding: '.4em',
   borderBottom: `${colors.gray_backgroud} solid .1em`,
   fontSize: '.3em',

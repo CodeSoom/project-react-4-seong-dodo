@@ -5,7 +5,7 @@ const Year = styled.div(mediaquery({
   height: ['6em', '3em', '2em', '2em', '1.8em'],
   margin: '.2em',
   textAlign: 'center',
-  fontSize: ['.2em', '.6em', '.8em', '.9em', '1em'],
+  fontSize: ['.2em', '.7em', '.8em', '.9em', '1em'],
   lineHeight: ['6em', '3em', '2em', '2em', '1.8em'],
 }));
 

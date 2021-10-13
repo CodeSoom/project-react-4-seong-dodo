@@ -3,12 +3,12 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
-  width: ['80%', '65%', '60%', '55%', '50%'],
-  height: ['8em', '9em', '8em', '14em', '15em'],
-  margin: ['2em auto', '3.5em auto', '4em auto', '2em auto', '2em auto .5em'],
+  width: ['80%', '80%', '60%', '55%', '50%'],
+  height: ['8em', '11em', '8em', '14em', '15em'],
+  margin: ['2em auto', '1.5em auto 2.5em', '4em auto', '2em auto', '2em auto .5em'],
   borderBottom: [
     `${colors.teal} solid .3em`,
-    `${colors.teal} solid .4em`,
+    `${colors.teal} solid 0.3em`,
     `${colors.teal} solid .4em`,
     `${colors.teal} solid .5em`,
     `${colors.teal} solid .8em`,
@@ -19,21 +19,24 @@ const Container = styled.div(mediaquery({
 const Title = styled.h2(mediaquery({
   margin: '0 auto',
   fontWeight: 'bold',
-  lineHeight: ['.5em', '2em', '1em', '3em', '3em'],
-  fontSize: ['.5em', '.7em', '1em', '1.5em', '1.5em'],
+  lineHeight: ['.5em', '4em', '1em', '3em', '3em'],
+  fontSize: ['.5em', '1em', '1em', '1.5em', '1.5em'],
 }));
 
 const SubTitle = styled.p(mediaquery({
-  margin: ['4em auto', '2em auto', '1.5em auto', '.5em auto', '.5em auto'],
+  margin: ['4em auto', '1.5em auto 3em', '1.5em auto', '.5em auto', '.5em auto'],
   color: `${colors.gray_text}`,
-  fontSize: ['.4em', '.5em', '.7em', '1em', '1em'],
+  fontSize: ['.4em', '0.7em', '.7em', '1em', '1em'],
 }));
 
 const InputBox = styled.div(mediaquery({
-  margin: ['3em auto', '10em auto', '6em auto', '5em auto', '5em auto'],
-  fontSize: ['.1em', '.2em', '.3em', '.6em', '.7em'],
+  margin: ['3em auto', '0 auto', '6em auto', '5em auto', '5em auto'],
+  fontSize: ['.1em', '0.4em', '.3em', '.6em', '.7em'],
+  '& label': {
+    fontSize: ['.1em', '0.7em', '.3em', '.6em', '.7em'],
+  },
   '& input': {
-    width: ['15em', '18em', '13em', '14em', '15em'],
+    width: ['15em', '10em', '13em', '14em', '15em'],
     margin: '0 .5em',
     border: 'none',
     padding: '.4em',
@@ -42,7 +45,7 @@ const InputBox = styled.div(mediaquery({
     outlineStyle: 'none',
   },
   '& span': {
-    fontSize: '2em',
+    fontSize: ['2em', '2em', '2em', '2em', '2em'],
   },
 }));
 

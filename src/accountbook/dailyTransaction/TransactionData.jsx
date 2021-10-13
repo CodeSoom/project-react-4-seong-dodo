@@ -8,7 +8,7 @@ import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/ut
 
 const DataBox = styled.div(mediaquery({
   width: '95%',
-  height: ['10%', '10%', '10%', '5%', '5%'],
+  height: ['10%', '15%', '10%', '5%', '5%'],
   margin: '0 auto',
   padding: '.2em .5em',
   borderBottom: `${colors.gray_backgroud} solid 1px`,

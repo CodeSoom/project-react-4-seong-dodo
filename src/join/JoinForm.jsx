@@ -2,35 +2,37 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
-const Container = styled.div({
+const Container = styled.div(mediaquery({
   margin: '0 auto',
-  padding: '0.5em',
+  // padding: '0.5em',
+  padding: ['0', '0', '0.5em', '0.5em', '0.5em'],
   textAlign: 'center',
-});
+}));
 
 const FormBox = styled.div(mediaquery({
   width: '90%',
   height: '100%',
   margin: '0 auto',
-  padding: '.5em',
+  padding: ['.5em', '0.5em 0.5em 1em', '.5em', '.5em', '.5em'],
   textAlign: 'center',
   borderRadius: '.2em',
   backgroundColor: `${colors.white}`,
   '& label': {
     display: 'inline-block',
     width: ['100%', '100%', '100%', '30%', '30%'],
-    padding: '.5em',
+    padding: ['.5em', '1em', '.5em', '.5em', '.5em'],
     color: `${colors.gray_text}`,
     fontSize: ['.6em', '.7em', '.7em', '.8em', '.9em'],
     fontWeight: '500',
-    textAlign: 'left',
+    textAlign: ['center', 'center', 'center', 'left', 'left'],
   },
   '& input': {
-    width: ['100%', '100%', '100%', '60%', '60%'],
-    height: '3em',
-    padding: '.5em',
-    marginLeft: '1em',
-    border: 'none',
+    width: ['100%', '90%', '100%', '60%', '60%'],
+    height: ['3em', '4em', '3em', '3em', '3em'],
+    padding: ['1em', '1em', '1em', '1em', '0.5em'],
+    margin: ['0 1em', '0', '0 1em', '0 1em', '0 1em'],
+    border: '1px solid #eee',
+    borderRadius: '.5em',
     color: `${colors.gray_text01}`,
     fontSize: ['.5em', '.6em', '.6em', '.7em', '.8em'],
     outlineStyle: 'none',
@@ -40,13 +42,15 @@ const FormBox = styled.div(mediaquery({
 
 const Button = styled.button(mediaquery({
   width: '90%',
-  margin: '2em auto 0',
+  height: ['2em', '2em', '2em', '2em', '2em'],
+  margin: ['2em auto 0', '1.2em auto 0.7em', '2em auto 0', '2em auto 0', '2em auto 0'],
   padding: '.5em 0',
   borderRadius: '.2em',
   backgroundColor: `${colors.teal}`,
   fontSize: ['.7em', '.8em', '.8em', '.9em', '1em'],
   fontWeight: '500',
   cursor: 'pointer',
+  letterSpacing: '.2em',
   '&:hover': {
     color: `${colors.white}`,
     backgroundColor: `${colors.blue_text}`,
@@ -65,7 +69,6 @@ export default function JoinForm({ fields, onChange, onSubmit }) {
   }
 
   return (
-
     <Container>
       <FormBox>
         <label htmlFor="join-email">

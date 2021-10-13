@@ -15,7 +15,7 @@ import {
 
 const OptionBox = styled.div(mediaquery({
   width: '100%',
-  height: ['18%', '18%', '19%', '15%', '15%'],
+  height: ['18%', '15%', '19%', '15%', '15%'],
   marginBottom: ['0', '0', '0', '.5em', '.5em'],
   textAlign: 'center',
   lineHeight: ['2.2em', '2.4em', '2.2em', '4em', '4em'],

@@ -15,18 +15,19 @@ const Footer = styled.div(mediaquery({
 
 const List = styled.ul(mediaquery({
   display: 'inline-flex',
-  width: ['90%', '90%', '80%', '70%', '60%'],
-  height: ['3.8em', '3.4em', '2.6em', '2.5em', '2.2em'],
-  margin: '2.5em auto',
+  width: ['90%', '100%', '80%', '70%', '60%'],
+  height: ['3.8em', '3em', '2.6em', '2.5em', '2.2em'],
+  margin: ['2.5em auto', '1em auto', '2.5em auto', '2.5em auto', '2.5em auto'],
   padding: 0,
   borderRadius: '5em',
   backgroundColor: `${colors.gray_backgroud}`,
-  fontSize: ['.4em', '.5em', '.7em', '.8em', '.9em'],
-  lineHeight: ['3.8em', '3.4em', '2.6em', '2.5em', '2.3em'],
+  fontSize: ['.4em', '.7em', '.7em', '.8em', '.9em'],
+  lineHeight: ['3.8em', '3em', '2.6em', '2.5em', '2.3em'],
+  textAlign: 'center',
 }));
 
 const Item = styled.li(mediaquery({
-  width: '30%',
+  width: '25%',
   margin: '0 auto',
   borderRadius: '2em',
   fontWeight: '500',
@@ -36,17 +37,17 @@ const Item = styled.li(mediaquery({
     '&.active': {
       display: 'inline-block',
       width: '100%',
-      height: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      height: ['3.6em', '3em', '2.4em', '2.3em', '2.1em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      lineHeight: ['3.6em', '3em', '2.4em', '2.3em', '2.1em'],
     },
   },
 }));
 
 const Item1 = styled.li(mediaquery({
-  width: '30%',
+  width: '25%',
   margin: '0 auto',
   borderRadius: '2em',
   fontWeight: '500',
@@ -56,11 +57,11 @@ const Item1 = styled.li(mediaquery({
     '&.active': {
       display: 'inline-block',
       width: '100%',
-      height: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      height: ['3.6em', '3em', '2.4em', '2.3em', '2.1em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      lineHeight: ['3.6em', '3em', '2.4em', '2.3em', '2.1em'],
     },
   },
 }));

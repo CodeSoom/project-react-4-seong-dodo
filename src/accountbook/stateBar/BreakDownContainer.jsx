@@ -19,9 +19,9 @@ const TypeBox = styled.div(mediaquery({
   margin: '0 auto',
   padding: '0 .2em',
   borderLeft: `${colors.gray_backgroud} solid .2em`,
-  fontSize: ['.1em', '.4em', '.6em', '.7em', '.8em'],
+  fontSize: ['.1em', '0.6em', '.6em', '.7em', '.8em'],
   fontWeight: '600',
-  lineHeight: ['.1em', '.4em', '.6em', '.7em', '.8em'],
+  lineHeight: ['.1em', '0.6em', '.6em', '.7em', '.8em'],
   textAlign: 'left',
 }));
 
@@ -37,9 +37,9 @@ const NumberBox = styled.div(mediaquery({
   float: 'left',
   width: ['50%', '65%', '70%', '80%', '80%'],
   padding: ['4.5em', '1.2em', '.5em 1.5em', '.5em 1.5em', '.5em 1.5em'],
-  fontSize: ['.1em', '.3em', '.5em', '.6em', '.9em'],
+  fontSize: ['.1em', '0.4em', '.5em', '.6em', '.9em'],
   color: `${colors.teal_modal}`,
-  lineHeight: ['70em', '6em', '2em', '1.8em', '1.1em'],
+  lineHeight: ['70em', '5em', '2em', '1.8em', '1.1em'],
 }));
 
 export default function BreakDownContainer() {

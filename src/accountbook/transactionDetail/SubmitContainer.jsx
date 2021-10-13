@@ -16,8 +16,8 @@ import {
 
 const SubmitBox = styled.div(mediaquery({
   width: ['30%', '30%', '30%', '50%', '50%'],
-  height: ['9%', '9%', '9%', '7%', '7%'],
-  margin: ['0.5em auto 0', '0.5em auto 0', '0.5em auto 0', '3em auto 0', '3em auto 0'],
+  height: ['12%', '12%', '9%', '7%', '7%'],
+  margin: ['0.5em auto', '0.5em auto', '0.5em auto 0', '3em auto 0', '3em auto 0'],
   textAlign: 'center',
   lineHeight: '2em',
   borderRadius: '.2em',

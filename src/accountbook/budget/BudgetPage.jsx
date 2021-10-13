@@ -6,8 +6,7 @@ import TabBarCard from '../tabBar/TabBarCard';
 
 const Container = styled.div({
   width: '90%',
-  height: '50%',
-  margin: '.5em auto',
+  margin: '0 auto',
   textAlign: 'center',
 });
 

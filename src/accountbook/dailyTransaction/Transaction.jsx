@@ -12,11 +12,11 @@ import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/ut
 
 const Container = styled.div(mediaquery({
   width: '100%',
-  height: ['31%', '34%', '35%', '16%', '18%'],
-  margin: '.5em auto',
-  padding: ' .5em',
+  height: ['40%', '40%', '35%', '16%', '18%'],
+  margin: '0.5em auto',
+  padding: '0.5em',
   border: `${colors.gray_backgroud} solid 1px`,
-  borderRadius: '.3em',
+  borderRadius: '0.3em',
 }));
 
 const DeleteBox = styled.div({
@@ -26,35 +26,35 @@ const DeleteBox = styled.div({
   opacity: 0.5,
   '& div': {
     float: 'right',
-    padding: '0 .3em',
+    padding: '0 0.3em',
     cursor: 'pointer',
   },
 });
 
 const OptionBox = styled.div(mediaquery({
   float: 'left',
-  width: '35%',
+  width: '40%',
   height: '80%',
-  padding: '.5em',
+  padding: '0.5em',
 }));
 
 const TextBox = styled.div(mediaquery({
   float: 'left',
-  width: '65%',
+  width: '60%',
   height: '80%',
-  padding: '.5em',
+  padding: '0.5em',
 }));
 
 const Category = styled.div(mediaquery({
   float: 'left',
   width: '70%',
-  height: '45%',
-  margin: '.3em',
-  padding: '.4em',
-  borderRadius: '.2em',
+  height: '50%',
+  margin: '0.3em',
+  // padding: '.4em',
+  borderRadius: '0.2em',
   border: `${colors.gray_text04} solid 1px`,
-  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
-  lineHeight: ['18em', '4em', '2em', '.8em', '1.2em'],
+  fontSize: ['0.4em', '0.4em', '.6em', '.8em', '.9em'],
+  lineHeight: ['4em', '3em', '2em', '.8em', '1.2em'],
   opacity: 0.8,
 }));
 
@@ -83,25 +83,25 @@ const Text = styled.div(mediaquery({
 
 const ExpenseStyle = {
   float: 'left',
-  width: '40%',
-  height: '40%',
-  margin: '.2em',
-  borderRadius: '5em',
+  width: '70%',
+  height: '45%',
+  margin: '0.2em',
+  borderRadius: '0.5em',
   backgroundColor: `${colors.gray_text03}`,
-  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
-  lineHeight: ['18em', '4.5em', '2.6em', '1.3em', '1.7em'],
+  fontSize: ['.1em', '0.5em', '.6em', '.8em', '.9em'],
+  lineHeight: ['18em', '4em', '2.6em', '1.3em', '1.7em'],
   opacity: 0.8,
 };
 
 const IncomeStyle = {
   float: 'left',
-  width: '40%',
-  height: '40%',
-  margin: '.2em',
-  borderRadius: '5em',
+  width: '70%',
+  height: '45%',
+  margin: '0.2em',
+  borderRadius: '0.5em',
   backgroundColor: `${colors.red_text02}`,
-  fontSize: ['.1em', '.5em', '.6em', '.8em', '.9em'],
-  lineHeight: ['18em', '4.5em', '2.6em', '1.3em', '1.7em'],
+  fontSize: ['.1em', '0.5em', '.6em', '.8em', '.9em'],
+  lineHeight: ['18em', '4em', '2.6em', '1.3em', '1.7em'],
   opacity: 0.8,
 };
 

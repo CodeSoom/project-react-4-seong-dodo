@@ -8,25 +8,25 @@ import mediaquery from '../style/mediaquery';
 
 import TabBarCard from './tabBar/TabBarCard';
 
-const Container = styled.div({
+const Container = styled.div(mediaquery({
   width: '90%',
-  height: '50%',
-  margin: '.5em auto',
+  height: '100%',
+  margin: ['1em auto', '2em auto', '1em auto', '1em auto', '0.5em auto'],
   textAlign: 'center',
-});
+}));
 
 const LinkBox = styled.div(mediaquery({
-  width: '60%',
-  height: ['3.5em', '3.5em', '3.5em', '3em', '3.5em'],
-  margin: ['.6em auto', '.6em auto', '.8em auto', '.8em auto', '.8em auto'],
+  width: ['95%', '95%', '60%', '60%', '60%'],
+  height: ['3.5em', '5em', '3.5em', '3em', '3.5em'],
+  margin: ['.6em auto', '1.5em auto', '.8em auto', '.8em auto', '.8em auto'],
   borderRadius: '.2em',
   backgroundColor: `${colors.teal}`,
-  fontSize: ['.6em', '1.2em', '1.4em', '2.5em', '3em'],
+  fontSize: ['.6em', '1.3em', '1.4em', '2.5em', '3em'],
   textAlign: 'center',
   '& a': {
     color: `${colors.white}`,
     fontWeight: 'bold',
-    lineHeight: ['3.5em', '3.5em', '3.5em', '3em', '3.5em'],
+    lineHeight: ['3.5em', '5em', '3.5em', '3em', '3.5em'],
     cursor: 'pointer',
     '&:hover': {
       color: `${colors.white}`,

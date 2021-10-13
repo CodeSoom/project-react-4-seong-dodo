@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 
 import Loading from '../../loading/Loading';
+import colors from '../../style/colors';
+import mediaquery from '../../style/mediaquery';
 
 import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
 
@@ -14,102 +16,156 @@ import {
   loadAnnualTransaction,
 } from '../../reducers/accountbook';
 
-const ItemBox = styled.div({
-  margin: '30px auto 0',
-  width: '800px',
-  height: '170px',
+const ItemBox = styled.div(mediaquery({
+  margin: [
+    '1em auto 0',
+    '1em auto 0',
+    '30px auto 0',
+    '30px auto 0',
+    '30px auto 0',
+  ],
+  // width: '800px',
+  // height: '170px',
+  width: ['90%', '90%', '800px', '800px', '800px'],
+  height: ['7em', '7em', '800px', '800px', '170px'],
   border: '1px solid #E1E4E7',
   borderRadius: '5px',
-});
+}));
 
-const DateText = styled.div({
-  marginTop: '20px',
-  marginLeft: '30px',
-  width: '90px',
-  height: '19px',
+const DateText = styled.div(mediaquery({
+  marginTop: ['1em', '1em', '20px', '20px', '20px'],
+  marginLeft: ['1em', '1em', '30px', '30px', '30px'],
+  // width: '90px',
+  // height: '19px',
+  width: ['50%', '50%', '90px', '90px', '90px'],
+  height: ['10%', '10%', '19px', '19px', '19px'],
   textAlign: 'left',
-  fontSize: '.9em',
+  fontSize: ['0.7em', '0.7em', '.9em', '.9em', '.9em'],
   lineHeight: 1.5,
   color: '#495057',
-});
 
-const UnderLine = styled.div({
-  marginTop: '10px',
-  marginBottom: '15px',
-  marginLeft: '30px',
-  marginRight: '30px',
-  width: '740px',
+  // backgroundColor: 'beige',
+}));
+
+const UnderLine = styled.div(mediaquery({
+  margin: ['0.4em auto', '0.4em auto', '10px 30px 15px', '10px 30px 15px', '10px 30px 15px'],
+  // marginTop: '10px',
+  // marginBottom: '15px',
+  // marginLeft: '30px',
+  // marginRight: '30px',
+  // width: '740px',
+  width: ['90%', '90%', '740px', '740px', '740px'],
   height: '1px',
   background: '#E1E4E7 0% 0% no-repeat padding-box',
-});
+}));
 
-const TypeBox = styled.div({
-  marginBottom: '10px',
-  width: '800px',
-  height: '25px',
-  lineHeight: '25px',
-});
+const TypeBox = styled.div(mediaquery({
+  marginBottom: ['0.5em', '0.5em', '10px', '10px', '10px'],
+  // marginBottom: '10px',
+  // width: '800px',
+  // height: '25px',
+  width: ['100%', '100%', '800px', '800px', '800px'],
+  height: ['20%', '15%', '25px', '25px', '25px'],
+  lineHeight: [1.5, 1.5, '25px', '25px', '25px'],
 
-const TypeText = styled.div({
+  // backgroundColor: 'pink',
+}));
+
+const TypeText = styled.div(mediaquery({
   float: 'left',
-  marginLeft: '30px',
-  width: '40px',
-  height: '25px',
+  // marginLeft: '30px',
+  // width: '40px',
+  // height: '25px',
+  // color: '#00C854',
+  // fontSize: '.8em',
+  marginLeft: ['1em', '1em', '30px', '30px', '30px'],
+  width: ['10%', '10%', '40px', '40px', '40px'],
+  height: ['20%', '15%', '25px', '25px', '25px'],
   textAlign: 'left',
-  color: '#00C854',
-  fontSize: '.8em',
-});
+  color: `${colors.blue_text}`,
+  fontSize: ['0.7em', '0.7em', '0.8em', '0.8em', '0.8em'],
+}));
 
-const SectionBar = styled.div({
+const SectionBar = styled.div(mediaquery({
   float: 'left',
   display: 'inline-block',
-  margin: '3px 20px',
+  // margin: '3px 20px',
+  // height:  '19px',
+  margin: ['0 0.5em', '0 0.5em', '3px 20px', '3px 20px', '3px 20px'],
   width: '1px',
-  height: '19px',
+  height: ['1em', '1em', '19px', '19px', '19px'],
   background: '#E1E4E7 0% 0% no-repeat padding-box',
-});
+}));
 
-const CategoryText = styled.div({
+const CategoryText = styled.div(mediaquery({
   float: 'left',
-  width: '200px',
-  height: '25px',
+  // width: '200px',
+  // height: '25px',
+  // fontSize: '.8em',
+  width: ['20%', '20%', '200px', '200px', '200px'],
+  height: ['20%', '15%', '25px', '25px', '25px'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: '.8em',
-});
+  fontSize: ['0.7em', '0.7em', '0.8em', '0.8em', '0.8em'],
+}));
 
-const BreakdownBox = styled.div({
+const BreakdownBox = styled.div(mediaquery({
   float: 'left',
-  marginRight: '30px',
-  width: '400px',
-  height: '25px',
+  // marginRight: '30px',
+  // width:  400px',
+  // height: '25px',
+  // fontSize: '1em',
+  marginRight: ['1.2em', '1.2em', '30px', '30px', '30px'],
+  width: ['30%', '30%', '400px', '400px', '400px'],
+  height: ['20%', '15%', '25px', '25px', '25px'],
   textAlign: 'right',
   color: '#282C30',
-  fontSize: '1em',
-});
+  fontSize: ['0.9em', '0.8em', '1em', '1em', '1em'],
+}));
 
-const SourceText = styled.div({
-  marginBottom: '10px',
-  marginLeft: '30px',
-  marginRight: '30px',
-  width: '740px',
-  height: '25px',
+const SourceText = styled.div(mediaquery({
+  // marginBottom: '10px',
+  // marginLeft: '30px',
+  // marginRight: '30px',
+  // width: '740px',
+  // height: '25px',
+  // fontSize: '.9em',
+  // lineHeight: '25px',
+  margin: ['0 auto 0.4em', '0 auto 0.4em', '0 30px 10px', '0 30px 10px', '0 30px 10px'],
+  width: ['90%', '90%', '740px', '740px', '740px'],
+  height: ['20%', '15%', '25px', '25px', '25px'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: '.9em',
-  lineHeight: '25px',
-});
+  fontSize: ['0.7em', '0.7em', '0.9em', '0.9em', '0.9em'],
+  lineHeight: [1.5, 1.5, '25px', '25px', '25px'],
 
-const MemoText = styled.div({
-  marginBottom: '20px',
-  marginLeft: '30px',
-  marginRight: '30px',
-  width: '740px',
-  height: '15px',
+  // backgroundColor: 'skyblue',
+}));
+
+const MemoText = styled.div(mediaquery({
+  // marginBottom: '20px',
+  // marginLeft: '30px',
+  // marginRight: '30px',
+  // width: '740px',
+  // height: '15px',
+  // fontSize: '.7em',
+  margin: ['0 auto 0.5em', '0 auto 0.5em', '0 30px 20px', '0 30px 20px', '0 30px 20px'],
+  width: ['90%', '90%', '740px', '740px', '740px'],
+  height: ['15%', '10%', '15px', '15px', '15px'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: '.7em',
+  fontSize: ['0.7em', '0.7em', '0.7em', '0.7em', '0.7em'],
   lineHeight: '15px',
+
+  // backgroundColor: 'beige',
+}));
+
+const Exception = styled.p({
+  margin: '8em auto',
+  color: `${colors.gray_text}`,
+  fontSize: '.8em',
+  textAlign: 'center',
+  lineHeight: '10em',
 });
 
 export default function TimeLineContainer() {
@@ -119,7 +175,7 @@ export default function TimeLineContainer() {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
-    accessToken, nextPage, totalPages, transactionHistoryResponseList,
+    accessToken, transactionHistoryResponseList,
   } = useSelector((state) => ({
     accessToken: state.user.accessToken,
     nextPage: state.accountbook.nextPage,
@@ -128,8 +184,6 @@ export default function TimeLineContainer() {
   }));
 
   const loadTransaction = async () => {
-    // totalPages보다 같거나 크면 함수실행을 종료한다
-    // 그렇지 않은 경우만 함수를 load하고 페이지를 올린다
     setIsLoading(true);
     await dispatch(loadAnnualTransaction());
     dispatch(setNextPage());
@@ -168,7 +222,7 @@ export default function TimeLineContainer() {
               <div>
                 {
                   transactionHistoryResponseList.length === 0 && !isLoading
-                    ? <div>내용없음</div>
+                    ? <Exception>내용없음</Exception>
                     : (
                       <>
                         <div>
@@ -220,7 +274,7 @@ export default function TimeLineContainer() {
               </div>
             </>
           )
-          : <div>내역 페이지입니다. 로그인으로 이동하기</div>
+          : <Exception>내역 페이지입니다. 로그인으로 이동하기</Exception>
       }
     </>
   );

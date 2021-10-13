@@ -4,7 +4,7 @@ import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
   width: '100%',
-  height: '98%',
+  height: '100%',
   textAlign: 'center',
 }));
 
@@ -25,11 +25,11 @@ const InputBox = styled.div(mediaquery({
   height: '100%',
   '& input': {
     width: ['90%', '90%', '90%', '100%', '100%'],
-    height: ['95%', '95%', '95%', '80%', '80%'],
+    height: ['100%', '100%', '95%', '80%', '80%'],
     margin: ['0 auto', '0 auto', '0 auto', '0.5em auto', '0.5em auto'],
     padding: '.5em',
     border: 'none',
-    borderRadius: '1em',
+    borderRadius: '.5em',
     color: `${colors.gray_text02}`,
     fontSize: ['.5em', '.6em', '.7em', '.8em', '.8em'],
     textAlign: 'right',

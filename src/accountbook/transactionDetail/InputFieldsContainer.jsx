@@ -11,9 +11,9 @@ import {
 
 const InputBox = styled.div(mediaquery({
   width: '100%',
-  height: ['18%', '18%', '19%', '15%', '15%'],
+  height: ['16%', '16%', '19%', '15%', '15%'],
   marginBottom: ['0', '0', '0', '.5em', '.5em'],
-  padding: '.5em',
+  padding: ['0.4em', '0.4em', '0.4em', '.5em', '.5em'],
 }));
 
 export default function InputFieldsContainer() {
