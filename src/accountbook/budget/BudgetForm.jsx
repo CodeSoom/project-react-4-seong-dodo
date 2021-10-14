@@ -3,13 +3,19 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
-  width: ['80%', '80%', '60%', '55%', '50%'],
-  height: ['8em', '11em', '8em', '14em', '15em'],
-  margin: ['2em auto', '1.5em auto 2.5em', '4em auto', '2em auto', '2em auto .5em'],
+  width: ['80%', '80%', '80%', '55%', '50%'],
+  height: ['8em', '11em', '12em', '14em', '15em'],
+  margin: [
+    '2em auto',
+    '1.5em auto 2.5em',
+    '3em auto 2em',
+    '2em auto',
+    '2em auto .5em',
+  ],
   borderBottom: [
-    `${colors.teal} solid .3em`,
     `${colors.teal} solid 0.3em`,
-    `${colors.teal} solid .4em`,
+    `${colors.teal} solid 0.3em`,
+    `${colors.teal} solid 0.4em`,
     `${colors.teal} solid .5em`,
     `${colors.teal} solid .8em`,
   ],
@@ -19,27 +25,27 @@ const Container = styled.div(mediaquery({
 const Title = styled.h2(mediaquery({
   margin: '0 auto',
   fontWeight: 'bold',
-  lineHeight: ['.5em', '4em', '1em', '3em', '3em'],
-  fontSize: ['.5em', '1em', '1em', '1.5em', '1.5em'],
+  lineHeight: ['4em', '4em', '3em', '3em', '3em'],
+  fontSize: ['15em', '1em', '1.3em', '1.5em', '1.5em'],
 }));
 
 const SubTitle = styled.p(mediaquery({
-  margin: ['4em auto', '1.5em auto 3em', '1.5em auto', '.5em auto', '.5em auto'],
+  margin: ['1.5em auto 3em', '1.5em auto 3em', '1.5em auto 3em', '.5em auto', '.5em auto'],
   color: `${colors.gray_text}`,
-  fontSize: ['.4em', '0.7em', '.7em', '1em', '1em'],
+  fontSize: ['0.7em', '0.7em', '0.9em', '1em', '1em'],
 }));
 
 const InputBox = styled.div(mediaquery({
-  margin: ['3em auto', '0 auto', '6em auto', '5em auto', '5em auto'],
-  fontSize: ['.1em', '0.4em', '.3em', '.6em', '.7em'],
+  margin: ['0 auto', '0 auto', '1em auto', '5em auto', '5em auto'],
+  fontSize: ['0.4em', '0.4em', '0.5em', '.6em', '.7em'],
   '& label': {
-    fontSize: ['.1em', '0.7em', '.3em', '.6em', '.7em'],
+    fontSize: ['1em', '1em', '1.5em', '.6em', '.7em'],
   },
   '& input': {
-    width: ['15em', '10em', '13em', '14em', '15em'],
-    margin: '0 .5em',
+    width: ['10em', '10em', '10em', '14em', '15em'],
+    margin: '0 0.5em',
     border: 'none',
-    padding: '.4em',
+    padding: '0.4em',
     fontSize: '2em',
     textAlign: 'right',
     outlineStyle: 'none',

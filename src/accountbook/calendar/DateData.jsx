@@ -5,11 +5,11 @@ import mediaquery from '../../style/mediaquery';
 import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
 
 const HiddenText = styled.div(mediaquery({
-  display: ['none', 'none', 'initial', 'initial', 'initial'],
+  display: ['none', 'none', 'none', 'initial', 'initial'],
 }));
 
 const MoreText = styled.div(mediaquery({
-  display: ['initial', 'initial', 'none', 'none', 'none'],
+  display: ['initial', 'initial', 'initial', 'none', 'none'],
 }));
 
 const ExpenseColor = {

@@ -20,27 +20,27 @@ const ItemBox = styled.div(mediaquery({
   margin: [
     '1em auto 0',
     '1em auto 0',
-    '30px auto 0',
+    '1em auto 0',
     '30px auto 0',
     '30px auto 0',
   ],
   // width: '800px',
   // height: '170px',
-  width: ['90%', '90%', '800px', '800px', '800px'],
-  height: ['7em', '7em', '800px', '800px', '170px'],
+  width: ['90%', '90%', '90%', '800px', '800px'],
+  height: ['6em', '6em', '7em', '800px', '170px'],
   border: '1px solid #E1E4E7',
   borderRadius: '5px',
 }));
 
 const DateText = styled.div(mediaquery({
-  marginTop: ['1em', '1em', '20px', '20px', '20px'],
-  marginLeft: ['1em', '1em', '30px', '30px', '30px'],
+  marginTop: ['1em', '1em', '1em', '20px', '20px'],
+  marginLeft: ['1em', '1em', '1em', '30px', '30px'],
   // width: '90px',
   // height: '19px',
-  width: ['50%', '50%', '90px', '90px', '90px'],
-  height: ['10%', '10%', '19px', '19px', '19px'],
+  width: ['50%', '50%', '50%', '90px', '90px'],
+  height: ['10%', '10%', '10%', '19px', '19px'],
   textAlign: 'left',
-  fontSize: ['0.7em', '0.7em', '.9em', '.9em', '.9em'],
+  fontSize: ['0.7em', '0.7em', '0.7em', '.9em', '.9em'],
   lineHeight: 1.5,
   color: '#495057',
 
@@ -48,25 +48,31 @@ const DateText = styled.div(mediaquery({
 }));
 
 const UnderLine = styled.div(mediaquery({
-  margin: ['0.4em auto', '0.4em auto', '10px 30px 15px', '10px 30px 15px', '10px 30px 15px'],
+  margin: [
+    '0.4em auto',
+    '0.4em auto',
+    '0.4em auto',
+    '10px 30px 15px',
+    '10px 30px 15px',
+  ],
   // marginTop: '10px',
   // marginBottom: '15px',
   // marginLeft: '30px',
   // marginRight: '30px',
   // width: '740px',
-  width: ['90%', '90%', '740px', '740px', '740px'],
+  width: ['90%', '90%', '90%', '740px', '740px'],
   height: '1px',
   background: '#E1E4E7 0% 0% no-repeat padding-box',
 }));
 
 const TypeBox = styled.div(mediaquery({
-  marginBottom: ['0.5em', '0.5em', '10px', '10px', '10px'],
+  marginBottom: ['0.5em', '0.5em', '0.5em', '10px', '10px'],
   // marginBottom: '10px',
   // width: '800px',
   // height: '25px',
-  width: ['100%', '100%', '800px', '800px', '800px'],
-  height: ['20%', '15%', '25px', '25px', '25px'],
-  lineHeight: [1.5, 1.5, '25px', '25px', '25px'],
+  width: ['100%', '100%', '100%', '800px', '800px'],
+  height: ['15%', '15%', '15%', '25px', '25px'],
+  lineHeight: [1.5, 1.5, 1.5, '25px', '25px'],
 
   // backgroundColor: 'pink',
 }));
@@ -78,12 +84,12 @@ const TypeText = styled.div(mediaquery({
   // height: '25px',
   // color: '#00C854',
   // fontSize: '.8em',
-  marginLeft: ['1em', '1em', '30px', '30px', '30px'],
-  width: ['10%', '10%', '40px', '40px', '40px'],
-  height: ['20%', '15%', '25px', '25px', '25px'],
+  marginLeft: ['1em', '1em', '1em', '30px', '30px'],
+  width: ['10%', '10%', '10%', '40px', '40px'],
+  height: ['15%', '15%', '15%', '25px', '25px'],
   textAlign: 'left',
   color: `${colors.blue_text}`,
-  fontSize: ['0.7em', '0.7em', '0.8em', '0.8em', '0.8em'],
+  fontSize: ['0.7em', '0.7em', '0.7em', '0.8em', '0.8em'],
 }));
 
 const SectionBar = styled.div(mediaquery({
@@ -91,9 +97,15 @@ const SectionBar = styled.div(mediaquery({
   display: 'inline-block',
   // margin: '3px 20px',
   // height:  '19px',
-  margin: ['0 0.5em', '0 0.5em', '3px 20px', '3px 20px', '3px 20px'],
+  margin: [
+    '0 0.5em',
+    '0 0.5em',
+    '0 0.5em',
+    '3px 20px',
+    '3px 20px',
+  ],
   width: '1px',
-  height: ['1em', '1em', '19px', '19px', '19px'],
+  height: ['1em', '1em', '1em', '19px', '19px'],
   background: '#E1E4E7 0% 0% no-repeat padding-box',
 }));
 
@@ -102,11 +114,11 @@ const CategoryText = styled.div(mediaquery({
   // width: '200px',
   // height: '25px',
   // fontSize: '.8em',
-  width: ['20%', '20%', '200px', '200px', '200px'],
-  height: ['20%', '15%', '25px', '25px', '25px'],
+  width: ['20%', '20%', '20%', '200px', '200px'],
+  height: ['15%', '15%', '15%', '25px', '25px'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: ['0.7em', '0.7em', '0.8em', '0.8em', '0.8em'],
+  fontSize: ['0.7em', '0.7em', '0.7em', '0.8em', '0.8em'],
 }));
 
 const BreakdownBox = styled.div(mediaquery({
@@ -115,12 +127,12 @@ const BreakdownBox = styled.div(mediaquery({
   // width:  400px',
   // height: '25px',
   // fontSize: '1em',
-  marginRight: ['1.2em', '1.2em', '30px', '30px', '30px'],
-  width: ['30%', '30%', '400px', '400px', '400px'],
-  height: ['20%', '15%', '25px', '25px', '25px'],
+  marginRight: ['1.2em', '1.2em', '1.2em', '30px', '30px'],
+  width: ['30%', '30%', '30%', '400px', '400px'],
+  height: ['15%', '15%', '15%', '25px', '25px'],
   textAlign: 'right',
   color: '#282C30',
-  fontSize: ['0.9em', '0.8em', '1em', '1em', '1em'],
+  fontSize: ['0.8em', '0.8em', '0.8em', '1em', '1em'],
 }));
 
 const SourceText = styled.div(mediaquery({
@@ -131,13 +143,19 @@ const SourceText = styled.div(mediaquery({
   // height: '25px',
   // fontSize: '.9em',
   // lineHeight: '25px',
-  margin: ['0 auto 0.4em', '0 auto 0.4em', '0 30px 10px', '0 30px 10px', '0 30px 10px'],
-  width: ['90%', '90%', '740px', '740px', '740px'],
-  height: ['20%', '15%', '25px', '25px', '25px'],
+  margin: [
+    '0 auto 0.4em',
+    '0 auto 0.4em',
+    '0 auto 0.4em',
+    '0 30px 10px',
+    '0 30px 10px',
+  ],
+  width: ['90%', '90%', '90%', '740px', '740px'],
+  height: ['15%', '15%', '15%', '25px', '25px'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: ['0.7em', '0.7em', '0.9em', '0.9em', '0.9em'],
-  lineHeight: [1.5, 1.5, '25px', '25px', '25px'],
+  fontSize: ['0.7em', '0.7em', '0.7em', '0.9em', '0.9em'],
+  lineHeight: [1.5, 1.5, 1.5, '25px', '25px'],
 
   // backgroundColor: 'skyblue',
 }));
@@ -149,9 +167,15 @@ const MemoText = styled.div(mediaquery({
   // width: '740px',
   // height: '15px',
   // fontSize: '.7em',
-  margin: ['0 auto 0.5em', '0 auto 0.5em', '0 30px 20px', '0 30px 20px', '0 30px 20px'],
-  width: ['90%', '90%', '740px', '740px', '740px'],
-  height: ['15%', '10%', '15px', '15px', '15px'],
+  margin: [
+    '0 auto 0.5em',
+    '0 auto 0.5em',
+    '0 auto 0.5em',
+    '0 30px 20px',
+    '0 30px 20px',
+  ],
+  width: ['90%', '90%', '90%', '740px', '740px'],
+  height: ['10%', '10%', '10%', '15px', '15px'],
   textAlign: 'left',
   color: '#495057',
   fontSize: ['0.7em', '0.7em', '0.7em', '0.7em', '0.7em'],
@@ -163,7 +187,7 @@ const MemoText = styled.div(mediaquery({
 const Exception = styled.p({
   margin: '8em auto',
   color: `${colors.gray_text}`,
-  fontSize: '.8em',
+  fontSize: '0.8em',
   textAlign: 'center',
   lineHeight: '10em',
 });

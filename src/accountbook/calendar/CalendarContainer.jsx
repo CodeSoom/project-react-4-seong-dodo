@@ -17,7 +17,7 @@ import {
 } from '../../reducers/accountbook';
 
 const CalendarBox = styled.div({
-  minHeight: '20em',
+  // minHeight: '20em',
   margin: '1.5em auto',
 });
 

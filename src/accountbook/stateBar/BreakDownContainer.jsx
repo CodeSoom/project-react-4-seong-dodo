@@ -10,36 +10,51 @@ const Container = styled.div(mediaquery({
   float: 'left',
   heiht: '100%',
   width: '60%',
-  padding: ['.7em 0.2em', '.7em 0.2em', '1.3em 0.2em', '1.85em 0.2em', '2.05em 0.2em'],
+  padding: ['1.4em 0.2em', '1.4em 0.2em', '1.7em 0.2em', '1.85em 0.2em', '2.05em 0.2em'],
+
+  // backgroundColor: 'pink',
 }));
 
 const TypeBox = styled.div(mediaquery({
   float: 'left',
   width: '100%',
+  heiht: '50%',
   margin: '0 auto',
-  padding: '0 .2em',
+  padding: '0 0.2em',
   borderLeft: `${colors.gray_backgroud} solid .2em`,
-  fontSize: ['.1em', '0.6em', '.6em', '.7em', '.8em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '.7em', '.8em'],
   fontWeight: '600',
-  lineHeight: ['.1em', '0.6em', '.6em', '.7em', '.8em'],
+  lineHeight: [1.5, 1.5, 2.1, '.7em', '.8em'],
   textAlign: 'left',
+
+  // border: '1px solid #333',
 }));
 
 const LabelBox = styled.div(mediaquery({
   float: 'left',
-  width: ['50%', '35%', '30%', '20%', '20%'],
-  padding: ['4em', '1.1em', '.5em', '.5em', '.5em'],
+  width: ['35%', '35%', '35%', '20%', '20%'],
+  padding: [0, 0, 0, '.5em', '.5em'],
   textAlign: 'center',
-  letterSpacing: '.3em',
+  letterSpacing: '0.3em',
+
+  // backgroundColor: 'gray',
 }));
 
 const NumberBox = styled.div(mediaquery({
   float: 'left',
-  width: ['50%', '65%', '70%', '80%', '80%'],
-  padding: ['4.5em', '1.2em', '.5em 1.5em', '.5em 1.5em', '.5em 1.5em'],
-  fontSize: ['.1em', '0.4em', '.5em', '.6em', '.9em'],
+  width: ['65%', '65%', '65%', '80%', '80%'],
+  padding: [
+    '0 1.2em',
+    '0 1.2em',
+    '0 1.5em',
+    '.5em 1.5em',
+    '.5em 1.5em',
+  ],
+  fontSize: ['0.8em', '0.8em', '0.9em', '.6em', '.9em'],
   color: `${colors.teal_modal}`,
-  lineHeight: ['70em', '5em', '2em', '1.8em', '1.1em'],
+  lineHeight: [1.5, 1.5, 2.3, '1.8em', '1.1em'],
+
+  // backgroundColor: 'biege',
 }));
 
 export default function BreakDownContainer() {
@@ -124,7 +139,6 @@ export default function BreakDownContainer() {
             </>
           )
       }
-      ;
     </Container>
   );
 }

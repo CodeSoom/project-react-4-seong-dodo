@@ -4,17 +4,18 @@ import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
   margin: '0 auto',
+  lineHeight: [1.5, 1.5, 2.5, '4em', '4em'],
   '& select': {
     width: ['60%', '60%', '60%', '70%', '70%'],
-    padding: ['.4em', '.4em', '.4em', '.8em', '.8em'],
+    padding: ['0.4em', '0.4em', '0.4em', '.8em', '.8em'],
     border: 'none',
     borderRadius: '1em',
     color: `${colors.gray_text03}`,
-    fontSize: ['.6em', '.6em', '.7em', '.8em', '.8em'],
+    fontSize: ['0.6em', '0.6em', '0.7em', '.8em', '.8em'],
     outlineStyle: 'none',
   },
   '& option': {
-    padding: '.6em',
+    padding: '0.6em',
     border: 'none',
     borderRadius: '2em',
     color: `${colors.gray_text02}`,

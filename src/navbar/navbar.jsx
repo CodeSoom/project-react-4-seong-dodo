@@ -24,15 +24,15 @@ import {
 const List = styled.ul(mediaquery({
   width: '90%',
   margin: '0 auto',
-  padding: ['0 2.5em', '0', '0 2.5em', '0 2.5em', '0 2.5em'],
+  padding: [0, 0, '0 1em', '0 2.5em', '0 2.5em'],
   textAlign: 'right',
 }));
 
 const Item = styled.li(mediaquery({
   height: ['2em', '2em', '2.5em', '2.5em', '2.5em'],
-  margin: ['0', '0', '0 .5em', '0 .5em', '0 .5em'],
-  padding: ['0', '0', '0 .5em', '0 .5em', '0 .5em'],
-  fontSize: ['0.7em', '0.8em', '.8em', '.9em', '.9em'],
+  margin: [0, 0, 0, '0 0.5em 0.5em', '0 .5em'],
+  padding: [0, 0, 0, '0 0.5em', '0 .5em'],
+  fontSize: ['0.8em', '0.8em', '1em', '.9em', '.9em'],
   lineHeight: ['2em', '2em', '2.5em', '2.5em', '2.5em'],
   '& a': {
     color: `${colors.black}`,

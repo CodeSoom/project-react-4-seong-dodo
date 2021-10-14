@@ -28,14 +28,14 @@ import {
 const LinkBox = styled.div(mediaquery({
   width: '90%',
   margin: '1em auto',
-  fontSize: ['.7em', '.8em', '.8em', '.9em', '.9em'],
+  fontSize: ['0.8em', '0.8em', '0.9em', '.9em', '.9em'],
   textAlign: 'right',
   '& a': {
-    padding: '.5em',
+    padding: '0.5em',
     color: `${colors.gray_text}`,
     fontWeight: '500',
     cursor: 'pointer',
-    letterSpacing: '.1em',
+    letterSpacing: '0.1em',
     '&:hover': {
       color: `${colors.blue_text}`,
       fontWeight: '600',
