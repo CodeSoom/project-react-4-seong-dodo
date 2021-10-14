@@ -28,7 +28,7 @@ import {
 const LinkBox = styled.div(mediaquery({
   width: '90%',
   margin: '1em auto',
-  fontSize: ['0.8em', '0.8em', '0.9em', '.9em', '.9em'],
+  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '.9em'],
   textAlign: 'right',
   '& a': {
     padding: '0.5em',

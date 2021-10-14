@@ -14,10 +14,12 @@ const MoreText = styled.div(mediaquery({
 
 const ExpenseColor = {
   color: `${colors.gray_text05}`,
+  fontWeight: '300',
 };
 
 const IncomeColor = {
   color: `${colors.teal_text02}`,
+  fontWeight: '300',
 };
 
 export default function DateData({ histories }) {

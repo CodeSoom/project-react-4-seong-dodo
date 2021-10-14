@@ -16,24 +16,25 @@ import {
 
 const InputBox = styled.div(mediaquery({
   width: '100%',
-  height: ['20%', '20%', '18%', '15%', '15%'],
-  marginBottom: ['0', '0', '0', '.5em', '.5em'],
-  padding: '.5em',
+  height: ['20%', '20%', '18%', '18%', '15%'],
+  margin: [0, 0, 0, '0.7em 0 0', 0],
+  // marginBottom: [0, 0, 0, 0, '.5em'],
+  padding: ['0.5em', '0.5em', '0.5em', '1em', '0.5em'],
 }));
 
 const Number = styled.div(mediaquery({
   float: 'left',
   width: '85%',
   height: '100%',
-  fontSize: ['1em', '1em', '1em', '.9em', '.9em'],
+  fontSize: ['1em', '1em', '1em', '1.2em', '.9em'],
 }));
 
 const Child = styled.div(mediaquery({
   float: 'left',
   width: '15%',
   height: '100%',
-  fontSize: ['0.5em', '0.5em', '0.7em', '.8em', '.8em'],
-  lineHeight: [2.5, 2.5, 2.4, '3.6em', '3.6em'],
+  fontSize: ['0.5em', '0.5em', '0.7em', '1em', '.8em'],
+  lineHeight: [2.5, 2.5, 2.4, 2, '3.6em'],
   letterSpacing: 3,
 }));
 

@@ -10,7 +10,13 @@ const Container = styled.div(mediaquery({
   float: 'left',
   heiht: '100%',
   width: '60%',
-  padding: ['1.4em 0.2em', '1.4em 0.2em', '1.7em 0.2em', '1.85em 0.2em', '2.05em 0.2em'],
+  padding: [
+    '1.4em 0.2em',
+    '1.4em 0.2em',
+    '1.7em 0.2em',
+    '1.9em 0.2em',
+    '2.05em 0.2em',
+  ],
 
   // backgroundColor: 'pink',
 }));
@@ -21,10 +27,10 @@ const TypeBox = styled.div(mediaquery({
   heiht: '50%',
   margin: '0 auto',
   padding: '0 0.2em',
-  borderLeft: `${colors.gray_backgroud} solid .2em`,
-  fontSize: ['0.7em', '0.7em', '0.8em', '.7em', '.8em'],
+  borderLeft: `${colors.gray_backgroud} solid 3px`,
+  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '.8em'],
   fontWeight: '600',
-  lineHeight: [1.5, 1.5, 2.1, '.7em', '.8em'],
+  lineHeight: [1.5, 1.5, 2.1, 2, '.8em'],
   textAlign: 'left',
 
   // border: '1px solid #333',
@@ -33,7 +39,7 @@ const TypeBox = styled.div(mediaquery({
 const LabelBox = styled.div(mediaquery({
   float: 'left',
   width: ['35%', '35%', '35%', '20%', '20%'],
-  padding: [0, 0, 0, '.5em', '.5em'],
+  padding: [0, 0, 0, 0, '.5em'],
   textAlign: 'center',
   letterSpacing: '0.3em',
 
@@ -47,12 +53,12 @@ const NumberBox = styled.div(mediaquery({
     '0 1.2em',
     '0 1.2em',
     '0 1.5em',
-    '.5em 1.5em',
+    '0 1.5em',
     '.5em 1.5em',
   ],
-  fontSize: ['0.8em', '0.8em', '0.9em', '.6em', '.9em'],
+  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '.9em'],
   color: `${colors.teal_modal}`,
-  lineHeight: [1.5, 1.5, 2.3, '1.8em', '1.1em'],
+  lineHeight: [1.5, 1.5, 2.3, 2, '1.1em'],
 
   // backgroundColor: 'biege',
 }));

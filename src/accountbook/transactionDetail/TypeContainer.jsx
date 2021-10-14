@@ -16,14 +16,15 @@ import Button from './Button';
 const OptionBox = styled.div(mediaquery({
   width: '100%',
   height: ['15%', '15%', '15%', '15%', '15%'],
-  marginBottom: ['0', '0', '0', '.5em', '.5em'],
+  // margin: [0, 0, 0, '0 0.5em', 0],
+  // marginBottom: 0,
   textAlign: 'center',
-  lineHeight: [3.1, 3.1, 4, '4em', '4em'],
+  lineHeight: [3.1, 3.1, 4, 3.5, '4em'],
   '& label': {
     float: 'left',
-    width: '25%',
+    width: ['25%', '25%', '25%', '30%', '25%'],
     height: '100%',
-    fontSize: ['0.6em', '0.6em', '0.7em', '.7em', '.7em'],
+    fontSize: ['0.6em', '0.6em', '0.7em', '1em', '.7em'],
   },
 
   // backgroundColor: 'pink',
@@ -31,35 +32,36 @@ const OptionBox = styled.div(mediaquery({
 
 const TypeBox = styled.div(mediaquery({
   float: 'left',
-  width: '37.5%',
+  width: ['37.5%', '37.5%', '37.5%', '35%', '37.5%'],
   height: '100%',
-  padding: ['0', '0', '0', '1em', '1em'],
+  padding: 0,
+  // padding: ['0', '0', '0', '1em', '1em'],
   '& button': {
     width: '50%',
     margin: '0 auto',
     padding: '0.4em',
-    fontSize: ['0.6em', '0.6em', '0.7em', '.7em', '.7em'],
+    fontSize: ['0.6em', '0.6em', '0.7em', '1em', '.7em'],
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: [1, 1, 1.5, '2em', '2em'],
+    lineHeight: [1, 1, 1.5, 1.5, '2em'],
     letterSpacing: '0.4em',
   },
 }));
 
 const Active = styled.div(({ active }) => (mediaquery({
-  width: ['90%', '70%', '65%', '100%', '100%'],
-  height: ['60%', '60%', '60%', '100%', '100%'],
+  width: ['90%', '70%', '65%', '60%', '100%'],
+  height: ['60%', '60%', '60%', '60%', '100%'],
   margin: [
     '0.4em auto',
     '0.4em auto',
     '0.5em auto',
-    '0 auto',
+    '0.5em auto',
     '0 auto',
   ],
   borderRadius: '0.5em',
   color: active ? `${colors.white}` : `${colors.gray_text03}`,
   backgroundColor: active ? `${colors.teal}` : 'none',
-  lineHeight: [1, 1, 1, '2em', '2em'],
+  lineHeight: [1, 1, 1, 1, '2em'],
 })));
 
 export default function TypeContainer() {

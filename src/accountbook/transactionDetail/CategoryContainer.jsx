@@ -16,14 +16,14 @@ import {
 const OptionBox = styled.div(mediaquery({
   width: '100%',
   height: ['15%', '15%', '16%', '15%', '15%'],
-  marginBottom: ['0', '0', '0', '.5em', '.5em'],
+  marginBottom: [0, 0, 0, 0, '.5em'],
   textAlign: 'center',
-  lineHeight: [3, 3, 4, '4em', '4em'],
+  lineHeight: [3, 3, 4, 3.5, '4em'],
   '& label': {
     float: 'left',
-    width: '25%',
+    width: ['25%', '25%', '25%', '32%', '25%'],
     height: '100%',
-    fontSize: ['0.6em', '0.6em', '0.7em', '.7em', '.7em'],
+    fontSize: ['0.6em', '0.6em', '0.7em', '1em', '.7em'],
   },
 
   // backgroundColor: 'beige',

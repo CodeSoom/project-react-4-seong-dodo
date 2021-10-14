@@ -8,10 +8,10 @@ import DateData from './DateData';
 
 const DateBox = styled.div(mediaquery({
   width: ['18em', '18em', '21em', '20em', '20em'],
-  height: ['18em', '18em', '20em', '15em', '15em'],
+  height: ['18em', '18em', '20em', '18em', '15em'],
   padding: '0.4em',
   borderBottom: `${colors.gray_backgroud} solid 1px`,
-  fontSize: '0.3em',
+  fontSize: ['0.3em', '0.3em', '0.3em', '0.5em', '0.5em'],
   lineHeight: '5em',
   cursor: 'pointer',
   overflow: 'hidden',

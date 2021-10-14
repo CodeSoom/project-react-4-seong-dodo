@@ -10,28 +10,28 @@ const Container = styled.div(mediaquery({
 
 const LabelBox = styled.div(mediaquery({
   float: 'left',
-  width: '25%',
+  width: ['25%', '25%', '25%', '30%', '25%'],
   height: '100%',
-  padding: ['0', '0', '0', '.5em', '.5em'],
+  padding: [0, 0, 0, 0, '.5em'],
   '& label': {
-    fontSize: ['.5em', '.6em', '.7em', '.7em', '.7em'],
-    letterSpacing: '.3em',
+    fontSize: ['0.6em', '0.6em', '0.7em', '1em', '.7em'],
+    letterSpacing: '0.3em',
   },
 }));
 
 const InputBox = styled.div(mediaquery({
   float: 'left',
-  width: '75%',
+  width: ['75%', '75%', '75%', '70%', '75%'],
   height: '100%',
   '& input': {
-    width: ['90%', '90%', '90%', '100%', '100%'],
-    height: ['100%', '100%', '95%', '80%', '80%'],
-    margin: ['0 auto', '0 auto', '0 auto', '0.5em auto', '0.5em auto'],
-    padding: '.5em',
+    width: ['90%', '90%', '90%', '90%', '100%'],
+    height: ['100%', '100%', '95%', '85%', '80%'],
+    margin: ['0 auto', '0 auto', '0 auto', '0 auto', '0 auto'],
+    padding: '0.5em',
     border: 'none',
-    borderRadius: '.5em',
+    borderRadius: '0.5em',
     color: `${colors.gray_text02}`,
-    fontSize: ['.5em', '.6em', '.7em', '.8em', '.8em'],
+    fontSize: ['0.5em', '0.6em', '0.7em', '1em', '.8em'],
     textAlign: 'right',
     outlineStyle: 'none',
   },

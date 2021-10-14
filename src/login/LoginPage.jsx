@@ -5,7 +5,7 @@ import mediaquery from '../style/mediaquery';
 import LoginFormContainer from './LoginFormContainer';
 
 const Container = styled.div(mediaquery({
-  width: ['85%', '85%', '80%', '60%', '40%'],
+  width: ['85%', '85%', '80%', '70%', '40%'],
   margin: [
     '3em auto',
     '3em auto',
@@ -13,13 +13,13 @@ const Container = styled.div(mediaquery({
     '7em auto',
     '7em auto',
   ],
-  padding: ['0.5em', '0.5em', '0.5em', '1em', '1em'],
+  padding: ['0.5em', '0.5em', '0.5em', '0.5em', '1em'],
   backgroundColor: `${colors.teal_login}`,
   borderRadius: '0.5em',
 }));
 
 const Title = styled.h2(mediaquery({
-  fontSize: ['1.3em', '1.3em', '1.5em', '1.4em', '1.5em'],
+  fontSize: ['1.3em', '1.3em', '1.5em', '1.7em', '1.5em'],
   textAlign: 'center',
   letterSpacing: '0.2em',
 }));

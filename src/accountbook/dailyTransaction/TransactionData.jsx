@@ -8,11 +8,11 @@ import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/ut
 
 const DataBox = styled.div(mediaquery({
   width: '95%',
-  height: ['15%', '15%', '10%', '5%', '5%'],
+  height: ['15%', '15%', '10%', '7%', '5%'],
   margin: '0 auto',
   padding: '0.2em 0.5em',
   borderBottom: `${colors.gray_backgroud} solid 1px`,
-  fontSize: ['0.6em', '0.6em', '0.7em', '.8em', '.8em'],
+  fontSize: ['0.6em', '0.6em', '0.7em', '0.9em', '.8em'],
   color: `${colors.gray_text03}`,
   textAlign: 'left',
 }));

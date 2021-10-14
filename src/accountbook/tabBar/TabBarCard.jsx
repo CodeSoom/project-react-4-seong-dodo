@@ -15,20 +15,20 @@ const Footer = styled.div(mediaquery({
 
 const List = styled.ul(mediaquery({
   display: 'inline-flex',
-  width: ['100%', '100%', '100%', '70%', '60%'],
-  height: ['3em', '3em', '2.8em', '2.5em', '2.2em'],
+  width: ['100%', '100%', '100%', '90%', '60%'],
+  height: ['3em', '3em', '2.8em', '2.7em', '2.2em'],
   margin: [
     '1em auto',
     '1em auto',
     '2.5em auto',
-    '2.5em auto',
+    '2em auto',
     '2.5em auto',
   ],
   padding: 0,
   borderRadius: '5em',
   backgroundColor: `${colors.gray_backgroud}`,
-  fontSize: ['0.7em', '0.7em', '0.8em', '.8em', '.9em'],
-  lineHeight: ['3em', '3em', '2.8em', '2.5em', '2.3em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '0.9em', '.9em'],
+  lineHeight: ['3em', '3em', '2.8em', '2.7em', '2.3em'],
   textAlign: 'center',
 }));
 
@@ -43,11 +43,11 @@ const Item = styled.li(mediaquery({
     '&.active': {
       display: 'inline-block',
       width: '100%',
-      height: ['3em', '3em', '2.8em', '2.3em', '2.1em'],
+      height: ['3em', '3em', '2.8em', '2.7em', '2.1em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: ['3em', '3em', '2.8em', '2.3em', '2.1em'],
+      lineHeight: ['3em', '3em', '2.8em', '2.7em', '2.1em'],
     },
   },
 }));
@@ -63,11 +63,11 @@ const Item1 = styled.li(mediaquery({
     '&.active': {
       display: 'inline-block',
       width: '100%',
-      height: ['3em', '3em', '2.8em', '2.3em', '2.1em'],
+      height: ['3em', '3em', '2.8em', '2.7em', '2.1em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: ['3em', '3em', '2.8em', '2.3em', '2.1em'],
+      lineHeight: ['3em', '3em', '2.8em', '2.7em', '2.1em'],
     },
   },
 }));

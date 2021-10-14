@@ -12,7 +12,7 @@ import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/ut
 
 const Container = styled.div(mediaquery({
   width: '100%',
-  height: ['40%', '40%', '26%', '16%', '18%'],
+  height: ['40%', '40%', '26%', '28%', '18%'],
   margin: '0.5em auto',
   padding: '0.5em',
   border: `${colors.gray_backgroud} solid 1px`,
@@ -22,7 +22,7 @@ const Container = styled.div(mediaquery({
 const DeleteBox = styled.div({
   float: 'left',
   width: '100%',
-  fontSize: ['0.8em', '0.9em', '0.9em', '.9em', '.9em'],
+  fontSize: ['0.8em', '0.9em', '0.9em', '0.9em', '.9em'],
   opacity: 0.5,
   '& div': {
     float: 'right',
@@ -53,8 +53,8 @@ const Category = styled.div(mediaquery({
   // padding: '.4em',
   borderRadius: '0.2em',
   border: `${colors.gray_text04} solid 1px`,
-  fontSize: ['0.4em', '0.4em', '0.6em', '.8em', '.9em'],
-  lineHeight: [1.2, 1.2, 1.5, '.8em', '1.2em'],
+  fontSize: ['0.4em', '0.4em', '0.6em', '0.9em', '.9em'],
+  lineHeight: [1.2, 1.2, 1.5, 1.5, '1.2em'],
   opacity: 0.8,
 }));
 
@@ -62,12 +62,12 @@ const Breakdown = styled.div(mediaquery({
   width: '95%',
   height: '40%',
   margin: '0 .5em',
-  padding: '.5em',
+  padding: ['0.5em', '0.5em', '0.5em', 0, '0.5em'],
   color: `${colors.gray_text02}`,
-  fontSize: ['.5em', '.5em', '.6em', '.8em', '.9em'],
+  fontSize: ['0.5em', '0.5em', '0.6em', '0.9em', '.9em'],
   fontWeight: '600',
   textAlign: 'right',
-  lineHeight: ['2em', '2em', '1em', '.7em', '1em'],
+  lineHeight: ['2em', '2em', '1em', 1.5, '1em'],
 
   // backgroundColor: 'pink',
 }));
@@ -76,11 +76,11 @@ const Text = styled.div(mediaquery({
   width: '95%',
   height: '40%',
   margin: '0 0.5em',
-  padding: '0.5em',
+  padding: ['0.5em', '0.5em', '0.5em', 0, '0.5em'],
   color: `${colors.gray_text}`,
-  fontSize: ['0.4em', '0.4em', '0.5em', '.7em', '.8em'],
+  fontSize: ['0.4em', '0.4em', '0.5em', '0.9em', '.8em'],
   textAlign: 'left',
-  lineHeight: ['4.5em', '4.5em', '2em', '.7em', '1em'],
+  lineHeight: ['4.5em', '4.5em', '2em', 1.7, '1em'],
 
   // backgroundColor: 'beige',
 }));
@@ -92,7 +92,7 @@ const ExpenseStyle = {
   margin: '0.2em',
   borderRadius: '0.5em',
   backgroundColor: `${colors.gray_text03}`,
-  fontSize: ['0.5em', '0.5em', '0.6em', '.8em', '.9em'],
+  fontSize: ['0.5em', '0.5em', '0.6em', '0.9em', '.9em'],
   lineHeight: ['4em', '4em', '2.6em', '1.3em', '1.7em'],
   opacity: 0.8,
 };
@@ -104,7 +104,7 @@ const IncomeStyle = {
   margin: '0.2em',
   borderRadius: '0.5em',
   backgroundColor: `${colors.red_text02}`,
-  fontSize: ['0.5em', '0.5em', '0.6em', '.8em', '.9em'],
+  fontSize: ['0.5em', '0.5em', '0.6em', '0.9em', '.9em'],
   lineHeight: ['4em', '4em', '2.6em', '1.3em', '1.7em'],
   opacity: 0.8,
 };

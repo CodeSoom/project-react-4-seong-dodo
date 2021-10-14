@@ -8,7 +8,7 @@ const LoginBox = styled.div(mediaquery({
   textAlign: 'center',
   '& div': {
     marginBottom: ['0.5em', '0.5em', '0.5em', '.5em', '1em'],
-    fontSize: ['0.8em', '0.8em', '0.9em', '.9em', '1em'],
+    fontSize: ['0.8em', '0.8em', '0.9em', '1.2em', '1em'],
   },
 }));
 
@@ -19,7 +19,7 @@ const Button = styled.button(mediaquery({
   padding: '0.5em 0',
   borderRadius: '0.2em',
   backgroundColor: `${colors.teal}`,
-  fontSize: ['0.7em', '0.9em', '1em', '.9em', '1em'],
+  fontSize: ['0.7em', '0.9em', '1em', '1.2em', '1em'],
   fontWeight: '500',
   cursor: 'pointer',
   '&:hover': {
