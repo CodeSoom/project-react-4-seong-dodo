@@ -30,10 +30,14 @@ const Container = styled.div(mediaquery({
 }));
 
 const Box = styled.div(mediaquery({
-  // width: '95%',
-  margin: '0 auto',
-  width: '100%',
-  height: '100%',
+  margin: [
+    '0 auto',
+    '0 auto',
+    '0 auto',
+    '0 auto',
+    '1em auto'],
+  width: ['100%', '100%', '100%', '100%', '95%'],
+  height: ['100%', '100%', '100%', '100%', '95%'],
   border: `1px solid ${colors.gray_backgroud}`,
   borderRadius: '0.5em',
   color: `${colors.gray_test02}`,

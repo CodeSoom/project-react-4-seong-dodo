@@ -11,17 +11,17 @@ const DaysBox = styled.div({
 
 const DaysRow = styled.div(mediaquery({
   display: 'flex',
-  width: ['18em', '18em', '21em', '35em', '40em'],
-  height: ['3em', '3em', '4em', '4em', '3em'],
+  width: ['18em', '18em', '21em', '35em', '50em'],
+  height: ['3em', '3em', '4em', '4em', '5em'],
   margin: '0 auto',
-  lineHeight: '3.5em',
+  lineHeight: ['3.5em', '3.5em', '3.5em', '3.5em', '4.5em'],
 }));
 
 const Day = styled.div({
-  width: '8em',
+  width: ['8em', '8em', '8em', '8em', '10em'],
   borderBottom: `${colors.gray_backgroud} solid 1px`,
   color: `${colors.gray_text02}`,
-  fontSize: '0.8em',
+  fontSize: ['0.8em', '0.8em', '0.8em', '0.8em', '0.9em'],
 });
 
 export default function CalendarDays() {

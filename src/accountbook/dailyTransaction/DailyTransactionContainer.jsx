@@ -36,14 +36,14 @@ const Container = styled.div(mediaquery({
   width: '100%',
   height: '100%',
   backgroundColor: `${colors.teal_modal}`,
-  paddingTop: ['1em', '1em', '2em', '3em', '4em'],
+  paddingTop: ['1em', '1em', '2em', '3em', '12em'],
   zIndex: 1,
 }));
 
 const TextContainer = styled.div(mediaquery({
   bottom: 0,
   width: ['90%', '90%', '90%', '90%', '80%'],
-  height: ['97%', '97%', '96%', '96%', '90%'],
+  height: ['97%', '97%', '96%', '96%', '85%'],
   margin: '0 auto',
   padding: '0.5em',
   border: `${colors.teal_border} solid 1px`,
@@ -56,21 +56,27 @@ const CloseButtonBox = styled.div(mediaquery({
   textAlign: 'right',
   padding: '0.1em 0.5em',
   color: `${colors.gray_text}`,
-  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '.9em'],
+  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '1.1em'],
   fontWeight: '600',
 }));
 
 const DateBox = styled.div(mediaquery({
   width: '100%',
   padding: '0.2em 0.5em',
-  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '.8em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '1.1em'],
   textAlign: 'left',
 }));
 
 const TextBox = styled.div(mediaquery({
   width: '100%',
-  height: ['84%', '80%', '83%', '86%', '82%'],
-  margin: '0.5em auto',
+  height: ['84%', '80%', '83%', '86%', '81%'],
+  margin: [
+    '0.5em auto',
+    '0.5em auto',
+    '0.5em auto',
+    '0.5em auto',
+    '2em auto',
+  ],
 }));
 
 const TransactionBox = styled.div(mediaquery({
@@ -79,7 +85,7 @@ const TransactionBox = styled.div(mediaquery({
   width: ['100%', '100%', '100%', '100%', '50%'],
   height: ['40%', '40%', '50%', '50%', '100%'],
   padding: '0.5em',
-  fontSize: ['0.5em', '0.5em', '0.6em', '1em', '.7em'],
+  fontSize: ['0.5em', '0.5em', '0.6em', '1em', '1em'],
   overflow: 'auto',
 }));
 
@@ -87,19 +93,19 @@ const TransactionFieldsBox = styled.div(mediaquery({
   float: 'left',
   margin: '0 auto',
   width: ['100%', '100%', '100%', '100%', '50%'],
-  padding: ['0.5em', '0.5em', '0.5em', '0.5em', '0.5em'],
+  padding: ['0.5em', '0.5em', '0.5em', '0.5em', '1em'],
   height: ['60%', '60%', '50%', '50%', '100%'],
 }));
 
 const AddButtonBox = styled.div(mediaquery({
   float: 'clear',
-  width: ['80%', '75%', '100%', '60%', '30%'],
-  margin: ['0 auto', '0 auto', '0 auto', '0 auto', '0 6em'],
+  width: ['80%', '75%', '100%', '60%', '97%'],
+  margin: '0 auto',
   padding: '0.5em 1em',
   borderRadius: '0.2em',
   color: `${colors.white}`,
   backgroundColor: `${colors.teal}`,
-  fontSize: ['0.7em', '0.7em', '0.8em', '1.1em', '.8em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '1.1em', '1.3em'],
   fontWeight: '600',
   letterSpacing: '0.3em',
 }));

@@ -15,21 +15,22 @@ import {
 } from '../../reducers/accountbook';
 
 const SubmitBox = styled.div(mediaquery({
-  width: ['30%', '30%', '30%', '40%', '50%'],
-  height: ['12%', '12%', '10%', '10%', '7%'],
+  width: ['30%', '30%', '30%', '40%', '85%'],
+  height: ['12%', '12%', '10%', '10%', '8%'],
   margin: [
     '0.5em auto',
     '0.5em auto',
     '1em auto',
     '1em auto 0',
-    '3em auto 0',
+    '2em auto 0',
   ],
   textAlign: 'center',
-  lineHeight: '2em',
+  // lineHeight: '2em',
+  lineHeight: ['2em', '2em', '2em', '2em', 3],
   borderRadius: '0.2em',
   color: `${colors.white}`,
   backgroundColor: `${colors.teal}`,
-  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '.8em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '1.2em'],
   fontWeight: '600',
   letterSpacing: 5,
 }));

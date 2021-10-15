@@ -10,26 +10,26 @@ const Container = styled.div(mediaquery({
 
 const LabelBox = styled.div(mediaquery({
   float: 'left',
-  width: ['25%', '25%', '25%', '30%', '25%'],
+  width: ['25%', '25%', '25%', '30%', '20%'],
   height: '100%',
-  padding: [0, 0, 0, 0, '.5em'],
+  padding: 0,
   '& label': {
-    fontSize: ['0.6em', '0.6em', '0.7em', '0.8em', '.7em'],
+    fontSize: ['0.6em', '0.6em', '0.7em', '0.8em', '1em'],
     letterSpacing: '0.3em',
   },
 }));
 
 const InputBox = styled.div(mediaquery({
   float: 'left',
-  width: ['75%', '75%', '75%', '70%', '75%'],
+  width: ['75%', '75%', '75%', '70%', '80%'],
   height: '100%',
   '& input': {
     width: ['90%', '90%', '90%', '100%', '100%'],
-    height: ['95%', '95%', '95%', '80%', '80%'],
+    height: ['95%', '95%', '95%', '95%', '80%'],
     margin: ['0 auto', '0 auto', '0 auto', '0 auto', '0 auto'],
-    padding: ['0.5em', '0.5em', '0.5em', 0, 0],
+    padding: '0.5em',
     border: 'none',
-    borderRadius: '1em',
+    borderRadius: '0.5em',
     color: `${colors.gray_text02}`,
     fontSize: ['0.5em', '0.6em', '0.7em', '0.8em', '.8em'],
     textAlign: 'right',

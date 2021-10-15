@@ -11,12 +11,10 @@ import {
 
 const InputBox = styled.div(mediaquery({
   width: '100%',
-  // width: ['100%', '100%', '100%', '95%', '100%'],
   height: ['16%', '16%', '15%', '15%', '15%'],
-  // margin: [0, 0, 0, '0 0.5em', 0],
-  marginBottom: [0, 0, 0, 0, '.5em'],
-  padding: ['0.4em', '0.4em', '0.4em', '0.5em', '.5em'],
-  lineHeight: [1, 1, 2, 3, '4em'],
+  marginBottom: 0,
+  padding: ['0.4em', '0.4em', '0.4em', '0.5em', '0.5em'],
+  lineHeight: [1, 1, 2, 3, 5],
 
   // backgroundColor: 'pink',
 }));

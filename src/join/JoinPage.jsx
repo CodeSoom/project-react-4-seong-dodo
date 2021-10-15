@@ -5,15 +5,15 @@ import mediaquery from '../style/mediaquery';
 import JoinContainer from './JoinContainer';
 
 const Container = styled.div(mediaquery({
-  width: ['95%', '95%', '90%', '80%', '60%'],
+  width: ['95%', '95%', '90%', '80%', '70%'],
   margin: [
     '2em auto',
     '2em auto',
     '2em auto',
     '6em auto',
-    '7em auto',
+    '10em auto',
   ],
-  padding: ['0.5em', '0.5em', '0.5em', '0.5em', '1em'],
+  padding: '0.5em',
   backgroundColor: `${colors.teal_login}`,
   borderRadius: '0.5em',
 }));
@@ -26,7 +26,7 @@ const Title = styled.h2(mediaquery({
     '1.3em auto',
     '1.5em auto',
   ],
-  fontSize: ['1.2em', '1.2em', '1.4em', '1.6em', '1.5em'],
+  fontSize: ['1.2em', '1.2em', '1.4em', '1.6em', '2em'],
   textAlign: 'center',
   letterSpacing: '0.2em',
 }));

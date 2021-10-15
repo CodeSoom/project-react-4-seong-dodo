@@ -16,29 +16,29 @@ const Container = styled.div(mediaquery({
     '2em auto',
     '1.2em auto',
     '7em auto',
-    '0.5em auto',
+    '10em auto',
   ],
   textAlign: 'center',
 }));
 
 const LinkBox = styled.div(mediaquery({
-  width: ['95%', '95%', '95%', '85%', '60%'],
-  height: ['5em', '5em', '5.5em', '6em', '3.5em'],
+  width: ['95%', '95%', '95%', '85%', '80%'],
+  height: ['5em', '5em', '5.5em', '6em', '6em'],
   margin: [
     '1.5em auto',
     '1.5em auto',
     '1.5em auto',
     '1em auto',
-    '.8em auto',
+    '1.5em auto',
   ],
   borderRadius: '.2em',
   backgroundColor: `${colors.teal}`,
-  fontSize: ['1.3em', '1.3em', '1.6em', '2.6em', '3em'],
+  fontSize: ['1.3em', '1.3em', '1.6em', '2.6em', '3.2em'],
   textAlign: 'center',
   '& a': {
     color: `${colors.white}`,
     fontWeight: 'bold',
-    lineHeight: ['5em', '5em', '5.5em', 6, '3.5em'],
+    lineHeight: ['5em', '5em', '5.5em', 6, 6],
     cursor: 'pointer',
     '&:hover': {
       color: `${colors.white}`,

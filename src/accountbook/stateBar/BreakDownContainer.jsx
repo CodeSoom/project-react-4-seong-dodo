@@ -15,10 +15,8 @@ const Container = styled.div(mediaquery({
     '1.4em 0.2em',
     '1.7em 0.2em',
     '1.9em 0.2em',
-    '2.05em 0.2em',
+    '2.7em 0.2em',
   ],
-
-  // backgroundColor: 'pink',
 }));
 
 const TypeBox = styled.div(mediaquery({
@@ -28,22 +26,18 @@ const TypeBox = styled.div(mediaquery({
   margin: '0 auto',
   padding: '0 0.2em',
   borderLeft: `${colors.gray_backgroud} solid 3px`,
-  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '.8em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '1em', '1.1em'],
   fontWeight: '600',
-  lineHeight: [1.5, 1.5, 2.1, 2, '.8em'],
+  lineHeight: [1.5, 1.5, 2.1, 2, 2],
   textAlign: 'left',
-
-  // border: '1px solid #333',
 }));
 
 const LabelBox = styled.div(mediaquery({
   float: 'left',
   width: ['35%', '35%', '35%', '20%', '20%'],
-  padding: [0, 0, 0, 0, '.5em'],
+  padding: 0,
   textAlign: 'center',
   letterSpacing: '0.3em',
-
-  // backgroundColor: 'gray',
 }));
 
 const NumberBox = styled.div(mediaquery({
@@ -54,13 +48,13 @@ const NumberBox = styled.div(mediaquery({
     '0 1.2em',
     '0 1.5em',
     '0 1.5em',
-    '.5em 1.5em',
+    '0 1.5em',
   ],
-  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '.9em'],
+  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '1em'],
   color: `${colors.teal_modal}`,
-  lineHeight: [1.5, 1.5, 2.3, 2, '1.1em'],
+  lineHeight: [1.5, 1.5, 2.3, 2, 2],
 
-  // backgroundColor: 'biege',
+  backgroundColor: 'biege',
 }));
 
 export default function BreakDownContainer() {

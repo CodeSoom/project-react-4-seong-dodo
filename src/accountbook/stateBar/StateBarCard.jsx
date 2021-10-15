@@ -6,14 +6,14 @@ import MonthSwiperContainer from './MonthSwiperContainer';
 import BreakDownContainer from './BreakDownContainer';
 
 const Container = styled.header(mediaquery({
-  width: ['100%', '100%', '100%', '80%', '50%'],
-  height: ['5em', '5em', '7em', '8em', '7em'],
+  width: ['100%', '100%', '100%', '80%', '80%'],
+  height: ['5em', '5em', '7em', '8em', '10em'],
   margin: [
     '1em auto',
     '1em auto',
     '1em auto',
     '1.5em auto',
-    '0 auto',
+    '1.5em auto',
   ],
   borderRadius: '0.2em',
   color: `${colors.white}`,
