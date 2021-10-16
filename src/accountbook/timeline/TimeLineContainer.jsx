@@ -22,175 +22,113 @@ const ItemBox = styled.div(mediaquery({
     '1em auto 0',
     '1em auto 0',
     '1.5em auto 0',
-    '30px auto 0',
+    '1.8em auto 0',
+    '1.8em auto 0',
   ],
-  // width: '800px',
-  // height: '170px',
-  width: ['90%', '90%', '90%', '85%', '800px'],
-  height: ['6em', '6em', '7em', '10em', '170px'],
+  width: ['15em', '18em', '21em', '40em', '45em', '50em'],
+  height: ['6.6em', '7.6em', '7.7em', '9.5em', '10.5em', '12.4em'],
   border: '1px solid #E1E4E7',
   borderRadius: '5px',
 }));
 
 const DateText = styled.div(mediaquery({
-  marginTop: ['1em', '1em', '1em', '1em', '20px'],
-  marginLeft: ['1em', '1em', '1em', '1em', '30px'],
-  // width: '90px',
-  // height: '19px',
-  width: ['50%', '50%', '50%', '50%', '90px'],
-  height: ['10%', '10%', '10%', '10%', '19px'],
+  marginTop: '1.2em',
+  marginLeft: '1.8em',
+  width: ['6em', '6em', '6em', '6em', '6em', '7em'],
+  height: '1.5em',
   textAlign: 'left',
-  fontSize: ['0.7em', '0.7em', '0.7em', '0.9em', '.9em'],
-  lineHeight: 1.5,
+  fontSize: ['0.6em', '0.7em', '0.7em', '0.8em', '0.9em', '1em'],
+  lineHeight: [1.5, 1.6, 1.7, 1.6, 1.7, 1.5],
   color: '#495057',
-
-  // backgroundColor: 'beige',
 }));
 
 const UnderLine = styled.div(mediaquery({
   margin: [
-    '0.4em auto',
-    '0.4em auto',
-    '0.5em auto',
-    '1em auto',
-    '10px 30px 15px',
+    '0.3em 0.8em 0.4em',
+    '0.3em 1.1em 0.4em',
+    '0.4em 1em 0.5em',
+    '0.6em 1.2em 0.6em',
+    '0.6em 1.3em 0.9em',
+    '0.6em 1.8em 0.9em',
   ],
-  // marginTop: '10px',
-  // marginBottom: '15px',
-  // marginLeft: '30px',
-  // marginRight: '30px',
-  // width: '740px',
-  width: ['90%', '90%', '95%', '95%', '740px'],
+  width: ['13.4em', '15.4em', '18.6em', '37em', '42em', '46.4em'],
   height: '1px',
   background: '#E1E4E7 0% 0% no-repeat padding-box',
 }));
 
 const TypeBox = styled.div(mediaquery({
-  marginBottom: ['0.5em', '0.5em', '0.5em', '0.5em', '10px'],
-  // marginBottom: '10px',
-  // width: '800px',
-  // height: '25px',
-  width: ['100%', '100%', '100%', '100%', '800px'],
-  height: ['15%', '15%', '15%', '15%', '25px'],
-  lineHeight: [1.5, 1.5, 1.5, 1.5, '25px'],
-
-  // backgroundColor: 'pink',
+  marginBottom: ['0.4em', '0.4em', '0.5em', '0.5em', '0.5em', '0.6em'],
+  width: ['14.9em', '17.9em', '20.9em', '39.9em', '44.9em', '50em'],
+  height: ['1em', '1.2em', '1.2em', '1.5em', '1.8em', '2em'],
+  lineHeight: [1.5, 1.7, 1.8, 2, 2, 2],
 }));
 
 const TypeText = styled.div(mediaquery({
   float: 'left',
-  // marginLeft: '30px',
-  // width: '40px',
-  // height: '25px',
-  // color: '#00C854',
-  // fontSize: '.8em',
-  marginLeft: ['1em', '1em', '1em', '1em', '30px'],
-  width: ['10%', '10%', '12%', '15%', '40px'],
-  height: ['15%', '15%', '15%', '15%', '25px'],
+  marginLeft: ['1.8em', '1.8em', '1.8em', '1.8em', '1.8em', '1.8em'],
+  width: ['3em', '3em', '4em', '5em', '5em', '5em'],
+  height: '2em',
   textAlign: 'left',
   color: `${colors.blue_text}`,
-  fontSize: ['0.7em', '0.7em', '0.7em', '0.9em', '0.8em'],
+  fontSize: ['0.5em', '0.6em', '0.6em', '0.8em', '0.9em', '1em'],
+  letterSpacing: '0.2em',
 }));
 
 const SectionBar = styled.div(mediaquery({
   float: 'left',
   display: 'inline-block',
-  // margin: '3px 20px',
-  // height:  '19px',
-  margin: [
-    '0 0.5em',
-    '0 0.5em',
-    '0 0.5em',
-    '0 1em',
-    '3px 20px',
-  ],
+  margin: '0.3em 0.6em',
   width: '1px',
-  height: ['0.8em', '0.8em', '0.9em', '1em', '19px'],
+  height: ['0.6em', '0.7em', '0.8em', '1.1em', '1.2em', '1.4em'],
   background: '#E1E4E7 0% 0% no-repeat padding-box',
 }));
 
 const CategoryText = styled.div(mediaquery({
   float: 'left',
-  // width: '200px',
-  // height: '25px',
-  // fontSize: '.8em',
-  width: ['20%', '20%', '25%', '30%', '200px'],
-  height: ['15%', '15%', '15%', '15%', '25px'],
+  width: ['7em', '7em', '7em', '12.5em', '12.5em', '10em'],
+  height: '2em',
   textAlign: 'left',
   color: '#495057',
-  fontSize: ['0.7em', '0.7em', '0.7em', '0.9em', '0.8em'],
+  fontSize: ['0.5em', '0.6em', '0.6em', '0.8em', '0.9em', '1em'],
 }));
 
 const BreakdownBox = styled.div(mediaquery({
   float: 'left',
-  // marginRight: '30px',
-  // width:  400px',
-  // height: '25px',
-  // fontSize: '1em',
-  marginRight: ['1.2em', '1.2em', '1.2em', '1.2em', '30px'],
-  width: ['45%', '45%', '40%', '35%', '400px'],
-  height: ['15%', '15%', '15%', '15%', '25px'],
+  width: ['9em', '11em', '13.5em', '22em', '23em', '23.5em'],
+  height: ['2em', '2em', '1.8em', '1.8em', '1.8em', '1.7em'],
   textAlign: 'right',
   color: '#282C30',
-  fontSize: ['0.8em', '0.8em', '0.8em', '1em', '1em'],
+  fontSize: ['0.6em', '0.6em', '0.7em', '0.9em', '1em', '1.2em'],
+  lineHeight: [1.5, 1.7, 1.5, 1.8, 2, 1.5],
 }));
 
 const SourceText = styled.div(mediaquery({
-  // marginBottom: '10px',
-  // marginLeft: '30px',
-  // marginRight: '30px',
-  // width: '740px',
-  // height: '25px',
-  // fontSize: '.9em',
-  // lineHeight: '25px',
-  margin: [
-    '0 auto 0.4em',
-    '0 auto 0.4em',
-    '0 auto 0.4em',
-    '0 30px 10px',
-    '0 30px 10px',
-  ],
-  width: ['90%', '90%', '90%', '90%', '740px'],
-  height: ['15%', '15%', '15%', '15%', '25px'],
+  margin: '0 1.8em 0.6em',
+  width: ['20.5em', '21em', '25.5em', '46em', '46em', '46.5em'],
+  height: ['1.5em', '1.4em', '1.4em', '1.5em', '1.8em', '2em'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: ['0.7em', '0.7em', '0.7em', '0.9em', '0.9em'],
-  lineHeight: [1.5, 1.5, 1.5, 1.5, '25px'],
-
-  // backgroundColor: 'skyblue',
+  fontSize: ['0.6em', '0.7em', '0.7em', '0.8em', '0.9em', '1em'],
+  lineHeight: [1.5, 1.5, 1.5, 1.5, 2, 2],
 }));
 
 const MemoText = styled.div(mediaquery({
-  // marginBottom: '20px',
-  // marginLeft: '30px',
-  // marginRight: '30px',
-  // width: '740px',
-  // height: '15px',
-  // fontSize: '.7em',
-  margin: [
-    '0 auto 0.5em',
-    '0 auto 0.5em',
-    '0 auto 0.5em',
-    '0 30px 20px',
-    '0 30px 20px',
-  ],
-  width: ['90%', '90%', '90%', '90%', '740px'],
-  height: ['10%', '10%', '10%', '10%', '15px'],
+  margin: '0 1.8em 1em',
+  width: ['20.5em', '21em', '25.5em', '46em', '46em', '51em'],
+  height: ['1.5em', '1.4em', '1.4em', '1.4em', '1.7em', '2em'],
   textAlign: 'left',
   color: '#495057',
-  fontSize: ['0.7em', '0.7em', '0.7em', '0.8em', '0.7em'],
-  lineHeight: '15px',
-
-  // backgroundColor: 'beige',
+  fontSize: ['0.6em', '0.7em', '0.7em', '0.8em', '0.9em', '1em'],
+  lineHeight: [1.5, 1.5, 1.5, 1.6, 2, 2],
 }));
 
-const Exception = styled.p({
+const Exception = styled.p(mediaquery({
   margin: '8em auto',
   color: `${colors.gray_text}`,
-  fontSize: '0.8em',
+  fontSize: ['0.7em', '0.8em', '0.9em', '1.2em', '1.5em', '1.5em'],
   textAlign: 'center',
   lineHeight: '10em',
-});
+}));
 
 export default function TimeLineContainer() {
   const dispatch = useDispatch();

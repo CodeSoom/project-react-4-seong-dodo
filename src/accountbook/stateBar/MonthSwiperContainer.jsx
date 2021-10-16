@@ -12,7 +12,7 @@ import {
   setNextMonth,
 } from '../../reducers/accountbook';
 
-const Container = styled.header(mediaquery({
+const Container = styled.div(mediaquery({
   float: 'left',
   width: '40%',
   height: '100%',

@@ -7,7 +7,7 @@ import CalendarDate from './CalendarDate';
 
 const WeekRowBox = styled.div(mediaquery({
   display: 'flex',
-  width: ['18em', '18em', '21em', '35em', '50em'],
+  width: ['14em', '17em', '17em', '38em', '45em', '55em'],
   margin: '0 auto',
 }));
 

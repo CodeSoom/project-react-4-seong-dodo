@@ -2,6 +2,10 @@
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+import styled from '@emotion/styled';
+import mediaquery from '../style/mediaquery';
+
 import Loading from '../loading/Loading';
 
 import {
@@ -10,6 +14,12 @@ import {
 } from '../reducers/user';
 
 import JoinForm from './JoinForm';
+
+const LoadingLayout = styled.div(mediaquery({
+  '& div': {
+    marginTop: ['8em', '8em', '8em', '8em', '9em', '10em'],
+  },
+}));
 
 export default function JoinContainer({ history }) {
   const dispatch = useDispatch();
@@ -68,7 +78,11 @@ export default function JoinContainer({ history }) {
     <>
       {
         isLoading
-          ? <Loading />
+          ? (
+            <LoadingLayout>
+              <Loading />
+            </LoadingLayout>
+          )
           : (
             <JoinForm
               fields={joinFields}

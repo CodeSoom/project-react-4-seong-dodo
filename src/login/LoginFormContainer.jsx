@@ -25,10 +25,26 @@ import {
   clearMonthlyTransaction,
 } from '../reducers/accountbook';
 
+const LoadingLayout = styled.div(mediaquery({
+  height: ['5em', '6em', '6em', '8em', '10em', '11em'],
+  '& div': {
+    marginTop: ['5em', '3em', '3em', '4em', '5em', '5em'],
+  },
+}));
+
+// 회원가입링크 박스
 const LinkBox = styled.div(mediaquery({
-  width: '90%',
-  margin: '1em auto',
-  fontSize: ['0.8em', '0.8em', '0.9em', '1em', '1.2em'],
+  width: ['20em', '17em', '22em', '23em', '24em', '22em'],
+  height: ['1em', '1em', '1em', '1em', '1em', '1.2em'],
+  margin: [
+    '1em auto',
+    '1em auto',
+    '0.5em auto',
+    '1em auto',
+    '1em auto',
+    '1em auto',
+  ],
+  fontSize: ['0.6em', '0.6em', '0.7em', '1em', '1.1em', '1.4em'],
   textAlign: 'right',
   '& a': {
     padding: '0.5em',
@@ -79,7 +95,11 @@ export default function LoginFormContainer() {
             <>
               {
                 isLoading
-                  ? <Loading />
+                  ? (
+                    <LoadingLayout>
+                      <Loading />
+                    </LoadingLayout>
+                  )
                   : (
                     <LogoutForm
                       loginFields={loginFields}
@@ -93,7 +113,11 @@ export default function LoginFormContainer() {
             <>
               {
                 isLoading
-                  ? <Loading />
+                  ? (
+                    <LoadingLayout>
+                      <Loading />
+                    </LoadingLayout>
+                  )
                   : (
 
                     <LoginForm

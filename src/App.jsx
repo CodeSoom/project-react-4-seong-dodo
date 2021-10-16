@@ -21,15 +21,14 @@ import NotFoundPage from './NotFoundPage';
 
 const Container = styled.header(mediaquery({
   margin: '0 auto',
-  lineHeight: ['4em', '4em', '8em', '10em', '10em'],
-
-  // backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'white'],
+  lineHeight: ['4em', '5em', '6em', '9em', '11em', '12em'],
+  // backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'green', 'plum'],
 }));
 
 const Title = styled.h1(mediaquery({
   margin: '0 auto',
   color: `${colors.black}`,
-  fontSize: ['2em', '2em', '2.5em', '2.8em', '3.5em'],
+  fontSize: ['1.8em', '1.9em', '2.3em', '2.8em', '3.5em', '3.8em'],
   textAlign: 'center',
   '& a': {
     color: `${colors.black}`,

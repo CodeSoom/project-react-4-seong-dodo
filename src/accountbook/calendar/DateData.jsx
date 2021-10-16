@@ -1,4 +1,8 @@
 import styled from '@emotion/styled';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
@@ -48,7 +52,7 @@ export default function DateData({ histories }) {
                         원
                       </HiddenText>
                       <MoreText>
-                        더보기
+                        <FontAwesomeIcon icon={faMinusCircle} />
                       </MoreText>
                     </div>
                   </>
@@ -69,7 +73,7 @@ export default function DateData({ histories }) {
                         원
                       </HiddenText>
                       <MoreText>
-                        더보기
+                        <FontAwesomeIcon icon={faPlusCircle} />
                       </MoreText>
                     </div>
                   </>

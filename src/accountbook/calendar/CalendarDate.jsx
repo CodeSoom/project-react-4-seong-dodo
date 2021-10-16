@@ -7,12 +7,12 @@ import mediaquery from '../../style/mediaquery';
 import DateData from './DateData';
 
 const DateBox = styled.div(mediaquery({
-  width: ['18em', '18em', '21em', '20em', '20em'],
-  height: ['10em', '10em', '11em', '12em', '12em'],
+  width: '10em',
+  height: ['10em', '10em', '10em', '11em', '12em', '12em'],
   padding: '0.4em',
   borderBottom: `${colors.gray_backgroud} solid 1px`,
-  fontSize: ['0.6em', '0.6em', '0.7em', '0.7em', '0.8em'],
-  lineHeight: 3,
+  fontSize: ['0.5em', '0.6em', '0.6em', '0.8em', '0.9em', '0.9em'],
+  lineHeight: [2, 2.5, 2.5, 3, 3, 3],
   cursor: 'pointer',
   overflow: 'hidden',
 }));

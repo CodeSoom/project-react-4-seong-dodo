@@ -17,7 +17,7 @@ import {
 } from '../../reducers/accountbook';
 
 const CalendarBox = styled.div({
-  margin: '1.5em auto',
+  margin: '1em auto',
 });
 
 export default function CalendarContainer() {

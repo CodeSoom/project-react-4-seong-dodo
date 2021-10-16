@@ -3,62 +3,66 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
-  width: ['80%', '80%', '80%', '70%', '65%'],
-  height: ['8em', '11em', '12em', '25em', '30em'],
+  width: ['14em', '17em', '17em', '38em', '45em', '55em'],
+  height: ['18em', '15em', '16em', '30em', '40em', '55em'],
   margin: [
-    '2em auto',
-    '1.5em auto 2.5em',
-    '3em auto 2em',
-    '3em auto 4em',
-    '6em auto',
-  ],
-  borderBottom: [
-    `${colors.teal} solid 0.3em`,
-    `${colors.teal} solid 0.3em`,
-    `${colors.teal} solid 0.4em`,
-    `${colors.teal} solid 0.5em`,
-    `${colors.teal} solid 0.7em`,
+    '3em auto 0',
+    '2em auto 0',
+    '3em auto 0',
+    '3em auto 0',
+    '5em auto 0',
+    '4em auto 0',
   ],
   textAlign: 'center',
 }));
 
 const Title = styled.h2(mediaquery({
-  margin: '0 auto',
+  display: 'inline-block',
+  margin: '2em auto 0',
   fontWeight: 'bold',
-  lineHeight: ['4em', '4em', '3em', '5em', '6em'],
-  fontSize: ['1em', '1em', '1.3em', '2.2em', '2.3em'],
+  fontSize: ['1.1em', '1.3em', '1.4em', '2.3em', '3em', '4em'],
+  lineHeight: [5, 2, 3, 3, 3, 4],
 }));
 
 const SubTitle = styled.p(mediaquery({
   margin: [
-    '1.5em auto 3em',
-    '1.5em auto 3em',
-    '1.5em auto 3em',
+    '2em auto 5em',
+    '3em auto',
+    '2em auto 3em',
+    '3em auto 4em',
     '2em auto 4em',
-    '2em auto 4em',
+    '3em auto 4em',
   ],
   color: `${colors.gray_text}`,
-  fontSize: ['0.7em', '0.7em', '0.9em', '1.3em', '1.5em'],
+  fontSize: ['0.7em', '0.8em', '0.9em', '1.5em', '2.1em', '2.4em'],
 }));
 
 const InputBox = styled.div(mediaquery({
   margin: '0 auto',
-  fontSize: ['0.4em', '0.4em', '0.5em', '0.7em', '0.8em'],
+  fontSize: ['0.5em', '0.5em', '0.5em', '0.9em', '1em', '1em'],
   '& label': {
-    fontSize: ['1em', '1em', '1.5em', '1.5em', '1.5em'],
+    fontSize: ['1.4em', '1.4em', '1.7em', '1.4em', '1.8em', '2em'],
   },
   '& input': {
-    width: ['10em', '10em', '10em', '12em', '15em'],
+    width: ['11em', '10em', '10em', '18em', '14em', '18em'],
+    height: ['2.5em', '2.5em', '2.2em', '2.5em', '2.8em', '3em'],
     margin: '0 0.5em',
     border: 'none',
     padding: '0.4em',
-    fontSize: '2em',
+    fontSize: ['1.5em', '1.8em', '1.8em', '1.5em', '2em', '2em'],
     textAlign: 'right',
     outlineStyle: 'none',
   },
   '& span': {
-    fontSize: ['2em', '2em', '2em', '2em', '2em'],
+    fontSize: ['1.5em', '1.5em', '1.8em', '1.5em', '1.9em', '2em'],
   },
+}));
+
+const UnderLine = styled.div(mediaquery({
+  width: ['13.5em', '14em', '15em', '34em', '42em', '52em'],
+  height: ['0.4em', '0.4em', '0.5em', '0.8em', '1em', '1em'],
+  margin: '0 auto',
+  backgroundColor: `${colors.teal}`,
 }));
 
 export default function BudgetForm({ budget, onChange }) {
@@ -85,6 +89,7 @@ export default function BudgetForm({ budget, onChange }) {
         />
         <span>원</span>
       </InputBox>
+      <UnderLine />
     </Container>
   );
 }

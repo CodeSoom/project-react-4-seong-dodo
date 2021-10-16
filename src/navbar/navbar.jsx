@@ -21,23 +21,29 @@ import {
   clearMonthlyTransaction,
 } from '../reducers/accountbook';
 
-const List = styled.ul(mediaquery({
-  width: ['90%', '90%', '85%', '90%', '90%'],
-  margin: '0 auto',
+const Layout = styled.ul(mediaquery({
+  width: '100%',
+  margin: 0,
   padding: 0,
-  textAlign: 'right',
+
+  backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'green', 'plum'],
 }));
 
 const Item = styled.li(mediaquery({
-  height: ['2em', '2em', '2.5em', '2.5em', '3em'],
-  margin: '0 auto',
-  padding: 0,
-  fontSize: ['0.8em', '0.8em', '1em', '1.1em', '1.2em'],
-  lineHeight: ['2em', '2em', '2.5em', '2.5em', '3em'],
+  width: ['5em', '5em', '5em', '5em', '5em', '5em'],
+  height: ['2em', '2em', '2em', '2.4em', '2.5em'],
+  margin: '0 2em 0 auto',
+  backgroundColor: `${colors.teal_border}`,
+  borderRadius: '0.4em',
+  padding: '0.5em',
+  fontSize: ['0.7em', '0.8em', '0.9em', '1em', '1.2em', '1.5em'],
+  fontWeight: '500',
+  lineHeight: [1, 1, 1, 1.2, 1.5, 1.5],
+  textAlign: 'center',
   '& a': {
     color: `${colors.black}`,
     '&:hover': {
-      color: `${colors.gray_text03}`,
+      color: `${colors.gray_text02}`,
       fontWeight: '700',
     },
   },
@@ -60,7 +66,7 @@ export default function Navbar() {
   };
 
   return (
-    <List>
+    <Layout>
       {
         accessToken
           ? (
@@ -87,6 +93,6 @@ export default function Navbar() {
             </Item>
           )
       }
-    </List>
+    </Layout>
   );
 }

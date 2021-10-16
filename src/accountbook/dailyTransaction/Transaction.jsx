@@ -12,7 +12,7 @@ import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/ut
 
 const Container = styled.div(mediaquery({
   width: '100%',
-  height: ['40%', '40%', '26%', '28%', '12%'],
+  height: ['40%', '40%', '26%', '28%', '7em'],
   margin: '0.5em auto',
   padding: '0.5em',
   border: `${colors.gray_backgroud} solid 1px`,

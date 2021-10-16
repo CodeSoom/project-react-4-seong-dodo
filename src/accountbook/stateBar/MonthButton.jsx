@@ -4,8 +4,8 @@ import mediaquery from '../../style/mediaquery';
 const Button = styled.button(mediaquery({
   position: 'relative',
   width: '50%',
-  bottom: ['3.3em', '3.3em', '2.4em', '2.7em', '2em'],
-  fontSize: ['0.4em', '0.4em', '0.8em', '1em', '1.2em'],
+  bottom: ['2.9em', '2.4em', '2.6em', '1.8em', '1.8em', '1.6em'],
+  fontSize: ['0.5em', '0.6em', '0.7em', '1.4em', '1.6em', '2em'],
 }));
 
 export default function MonthButton({ direction, onClick }) {
