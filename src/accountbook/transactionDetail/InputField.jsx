@@ -17,6 +17,8 @@ const LabelBox = styled.div(mediaquery({
     fontSize: ['0.6em', '0.6em', '0.7em', '1em', '1em'],
     letterSpacing: '0.3em',
   },
+
+  border: '1px solid black',
 }));
 
 const InputBox = styled.div(mediaquery({
@@ -35,6 +37,8 @@ const InputBox = styled.div(mediaquery({
     textAlign: 'right',
     outlineStyle: 'none',
   },
+
+  // border: '1px solid black',
 }));
 
 export default function InputField({

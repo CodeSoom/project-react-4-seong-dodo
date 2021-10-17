@@ -33,6 +33,8 @@ const SubmitBox = styled.div(mediaquery({
   fontSize: ['0.7em', '0.7em', '0.8em', '1em', '1.2em'],
   fontWeight: '600',
   letterSpacing: 5,
+
+  // border: '1px solid black',
 }));
 
 export default function SubmitContainer({ load }) {

@@ -20,6 +20,8 @@ const Container = styled.div(mediaquery({
     borderRadius: '2em',
     color: `${colors.gray_text02}`,
   },
+
+  // border: '1px solid black',
 }));
 
 export default function IncomeCategory({ transaction, onChange }) {

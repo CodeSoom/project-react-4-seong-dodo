@@ -25,8 +25,6 @@ const Layout = styled.ul(mediaquery({
   width: '100%',
   margin: 0,
   padding: 0,
-
-  backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'green', 'plum'],
 }));
 
 const Item = styled.li(mediaquery({

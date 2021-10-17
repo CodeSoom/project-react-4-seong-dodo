@@ -11,8 +11,6 @@ const Footer = styled.div(mediaquery({
   bottom: 0,
   left: 0,
   width: '100%',
-
-  // border: '1px solid #eee',
 }));
 
 const List = styled.ul(mediaquery({

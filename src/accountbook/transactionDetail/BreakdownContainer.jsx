@@ -37,6 +37,8 @@ const Child = styled.div(mediaquery({
   fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1.1em'],
   lineHeight: [2.5, 2.5, 2.4, 2, 3.3],
   letterSpacing: 3,
+
+  // border: '1px solid black',
 }));
 
 export default function BreakdownContainer() {

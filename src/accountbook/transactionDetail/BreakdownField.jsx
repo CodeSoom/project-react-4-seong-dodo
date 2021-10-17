@@ -6,6 +6,8 @@ const Container = styled.div(mediaquery({
   width: '100%',
   height: '98%',
   textAlign: 'center',
+
+  // border: '1px solid black',
 }));
 
 const LabelBox = styled.div(mediaquery({
@@ -17,6 +19,8 @@ const LabelBox = styled.div(mediaquery({
     fontSize: ['0.6em', '0.6em', '0.7em', '0.8em', '1em'],
     letterSpacing: '0.3em',
   },
+
+  // border: '1px solid black',
 }));
 
 const InputBox = styled.div(mediaquery({
@@ -35,6 +39,8 @@ const InputBox = styled.div(mediaquery({
     textAlign: 'right',
     outlineStyle: 'none',
   },
+
+  // border: '1px solid black',
 }));
 
 export default function BreakdownField({
