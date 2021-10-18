@@ -15,8 +15,8 @@ const Container = styled.div(mediaquery({
     '10em auto',
     '15em auto 0',
   ],
-  backgroundColor: `${colors.teal_login}`,
   borderRadius: '0.5em',
+  backgroundColor: `${colors.teal_login}`,
 }));
 
 const Title = styled.h2(mediaquery({

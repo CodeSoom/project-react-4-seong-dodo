@@ -16,12 +16,12 @@ const Container = styled.div(mediaquery({
 
 const LoadindSpinner = styled.div(mediaquery({
   display: 'block',
-  margin: '0 auto',
   width: ['30px', '30px', '40px', '40px', '40px'],
   height: ['30px', '30px', '40px', '40px', '40px'],
+  margin: '0 auto',
   border: `7px solid ${colors.loading_01}`,
-  borderRadius: '50%',
   borderTopColor: `${colors.loading_02}`,
+  borderRadius: '50%',
   animation: `${spin} 1s linear infinite`,
 }));
 

@@ -32,7 +32,6 @@ const LoadingLayout = styled.div(mediaquery({
   },
 }));
 
-// 회원가입링크 박스
 const LinkBox = styled.div(mediaquery({
   width: ['20em', '17em', '22em', '23em', '24em', '22em'],
   height: ['1em', '1em', '1em', '1em', '1em', '1.2em'],

@@ -15,15 +15,15 @@ const CountBox = styled.div(mediaquery({
 const TotalExpenseBox = styled.div(mediaquery({
   float: 'left',
   width: ['12em', '10em', '10em', '17em', '11em', '13em'],
-  textAlign: 'right',
   color: `${colors.gray_text05}`,
+  textAlign: 'right',
 }));
 
 const TotalIncomeBox = styled.div(mediaquery({
   float: 'left',
   width: ['11em', '10em', '10em', '17em', '11em', '13em'],
-  textAlign: 'right',
   color: `${colors.teal_text02}`,
+  textAlign: 'right',
 }));
 
 export default function TransactionData({ histories }) {

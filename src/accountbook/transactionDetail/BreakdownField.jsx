@@ -19,7 +19,7 @@ const InputBox = styled.div(mediaquery({
   width: ['10em', '11em', '11em', '28em', '16.6em', '22em'],
   height: ['2em', '1.9em', '2em', '2.4em', '3em', '3em'],
   '& input': {
-    width: ['21em', '19em', '16.7em', '35em', '18em', '24.5em'],
+    width: ['21em', '19em', '19.7em', '35em', '18em', '24.5em'],
     height: ['3em', '2.5em', '2.4em', '2.5em', '3em', '3em'],
     margin: [
       '0.4em auto',

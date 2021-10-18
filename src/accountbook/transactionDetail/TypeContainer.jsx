@@ -23,11 +23,7 @@ const OptionBox = styled.div(mediaquery({
     width: ['6.5em', '7.2em', '6.2em', '10em', '7em', '8em'],
     fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1em', '1em'],
     letterSpacing: [1, 1, 1, 2, 1, 2],
-
-    // border: '1px solid black',
   },
-
-  // backgroundColor: 'pink',
 }));
 
 const TypeBox = styled.div(mediaquery({
@@ -42,11 +38,7 @@ const TypeBox = styled.div(mediaquery({
     textAlign: 'center',
     lineHeight: [0.5, 1, 1.2, 0.9, 1.3, 1.3],
     letterSpacing: '0.4em',
-
-    // border: '1px solid black',
   },
-
-  // border: '1px solid black',
 }));
 
 const Active = styled.div(({ active }) => (mediaquery({

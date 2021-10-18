@@ -36,8 +36,8 @@ const Container = styled.div(mediaquery({
   right: 0,
   width: '100%',
   height: '100%',
-  backgroundColor: `${colors.teal_modal}`,
   paddingTop: ['1.2em', '1.5em', '2em', '6em', '14em', '5em'],
+  backgroundColor: `${colors.teal_modal}`,
   zIndex: 1,
 }));
 
@@ -53,54 +53,41 @@ const TextContainer = styled.div(mediaquery({
   backgroundColor: `${colors.white}`,
 }));
 
-// 아웃라인 1
 const CloseButtonLayout = styled.div(mediaquery({
-  textAlign: 'right',
   height: ['1.6em', '1.6em', '1.6em', '1.6em', '1.6em', '1.6em'],
   padding: '0.1em 0.5em',
   color: `${colors.gray_text}`,
   fontSize: ['0.8em', '0.8em', '0.9em', '1.1em', '1.2em', '1.1em'],
   fontWeight: '600',
-
-  // border: '1px solid black',
+  textAlign: 'right',
 }));
 
-// 아웃라인 2
 const DateBoxLayOut = styled.div(mediaquery({
   height: ['1.8em', '1.8em', '1.8em', '1.7em', '1.8em', '2em'],
   padding: '0.2em 1em',
   fontSize: ['0.7em', '0.7em', '0.8em', '0.9em', '1em', '1em'],
   textAlign: 'left',
-
-  // border: '1px solid black',
-  backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'green', 'plum'],
 }));
 
-// 아웃라인 3
 const DataLayout = styled.div(mediaquery({
   height: ['1.8em', '1.8em', '1.7em', '1.7em', '1.7em', '1.5em'],
   margin: 0,
   padding: '0 1em',
   borderBottom: `${colors.gray_backgroud} solid 1px`,
-  fontSize: ['0.5em', '0.6em', '0.7em', '0.8em', '0.9em', '0.9em'],
   color: `${colors.gray_text03}`,
+  fontSize: ['0.5em', '0.6em', '0.7em', '0.8em', '0.9em', '0.9em'],
   textAlign: 'left',
-
-  // border: '1px solid black',
 }));
 
-// 아웃라인 4
 const TextBoxLayout = styled.div(mediaquery({
-  // width: '100%',
   height: ['31em', '25em', '30em', '40em', '35em', '32em'],
   margin: '0 auto',
-
-  // border: '1px solid black',
 }));
 
-// 아웃라인 4에 대한 그리드 1
 const TransactionBox = styled.div(mediaquery({
   float: 'left',
+  width: ['14.7em', '16em', '18.6em', '36em', '25em', '29em'],
+  height: ['14em', '9em', '11.8em', '17em', '32.5em', '30em'],
   margin: [
     '0.5em 0.6em',
     '0.5em 0.4em',
@@ -109,17 +96,14 @@ const TransactionBox = styled.div(mediaquery({
     '1em 0.8em',
     '1em 0.8em',
   ],
-  width: ['14.7em', '16em', '18.6em', '36em', '25em', '29em'],
-  // height: ['14em', '10em', '12.8em', '18em', '36.8em', '30em'],
-  height: ['14em', '9em', '11.8em', '17em', '32.5em', '30em'],
   padding: 0,
   overflow: 'auto',
-
-  // backgroundColor: '#1212',
 }));
-// 아웃라인 4에 대한 그리드 2
+
 const TransactionFieldsBox = styled.div(mediaquery({
   float: 'left',
+  width: ['14.9em', '15.9em', '18.8em', '35.6em', '24em', '30.5em'],
+  height: ['15em', '14em', '16.2em', '19.7em', '32em', '28em'],
   margin: [
     '0.3em 0.5em',
     '0.3em 0.5em',
@@ -128,15 +112,9 @@ const TransactionFieldsBox = styled.div(mediaquery({
     '1.5em 0.8em',
     '2em 0.8em',
   ],
-  width: ['14.9em', '15.9em', '18.8em', '35.6em', '24em', '30.5em'],
-  // height: ['15em', '13em', '15.2em', '17.7em', '36.8em', '30em'],
-  height: ['15em', '14em', '16.2em', '19.7em', '32em', '28em'],
   padding: ['0.5em', '0.5em', '0.5em', '0.5em', '1em', '1em'],
-
-  // backgroundColor: 'beige',
 }));
 
-// 아웃라인 5 내역추가 버튼
 const AddButtonLayout = styled.div(mediaquery({
   float: 'clear',
   width: ['18em', '20em', '23.4em', '20em', '22em', '20em'],
@@ -151,10 +129,8 @@ const AddButtonLayout = styled.div(mediaquery({
   letterSpacing: '0.3em',
 }));
 
-// 아웃라인 4에 대한 디폴트 박스 모습
 const DefaultBox = styled.div(mediaquery({
   width: '100%',
-  // width: ['14em',],
   height: '100%',
   borderTop: [
     `${colors.gray_backgroud} solid 1px`,

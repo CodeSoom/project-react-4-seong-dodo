@@ -16,16 +16,14 @@ import {
 const OptionBox = styled.div(mediaquery({
   height: ['1.7em', '1.8em', '1.9em', '2.4em', '3.4em', '3em'],
   margin: '0 auto 0.3em',
-  lineHeight: [2.5, 2.5, 2.5, 2.2, 3.3, 3],
   textAlign: 'center',
+  lineHeight: [2.5, 2.5, 2.5, 2.2, 3.3, 3],
   '& label': {
     float: 'left',
     width: ['6.5em', '7.2em', '6.2em', '10em', '7em', '8em'],
     fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1em', '1em'],
     letterSpacing: [1, 1, 1, 2, 1, 2],
   },
-
-  // backgroundColor: 'beige',
 }));
 
 export default function CategoryContainer() {

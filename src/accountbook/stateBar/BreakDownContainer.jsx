@@ -52,8 +52,8 @@ const NumberBox = styled.div(mediaquery({
   float: 'left',
   width: ['9em', '14em', '12em', '15em', '16em', '16em'],
   padding: '0 1em',
-  fontSize: ['0.8em', '0.7em', '0.8em', '1.1em', '1em', '1em'],
   color: `${colors.teal_modal}`,
+  fontSize: ['0.8em', '0.7em', '0.8em', '1.1em', '1em', '1em'],
   lineHeight: [2, 1.5, 2, 2, 2, 2],
 }));
 

@@ -22,7 +22,6 @@ import NotFoundPage from './NotFoundPage';
 const Container = styled.header(mediaquery({
   margin: '0 auto',
   lineHeight: ['4em', '5em', '6em', '9em', '11em', '12em'],
-  // backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'green', 'plum'],
 }));
 
 const Title = styled.h1(mediaquery({

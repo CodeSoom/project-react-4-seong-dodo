@@ -22,8 +22,8 @@ const List = styled.ul(mediaquery({
   borderRadius: '5em',
   backgroundColor: `${colors.gray_backgroud}`,
   fontSize: ['0.7em', '0.7em', '0.8em', '0.9em', '1.2em', '1.4em'],
-  lineHeight: [3, 3, 2.8, 2.7, 3.5, 4],
   textAlign: 'center',
+  lineHeight: [3, 3, 2.8, 2.7, 3.5, 4],
 }));
 
 const Item = styled.li(mediaquery({

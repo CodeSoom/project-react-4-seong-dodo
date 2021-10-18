@@ -13,9 +13,9 @@ const FormBox = styled.div(mediaquery({
   height: ['19em', '19em', '22em', '20em', '22em', '24em'],
   margin: '0 auto',
   padding: '0.5em',
-  textAlign: 'center',
   borderRadius: '0.2em',
   backgroundColor: `${colors.white}`,
+  textAlign: 'center',
   '& label': {
     display: 'inline-block',
     width: ['100%', '100%', '100%', '30%', '32%', '30%'],
@@ -35,14 +35,14 @@ const FormBox = styled.div(mediaquery({
   '& input': {
     width: ['90%', '90%', '95%', '65%', '65%', '65%'],
     height: ['3.5em', '3.5em', '3.5em', '3em', '3em', '3.5emem'],
-    padding: '1em',
     margin: 0,
+    padding: '1em',
     border: '1px solid #eee',
     borderRadius: '0.5em',
     color: `${colors.gray_text01}`,
+    backgroundColor: 'transparent',
     fontSize: ['0.6em', '0.6em', '0.7em', '0.9em', '0.9em', '0.9em'],
     outlineStyle: 'none',
-    backgroundColor: 'transparent',
   },
 }));
 

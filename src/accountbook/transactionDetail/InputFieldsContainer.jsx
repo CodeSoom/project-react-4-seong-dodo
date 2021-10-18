@@ -12,9 +12,6 @@ import {
 const InputBox = styled.div(mediaquery({
   height: ['1.9em', '1.8em', '2.2em', '2.5em', '4em', '3.5em'],
   margin: '0 auto 0.3em',
-
-  // backgroundColor: 'pink',
-  // border: '1px solid black',
 }));
 
 export default function InputFieldsContainer() {

@@ -8,10 +8,19 @@ const LoginBox = styled.div(mediaquery({
   padding: '0.5em',
   textAlign: 'center',
   '& div': {
-    height: ['5em', '4.8em', '3.8em', '3.5em', '4em', '4em'],
-    marginBottom: '0.5em',
-    fontSize: ['0.8em', '0.8em', '0.9em', '1.2em', '1.4em', '1.5em'],
-    lineHeight: [5, 4.8, 3, 3.5, 4, 4],
+    height: ['3em', '3em', '3em', '4em', '5em', '5em'],
+    margin: [
+      '3em auto',
+      '2.5em auto',
+      '2.2em auto',
+      '2.8em auto',
+      '3.5em auto',
+      '4em auto',
+    ],
+    '& p': {
+      margin: '0.3em auto',
+      fontSize: ['0.8em', '0.8em', '0.9em', '1.2em', '1.4em', '1.5em'],
+    },
   },
 }));
 
@@ -40,14 +49,16 @@ export default function LogoutForm({ loginFields, onClick }) {
   return (
     <LoginBox>
       <div>
-        {email}
-        {' '}
-        사용자님
-      </div>
-      <div>
-        환영합니다
-        {' '}
-        :)
+        <p>
+          {email}
+          {' '}
+          사용자님
+        </p>
+        <p>
+          환영합니다
+          {' '}
+          :)
+        </p>
       </div>
       <Button
         type="button"

@@ -68,8 +68,8 @@ const CategoryBox = styled.div(mediaquery({
   width: ['13em', '11em', '7em', '7.5em', '7em', '7em'],
   height: ['3em', '2em', '1.6em', '1.7em', '1.7em', '1.5em'],
   margin: '0.3em',
-  borderRadius: '0.2em',
   border: `${colors.gray_text04} solid 1px`,
+  borderRadius: '0.2em',
   fontSize: ['0.3em', '0.4em', '0.6em', '0.8em', '0.8em', '0.8em'],
   lineHeight: [1.2, 1.2, 1.5, 1.5, 1.5, 1.5],
   opacity: 0.8,
@@ -110,13 +110,13 @@ const TextBox = styled.div(mediaquery({
 }));
 
 const ExpenseStyle = {
-  backgroundColor: `${colors.gray_text03}`,
   borderRadius: '0.8em',
+  backgroundColor: `${colors.gray_text03}`,
 };
 
 const IncomeStyle = {
-  backgroundColor: `${colors.red_text02}`,
   borderRadius: '0.8em',
+  backgroundColor: `${colors.red_text02}`,
 };
 
 export default function Transaction({

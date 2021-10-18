@@ -25,8 +25,6 @@ const InputBox = styled.div(mediaquery({
     '1em auto 0',
   ],
   padding: 0,
-
-  // backgroundColor: 'skyblue',
 }));
 
 const Number = styled.div(mediaquery({
@@ -39,7 +37,7 @@ const Child = styled.div(mediaquery({
   width: '15%',
   height: '100%',
   fontSize: ['0.5em', '0.5em', '0.6em', '0.9em', '1em', '1em'],
-  lineHeight: [3, 3.2, 3.3, 2.6, 3.3, 3],
+  lineHeight: [3.1, 3, 3.3, 2.5, 3.1, 3],
   letterSpacing: 1,
 }));
 

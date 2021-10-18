@@ -9,8 +9,6 @@ const Container = styled.div({
   margin: '0 auto',
   padding: 0,
   textAlign: 'center',
-
-  // backgroundColor: 'rgb(232, 191, 155)',
 });
 
 const Layout = styled.div(mediaquery({
@@ -24,8 +22,6 @@ const Layout = styled.div(mediaquery({
     '3em auto 0',
     '3em auto 0',
   ],
-
-  // backgroundColor: ['beige', 'pink', 'gray', 'skyblue', 'green', 'plum'],
 }));
 
 export default function BudgetPage() {
