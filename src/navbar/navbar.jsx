@@ -21,23 +21,27 @@ import {
   clearMonthlyTransaction,
 } from '../reducers/accountbook';
 
-const List = styled.ul({
-  width: '90%',
-  margin: '0 auto',
-  padding: '0 2.5em',
-  textAlign: 'right',
-});
+const Layout = styled.ul(mediaquery({
+  width: '100%',
+  margin: 0,
+  padding: 0,
+}));
 
 const Item = styled.li(mediaquery({
-  height: '2.5em',
-  margin: '0 .5em',
-  padding: '.5em',
-  fontSize: ['.7em', '.8em', '.8em', '.9em', '.9em'],
-  lineHeight: '1.2em',
+  width: ['5em', '5em', '5em', '5em', '5em', '5em'],
+  height: ['2em', '2em', '2em', '2.4em', '2.5em'],
+  margin: '0 2em 0 auto',
+  padding: '0.5em',
+  borderRadius: '0.4em',
+  backgroundColor: `${colors.teal_border}`,
+  fontSize: ['0.7em', '0.8em', '0.9em', '1em', '1.2em', '1.5em'],
+  fontWeight: '500',
+  lineHeight: [1, 1, 1, 1.2, 1.5, 1.5],
+  textAlign: 'center',
   '& a': {
     color: `${colors.black}`,
     '&:hover': {
-      color: `${colors.gray_text03}`,
+      color: `${colors.gray_text02}`,
       fontWeight: '700',
     },
   },
@@ -60,7 +64,7 @@ export default function Navbar() {
   };
 
   return (
-    <List>
+    <Layout>
       {
         accessToken
           ? (
@@ -87,6 +91,6 @@ export default function Navbar() {
             </Item>
           )
       }
-    </List>
+    </Layout>
   );
 }

@@ -1,6 +1,7 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import colors from '../style/colors';
+import mediaquery from '../style/mediaquery';
 
 const spin = keyframes`
   to {
@@ -8,20 +9,21 @@ const spin = keyframes`
   }
 `;
 
-const Container = styled.div({
-  width: '80px',
+const Container = styled.div(mediaquery({
+  width: '100%',
   margin: '0 auto',
-});
+}));
 
-const LoadindSpinner = styled.div({
+const LoadindSpinner = styled.div(mediaquery({
   display: 'block',
-  width: '40px',
-  height: '40px',
+  width: ['30px', '30px', '40px', '40px', '40px'],
+  height: ['30px', '30px', '40px', '40px', '40px'],
+  margin: '0 auto',
   border: `7px solid ${colors.loading_01}`,
-  borderRadius: '50%',
   borderTopColor: `${colors.loading_02}`,
+  borderRadius: '50%',
   animation: `${spin} 1s linear infinite`,
-});
+}));
 
 export default function Loading() {
   return (

@@ -14,16 +14,15 @@ import {
 } from '../../reducers/accountbook';
 
 const OptionBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['18%', '18%', '19%', '15%', '15%'],
-  marginBottom: ['0', '0', '0', '.5em', '.5em'],
+  height: ['1.7em', '1.8em', '1.9em', '2.4em', '3.4em', '3em'],
+  margin: '0 auto 0.3em',
   textAlign: 'center',
-  lineHeight: ['2.2em', '2.4em', '2.2em', '4em', '4em'],
+  lineHeight: [2.5, 2.5, 2.5, 2.2, 3.3, 3],
   '& label': {
     float: 'left',
-    width: '25%',
-    height: '100%',
-    fontSize: ['.6em', '.6em', '.7em', '.7em', '.7em'],
+    width: ['6.5em', '7.2em', '6.2em', '10em', '7em', '8em'],
+    fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1em', '1em'],
+    letterSpacing: [1, 1, 1, 2, 1, 2],
   },
 }));
 

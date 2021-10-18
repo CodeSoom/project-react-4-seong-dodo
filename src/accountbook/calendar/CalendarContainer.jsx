@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
+import mediaquery from '../../style/mediaquery';
 
 import CalendarDays from './CalendarDays';
 import CalendarMonth from './CalendarMonth';
@@ -17,9 +18,15 @@ import {
 } from '../../reducers/accountbook';
 
 const CalendarBox = styled.div({
-  minHeight: '20em',
-  margin: '1.5em auto',
+  margin: '1em auto',
 });
+
+const LoadingLayout = styled.div(mediaquery({
+  height: ['32em', '44em', '91em', '55em', '68em', '70em'],
+  '& div': {
+    marginTop: ['8em', '7em', '8em', '13em', '18em', '22em'],
+  },
+}));
 
 export default function CalendarContainer() {
   const dispatch = useDispatch();
@@ -76,7 +83,11 @@ export default function CalendarContainer() {
     <CalendarBox>
       {
         isLoading
-          ? <Loading />
+          ? (
+            <LoadingLayout>
+              <Loading />
+            </LoadingLayout>
+          )
           : (
             <>
               <CalendarDays />

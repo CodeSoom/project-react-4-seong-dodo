@@ -1,26 +1,14 @@
-import DefalutTransaction from './DefalutTransaction';
-import TransactionData from './TransactionData';
 import Transaction from './Transaction';
 
 export default function DailyTransaction({
-  dailyTransaction, dailyData, onClickEdit, onClickDelete, load,
+  histories, onClickEdit, onClickDelete, load,
 }) {
-  const histories = dailyTransaction.find(
-    (daily) => daily.year === dailyData.year
-  && daily.month === dailyData.month
-  && daily.date === dailyData.date
-  && daily.day === dailyData.day,
-  );
-
   return (
     <>
       { histories === undefined
-        ? <DefalutTransaction />
+        ? null
         : (
           <>
-            <TransactionData
-              histories={histories}
-            />
             <Transaction
               histories={histories}
               onClickEdit={onClickEdit}

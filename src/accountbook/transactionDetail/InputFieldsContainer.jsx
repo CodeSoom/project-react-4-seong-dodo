@@ -10,10 +10,8 @@ import {
 } from '../../reducers/accountbook';
 
 const InputBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['18%', '18%', '19%', '15%', '15%'],
-  marginBottom: ['0', '0', '0', '.5em', '.5em'],
-  padding: '.5em',
+  height: ['1.9em', '1.8em', '2.2em', '2.5em', '4em', '3.5em'],
+  margin: '0 auto 0.3em',
 }));
 
 export default function InputFieldsContainer() {

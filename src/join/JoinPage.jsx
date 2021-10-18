@@ -5,17 +5,28 @@ import mediaquery from '../style/mediaquery';
 import JoinContainer from './JoinContainer';
 
 const Container = styled.div(mediaquery({
-  width: ['80%', '80%', '60%', '60%', '60%'],
-  margin: ['3em auto', '5em auto', '7em auto', '7em auto', '7em auto'],
-  padding: ['.5em', '1em', '1em', '1em', '1em'],
+  width: ['14em', '14em', '18em', '28em', '30em', '40em'],
+  height: ['25.5em', '26em', '30em', '30.5em', '33em', '37em'],
+  margin: [
+    '3em auto',
+    '3em auto',
+    '2em auto',
+    '6em auto',
+    '10em auto',
+    '15em auto 0',
+  ],
+  borderRadius: '0.5em',
   backgroundColor: `${colors.teal_login}`,
-  borderRadius: '.5em',
 }));
 
 const Title = styled.h2(mediaquery({
-  fontSize: ['1em', '1.1em', '1.2em', '1.4em', '1.5em'],
+  display: 'inline-block',
+  width: ['14em', '14em', '16.4em', '18.6em', '16.6em', '20em'],
+  height: ['1.2em', '1.3em', '1.3m', '1.3em', '1.2em', '1.3em'],
+  margin: '1em auto',
+  fontSize: ['1em', '1em', '1.1em', '1.5em', '1.8em', '2em'],
   textAlign: 'center',
-  letterSpacing: '.2em',
+  letterSpacing: '0.2em',
 }));
 
 export default function JoinPage({ history }) {

@@ -1,6 +1,20 @@
+import styled from '@emotion/styled';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 import colors from '../../style/colors';
+import mediaquery from '../../style/mediaquery';
 
 import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
+
+const HiddenText = styled.div(mediaquery({
+  display: ['none', 'none', 'none', 'initial', 'initial'],
+}));
+
+const MoreText = styled.div(mediaquery({
+  display: ['initial', 'initial', 'initial', 'none', 'none'],
+}));
 
 const ExpenseColor = {
   color: `${colors.gray_text05}`,
@@ -31,10 +45,15 @@ export default function DateData({ histories }) {
                     <div
                       style={expenseStyle()}
                     >
-                      -
-                      {' '}
-                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
-                      원
+                      <HiddenText>
+                        -
+                        {' '}
+                        {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
+                        원
+                      </HiddenText>
+                      <MoreText>
+                        <FontAwesomeIcon icon={faMinusCircle} />
+                      </MoreText>
                     </div>
                   </>
                 )
@@ -47,10 +66,15 @@ export default function DateData({ histories }) {
                     <div
                       style={incomeStyle()}
                     >
-                      +
-                      {' '}
-                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
-                      원
+                      <HiddenText>
+                        +
+                        {' '}
+                        {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
+                        원
+                      </HiddenText>
+                      <MoreText>
+                        <FontAwesomeIcon icon={faPlusCircle} />
+                      </MoreText>
                     </div>
                   </>
                 )

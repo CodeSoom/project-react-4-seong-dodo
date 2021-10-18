@@ -6,35 +6,24 @@ import mediaquery from '../../style/mediaquery';
 
 import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
 
-const DataBox = styled.div(mediaquery({
-  width: '95%',
-  height: ['10%', '10%', '10%', '5%', '5%'],
-  margin: '0 auto',
-  padding: '.2em .5em',
-  borderBottom: `${colors.gray_backgroud} solid 1px`,
-  fontSize: ['.3em', '.6em', '.6em', '.8em', '.8em'],
-  color: `${colors.gray_text03}`,
-  textAlign: 'left',
-}));
-
 const CountBox = styled.div(mediaquery({
   float: 'left',
-  width: '30%',
+  width: ['6em', '5em', '6em', '11em', '6em', '8em'],
   textAlign: 'left',
 }));
 
 const TotalExpenseBox = styled.div(mediaquery({
   float: 'left',
-  width: '35%',
-  textAlign: 'right',
+  width: ['12em', '10em', '10em', '17em', '11em', '13em'],
   color: `${colors.gray_text05}`,
+  textAlign: 'right',
 }));
 
 const TotalIncomeBox = styled.div(mediaquery({
   float: 'left',
-  width: '35%',
-  textAlign: 'right',
+  width: ['11em', '10em', '10em', '17em', '11em', '13em'],
   color: `${colors.teal_text02}`,
+  textAlign: 'right',
 }));
 
 export default function TransactionData({ histories }) {
@@ -49,7 +38,7 @@ export default function TransactionData({ histories }) {
       {histories === undefined
         ? null
         : (
-          <DataBox>
+          <div>
             <CountBox>
               총
               {' '}
@@ -87,7 +76,7 @@ export default function TransactionData({ histories }) {
                   </>
                 )
             }
-          </DataBox>
+          </div>
         )}
     </>
   );

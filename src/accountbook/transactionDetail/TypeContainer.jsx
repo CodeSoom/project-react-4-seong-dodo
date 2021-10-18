@@ -14,44 +14,48 @@ import {
 import Button from './Button';
 
 const OptionBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['18%', '18%', '19%', '15%', '15%'],
-  marginBottom: ['0', '0', '0', '.5em', '.5em'],
+  height: ['2em', '1.8em', '2.2em', '2.5em', '4em', '3.5em'],
+  margin: '0.2em auto',
   textAlign: 'center',
-  lineHeight: ['2.2em', '2.4em', '2.2em', '4em', '4em'],
+  lineHeight: [3, 2.8, 2.9, 2.5, 4, 3.4],
   '& label': {
     float: 'left',
-    width: '25%',
-    height: '100%',
-    fontSize: ['.6em', '.6em', '.7em', '.7em', '.7em'],
+    width: ['6.5em', '7.2em', '6.2em', '10em', '7em', '8em'],
+    fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1em', '1em'],
+    letterSpacing: [1, 1, 1, 2, 1, 2],
   },
 }));
 
 const TypeBox = styled.div(mediaquery({
   float: 'left',
-  width: '37.5%',
-  height: '100%',
-  padding: ['0', '0', '0', '1em', '1em'],
+  width: ['5.1em', '5.5em', '6.5em', '12.1em', '7em', '9.5em'],
   '& button': {
     width: '50%',
     margin: '0 auto',
-    padding: '.4em',
-    fontSize: ['.4em', '.6em', '.7em', '.7em', '.7em'],
+    padding: ['0.5em', '0.4em', '0.4em', '0.4em', '0.4em', '0.4em'],
+    fontSize: ['0.6em', '0.5em', '0.6em', '0.9em', '1em', '1em'],
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: ['1.5em', '2em', '1.5em', '2em', '2em'],
-    letterSpacing: '.4em',
+    lineHeight: [0.5, 1, 1.2, 0.9, 1.3, 1.3],
+    letterSpacing: '0.4em',
   },
 }));
 
 const Active = styled.div(({ active }) => (mediaquery({
-  width: ['90%', '70%', '70%', '100%', '100%'],
-  height: ['60%', '60%', '80%', '100%', '100%'],
-  margin: ['.4em auto', '.4em auto', '.2em auto', '0 auto', '0 auto'],
-  borderRadius: '.5em',
+  width: ['4em', '4em', '4.5em', '7.5em', '6em', '7em'],
+  height: ['1.1em', '1.1em', '1.2em', '1.7em', '2.2em', '2.2em'],
+  margin: [
+    '0.4em auto',
+    '0.3em auto',
+    '0.4em auto',
+    '0.4em auto',
+    '0.9em auto',
+    '0.6em auto',
+  ],
+  borderRadius: '0.5em',
   color: active ? `${colors.white}` : `${colors.gray_text03}`,
   backgroundColor: active ? `${colors.teal}` : 'none',
-  lineHeight: '1em',
+  lineHeight: 1,
 })));
 
 export default function TypeContainer() {

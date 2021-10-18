@@ -5,24 +5,24 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 const DaysBox = styled.div({
-  margin: '0 auto ',
+  margin: '0 auto',
   textAlign: 'center',
 });
 
 const DaysRow = styled.div(mediaquery({
   display: 'flex',
-  width: ['12em', '19em', '30em', '35em', '40em'],
-  height: '3em',
+  width: ['14em', '17em', '17em', '38em', '45em', '55em'],
+  height: ['2em', '2em', '2em', '3em', '4em', '5em'],
   margin: '0 auto',
-  lineHeight: '3.5em',
+  lineHeight: [3.5, 3.5, 3.5, 4, 5, 6],
 }));
 
-const Day = styled.div({
-  width: '8em',
-  borderBottom: `${colors.gray_backgroud} solid .1em`,
+const Day = styled.div(mediaquery({
+  width: '10em',
+  borderBottom: `${colors.gray_backgroud} solid 1px`,
   color: `${colors.gray_text02}`,
-  fontSize: '.8em',
-});
+  fontSize: ['0.6em', '0.7em', '0.7em', '0.9em', '1.1em', '1.2em'],
+}));
 
 export default function CalendarDays() {
   const [days] = useState(['일', '월', '화', '수', '목', '금', '토']);

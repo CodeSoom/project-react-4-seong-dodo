@@ -8,6 +8,7 @@ import mediaquery from '../../style/mediaquery';
 
 import Button from './Button';
 import Loading from '../../loading/Loading';
+import TransactionData from './TransactionData';
 import DailyTransaction from './DailyTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
 
@@ -35,70 +36,97 @@ const Container = styled.div(mediaquery({
   right: 0,
   width: '100%',
   height: '100%',
+  paddingTop: ['1.2em', '1.5em', '2em', '6em', '14em', '5em'],
   backgroundColor: `${colors.teal_modal}`,
-  paddingTop: '4em',
   zIndex: 1,
 }));
 
 const TextContainer = styled.div(mediaquery({
   bottom: 0,
-  width: '80%',
-  height: '90%',
-  margin: 'auto',
-  padding: '.5em',
+  width: ['17em', '18em', '21em', '40em', '55em', '65em'],
+  height: ['38em', '32em', '37.5em', '50em', '47em', '42.5em'],
+  margin: '0 auto',
+  padding: ['0.5em', '0.5em', '0.5em', '1em', '1em', '1em'],
   border: `${colors.teal_border} solid 1px`,
-  borderRadius: '.4em',
+  borderRadius: '0.4em',
   color: `${colors.gray_text02}`,
   backgroundColor: `${colors.white}`,
 }));
 
-const CloseButtonBox = styled.div(mediaquery({
-  textAlign: 'right',
-  padding: '.1em .5em',
+const CloseButtonLayout = styled.div(mediaquery({
+  height: ['1.6em', '1.6em', '1.6em', '1.6em', '1.6em', '1.6em'],
+  padding: '0.1em 0.5em',
   color: `${colors.gray_text}`,
-  fontSize: ['.7em', '.7em', '.8em', '.8em', '.9em'],
+  fontSize: ['0.8em', '0.8em', '0.9em', '1.1em', '1.2em', '1.1em'],
   fontWeight: '600',
+  textAlign: 'right',
 }));
 
-const DateBox = styled.div(mediaquery({
-  width: '100%',
-  padding: '.2em .5em',
-  fontSize: ['.7em', '.7em', '.8em', '.8em', '.8em'],
+const DateBoxLayOut = styled.div(mediaquery({
+  height: ['1.8em', '1.8em', '1.8em', '1.7em', '1.8em', '2em'],
+  padding: '0.2em 1em',
+  fontSize: ['0.7em', '0.7em', '0.8em', '0.9em', '1em', '1em'],
   textAlign: 'left',
 }));
 
-const TextBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['84%', '84%', '82%', '82%', '82%'],
-  margin: '.5em auto',
+const DataLayout = styled.div(mediaquery({
+  height: ['1.8em', '1.8em', '1.7em', '1.7em', '1.7em', '1.5em'],
+  margin: 0,
+  padding: '0 1em',
+  borderBottom: `${colors.gray_backgroud} solid 1px`,
+  color: `${colors.gray_text03}`,
+  fontSize: ['0.5em', '0.6em', '0.7em', '0.8em', '0.9em', '0.9em'],
+  textAlign: 'left',
+}));
+
+const TextBoxLayout = styled.div(mediaquery({
+  height: ['31em', '25em', '30em', '40em', '35em', '32em'],
+  margin: '0 auto',
 }));
 
 const TransactionBox = styled.div(mediaquery({
   float: 'left',
-  width: ['100%', '100%', '100%', '50%', '50%'],
-  height: ['40%', '40%', '40%', '100%', '100%'],
-  padding: '.5em',
-  fontSize: ['.5em', '.5em', '.6em', '.7em', '.7em'],
+  width: ['14.7em', '16em', '18.6em', '36em', '25em', '29em'],
+  height: ['14em', '9em', '11.8em', '17em', '32.5em', '30em'],
+  margin: [
+    '0.5em 0.6em',
+    '0.5em 0.4em',
+    '0.5em 0.6em',
+    '1em 0.8em',
+    '1em 0.8em',
+    '1em 0.8em',
+  ],
+  padding: 0,
   overflow: 'auto',
 }));
 
 const TransactionFieldsBox = styled.div(mediaquery({
   float: 'left',
-  width: ['100%', '100%', '100%', '50%', '50%'],
-  height: ['60%', '60%', '60%', '100%', '100%'],
+  width: ['14.9em', '15.9em', '18.8em', '35.6em', '24em', '30.5em'],
+  height: ['15em', '14em', '16.2em', '19.7em', '32em', '28em'],
+  margin: [
+    '0.3em 0.5em',
+    '0.3em 0.5em',
+    '0.3em 0.5em',
+    '0.3em 1em',
+    '1.5em 0.8em',
+    '2em 0.8em',
+  ],
+  padding: ['0.5em', '0.5em', '0.5em', '0.5em', '1em', '1em'],
 }));
 
-const AddButtonBox = styled.div(mediaquery({
+const AddButtonLayout = styled.div(mediaquery({
   float: 'clear',
-  width: ['80%', '75%', '34%', '35%', '30%'],
-  margin: ['0 auto', '0 auto', '0 auto', '0 5em', '0 6em'],
-  padding: '.5em 1em',
-  borderRadius: '.2em',
+  width: ['18em', '20em', '23.4em', '20em', '22em', '20em'],
+  height: ['2.6em', '2.4em', '2.4em', '2.4em', '2.6em', '2.4em'],
+  margin: '0 auto',
+  padding: '0.5em 1em',
+  borderRadius: '0.2em',
   color: `${colors.white}`,
   backgroundColor: `${colors.teal}`,
-  fontSize: ['.7em', '.7em', '.8em', '.8em', '.8em'],
+  fontSize: ['0.8em', '0.8em', '0.8em', '1.1em', '1.1em', '1.2em'],
   fontWeight: '600',
-  letterSpacing: '.3em',
+  letterSpacing: '0.3em',
 }));
 
 const DefaultBox = styled.div(mediaquery({
@@ -108,10 +136,12 @@ const DefaultBox = styled.div(mediaquery({
     `${colors.gray_backgroud} solid 1px`,
     `${colors.gray_backgroud} solid 1px`,
     `${colors.gray_backgroud} solid 1px`,
+    `${colors.gray_backgroud} solid 1px`,
     'none',
     'none',
   ],
   borderLeft: [
+    'none',
     'none',
     'none',
     'none',
@@ -197,31 +227,48 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     setIsLoading(false);
   };
 
+  const histories = dailyTransaction.find(
+    (daily) => daily.year === dailyData.year
+  && daily.month === dailyData.month
+  && daily.date === dailyData.date
+  && daily.day === dailyData.day,
+  );
+
   return (
     <Container>
       <TextContainer>
-        <CloseButtonBox>
+        <CloseButtonLayout>
           <Button
             value="X"
             onClick={onClick}
           />
-        </CloseButtonBox>
-        <DateBox>
+        </CloseButtonLayout>
+        <DateBoxLayOut>
           {date}
           일
           {' '}
           {convertDay()}
           요일
-        </DateBox>
-        <TextBox>
+        </DateBoxLayOut>
+        <DataLayout>
+          { histories === undefined
+            ? null
+            : (
+              <>
+                <TransactionData
+                  histories={histories}
+                />
+              </>
+            )}
+        </DataLayout>
+        <TextBoxLayout>
           <TransactionBox>
             {
               isLoading
                 ? <Loading />
                 : (
                   <DailyTransaction
-                    dailyTransaction={dailyTransaction}
-                    dailyData={dailyData}
+                    histories={histories}
                     onClickEdit={handleClickEdit}
                     onClickDelete={handleClickDelete}
                     load={load}
@@ -240,13 +287,13 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
                 : <DefaultBox />
             }
           </TransactionFieldsBox>
-        </TextBox>
-        <AddButtonBox>
+        </TextBoxLayout>
+        <AddButtonLayout>
           <Button
             value="내역추가"
             onClick={handleClickDetailModal}
           />
-        </AddButtonBox>
+        </AddButtonLayout>
       </TextContainer>
     </Container>
   );

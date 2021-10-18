@@ -15,52 +15,53 @@ const Footer = styled.div(mediaquery({
 
 const List = styled.ul(mediaquery({
   display: 'inline-flex',
-  width: ['90%', '90%', '80%', '70%', '60%'],
-  height: ['3.8em', '3.4em', '2.6em', '2.5em', '2.2em'],
-  margin: '2.5em auto',
+  width: ['23em', '27em', '27em', '42em', '40em', '48em'],
+  height: ['3em', '3em', '2.8em', '2.7em', '3.5em', '4em'],
+  margin: '1em auto',
   padding: 0,
   borderRadius: '5em',
   backgroundColor: `${colors.gray_backgroud}`,
-  fontSize: ['.4em', '.5em', '.7em', '.8em', '.9em'],
-  lineHeight: ['3.8em', '3.4em', '2.6em', '2.5em', '2.3em'],
+  fontSize: ['0.7em', '0.7em', '0.8em', '0.9em', '1.2em', '1.4em'],
+  textAlign: 'center',
+  lineHeight: [3, 3, 2.8, 2.7, 3.5, 4],
 }));
 
 const Item = styled.li(mediaquery({
-  width: '30%',
+  width: '25%',
   margin: '0 auto',
   borderRadius: '2em',
   fontWeight: '500',
-  letterSpacing: '.8em',
+  letterSpacing: '0.8em',
   '& a': {
     color: `${colors.gray_text02}`,
     '&.active': {
       display: 'inline-block',
       width: '100%',
-      height: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      height: ['3em', '3em', '2.8em', '2.7em', '3.5em', '4em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      lineHeight: [3, 3, 2.8, 2.7, 3.5, 4],
     },
   },
 }));
 
 const Item1 = styled.li(mediaquery({
-  width: '30%',
+  width: '25%',
   margin: '0 auto',
   borderRadius: '2em',
   fontWeight: '500',
-  letterSpacing: '.1em',
+  letterSpacing: '0.1em',
   '& a': {
     color: `${colors.gray_text02}`,
     '&.active': {
       display: 'inline-block',
       width: '100%',
-      height: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      height: ['3em', '3em', '2.8em', '2.7em', '3.5em', '4em'],
       borderRadius: '2em',
       color: `${colors.white}`,
       backgroundColor: `${colors.teal}`,
-      lineHeight: ['3.6em', '3.2em', '2.4em', '2.3em', '2.1em'],
+      lineHeight: [3, 3, 2.8, 2.7, 3.5, 4],
     },
   },
 }));
