@@ -87,6 +87,7 @@ export default function JoinForm({ fields, onChange, onSubmit }) {
           placeholder="이메일 주소를 입력 해주세요"
           value={email}
           onChange={handleChange}
+          autoComplete="off"
         />
         <label htmlFor="join-age">
           나이
@@ -98,6 +99,7 @@ export default function JoinForm({ fields, onChange, onSubmit }) {
           placeholder="나이를 입력해 주세요"
           value={age}
           onChange={handleChange}
+          autoComplete="off"
         />
         <label htmlFor="join-password">
           비밀번호 입력
@@ -109,6 +111,7 @@ export default function JoinForm({ fields, onChange, onSubmit }) {
           placeholder="비밀번호를 입력해 주세요"
           value={password}
           onChange={handleChange}
+          autoComplete="off"
         />
         <label htmlFor="join-repassword">
           비밀번호 재입력
@@ -120,6 +123,7 @@ export default function JoinForm({ fields, onChange, onSubmit }) {
           placeholder="비밀번호를 재입력해 주세요"
           value={repassword}
           onChange={handleChange}
+          autoComplete="off"
         />
       </FormBox>
       <Button

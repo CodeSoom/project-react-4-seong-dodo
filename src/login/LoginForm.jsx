@@ -95,6 +95,7 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
           placeholder="이메일을 입력해 주세요"
           value={email}
           onChange={handleChange}
+          autoComplete="off"
         />
         <label htmlFor="login-password">
           Password
@@ -106,6 +107,7 @@ const LoginForm = memo(({ fields, onChange, onSubmit }) => {
           placeholder="비밀번호를 입력해 주세요"
           value={password}
           onChange={handleChange}
+          autoComplete="off"
         />
       </FormBox>
       <Button

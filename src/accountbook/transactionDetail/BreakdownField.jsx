@@ -63,6 +63,7 @@ export default function BreakdownField({
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
+          autoComplete="off"
         />
       </InputBox>
     </Container>

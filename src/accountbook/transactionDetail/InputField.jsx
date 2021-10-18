@@ -62,6 +62,7 @@ export default function InputField({
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
+          autoComplete="off"
         />
       </InputBox>
     </Container>

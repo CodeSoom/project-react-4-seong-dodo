@@ -86,6 +86,7 @@ export default function BudgetForm({ budget, onChange }) {
           name="budget"
           value={budget}
           onChange={handleChange}
+          autoComplete="off"
         />
         <span>원</span>
       </InputBox>
