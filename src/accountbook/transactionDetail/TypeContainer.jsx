@@ -14,15 +14,17 @@ import {
 import Button from './Button';
 
 const OptionBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['15%', '15%', '15%', '15%', '15%'],
+  height: ['2em', '1.8em', '2.2em', '2.5em', '4em', '3.5em'],
+  margin: '0.2em auto',
   textAlign: 'center',
-  lineHeight: [3.1, 3.1, 4, 3.5, 6],
+  lineHeight: [3, 2.8, 2.9, 2.5, 4, 3.4],
   '& label': {
     float: 'left',
-    width: ['25%', '25%', '25%', '30%', '30%'],
-    height: '100%',
-    fontSize: ['0.6em', '0.6em', '0.7em', '1em', '1em'],
+    width: ['6.5em', '7.2em', '6.2em', '10em', '7em', '8em'],
+    fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1em', '1em'],
+    letterSpacing: [1, 1, 1, 2, 1, 2],
+
+    // border: '1px solid black',
   },
 
   // backgroundColor: 'pink',
@@ -30,30 +32,33 @@ const OptionBox = styled.div(mediaquery({
 
 const TypeBox = styled.div(mediaquery({
   float: 'left',
-  width: ['37.5%', '37.5%', '37.5%', '35%', '35%'],
-  height: '100%',
-  padding: 0,
+  width: ['5.1em', '5.5em', '6.5em', '12.1em', '7em', '9.5em'],
   '& button': {
     width: '50%',
     margin: '0 auto',
-    padding: '0.4em',
-    fontSize: ['0.6em', '0.6em', '0.7em', '1em', '1em'],
+    padding: ['0.5em', '0.4em', '0.4em', '0.4em', '0.4em', '0.4em'],
+    fontSize: ['0.6em', '0.5em', '0.6em', '0.9em', '1em', '1em'],
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: [1, 1, 1.5, 1.5, 2],
+    lineHeight: [0.5, 1, 1.2, 0.9, 1.3, 1.3],
     letterSpacing: '0.4em',
+
+    // border: '1px solid black',
   },
+
+  // border: '1px solid black',
 }));
 
 const Active = styled.div(({ active }) => (mediaquery({
-  width: ['90%', '70%', '65%', '60%', '80%'],
-  height: ['60%', '60%', '60%', '60%', '40%'],
+  width: ['4em', '4em', '4.5em', '7.5em', '6em', '7em'],
+  height: ['1.1em', '1.1em', '1.2em', '1.7em', '2.2em', '2.2em'],
   margin: [
     '0.4em auto',
+    '0.3em auto',
     '0.4em auto',
-    '0.5em auto',
-    '0.5em auto',
-    '2em auto',
+    '0.4em auto',
+    '0.9em auto',
+    '0.6em auto',
   ],
   borderRadius: '0.5em',
   color: active ? `${colors.white}` : `${colors.gray_text03}`,

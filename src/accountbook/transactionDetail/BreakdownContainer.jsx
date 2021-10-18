@@ -15,10 +15,16 @@ import {
 } from '../../reducers/accountbook';
 
 const InputBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['20%', '20%', '18%', '18%', '15%'],
-  margin: [0, 0, 0, '0.7em 0 0', '3em 0 0'],
-  padding: ['0.5em', '0.5em', '0.5em', '1em', '1em'],
+  height: ['2em', '2em', '2em', '2.5em', '3em', '3em'],
+  margin: [
+    '0.3em auto 0',
+    '0.2em auto 0',
+    '0.4em auto 0',
+    '0.4em auto 0',
+    '2em auto 0',
+    '1em auto 0',
+  ],
+  padding: 0,
 
   // backgroundColor: 'skyblue',
 }));
@@ -26,19 +32,15 @@ const InputBox = styled.div(mediaquery({
 const Number = styled.div(mediaquery({
   float: 'left',
   width: '85%',
-  height: '100%',
-  fontSize: ['1em', '1em', '1em', '1.2em', '1.4em'],
 }));
 
 const Child = styled.div(mediaquery({
   float: 'left',
   width: '15%',
   height: '100%',
-  fontSize: ['0.5em', '0.5em', '0.7em', '1em', '1.1em'],
-  lineHeight: [2.5, 2.5, 2.4, 2, 3.3],
-  letterSpacing: 3,
-
-  // border: '1px solid black',
+  fontSize: ['0.5em', '0.5em', '0.6em', '0.9em', '1em', '1em'],
+  lineHeight: [3, 3.2, 3.3, 2.6, 3.3, 3],
+  letterSpacing: 1,
 }));
 
 export default function BreakdownContainer() {

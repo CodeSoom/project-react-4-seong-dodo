@@ -10,13 +10,11 @@ import {
 } from '../../reducers/accountbook';
 
 const InputBox = styled.div(mediaquery({
-  width: '100%',
-  height: ['16%', '16%', '15%', '15%', '15%'],
-  marginBottom: 0,
-  padding: ['0.4em', '0.4em', '0.4em', '0.5em', '0.5em'],
-  lineHeight: [1, 1, 2, 3, 5],
+  height: ['1.9em', '1.8em', '2.2em', '2.5em', '4em', '3.5em'],
+  margin: '0 auto 0.3em',
 
   // backgroundColor: 'pink',
+  // border: '1px solid black',
 }));
 
 export default function InputFieldsContainer() {

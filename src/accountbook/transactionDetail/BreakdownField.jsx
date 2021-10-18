@@ -3,44 +3,40 @@ import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
 const Container = styled.div(mediaquery({
-  width: '100%',
-  height: '98%',
+  margin: '0 auto',
+  padding: 0,
   textAlign: 'center',
-
-  // border: '1px solid black',
 }));
 
 const LabelBox = styled.div(mediaquery({
   float: 'left',
-  width: ['25%', '25%', '25%', '30%', '20%'],
-  height: '100%',
-  padding: 0,
-  '& label': {
-    fontSize: ['0.6em', '0.6em', '0.7em', '0.8em', '1em'],
-    letterSpacing: '0.3em',
-  },
-
-  // border: '1px solid black',
+  width: '1em',
+  height: ['2em', '1.9em', '2em', '2.4em', '3em', '3em'],
 }));
 
 const InputBox = styled.div(mediaquery({
   float: 'left',
-  width: ['75%', '75%', '75%', '70%', '80%'],
-  height: '100%',
+  width: ['10em', '11em', '11em', '28em', '16.6em', '22em'],
+  height: ['2em', '1.9em', '2em', '2.4em', '3em', '3em'],
   '& input': {
-    width: ['90%', '90%', '90%', '100%', '100%'],
-    height: ['95%', '95%', '95%', '95%', '80%'],
-    margin: ['0 auto', '0 auto', '0 auto', '0 auto', '0 auto'],
+    width: ['21em', '19em', '16.7em', '35em', '18em', '24.5em'],
+    height: ['3em', '2.5em', '2.4em', '2.5em', '3em', '3em'],
+    margin: [
+      '0.4em auto',
+      '0.2em auto',
+      '0.1em auto',
+      '0.2em auto',
+      '0.1em auto',
+      '0.1em auto',
+    ],
     padding: '0.5em',
     border: 'none',
     borderRadius: '0.5em',
     color: `${colors.gray_text02}`,
-    fontSize: ['0.5em', '0.6em', '0.7em', '0.8em', '.8em'],
+    fontSize: ['0.5em', '0.6em', '0.7em', '0.8em', '0.9em', '0.9em'],
     textAlign: 'right',
     outlineStyle: 'none',
   },
-
-  // border: '1px solid black',
 }));
 
 export default function BreakdownField({

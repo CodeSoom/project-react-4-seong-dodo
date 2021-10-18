@@ -10,7 +10,6 @@ import Button from './Button';
 import Loading from '../../loading/Loading';
 import TransactionData from './TransactionData';
 import DailyTransaction from './DailyTransaction';
-// import DefalutTransaction from './DefalutTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
 
 import {
@@ -45,7 +44,7 @@ const Container = styled.div(mediaquery({
 const TextContainer = styled.div(mediaquery({
   bottom: 0,
   width: ['17em', '18em', '21em', '40em', '55em', '65em'],
-  height: ['38em', '32em', '37.5em', '50em', '50em', '42.5em'],
+  height: ['38em', '32em', '37.5em', '50em', '47em', '42.5em'],
   margin: '0 auto',
   padding: ['0.5em', '0.5em', '0.5em', '1em', '1em', '1em'],
   border: `${colors.teal_border} solid 1px`,
@@ -93,10 +92,10 @@ const DataLayout = styled.div(mediaquery({
 // 아웃라인 4
 const TextBoxLayout = styled.div(mediaquery({
   // width: '100%',
-  height: ['31em', '25em', '30em', '40em', '39em', '32em'],
+  height: ['31em', '25em', '30em', '40em', '35em', '32em'],
   margin: '0 auto',
 
-  border: '1px solid black',
+  // border: '1px solid black',
 }));
 
 // 아웃라인 4에 대한 그리드 1
@@ -111,7 +110,8 @@ const TransactionBox = styled.div(mediaquery({
     '1em 0.8em',
   ],
   width: ['14.7em', '16em', '18.6em', '36em', '25em', '29em'],
-  height: ['14em', '10em', '12.8em', '18em', '36.8em', '30em'],
+  // height: ['14em', '10em', '12.8em', '18em', '36.8em', '30em'],
+  height: ['14em', '9em', '11.8em', '17em', '32.5em', '30em'],
   padding: 0,
   overflow: 'auto',
 
@@ -125,14 +125,15 @@ const TransactionFieldsBox = styled.div(mediaquery({
     '0.3em 0.5em',
     '0.3em 0.5em',
     '0.3em 1em',
-    '0.8em',
-    '0.8em',
+    '1.5em 0.8em',
+    '2em 0.8em',
   ],
   width: ['14.9em', '15.9em', '18.8em', '35.6em', '24em', '30.5em'],
-  height: ['15em', '13em', '15.2em', '17.7em', '36.8em', '30em'],
+  // height: ['15em', '13em', '15.2em', '17.7em', '36.8em', '30em'],
+  height: ['15em', '14em', '16.2em', '19.7em', '32em', '28em'],
   padding: ['0.5em', '0.5em', '0.5em', '0.5em', '1em', '1em'],
 
-  backgroundColor: 'beige',
+  // backgroundColor: 'beige',
 }));
 
 // 아웃라인 5 내역추가 버튼
@@ -275,7 +276,6 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
         </DateBoxLayOut>
         <DataLayout>
           { histories === undefined
-            // ? <DefalutTransaction />
             ? null
             : (
               <>

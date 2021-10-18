@@ -18,6 +18,7 @@ const Container = styled.div(mediaquery({
     `${colors.gray_backgroud} solid 1px`,
     `${colors.gray_backgroud} solid 1px`,
     'none',
+    'none',
   ],
   borderLeft: [
     'none',
@@ -25,22 +26,20 @@ const Container = styled.div(mediaquery({
     'none',
     'none',
     `${colors.gray_backgroud} solid 1px`,
+    `${colors.gray_backgroud} solid 1px`,
   ],
   overflow: 'auto',
 }));
 
 const Box = styled.div(mediaquery({
-  margin: [
-    '0 auto',
-    '0 auto',
-    '0 auto',
-    '0 auto',
-    '1em auto'],
-  width: ['100%', '100%', '100%', '100%', '95%'],
-  height: ['100%', '100%', '100%', '100%', '95%'],
+  margin: [0, 0, 0, 0, '0.5em', '0.5em'],
+  width: ['13.7em', '14.8em', '17.5em', '34.5em', '21.3em', '27.7em'],
+  height: ['13.3em', '12.6em', '14.6em', '17.9em', '28em', '24em'],
   border: `1px solid ${colors.gray_backgroud}`,
   borderRadius: '0.5em',
   color: `${colors.gray_test02}`,
+
+  // background: 'yellowgreen',
 }));
 
 export default function TransactionDetailModal({ load }) {
