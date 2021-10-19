@@ -77,7 +77,7 @@ npm run build
 
 ### 3.2 전체 거래내역 조회
 
-![](https://images.velog.io/images/seong-dodo/post/e7578e20-4ca8-410b-8135-6f40a44bf24f/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-10-18-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-10.25.30.gif)
+![](https://images.velog.io/images/seong-dodo/post/2246c395-9ca0-4fa0-bb28-21fd709741bb/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-10-19-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-12.09.54.gif)
 
 ### 3.3 가계부 작성 기능
 
