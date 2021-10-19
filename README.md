@@ -79,7 +79,6 @@ npm run build
 
 ![](https://images.velog.io/images/seong-dodo/post/e7578e20-4ca8-410b-8135-6f40a44bf24f/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-10-18-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-10.25.30.gif)
 
-
 ### 3.3 가계부 작성 기능
 
 ![](https://images.velog.io/images/seong-dodo/post/81f10767-c114-46da-9cd7-ed61deed86cb/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-09-09-%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE-11.15.58.gif)
