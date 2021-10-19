@@ -25,39 +25,6 @@ import {
   clearMonthlyTransaction,
 } from '../reducers/accountbook';
 
-const LoadingLayout = styled.div(mediaquery({
-  height: ['5em', '6em', '6em', '8em', '10em', '11em'],
-  '& div': {
-    marginTop: ['5em', '3em', '3em', '4em', '5em', '5em'],
-  },
-}));
-
-const LinkBox = styled.div(mediaquery({
-  width: ['20em', '17em', '22em', '23em', '24em', '22em'],
-  height: ['1em', '1em', '1em', '1em', '1em', '1.2em'],
-  margin: [
-    '1em auto',
-    '1em auto',
-    '0.5em auto',
-    '1em auto',
-    '1em auto',
-    '1em auto',
-  ],
-  fontSize: ['0.6em', '0.6em', '0.7em', '1em', '1.1em', '1.4em'],
-  textAlign: 'right',
-  '& a': {
-    padding: '0.5em',
-    color: `${colors.gray_text}`,
-    fontWeight: '500',
-    cursor: 'pointer',
-    letterSpacing: '0.1em',
-    '&:hover': {
-      color: `${colors.blue_text}`,
-      fontWeight: '600',
-    },
-  },
-}));
-
 export default function LoginFormContainer() {
   const dispatch = useDispatch();
 
@@ -76,6 +43,14 @@ export default function LoginFormContainer() {
     setIsLoading(true);
     await dispatch(requestLogin());
     setIsLoading(false);
+  };
+
+  const handleKeypress = async (e) => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    await handleSubmit();
   };
 
   const handleClickLogout = async () => {
@@ -123,6 +98,7 @@ export default function LoginFormContainer() {
                       fields={loginFields}
                       onChange={handleChange}
                       onSubmit={handleSubmit}
+                      onKeypress={handleKeypress}
                     />
 
                   )
@@ -138,3 +114,36 @@ export default function LoginFormContainer() {
     </>
   );
 }
+
+const LoadingLayout = styled.div(mediaquery({
+  height: ['5em', '6em', '6em', '8em', '10em', '11em'],
+  '& div': {
+    marginTop: ['5em', '3em', '3em', '4em', '5em', '5em'],
+  },
+}));
+
+const LinkBox = styled.div(mediaquery({
+  width: ['20em', '17em', '22em', '23em', '24em', '22em'],
+  height: ['1em', '1em', '1em', '1em', '1em', '1.2em'],
+  margin: [
+    '1em auto',
+    '1em auto',
+    '0.5em auto',
+    '1em auto',
+    '1em auto',
+    '1em auto',
+  ],
+  fontSize: ['0.6em', '0.6em', '0.7em', '1em', '1.1em', '1.4em'],
+  textAlign: 'right',
+  '& a': {
+    padding: '0.5em',
+    color: `${colors.gray_text}`,
+    fontWeight: '500',
+    cursor: 'pointer',
+    letterSpacing: '0.1em',
+    '&:hover': {
+      color: `${colors.blue_text}`,
+      fontWeight: '600',
+    },
+  },
+}));

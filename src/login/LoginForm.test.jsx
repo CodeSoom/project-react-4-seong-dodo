@@ -5,10 +5,12 @@ import LoginForm from './LoginForm';
 describe('LoginForm', () => {
   const handleChange = jest.fn();
   const handleSubmit = jest.fn();
+  const handleKeypress = jest.fn();
 
   beforeEach(() => {
     handleChange.mockClear();
     handleSubmit.mockClear();
+    handleKeypress.mockClear();
   });
 
   function renderLoginForm({ email, password } = {}) {
@@ -17,6 +19,7 @@ describe('LoginForm', () => {
         fields={{ email, password }}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onKeypress={handleKeypress}
       />
     ));
   }
@@ -50,6 +53,21 @@ describe('LoginForm', () => {
       const input = getByLabelText(label);
       fireEvent.change(input, { target: { value } });
       expect(handleChange).toBeCalledWith({ name, value });
+    });
+  });
+
+  it('listens keypress events', () => {
+    const { getByLabelText } = renderLoginForm();
+
+    const controls = [
+      { label: 'E-mail', name: 'email', value: '123@test.com' },
+      { label: 'Password', name: 'password', value: '123test' },
+    ];
+
+    controls.forEach(({ label }) => {
+      const input = getByLabelText(label);
+      fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
+      expect(handleKeypress).toBeCalled();
     });
   });
 

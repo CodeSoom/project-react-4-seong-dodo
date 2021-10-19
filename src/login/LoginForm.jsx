@@ -4,6 +4,58 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
+const LoginForm = memo(({
+  fields, onChange, onSubmit, onKeypress,
+}) => {
+  const { email, password } = fields;
+
+  function handleChange(event) {
+    const { target: { name, value } } = event;
+    onChange({ name, value });
+  }
+
+  return (
+    <Container>
+      <FormBox>
+        <label htmlFor="login-email">
+          E-mail
+        </label>
+        <input
+          type="email"
+          id="login-email"
+          name="email"
+          placeholder="이메일을 입력해 주세요"
+          value={email}
+          onChange={handleChange}
+          onKeyPress={(e) => onKeypress(e)}
+          autoComplete="off"
+        />
+        <label htmlFor="login-password">
+          Password
+        </label>
+        <input
+          type="password"
+          id="login-password"
+          name="password"
+          placeholder="비밀번호를 입력해 주세요"
+          value={password}
+          onChange={handleChange}
+          onKeyPress={(e) => onKeypress(e)}
+          autoComplete="off"
+        />
+      </FormBox>
+      <Button
+        type="button"
+        onClick={onSubmit}
+      >
+        Log In
+      </Button>
+    </Container>
+  );
+});
+
+export default LoginForm;
+
 const Container = styled.div({
   margin: '0 auto',
   padding: 0,
@@ -73,51 +125,3 @@ const Button = styled.button(mediaquery({
     fontWeight: '600',
   },
 }));
-
-const LoginForm = memo(({ fields, onChange, onSubmit }) => {
-  const { email, password } = fields;
-
-  function handleChange(event) {
-    const { target: { name, value } } = event;
-    onChange({ name, value });
-  }
-
-  return (
-    <Container>
-      <FormBox>
-        <label htmlFor="login-email">
-          E-mail
-        </label>
-        <input
-          type="email"
-          id="login-email"
-          name="email"
-          placeholder="이메일을 입력해 주세요"
-          value={email}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <label htmlFor="login-password">
-          Password
-        </label>
-        <input
-          type="password"
-          id="login-password"
-          name="password"
-          placeholder="비밀번호를 입력해 주세요"
-          value={password}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-      </FormBox>
-      <Button
-        type="button"
-        onClick={onSubmit}
-      >
-        Log In
-      </Button>
-    </Container>
-  );
-});
-
-export default LoginForm;

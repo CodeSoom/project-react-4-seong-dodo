@@ -4,6 +4,15 @@ import mediaquery from '../style/mediaquery';
 
 import LoginFormContainer from './LoginFormContainer';
 
+export default function LoginPage() {
+  return (
+    <Container>
+      <Title>로그인</Title>
+      <LoginFormContainer />
+    </Container>
+  );
+}
+
 const Container = styled.div(mediaquery({
   width: ['14em', '14em', '18em', '28em', '30em', '35em'],
   height: ['16em', '15em', '15em', '20em', '25em', '28em'],
@@ -29,12 +38,3 @@ const Title = styled.h2(mediaquery({
   textAlign: 'center',
   letterSpacing: '0.2em',
 }));
-
-export default function LoginPage() {
-  return (
-    <Container>
-      <Title>로그인</Title>
-      <LoginFormContainer />
-    </Container>
-  );
-}
