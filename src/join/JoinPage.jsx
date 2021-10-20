@@ -4,6 +4,17 @@ import mediaquery from '../style/mediaquery';
 
 import JoinContainer from './JoinContainer';
 
+export default function JoinPage({ history }) {
+  return (
+    <Container>
+      <Title>회원가입</Title>
+      <JoinContainer
+        history={history}
+      />
+    </Container>
+  );
+}
+
 const Container = styled.div(mediaquery({
   width: ['14em', '14em', '18em', '28em', '30em', '40em'],
   height: ['25.5em', '26em', '30em', '30.5em', '33em', '37em'],
@@ -28,14 +39,3 @@ const Title = styled.h2(mediaquery({
   textAlign: 'center',
   letterSpacing: '0.2em',
 }));
-
-export default function JoinPage({ history }) {
-  return (
-    <Container>
-      <Title>회원가입</Title>
-      <JoinContainer
-        history={history}
-      />
-    </Container>
-  );
-}

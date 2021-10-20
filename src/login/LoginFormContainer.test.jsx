@@ -7,19 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginFormContainer from './LoginFormContainer';
 
 jest.mock('react-redux');
-/**
- * 로그인 폼 컨테이너 컴포넌트 테스트 코드 시나리오
- *
- * 1. accessToken이 없을 경우 (로그인 하지 않은 상태)
- * 1-1. 이메일, 패스워드 input filed에 입력값을 입력하면 입력값이 입력된다.(onChange event)
- * 1-2. 이메일, 패스워드 입력창에 모든 입력값이 입력되어야지 로그인 버튼을 클릭할 수 있다.
- * 1-3. 이메일, 패스워드 입력창에 모든 입력값이 입력된 다음 엔터 키보드를 눌렀을 때 로그인을 할 수 있다.
- * 1-4. 회원가입 버튼을 누르면 회원가입 링크로 이동할 수 있다.
- *
- * 2. accessToken이 있을 경우 (로그인 성공 상태)
- * 2-1. 로그인 성공하면 '환영합니다 :)'문구가 보여진다.
- * 3-2. 로그아웃 버튼을 클릭하면 로딩 컴포넌트가 true-> 로그아웃이 됨-> 로그인 필드 초기화-> 거래내역 초기화 -> 로딩컴포넌트 false
- */
 
 describe('LoginFormContainer', () => {
   const dispatch = jest.fn();
