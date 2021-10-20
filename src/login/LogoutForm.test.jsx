@@ -5,7 +5,12 @@ import LogoutForm from './LogoutForm';
 describe('LogoutForm', () => {
   const handleClick = jest.fn();
 
-  function renderLogoutForm(loginFields = {}) {
+  const loginFields = {
+    email: 'test@test.com',
+    password: 'PASSWORD',
+  };
+
+  function renderLogoutForm() {
     return render((
       <LogoutForm
         loginFields={loginFields}
@@ -15,26 +20,12 @@ describe('LogoutForm', () => {
   }
 
   it('renders “Log out” button', () => {
-    const loginFields = {
-      email: 'test@test.com',
-      password: 'PASSWORD',
-    };
-
-    const { container, getByText } = renderLogoutForm(loginFields);
+    const { container } = renderLogoutForm(loginFields);
 
     expect(container).toHaveTextContent('Log out');
-
-    fireEvent.click(getByText('Log out'));
-
-    expect(handleClick).toBeCalled();
   });
 
-  context('when button is clicked', () => {
-    const loginFields = {
-      email: 'test@test.com',
-      password: 'PASSWORD',
-    };
-
+  describe('when button is clicked', () => {
     it('calls click event handler', () => {
       const { getByText } = renderLogoutForm(loginFields);
 

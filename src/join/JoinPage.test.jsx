@@ -23,23 +23,32 @@ describe('JoinPage', () => {
     }));
   });
 
-  it('renders join title', () => {
-    const { container } = render((
+  function renderJoinPage() {
+    return render((
       <MemoryRouter>
         <JoinPage />
       </MemoryRouter>
     ));
+  }
+
+  it('회원가입 폼이 그려진다.', () => {
+    const { container } = renderJoinPage();
 
     expect(container).toHaveTextContent('회원가입');
   });
 
-  it('renders input control', () => {
-    const { getByLabelText } = render((
-      <MemoryRouter>
-        <JoinPage />
-      </MemoryRouter>
-    ));
+  it('이메일 주소, 나이, 비밀번호 입력 및 비밀번호 재입력 폼이 그려진다.', () => {
+    const { getByLabelText } = renderJoinPage();
 
     expect(getByLabelText('이메일 주소')).not.toBeNull();
+    expect(getByLabelText('나이')).not.toBeNull();
+    expect(getByLabelText('비밀번호 입력')).not.toBeNull();
+    expect(getByLabelText('비밀번호 재입력')).not.toBeNull();
+  });
+
+  it('가입하기 버튼이 그려진다.', () => {
+    const { container } = renderJoinPage();
+
+    expect(container).toHaveTextContent('가입하기');
   });
 });

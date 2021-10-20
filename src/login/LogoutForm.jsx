@@ -2,6 +2,33 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
+export default function LogoutForm({ loginFields, onClick }) {
+  const { email } = loginFields;
+
+  return (
+    <LoginBox>
+      <div>
+        <p>
+          {email}
+          {' '}
+          사용자님
+        </p>
+        <p>
+          환영합니다
+          {' '}
+          :)
+        </p>
+      </div>
+      <Button
+        type="button"
+        onClick={onClick}
+      >
+        Log out
+      </Button>
+    </LoginBox>
+  );
+}
+
 const LoginBox = styled.div(mediaquery({
   width: ['12em', '12em', '15em', '23em', '27em', '30em'],
   margin: '0 auto',
@@ -42,30 +69,3 @@ const Button = styled.button(mediaquery({
     fontWeight: '600',
   },
 }));
-
-export default function LogoutForm({ loginFields, onClick }) {
-  const { email } = loginFields;
-
-  return (
-    <LoginBox>
-      <div>
-        <p>
-          {email}
-          {' '}
-          사용자님
-        </p>
-        <p>
-          환영합니다
-          {' '}
-          :)
-        </p>
-      </div>
-      <Button
-        type="button"
-        onClick={onClick}
-      >
-        Log out
-      </Button>
-    </LoginBox>
-  );
-}

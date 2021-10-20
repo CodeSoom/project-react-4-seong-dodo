@@ -2,6 +2,88 @@ import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
 
+export default function JoinForm({
+  fields, onChange, onSubmit, onKeypress,
+}) {
+  const {
+    email, age, password, repassword,
+  } = fields;
+
+  function handleChange(event) {
+    const { target: { name, value } } = event;
+    onChange({ name, value });
+  }
+
+  const handleKeypress = (e) => {
+    onKeypress(e);
+  };
+
+  return (
+    <Container>
+      <FormBox>
+        <label htmlFor="join-email">
+          이메일 주소
+        </label>
+        <input
+          type="email"
+          id="join-email"
+          name="email"
+          placeholder="이메일 주소를 입력 해주세요"
+          value={email}
+          onChange={handleChange}
+          onKeyPress={handleKeypress}
+          autoComplete="off"
+        />
+        <label htmlFor="join-age">
+          나이
+        </label>
+        <input
+          type="number"
+          id="join-age"
+          name="age"
+          placeholder="나이를 입력해 주세요"
+          value={age}
+          onChange={handleChange}
+          onKeyPress={handleKeypress}
+          autoComplete="off"
+        />
+        <label htmlFor="join-password">
+          비밀번호 입력
+        </label>
+        <input
+          type="password"
+          id="join-password"
+          name="password"
+          placeholder="비밀번호를 입력해 주세요"
+          value={password}
+          onChange={handleChange}
+          onKeyPress={handleKeypress}
+          autoComplete="off"
+        />
+        <label htmlFor="join-repassword">
+          비밀번호 재입력
+        </label>
+        <input
+          type="password"
+          id="join-repassword"
+          name="repassword"
+          placeholder="비밀번호를 재입력해 주세요"
+          value={repassword}
+          onChange={handleChange}
+          onKeyPress={handleKeypress}
+          autoComplete="off"
+        />
+      </FormBox>
+      <Button
+        type="button"
+        onClick={onSubmit}
+      >
+        가입하기
+      </Button>
+    </Container>
+  );
+}
+
 const Container = styled.div(mediaquery({
   margin: '0 auto',
   padding: 0,
@@ -63,75 +145,3 @@ const Button = styled.button(mediaquery({
     fontWeight: '600',
   },
 }));
-
-export default function JoinForm({ fields, onChange, onSubmit }) {
-  const {
-    email, age, password, repassword,
-  } = fields;
-
-  function handleChange(event) {
-    const { target: { name, value } } = event;
-    onChange({ name, value });
-  }
-
-  return (
-    <Container>
-      <FormBox>
-        <label htmlFor="join-email">
-          이메일 주소
-        </label>
-        <input
-          type="email"
-          id="join-email"
-          name="email"
-          placeholder="이메일 주소를 입력 해주세요"
-          value={email}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <label htmlFor="join-age">
-          나이
-        </label>
-        <input
-          type="number"
-          id="join-age"
-          name="age"
-          placeholder="나이를 입력해 주세요"
-          value={age}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <label htmlFor="join-password">
-          비밀번호 입력
-        </label>
-        <input
-          type="password"
-          id="join-password"
-          name="password"
-          placeholder="비밀번호를 입력해 주세요"
-          value={password}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <label htmlFor="join-repassword">
-          비밀번호 재입력
-        </label>
-        <input
-          type="repassword"
-          id="join-repassword"
-          name="repassword"
-          placeholder="비밀번호를 재입력해 주세요"
-          value={repassword}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-      </FormBox>
-      <Button
-        type="button"
-        onClick={onSubmit}
-      >
-        가입하기
-      </Button>
-    </Container>
-  );
-}

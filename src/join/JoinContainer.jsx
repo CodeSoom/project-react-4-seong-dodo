@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import mediaquery from '../style/mediaquery';
 
+import JoinForm from './JoinForm';
 import Loading from '../loading/Loading';
 
 import {
@@ -13,20 +14,13 @@ import {
   requestJoin,
 } from '../reducers/user';
 
-import JoinForm from './JoinForm';
-
-const LoadingLayout = styled.div(mediaquery({
-  '& div': {
-    marginTop: ['8em', '8em', '8em', '8em', '9em', '10em'],
-  },
-}));
-
 export default function JoinContainer({ history }) {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const joinFields = useSelector((state) => state.user.joinFields);
+
   const {
     age, email, password, repassword,
   } = joinFields;
@@ -49,7 +43,15 @@ export default function JoinContainer({ history }) {
       alert('이메일 주소를 잘못 입력 하였습니다.');
       return;
     }
+    if (age === '') {
+      alert('나이를 입력해주세요.');
+      return;
+    }
     if (!ageRegEx.test(age)) {
+      alert('나이를 다시 입력해주세요.');
+      return;
+    }
+    if (age === '0') {
       alert('나이를 다시 입력해주세요.');
       return;
     }
@@ -74,6 +76,14 @@ export default function JoinContainer({ history }) {
     setIsLoading(false);
   };
 
+  const handleKeypress = async (e) => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    await handleSubmit();
+  };
+
   return (
     <>
       {
@@ -88,9 +98,16 @@ export default function JoinContainer({ history }) {
               fields={joinFields}
               onChange={handleChange}
               onSubmit={handleSubmit}
+              onKeypress={handleKeypress}
             />
           )
       }
     </>
   );
 }
+
+const LoadingLayout = styled.div(mediaquery({
+  '& div': {
+    marginTop: ['8em', '8em', '8em', '8em', '9em', '10em'],
+  },
+}));
