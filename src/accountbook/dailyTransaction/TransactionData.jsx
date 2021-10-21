@@ -4,7 +4,44 @@ import styled from '@emotion/styled';
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
-import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
+import {
+  exchangeRegEX,
+  removeDecimalPoint,
+  replaceString,
+} from '../../utils/utils';
+
+export default function TransactionData({ histories }) {
+  const getCount = () => {
+    const count = histories.transactionHistories.length;
+    return count;
+  };
+
+  return (
+    <>
+      <CountBox>
+        총
+        {' '}
+        {getCount()}
+        {' '}
+        건
+      </CountBox>
+      <TotalExpenseBox>
+        -
+        {' '}
+        {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
+        {' '}
+        원
+      </TotalExpenseBox>
+      <TotalIncomeBox>
+        +
+        {' '}
+        {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
+        {' '}
+        원
+      </TotalIncomeBox>
+    </>
+  );
+}
 
 const CountBox = styled.div(mediaquery({
   float: 'left',
@@ -25,59 +62,3 @@ const TotalIncomeBox = styled.div(mediaquery({
   color: `${colors.teal_text02}`,
   textAlign: 'right',
 }));
-
-export default function TransactionData({ histories }) {
-  const getCount = () => {
-    const count = histories.transactionHistories.length;
-
-    return count;
-  };
-
-  return (
-    <>
-      {histories === undefined
-        ? null
-        : (
-          <div>
-            <CountBox>
-              총
-              {' '}
-              {getCount()}
-              {' '}
-              건
-            </CountBox>
-            {
-              histories.totalExpense === ''
-                ? null
-                : (
-                  <>
-                    <TotalExpenseBox>
-                      -
-                      {' '}
-                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalExpense)))}
-                      {' '}
-                      원
-                    </TotalExpenseBox>
-                  </>
-                )
-            }
-            {
-              histories.totalIncome === ''
-                ? null
-                : (
-                  <>
-                    <TotalIncomeBox>
-                      +
-                      {' '}
-                      {exchangeRegEX(replaceString(removeDecimalPoint(histories.totalIncome)))}
-                      {' '}
-                      원
-                    </TotalIncomeBox>
-                  </>
-                )
-            }
-          </div>
-        )}
-    </>
-  );
-}
