@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -221,6 +223,13 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
   };
 
   const handleClickDelete = async (id) => {
+    if (confirm('정말 삭제하시겠습니까?') === false) {
+      setIsLoading(true);
+      await load();
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     await dispatch(sendDeleteTransaction({ id }));
     await load();
