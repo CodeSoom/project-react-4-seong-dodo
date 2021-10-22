@@ -10,6 +10,99 @@ import mediaquery from '../../style/mediaquery';
 
 import { exchangeRegEX, replaceString, removeDecimalPoint } from '../../utils/utils';
 
+const ExpenseStyle = {
+  borderRadius: '0.8em',
+  backgroundColor: `${colors.gray_text03}`,
+};
+
+const IncomeStyle = {
+  borderRadius: '0.8em',
+  backgroundColor: `${colors.red_text02}`,
+};
+
+export default function Transaction({
+  histories, onClickEdit, onClickDelete, load,
+}) {
+  const typeStyle = (type) => {
+    if (type === '수입') {
+      return IncomeStyle;
+    }
+    if (type === '지출') {
+      return ExpenseStyle;
+    }
+  };
+
+  useEffect(async () => {
+    await load();
+  }, []);
+
+  return (
+    <>
+      { histories === undefined
+        ? null
+        : (
+          <>
+            {
+              histories.transactionHistories.map(({
+                id, type, category, transactionFields,
+              }) => (
+                <Container
+                  key={type}
+                >
+                  <DeleteLayout>
+                    <div
+                      onClick={() => onClickDelete(id)}
+                      role="presentation"
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </div>
+                    <div
+                      onClick={() => onClickEdit(id)}
+                      role="presentation"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </div>
+                  </DeleteLayout>
+                  <OptionLayoutGrid>
+                    <TypeBox>
+                      <div
+                        style={typeStyle(type)}
+                      >
+                        {type}
+                      </div>
+                    </TypeBox>
+                    <CategoryBox>
+                      {category.value}
+                    </CategoryBox>
+                  </OptionLayoutGrid>
+                  <TextLayoutGrid>
+                    <BreakdownBox>
+                      {type === '수입'
+                        ? '+'
+                        : '-'}
+                      {' '}
+                      {
+                        exchangeRegEX(replaceString(removeDecimalPoint(
+                          transactionFields.breakdown,
+                        )))
+                      }
+                      {' '}
+                      원
+                    </BreakdownBox>
+                    <TextBox>
+                      {`${transactionFields.source} / ${transactionFields.memo}`}
+                    </TextBox>
+                  </TextLayoutGrid>
+                </Container>
+              ))
+            }
+          </>
+        )}
+    </>
+
+  );
+}
+
 const Container = styled.div(mediaquery({
   width: ['14.5em', '16em', '18.5em', '36em', '25em', '29em'],
   height: ['4.5em', '4.5em', '4.5em', '6em', '6.5em', '6em'],
@@ -108,96 +201,3 @@ const TextBox = styled.div(mediaquery({
   textAlign: 'left',
   lineHeight: [1.5, 1.5, 1.5, 1.5, 1.5, 2],
 }));
-
-const ExpenseStyle = {
-  borderRadius: '0.8em',
-  backgroundColor: `${colors.gray_text03}`,
-};
-
-const IncomeStyle = {
-  borderRadius: '0.8em',
-  backgroundColor: `${colors.red_text02}`,
-};
-
-export default function Transaction({
-  histories, onClickEdit, onClickDelete, load,
-}) {
-  const typeStyle = (type) => {
-    if (type === '수입') {
-      return IncomeStyle;
-    }
-    if (type === '지출') {
-      return ExpenseStyle;
-    }
-  };
-
-  useEffect(async () => {
-    await load();
-  }, []);
-
-  return (
-    <>
-      { histories === undefined
-        ? null
-        : (
-          <>
-            {
-              histories.transactionHistories.map(({
-                id, type, category, transactionFields,
-              }) => (
-                <Container
-                  key={type}
-                >
-                  <DeleteLayout>
-                    <div
-                      onClick={() => onClickDelete(id)}
-                      role="presentation"
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </div>
-                    <div
-                      onClick={() => onClickEdit(id)}
-                      role="presentation"
-                    >
-                      <FontAwesomeIcon icon={faEdit} />
-                    </div>
-                  </DeleteLayout>
-                  <OptionLayoutGrid>
-                    <TypeBox>
-                      <div
-                        style={typeStyle(type)}
-                      >
-                        {type}
-                      </div>
-                    </TypeBox>
-                    <CategoryBox>
-                      {category.value}
-                    </CategoryBox>
-                  </OptionLayoutGrid>
-                  <TextLayoutGrid>
-                    <BreakdownBox>
-                      {type === '수입'
-                        ? '+'
-                        : '-'}
-                      {' '}
-                      {
-                        exchangeRegEX(replaceString(removeDecimalPoint(
-                          transactionFields.breakdown,
-                        )))
-                      }
-                      {' '}
-                      원
-                    </BreakdownBox>
-                    <TextBox>
-                      {`${transactionFields.source} / ${transactionFields.memo}`}
-                    </TextBox>
-                  </TextLayoutGrid>
-                </Container>
-              ))
-            }
-          </>
-        )}
-    </>
-
-  );
-}
