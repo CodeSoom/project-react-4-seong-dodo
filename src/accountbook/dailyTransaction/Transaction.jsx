@@ -23,6 +23,12 @@ const IncomeStyle = {
 export default function Transaction({
   histories, onClickEdit, onClickDelete, load,
 }) {
+  const { transactionHistories } = histories;
+
+  useEffect(async () => {
+    await load();
+  }, []);
+
   const typeStyle = (type) => {
     if (type === '수입') {
       return IncomeStyle;
@@ -32,18 +38,14 @@ export default function Transaction({
     }
   };
 
-  useEffect(async () => {
-    await load();
-  }, []);
-
   return (
     <>
-      { histories === undefined
+      { transactionHistories.length === 0
         ? null
         : (
           <>
             {
-              histories.transactionHistories.map(({
+              transactionHistories.map(({
                 id, type, category, transactionFields,
               }) => (
                 <Container
