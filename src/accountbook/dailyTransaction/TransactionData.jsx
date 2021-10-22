@@ -16,6 +16,7 @@ export default function TransactionData({ histories }) {
     return count;
   };
 
+  // console.log(histories);
   return (
     <>
       <CountBox>

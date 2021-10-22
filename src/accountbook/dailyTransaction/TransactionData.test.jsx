@@ -2,12 +2,10 @@ import { render } from '@testing-library/react';
 
 import TransactionData from './TransactionData';
 
-import mockExpenseTransaction from '../../../fixtures/mockExpenseTransaction';
-import mockIncomeTransaction from '../../../fixtures/mockIncomeTransaction';
-import mockDailyData from '../../../fixtures/mockDailyData';
+import TRANSACTION_HISTORIES from '../../../fixtures/transaction-histories';
 
 describe('TransactionData', () => {
-  function renderTransactionData(histories = undefined) {
+  function renderTransactionData(histories = {}) {
     return render((
       <TransactionData
         histories={histories}
@@ -15,60 +13,35 @@ describe('TransactionData', () => {
     ));
   }
 
-  context('without histories', () => {
-    it('renders nothing', () => {
-      const { queryByText } = renderTransactionData();
+  context('일간 거래내역이 없을 경우', () => {
+    it('일간 거래내역에 대한 총 건수 및 총 수입, 지출 금액이 화면 폼이 그려진다.', () => {
+      const histories = {
+        year: 2021,
+        month: 10,
+        date: 11,
+        day: 1,
+        totalExpense: '0.0',
+        totalIncome: '0.0',
+        transactionHistories: [],
+      };
 
-      expect(queryByText('총 1 건')).toBeNull();
-      expect(queryByText('- 1,000 원')).toBeNull();
-      expect(queryByText('+ 1,000 원')).toBeNull();
+      const { queryByText } = renderTransactionData(histories);
+
+      expect(queryByText('총 0 건')).not.toBeNull();
+      expect(queryByText('- 0 원')).not.toBeNull();
+      expect(queryByText('+ 0 원')).not.toBeNull();
     });
   });
 
-  context('with histories', () => {
-    describe('renders transaction data with "지출" and "수입" type', () => {
-      const histories = {
-        dailyData: mockDailyData,
-        totalExpense: '1000.0',
-        totalIncome: '1000.0',
-        transactionHistories: [mockExpenseTransaction, mockIncomeTransaction],
-      };
-
-      it('renders transaction data', () => {
-        const { container } = renderTransactionData(histories);
-
-        expect(container).toHaveTextContent('총 2 건');
-        expect(container).toHaveTextContent('- 1,000 원');
-        expect(container).toHaveTextContent('+ 1,000 원');
-      });
-    });
-
-    it('when with only "지출" type data', () => {
-      const histories = {
-        dailyData: mockDailyData,
-        totalExpense: '1000.0',
-        totalIncome: '',
-        transactionHistories: [mockExpenseTransaction],
-      };
+  context('일간 거래내역이 있을 경우', () => {
+    it('일간 거래내역에 대한 총 건수 및 총 수입, 지출 금액이 화면 폼이 그려진다.', () => {
+      const histories = TRANSACTION_HISTORIES;
 
       const { container } = renderTransactionData(histories);
 
       expect(container).toHaveTextContent('총 1 건');
       expect(container).toHaveTextContent('- 1,000 원');
-    });
-
-    it('when with only "수입" type data', () => {
-      const histories = {
-        dailyData: mockDailyData,
-        totalExpense: '',
-        totalIncome: '1000.0',
-        transactionHistories: [mockIncomeTransaction],
-      };
-
-      const { container } = renderTransactionData(histories);
-
-      expect(container).toHaveTextContent('총 1 건');
-      expect(container).toHaveTextContent('+ 1,000 원');
+      expect(container).toHaveTextContent('+ 0 원');
     });
   });
 });
