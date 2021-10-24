@@ -10,8 +10,8 @@ import mediaquery from '../../style/mediaquery';
 
 import Button from './Button';
 import Loading from '../../loading/Loading';
+import Transaction from './Transaction';
 import TransactionData from './TransactionData';
-import DailyTransaction from './DailyTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
 
 import {
@@ -29,6 +29,171 @@ import {
 } from '../../reducers/accountbook';
 
 import { exchangeRegEX, removeDecimalPoint, replaceString } from '../../utils/utils';
+
+export default function DailyTransactionContainer({ dailyData, onClick }) {
+  const dispatch = useDispatch();
+
+  const [isDisplay, setIsDisplay] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    year, month, date, day,
+  } = dailyData;
+
+  const convertDay = () => {
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    return days[day];
+  };
+
+  const { accessToken, dailyTransaction } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+    dailyTransaction: state.accountbook.dailyTransaction,
+  }));
+
+  const load = async () => {
+    await dispatch(loadDailyTransaction({
+      accessToken, year, month, date,
+    }));
+  };
+
+  useEffect(async () => {
+    setIsLoading(true);
+    await load();
+    setIsLoading(false);
+  }, []);
+
+  const histories = dailyTransaction.find(
+    (daily) => daily.year === dailyData.year
+  && daily.month === dailyData.month
+  && daily.date === dailyData.date
+  && daily.day === dailyData.day,
+  );
+
+  // 내역추가 버튼 이벤트
+  const handleClickOpenDetailModal = () => {
+    setIsDisplay(!isDisplay);
+
+    dispatch(clearTransactionFields());
+    dispatch(clearTargetId());
+  };
+
+  const handleClickEdit = (id) => {
+    setIsDisplay(true);
+
+    dispatch(setTargetId({ id }));
+
+    const targetDailyTransaction = dailyTransaction
+      .find((target) => target.year === year
+      && target.month === month
+      && target.date === date);
+
+    const targetTransaction = targetDailyTransaction.transactionHistories
+      .find((target) => target.id === id);
+
+    const { type, category, transactionFields } = targetTransaction;
+
+    dispatch(changeTransactionType(type));
+    dispatch(selectType(type));
+    dispatch(changeTransactionCategory({ value: category.value }));
+    dispatch(selectCategory({ value: category.value }));
+    dispatch(changeBreakdownFields({
+      value:
+      exchangeRegEX(replaceString(removeDecimalPoint(transactionFields.breakdown))),
+    }));
+    dispatch(changeTransactionFields({
+      name: 'source',
+      value: transactionFields.source,
+    }));
+    dispatch(changeTransactionFields({
+      name: 'memo',
+      value: transactionFields.memo,
+    }));
+  };
+
+  const handleClickDelete = async (id) => {
+    if (confirm('정말 삭제하시겠습니까?') === false) {
+      await load();
+      return;
+    }
+
+    setIsLoading(true);
+    await dispatch(sendDeleteTransaction({ id }));
+    await load();
+    setIsLoading(false);
+  };
+
+  return (
+    <Container>
+      <TextContainer>
+        <CloseButtonLayout>
+          <Button
+            value="X"
+            onClick={onClick}
+          />
+        </CloseButtonLayout>
+        <DateBoxLayOut>
+          {date}
+          일
+          {' '}
+          {convertDay()}
+          요일
+        </DateBoxLayOut>
+        <DataLayout>
+          { histories === undefined
+            ? null
+            : (
+              <>
+                <TransactionData
+                  histories={histories}
+                />
+              </>
+            )}
+        </DataLayout>
+        <TextBoxLayout>
+          <TransactionBox>
+            {
+              isLoading
+                ? <Loading />
+                : (
+                  <>
+                    { histories === undefined
+                      ? null
+                      : (
+                        <>
+                          <Transaction
+                            histories={histories}
+                            onClickEdit={handleClickEdit}
+                            onClickDelete={handleClickDelete}
+                            load={load}
+                          />
+                        </>
+                      )}
+                  </>
+                )
+            }
+          </TransactionBox>
+          <TransactionFieldsBox>
+            {
+              isDisplay === true
+                ? (
+                  <TransactionDetailModal
+                    load={load}
+                  />
+                )
+                : <DefaultBox />
+            }
+          </TransactionFieldsBox>
+        </TextBoxLayout>
+        <AddButtonLayout>
+          <Button
+            value="내역추가"
+            onClick={handleClickOpenDetailModal}
+          />
+        </AddButtonLayout>
+      </TextContainer>
+    </Container>
+  );
+}
 
 const Container = styled.div(mediaquery({
   position: 'fixed',
@@ -151,159 +316,3 @@ const DefaultBox = styled.div(mediaquery({
     `${colors.gray_backgroud} solid 1px`,
   ],
 }));
-
-export default function DailyTransactionContainer({ dailyData, onClick }) {
-  const dispatch = useDispatch();
-
-  const [isDisplay, setDisplay] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const {
-    year, month, date, day,
-  } = dailyData;
-
-  const { accessToken, dailyTransaction } = useSelector((state) => ({
-    accessToken: state.user.accessToken,
-    dailyTransaction: state.accountbook.dailyTransaction,
-  }));
-
-  const load = async () => {
-    await dispatch(loadDailyTransaction({
-      accessToken, year, month, date,
-    }));
-  };
-
-  useEffect(async () => {
-    setIsLoading(true);
-    await load();
-    setIsLoading(false);
-  }, []);
-
-  function convertDay() {
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
-    return days[day];
-  }
-  // 내역추가 버튼 이벤트
-  const handleClickDetailModal = () => {
-    setDisplay(!isDisplay);
-    dispatch(clearTransactionFields());
-    dispatch(clearTargetId());
-  };
-
-  const handleClickEdit = (id) => {
-    setDisplay(true);
-    dispatch(setTargetId({ id }));
-
-    const targetDailyTransaction = dailyTransaction
-      .find((target) => target.year === year
-      && target.month === month
-      && target.date === date);
-
-    const targetTransaction = targetDailyTransaction.transactionHistories
-      .find((target) => target.id === id);
-
-    const { type, category, transactionFields } = targetTransaction;
-
-    dispatch(changeTransactionType(type));
-    dispatch(selectType(type));
-    dispatch(changeTransactionCategory({ value: category.value }));
-    dispatch(selectCategory({ value: category.value }));
-    dispatch(changeBreakdownFields({
-      value:
-      exchangeRegEX(replaceString(removeDecimalPoint(transactionFields.breakdown))),
-    }));
-    dispatch(changeTransactionFields({
-      name: 'source',
-      value: transactionFields.source,
-    }));
-    dispatch(changeTransactionFields({
-      name: 'memo',
-      value: transactionFields.memo,
-    }));
-  };
-
-  const handleClickDelete = async (id) => {
-    if (confirm('정말 삭제하시겠습니까?') === false) {
-      setIsLoading(true);
-      await load();
-      setIsLoading(false);
-      return;
-    }
-
-    setIsLoading(true);
-    await dispatch(sendDeleteTransaction({ id }));
-    await load();
-    setIsLoading(false);
-  };
-
-  const histories = dailyTransaction.find(
-    (daily) => daily.year === dailyData.year
-  && daily.month === dailyData.month
-  && daily.date === dailyData.date
-  && daily.day === dailyData.day,
-  );
-
-  return (
-    <Container>
-      <TextContainer>
-        <CloseButtonLayout>
-          <Button
-            value="X"
-            onClick={onClick}
-          />
-        </CloseButtonLayout>
-        <DateBoxLayOut>
-          {date}
-          일
-          {' '}
-          {convertDay()}
-          요일
-        </DateBoxLayOut>
-        <DataLayout>
-          { histories === undefined
-            ? null
-            : (
-              <>
-                <TransactionData
-                  histories={histories}
-                />
-              </>
-            )}
-        </DataLayout>
-        <TextBoxLayout>
-          <TransactionBox>
-            {
-              isLoading
-                ? <Loading />
-                : (
-                  <DailyTransaction
-                    histories={histories}
-                    onClickEdit={handleClickEdit}
-                    onClickDelete={handleClickDelete}
-                    load={load}
-                  />
-                )
-            }
-          </TransactionBox>
-          <TransactionFieldsBox>
-            {
-              isDisplay === true
-                ? (
-                  <TransactionDetailModal
-                    load={load}
-                  />
-                )
-                : <DefaultBox />
-            }
-          </TransactionFieldsBox>
-        </TextBoxLayout>
-        <AddButtonLayout>
-          <Button
-            value="내역추가"
-            onClick={handleClickDetailModal}
-          />
-        </AddButtonLayout>
-      </TextContainer>
-    </Container>
-  );
-}
