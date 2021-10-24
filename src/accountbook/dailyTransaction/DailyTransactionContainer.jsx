@@ -10,8 +10,8 @@ import mediaquery from '../../style/mediaquery';
 
 import Button from './Button';
 import Loading from '../../loading/Loading';
+import Transaction from './Transaction';
 import TransactionData from './TransactionData';
-import DailyTransaction from './DailyTransaction';
 import TransactionDetailModal from '../transactionDetail/TransactionDetailModal';
 
 import {
@@ -61,6 +61,7 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return days[day];
   }
+
   // 내역추가 버튼 이벤트
   const handleClickOpenDetailModal = () => {
     setIsDisplay(!isDisplay);
@@ -154,12 +155,20 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
               isLoading
                 ? <Loading />
                 : (
-                  <DailyTransaction
-                    histories={histories}
-                    onClickEdit={handleClickEdit}
-                    onClickDelete={handleClickDelete}
-                    load={load}
-                  />
+                  <>
+                    { histories === undefined
+                      ? null
+                      : (
+                        <>
+                          <Transaction
+                            histories={histories}
+                            onClickEdit={handleClickEdit}
+                            onClickDelete={handleClickDelete}
+                            load={load}
+                          />
+                        </>
+                      )}
+                  </>
                 )
             }
           </TransactionBox>
