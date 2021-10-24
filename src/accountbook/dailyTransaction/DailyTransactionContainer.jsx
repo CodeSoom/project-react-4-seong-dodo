@@ -40,6 +40,11 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     year, month, date, day,
   } = dailyData;
 
+  const convertDay = () => {
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    return days[day];
+  };
+
   const { accessToken, dailyTransaction } = useSelector((state) => ({
     accessToken: state.user.accessToken,
     dailyTransaction: state.accountbook.dailyTransaction,
@@ -57,10 +62,12 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     setIsLoading(false);
   }, []);
 
-  function convertDay() {
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
-    return days[day];
-  }
+  const histories = dailyTransaction.find(
+    (daily) => daily.year === dailyData.year
+  && daily.month === dailyData.month
+  && daily.date === dailyData.date
+  && daily.day === dailyData.day,
+  );
 
   // 내역추가 버튼 이벤트
   const handleClickOpenDetailModal = () => {
@@ -114,13 +121,6 @@ export default function DailyTransactionContainer({ dailyData, onClick }) {
     await load();
     setIsLoading(false);
   };
-
-  const histories = dailyTransaction.find(
-    (daily) => daily.year === dailyData.year
-  && daily.month === dailyData.month
-  && daily.date === dailyData.date
-  && daily.day === dailyData.day,
-  );
 
   return (
     <Container>
