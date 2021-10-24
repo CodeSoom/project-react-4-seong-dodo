@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -7,29 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import DailyTransactionModal from './DailyTransactionModal';
 
 import ACCESS_TOKEN from '../../../fixtures/access-token';
-// import DAILY_TRANSACTION from '../../../fixtures/daily-transaction';
+import DAILY_TRANSACTION from '../../../fixtures/daily-transaction';
 import ACCOUNTBOOK_STATE from '../../../fixtures/accountbook-initialState';
 
 jest.mock('react-redux');
-
-/**
- * 테스트 시나리오
- *  (모달창에 보여지는 화면 부분에 대해서만 작성 예정 / 이벤트에 대한 것은 컨테이너 컴포넌트 테스트에서 작성할 예정)
- * 1. 로그인 했을 경우에만 해당됨
- * 2. 클릭한 날짜의 모달창이 열리고 모달창 화면이 그려진다
- *   - 모달창 닫기 버튼이 있고 내역추가 버튼이 있다
- * 3. 내역추가 버튼을 클릭하면 거래내역 입력 모달창이 열린다
- *   - 거래내역을 입력할 수 있는 입력 폼이 그려진다
- *   - 저장 버튼이 그려진다
- *
- * 4. 거래내역
- *  4-1) 거래내역이 있을 경우
- *    - 거래내역에 대한 정보가 그려진다
- *    - 거래내역 폼이 그려진다
- *  4-2) 거래내역이 없을 경우
- *    - 거래내역에 대한 정보가 그려진다
- *    - 거래내역 폼이 그려지지 않는다
- */
 
 describe('DailyTransactionModal', () => {
   const dispatch = jest.fn();
@@ -38,13 +19,6 @@ describe('DailyTransactionModal', () => {
   beforeEach(() => {
     dispatch.mockClear();
     useDispatch.mockImplementation(() => dispatch);
-
-    useSelector.mockImplementation((selector) => selector({
-      user: {
-        accessToken: ACCESS_TOKEN,
-      },
-      accountbook: ACCOUNTBOOK_STATE,
-    }));
   });
 
   const dailyData = {
@@ -66,6 +40,15 @@ describe('DailyTransactionModal', () => {
   }
 
   describe('로그인 했을 경우에만 달력의 원하는 날짜를 클릭했을 경우에 거래내역 모달창이 열린다.', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        user: {
+          accessToken: ACCESS_TOKEN,
+        },
+        accountbook: ACCOUNTBOOK_STATE,
+      }));
+    });
+
     it('클릭한 날짜의 모달창 화면을 확인할 수 있다.', () => {
       const { container } = renderDailyTransactionModal();
 
@@ -93,6 +76,46 @@ describe('DailyTransactionModal', () => {
       expect(queryAllByLabelText('분류')).not.toBeNull();
       expect(queryAllByLabelText('카테고리')).not.toBeNull();
       expect(getByText('저장')).not.toBeNull();
+    });
+  });
+
+  describe('로그인 했을 경우에 사용자의 거래내역이 화면에 리스팅 된다.', () => {
+    context('거래내역이 있는 사용자의 경우', () => {
+      it('등록한 거래내역이 그려진다.', async () => {
+        useSelector.mockImplementation((selector) => selector({
+          user: {
+            accessToken: ACCESS_TOKEN,
+          },
+          accountbook: {
+            dailyTransaction: DAILY_TRANSACTION,
+          },
+        }));
+
+        await act(async () => {
+          const { getByText } = renderDailyTransactionModal();
+          expect(getByText('과자 / 마트')).not.toBeNull();
+        });
+      });
+    });
+
+    context('거래내역이 없는 사용자의 경우', () => {
+      beforeEach(() => {
+        useSelector.mockImplementation((selector) => selector({
+          user: {
+            accessToken: ACCESS_TOKEN,
+          },
+          accountbook: ACCOUNTBOOK_STATE,
+        }));
+      });
+
+      it('거래내역이 그려지지 않는다.', async () => {
+        await act(async () => {
+          const { queryByText } = renderDailyTransactionModal();
+          // getByTest는 없는 태그를 get하려고하면 error가 발생한다.
+          // 따라서 없는경우를 테스트하기위해서는 queryByText로 Null을 확인
+          expect(queryByText('과자 / 마트')).toBeNull();
+        });
+      });
     });
   });
 });
