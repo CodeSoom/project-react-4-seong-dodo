@@ -55,7 +55,7 @@ export default function CalendarContainer() {
       }));
     }
     setIsLoading(false);
-  }, []);
+  }, [month]);
 
   const handleOpenModal = async (date, day) => {
     if (accessToken === '' || accessToken === undefined) {
