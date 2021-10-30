@@ -43,7 +43,7 @@ export default function CalendarContainer() {
     dailyData: state.accountbook.dailyData,
     monthlyTransaction: state.accountbook.monthlyTransaction,
   }));
-
+  console.log(monthlyTransaction);
   useEffect(async () => {
     setIsLoading(true);
     if (accessToken) {
