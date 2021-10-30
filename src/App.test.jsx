@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import App from './App';
 
-import mockInitState from '../fixtures/mockInitState';
+import USER_STATE from '../fixtures/user-initialState';
+import ACCOUNTBOOK_STATE from '../fixtures/accountbook-initialState';
 
 jest.mock('react-redux');
 
@@ -20,22 +21,8 @@ describe('App', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      accountbook: {
-        ...mockInitState,
-      },
-      user: {
-        accessToken: '',
-        loginFields: {
-          email: '',
-          password: '',
-        },
-        joinFields: {
-          age: '',
-          email: '',
-          password: '',
-          repassword: '',
-        },
-      },
+      accountbook: ACCOUNTBOOK_STATE,
+      user: USER_STATE,
     }));
   });
 
