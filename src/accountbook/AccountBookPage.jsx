@@ -8,6 +8,26 @@ import mediaquery from '../style/mediaquery';
 
 import TabBarCard from './tabBar/TabBarCard';
 
+export default function AccountBookPage() {
+  return (
+    <Container>
+      <LinkLayout>
+        <LinkBox>
+          <Link to="/budget">
+            한 달 예산을 세워볼까요?
+          </Link>
+        </LinkBox>
+        <LinkBox>
+          <Link to="/calendar">
+            자산 관리 시작해볼까요?
+          </Link>
+        </LinkBox>
+      </LinkLayout>
+      <TabBarCard />
+    </Container>
+  );
+}
+
 const Container = styled.div(mediaquery({
   margin: '0 auto',
   padding: 0,
@@ -45,23 +65,3 @@ const LinkBox = styled.div(mediaquery({
     },
   },
 }));
-
-export default function AccountBookPage() {
-  return (
-    <Container>
-      <LinkLayout>
-        <LinkBox>
-          <Link to="/budget">
-            한 달 예산을 세워볼까요?
-          </Link>
-        </LinkBox>
-        <LinkBox>
-          <Link to="/calendar">
-            자산 관리 시작해볼까요?
-          </Link>
-        </LinkBox>
-      </LinkLayout>
-      <TabBarCard />
-    </Container>
-  );
-}

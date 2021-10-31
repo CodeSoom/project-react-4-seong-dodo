@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import BreakDownContainer from './BreakDownContainer';
 
-import mockExpenseTransaction from '../../../fixtures/mockExpenseTransaction';
+import EXPENSE_TRANSACTION from '../../../fixtures/mockExpenseTransaction';
 
 jest.mock('react-redux');
 
@@ -14,7 +14,7 @@ describe('BreakDownContainer', () => {
       useSelector.mockImplementation((selector) => selector({
         accountbook: {
           year: 2021,
-          month: 8,
+          month: 7,
           monthlyTransaction: [],
         },
       }));
@@ -25,7 +25,7 @@ describe('BreakDownContainer', () => {
 
       expect(container).toHaveTextContent('수입');
       expect(container).toHaveTextContent('지출');
-      expect(container).toHaveTextContent('원');
+      expect(container).toHaveTextContent('0 원');
     });
   });
 
@@ -34,17 +34,8 @@ describe('BreakDownContainer', () => {
       useSelector.mockImplementation((selector) => selector({
         accountbook: {
           year: 2021,
-          month: 8,
+          month: 7,
           monthlyTransaction: [
-            {
-              year: 2021,
-              month: 8,
-              date: 13,
-              day: 4,
-              totalExpense: '1,000',
-              totalIncome: '',
-              transactionHistories: [{ transaction: mockExpenseTransaction }],
-            },
             {
               year: 2021,
               month: 7,
@@ -52,7 +43,7 @@ describe('BreakDownContainer', () => {
               day: 4,
               totalExpense: '1,000',
               totalIncome: '',
-              transactionHistories: [{ transaction: mockExpenseTransaction }],
+              transactionHistories: [{ transaction: EXPENSE_TRANSACTION }],
             },
           ],
         },

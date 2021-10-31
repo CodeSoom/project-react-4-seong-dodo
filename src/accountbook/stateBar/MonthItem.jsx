@@ -1,6 +1,20 @@
 import styled from '@emotion/styled';
 import mediaquery from '../../style/mediaquery';
 
+export default function MonthItem({ year, month }) {
+  return (
+    <>
+      <Year>
+        {year}
+      </Year>
+      <Month>
+        {month}
+        월
+      </Month>
+    </>
+  );
+}
+
 const Year = styled.div(mediaquery({
   height: ['2.5m', '2.2em', '2em', '2em', '2.4em', '2.5em'],
   margin: '0.2em',
@@ -18,17 +32,3 @@ const Month = styled.div(mediaquery({
   textAlign: 'center',
   lineHeight: [1.5, 1.5, 2, 1.5, 1.7, 1.5],
 }));
-
-export default function MonthItem({ year, month }) {
-  return (
-    <>
-      <Year>
-        {year}
-      </Year>
-      <Month>
-        {month}
-        월
-      </Month>
-    </>
-  );
-}

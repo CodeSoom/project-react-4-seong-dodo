@@ -5,7 +5,7 @@ import MonthButton from './MonthButton';
 describe('MonthButton', () => {
   const handleClick = jest.fn();
 
-  function renderMonthButton({ direction } = '') {
+  function renderMonthButton({ direction = '' }) {
     return render((
       <MonthButton
         direction={direction}
