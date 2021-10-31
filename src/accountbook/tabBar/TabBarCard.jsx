@@ -6,6 +6,35 @@ import styled from '@emotion/styled';
 import colors from '../../style/colors';
 import mediaquery from '../../style/mediaquery';
 
+export default function TabBarCard() {
+  return (
+    <Footer>
+      <List>
+        <Item1>
+          <NavLink exact to="/accountbook" activeClassName="active">
+            Start
+          </NavLink>
+        </Item1>
+        <Item>
+          <NavLink exact to="/accountbook/timeline">
+            내역
+          </NavLink>
+        </Item>
+        <Item>
+          <NavLink exact to="/calendar">
+            달력
+          </NavLink>
+        </Item>
+        <Item>
+          <NavLink exact to="/budget">
+            예산
+          </NavLink>
+        </Item>
+      </List>
+    </Footer>
+  );
+}
+
 const Footer = styled.div(mediaquery({
   position: 'relative',
   bottom: 0,
@@ -65,32 +94,3 @@ const Item1 = styled.li(mediaquery({
     },
   },
 }));
-
-export default function TabBarCard() {
-  return (
-    <Footer>
-      <List>
-        <Item1>
-          <NavLink exact to="/accountbook" activeClassName="active">
-            Start
-          </NavLink>
-        </Item1>
-        <Item>
-          <NavLink exact to="/accountbook/timeline">
-            내역
-          </NavLink>
-        </Item>
-        <Item>
-          <NavLink exact to="/calendar">
-            달력
-          </NavLink>
-        </Item>
-        <Item>
-          <NavLink exact to="/budget">
-            예산
-          </NavLink>
-        </Item>
-      </List>
-    </Footer>
-  );
-}

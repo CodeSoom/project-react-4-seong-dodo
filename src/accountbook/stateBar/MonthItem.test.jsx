@@ -14,7 +14,6 @@ describe('MonthItem', () => {
       />));
 
     expect(queryByText('2021')).not.toBeNull();
-
     expect(container).toHaveTextContent('7월');
   });
 });

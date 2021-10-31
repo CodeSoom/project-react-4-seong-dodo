@@ -24,15 +24,16 @@ describe('MonthSwiperContainer', () => {
     }));
   });
 
-  it('renders month swiper container', () => {
+  it('월 이동 화면 폼이 그려진다.', () => {
     const { container } = render(<MonthSwiperContainer />);
 
-    expect(container).toHaveTextContent('월');
+    expect(container).toHaveTextContent('2021');
+    expect(container).toHaveTextContent('7월');
     expect(container).toHaveTextContent('<');
     expect(container).toHaveTextContent('>');
   });
 
-  describe('changes month', () => {
+  describe('월 이동 버튼', () => {
     it('listens click event and move the previous month', () => {
       const { getByText } = render(<MonthSwiperContainer />);
 
@@ -50,7 +51,7 @@ describe('MonthSwiperContainer', () => {
     });
   });
 
-  describe('renders conditional statement', () => {
+  describe('월 이동 버튼 제약 조건', () => {
     it('when month > 0', () => {
       useSelector.mockImplementation((selector) => selector({
         user: {

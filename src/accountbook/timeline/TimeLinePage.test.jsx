@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TimeLinePage from './TimeLinePage';
 
-import mockInitState from '../../../fixtures/mockInitState';
+import ACCOUNTBOOK_STATE from '../../../fixtures/accountbook-initialState';
 
 jest.mock('react-redux');
 
@@ -24,7 +24,7 @@ describe('TimeLinePage', () => {
         accessToken: given.accessToken,
       },
       accountbook: {
-        ...mockInitState,
+        ...ACCOUNTBOOK_STATE,
         transactionHistoryResponseList: given.transactionHistoryResponseList,
       },
     }));

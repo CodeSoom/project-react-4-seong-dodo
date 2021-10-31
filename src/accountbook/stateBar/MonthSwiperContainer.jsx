@@ -12,13 +12,6 @@ import {
   setNextMonth,
 } from '../../reducers/accountbook';
 
-const Container = styled.div(mediaquery({
-  float: 'left',
-  width: '40%',
-  height: '100%',
-  margin: '0 auto',
-}));
-
 export default function MonthSwiperContainer() {
   const dispatch = useDispatch();
 
@@ -87,3 +80,10 @@ export default function MonthSwiperContainer() {
     </Container>
   );
 }
+
+const Container = styled.div(mediaquery({
+  float: 'left',
+  width: '40%',
+  height: '100%',
+  margin: '0 auto',
+}));

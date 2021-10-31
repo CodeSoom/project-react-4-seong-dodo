@@ -1,7 +1,16 @@
 import { keyframes } from '@emotion/react';
+
 import styled from '@emotion/styled';
 import colors from '../style/colors';
 import mediaquery from '../style/mediaquery';
+
+export default function Loading() {
+  return (
+    <Container>
+      <LoadindSpinner />
+    </Container>
+  );
+}
 
 const spin = keyframes`
   to {
@@ -24,11 +33,3 @@ const LoadindSpinner = styled.div(mediaquery({
   borderRadius: '50%',
   animation: `${spin} 1s linear infinite`,
 }));
-
-export default function Loading() {
-  return (
-    <Container>
-      <LoadindSpinner />
-    </Container>
-  );
-}
