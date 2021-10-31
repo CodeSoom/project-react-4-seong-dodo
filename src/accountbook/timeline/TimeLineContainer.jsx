@@ -16,6 +16,118 @@ import {
   loadAnnualTransaction,
 } from '../../reducers/accountbook';
 
+export default function TimeLineContainer() {
+  const dispatch = useDispatch();
+
+  const [target, setTarget] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    accessToken, transactionHistoryResponseList,
+  } = useSelector((state) => ({
+    accessToken: state.user.accessToken,
+    nextPage: state.accountbook.nextPage,
+    totalPages: state.accountbook.totalPages,
+    transactionHistoryResponseList: state.accountbook.transactionHistoryResponseList,
+  }));
+
+  const loadTransaction = async () => {
+    setIsLoading(true);
+    await dispatch(loadAnnualTransaction());
+    dispatch(setNextPage());
+    setIsLoading(false);
+  };
+
+  const onIntersectScrollBar = async ([entry], observer) => {
+    if (entry.isIntersecting && !isLoading) {
+      observer.unobserve(entry.target);
+      await loadTransaction();
+      observer.observe(entry.target);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(resetPage());
+  }, []);
+
+  useEffect(() => {
+    let observer;
+    if (target) {
+      observer = new IntersectionObserver(onIntersectScrollBar, {
+        threshold: 0.5,
+      });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
+
+  return (
+    <>
+      {
+        accessToken
+          ? (
+            <>
+              <div>
+                {
+                  transactionHistoryResponseList.length === 0 && !isLoading
+                    ? <Exception>내용없음</Exception>
+                    : (
+                      <>
+                        <div>
+                          {
+                            transactionHistoryResponseList.map(({
+                              id, transactionDateTime, type, category, transactionFields,
+                            }) => (
+                              <ItemBox key={id}>
+                                <DateText>{transactionDateTime}</DateText>
+                                <UnderLine />
+                                <TypeBox>
+                                  <TypeText>{type}</TypeText>
+                                  <SectionBar />
+                                  <CategoryText>{category.value}</CategoryText>
+                                  <SectionBar />
+                                  <BreakdownBox>
+                                    { exchangeRegEX(replaceString(
+                                      removeDecimalPoint(transactionFields.breakdown),
+                                    ))}
+                                    {' '}
+                                    원
+                                  </BreakdownBox>
+                                </TypeBox>
+                                <SourceText>
+                                  거래처
+                                  {' '}
+                                  :
+                                  {' '}
+                                  {transactionFields.source}
+                                </SourceText>
+                                <MemoText>
+                                  메모
+                                  {' '}
+                                  :
+                                  {' '}
+                                  {transactionFields.memo}
+                                </MemoText>
+                              </ItemBox>
+                            ))
+                          }
+                        </div>
+                      </>
+                    )
+                }
+              </div>
+
+              <div ref={setTarget} className="target-element">
+                {isLoading && <Loading />}
+              </div>
+            </>
+          )
+          : <Exception>내역 페이지입니다. 로그인으로 이동하기</Exception>
+      }
+    </>
+  );
+}
+
 const ItemBox = styled.div(mediaquery({
   width: ['15em', '18em', '21em', '40em', '45em', '50em'],
   height: ['6.6em', '7.6em', '7.7em', '9.5em', '10.5em', '12.4em'],
@@ -129,115 +241,3 @@ const Exception = styled.p(mediaquery({
   textAlign: 'center',
   lineHeight: '10em',
 }));
-
-export default function TimeLineContainer() {
-  const dispatch = useDispatch();
-
-  const [target, setTarget] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const {
-    accessToken, transactionHistoryResponseList,
-  } = useSelector((state) => ({
-    accessToken: state.user.accessToken,
-    nextPage: state.accountbook.nextPage,
-    totalPages: state.accountbook.totalPages,
-    transactionHistoryResponseList: state.accountbook.transactionHistoryResponseList,
-  }));
-
-  const loadTransaction = async () => {
-    setIsLoading(true);
-    await dispatch(loadAnnualTransaction());
-    dispatch(setNextPage());
-    setIsLoading(false);
-  };
-
-  const onIntersectScrollBar = async ([entry], observer) => {
-    if (entry.isIntersecting && !isLoading) {
-      observer.unobserve(entry.target);
-      await loadTransaction();
-      observer.observe(entry.target);
-    }
-  };
-
-  useEffect(() => {
-    dispatch(resetPage());
-  }, []);
-
-  useEffect(() => {
-    let observer;
-    if (target) {
-      observer = new IntersectionObserver(onIntersectScrollBar, {
-        threshold: 0.5,
-      });
-      observer.observe(target);
-    }
-    return () => observer && observer.disconnect();
-  }, [target]);
-
-  return (
-    <>
-      {
-        accessToken
-          ? (
-            <>
-              <div>
-                {
-                  transactionHistoryResponseList.length === 0 && !isLoading
-                    ? <Exception>내용없음</Exception>
-                    : (
-                      <>
-                        <div>
-                          {
-                            transactionHistoryResponseList.map(({
-                              id, transactionDateTime, type, category, transactionFields,
-                            }) => (
-                              <ItemBox key={id}>
-                                <DateText>{transactionDateTime}</DateText>
-                                <UnderLine />
-                                <TypeBox>
-                                  <TypeText>{type}</TypeText>
-                                  <SectionBar />
-                                  <CategoryText>{category.value}</CategoryText>
-                                  <SectionBar />
-                                  <BreakdownBox>
-                                    { exchangeRegEX(replaceString(
-                                      removeDecimalPoint(transactionFields.breakdown),
-                                    ))}
-                                    {' '}
-                                    원
-                                  </BreakdownBox>
-                                </TypeBox>
-                                <SourceText>
-                                  거래처
-                                  {' '}
-                                  :
-                                  {' '}
-                                  {transactionFields.source}
-                                </SourceText>
-                                <MemoText>
-                                  메모
-                                  {' '}
-                                  :
-                                  {' '}
-                                  {transactionFields.memo}
-                                </MemoText>
-                              </ItemBox>
-                            ))
-                          }
-                        </div>
-                      </>
-                    )
-                }
-              </div>
-
-              <div ref={setTarget} className="target-element">
-                {isLoading && <Loading />}
-              </div>
-            </>
-          )
-          : <Exception>내역 페이지입니다. 로그인으로 이동하기</Exception>
-      }
-    </>
-  );
-}
