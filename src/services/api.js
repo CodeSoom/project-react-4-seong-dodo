@@ -1,4 +1,4 @@
-import { exchangeLocalDate, replaceString } from '../utils/utils';
+import { exchangeLocalDate, replaceString, removeComma } from '../utils/utils';
 
 // user
 export async function postLogin({ email, password }) {
@@ -32,6 +32,25 @@ export async function postJoin({ email, password, age }) {
 }
 
 // accountbook
+export async function postBudget({
+  accessToken, budget, year, month,
+}) {
+  const url = '/api/member/budget';
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      budget: removeComma(budget),
+      budgetDate: `${year}-${exchangeLocalDate(month)}-01`,
+    }),
+  });
+
+  return response;
+}
+
 export async function fetchDailyTransaction({
   accessToken, dailyData: { year, month, date },
 }) {

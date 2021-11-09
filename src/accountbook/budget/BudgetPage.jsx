@@ -5,6 +5,18 @@ import StateBarCard from '../stateBar/StateBarCard';
 import BudgetContainer from './BudgetContainer';
 import TabBarCard from '../tabBar/TabBarCard';
 
+export default function BudgetPage() {
+  return (
+    <Container>
+      <Layout>
+        <StateBarCard />
+        <BudgetContainer />
+      </Layout>
+      <TabBarCard />
+    </Container>
+  );
+}
+
 const Container = styled.div({
   margin: '0 auto',
   padding: 0,
@@ -23,15 +35,3 @@ const Layout = styled.div(mediaquery({
     '3em auto 0',
   ],
 }));
-
-export default function BudgetPage() {
-  return (
-    <Container>
-      <Layout>
-        <StateBarCard />
-        <BudgetContainer />
-      </Layout>
-      <TabBarCard />
-    </Container>
-  );
-}

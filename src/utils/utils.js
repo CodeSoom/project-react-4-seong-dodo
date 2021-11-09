@@ -2,6 +2,10 @@ export function get(key) {
   return (obj) => obj[key];
 }
 
+export function removeComma(numberStr) {
+  return parseInt(numberStr.replace(/,/g, ''), 10);
+}
+
 export function exchangeRegEX(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }

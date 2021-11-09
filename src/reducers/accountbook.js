@@ -1,8 +1,10 @@
+/* eslint-disable no-alert */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { exchangeRegEX, replaceString } from '../utils/utils';
 
 import {
+  postBudget,
   fetchDailyTransaction,
   fetchMonthlyTransaction,
   fetchAnnualTransaction,
@@ -52,6 +54,12 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         budget: exchangeRegEX(replaceString(value)),
+      };
+    },
+    clearBudget(state) {
+      return {
+        ...state,
+        budget: 0,
       };
     },
     setTargetId(state, { payload: { id } }) {
@@ -247,6 +255,7 @@ const { actions, reducer } = createSlice({
 
 export const {
   changeBudget,
+  clearBudget,
   setTargetId,
   clearTargetId,
   selectType,
@@ -269,6 +278,29 @@ export const {
   setPreviousMonth,
   setNextMonth,
 } = actions;
+
+export function sendBudget({ year, month }) {
+  return async (dispatch, getState) => {
+    const {
+      user: { accessToken },
+      accountbook: { budget },
+    } = getState();
+    const response = await postBudget({
+      accessToken, budget, year, month,
+    });
+
+    dispatch(clearBudget());
+
+    if (response.status === 200) {
+      // 페이지 이동하기
+      alert('예산 등록 완료!');
+      return;
+    }
+    if (response.status === 400) {
+      alert('등록하는데 문제가 발생하였습니다. 다시 시도해주세요.');
+    }
+  };
+}
 
 export function loadDailyTransaction({
   accessToken, year, month, date,
